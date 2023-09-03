@@ -9,8 +9,8 @@
 {
   imports =
   [
-    /hardware-configuration.nix
-    <home-manager/nixos>
+    ./hardware-configuration.nix
+    #<home-manager/nixos>
   ];
 
   # {{{ Boot
@@ -89,34 +89,24 @@
   {
     localBinInPath = true;
 
-    # {{{ Default packages
-    defaultPackages = with pkgs;
+    # {{{ System packages
+    systemPackages = with pkgs;
     [
       neovim         # Text-Editors LaTeX
-
-      nvimpager      # Other-CLI pager
-
       git            # Programming
-
       zsh            # Shells
 
       sshfs          # Other-CLI
       wget           # Other-CLI
       curl           # Other-CLI
-      clolcat        # Other-CLI
-      #rsync          # Other-CLI
-      #android-tools  # Other-CLI Android ADB Fastboot
-      #fatsort        # Other-CLI
-      #yt-dlp         # Other-CLI
-      #tmux           # Other-CLI
-      #
-      #pavucontrol-qt # Sound Sound-Manager
-      #pulsemixer     # Sound Sound-Manager
-      #qpwgraph       # Sound Patchbay
-      #easyeffects    # Sound PipeWire
-      #
-      #gparted        # Partition-manager
-      #btrbk          # Btrfs
+      rsync          # Other-CLI
+      tmux           # Other-CLI
+      file           # Other-CLI
+      htop           # Other-CLI
+      btop           # Other-CLI
+
+      pulsemixer     # Sound Sound-Manager
+      parted         # Partition-manager
     ];
     # }}}
 
@@ -165,6 +155,14 @@
       fsType = "btrfs";
       depends = [ "/" ];
       options = [ "subvol=/" ];
+    };
+
+    "/nix" =
+    {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "btrfs";
+      depends = [ "/" ];
+      options = [ "subvol=/nix" ];
     };
 
     "/home" =
@@ -366,6 +364,8 @@
   # {{{ Programs
   programs =
   {
+    dconf.enable = true;
+
     # {{{ Hyprland
     hyprland =
     {
