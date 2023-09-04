@@ -13,25 +13,36 @@
     username = "andy3153";
     homeDirectory = "/home/andy3153";
 
+    # {{{ Activation
+    activation =
+    {
+      myActivationAction = lib.hm.dag.entryAfter ["writeBoundary"]
+      ''
+
+      '';
+    };
+    # }}}
+
     # {{{ Packages
-    packages =
+    packages = with pkgs;
     [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+      #zsh            # Shells
+      #git            # Programming
+      btop           # Other-CLI
+      kitty          # hyprland-rice
+      pulsemixer     # Sound Sound-Manager
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
     ];
     # }}}
 
@@ -51,7 +62,7 @@
     };
     # }}}
 
-    stateVersion = "23.05"; # Please read the comment before changing.
+    stateVersion = "23.05";
   };
   # }}}
 
@@ -59,6 +70,119 @@
   programs =
   {
     home-manager.enable = true;
+
+    # {{{ Git
+    git =
+    {
+      enable =    true;
+      userEmail = "andy3153@protonmail.com";
+      userName =  "Andy3153";
+
+      ignores =
+      [
+        "**/*.bak"
+        "**/*.old"
+        "**/.directory"
+        "**/*.kate-swp"
+        "**/*.kdev4"
+        "**/.idea"
+        "**/*.aux"
+        "**/*.log"
+        "**/*.out"
+        "**/*.synctex.gz"
+        "**/*.toc"
+        "**/*.pyg"
+        "**/*.latexrun.db"
+        "**/*.latexrun.db.lock"
+        "**/*.fdb_latexmk"
+        "**/*.fls"
+        "**/*.xdv"
+      ];
+    };
+    # }}}
+
+    # {{{ MangoHud
+    mangohud =
+    {
+      enable = true;
+
+      # {{{ Default settings
+      settings =
+      {
+        legacy_layout=false # Disable legacy layout
+        position=top-left   # On-screen position
+        round_corners=0     # Rounded corners
+
+        # Background
+        background_alpha=0.4
+        background_color=020202
+
+        # Font
+        font_size=22
+        font_size_text=24
+        font_scale=0.7
+        text_color=ffffff
+
+        # Keybinds
+        toggle_hud=Control_L+Alt_L+M
+        toggle_logging=Shift_L+F2
+        upload_log=Shift_L+F5
+
+        output_folder=~/.cache/MangoHud/logs # Log folder
+
+        # FPS Counter
+        fps
+        engine_color=eb5b5b
+        wine_color=eb5b5b
+
+        # CPU Stats
+        cpu_stats
+        cpu_temp
+        cpu_color=2e97cb
+        cpu_text=CPU
+
+        # GPU Stats
+        gpu_stats
+        gpu_temp
+        gpu_color=2e9762
+        gpu_text=GPU
+
+        # RAM/VRAM Usage
+        ram
+        ram_color=c26693
+        swap
+        vram
+
+        battery             # Battery Percentage
+        time                # Clock
+
+        # Media PLayer
+        media_player
+        media_player_format={title};{artist};{album}
+
+        frame_timing=0      # Frame timing
+      };
+      # }}}
+
+      # {{{ Settings per application
+      settingsPerApplication =
+      {
+        MangoHud.top-center=
+        {
+          position=top-center   # On-screen position
+        }
+      }
+      # }}}
+    };
+    # }}}
+
+    # {{{ Zsh
+    zsh =
+    {
+      enable = true;
+      dotDir = ".config/zsh"
+    };
+    # }}}
   };
   # }}}
 }

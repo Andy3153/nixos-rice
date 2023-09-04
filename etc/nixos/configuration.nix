@@ -9,6 +9,7 @@
 {
   imports =
   [
+    (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz}/nixos")
     ./hardware-configuration.nix
     #<home-manager/nixos>
   ];
@@ -17,7 +18,12 @@
   boot =
   {
     consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages =  pkgs.linuxPackages_zen;
+
+    extraModulePackages = with config.boot.kernelPackages;
+    [
+      nvidia_x11
+    ];
 
     kernelParams =
     [
@@ -92,10 +98,8 @@
     # {{{ System packages
     systemPackages = with pkgs;
     [
+      home-manager   # NixOS-Components
       neovim         # Text-Editors LaTeX
-      git            # Programming
-      zsh            # Shells
-
       sshfs          # Other-CLI
       wget           # Other-CLI
       curl           # Other-CLI
@@ -103,9 +107,6 @@
       tmux           # Other-CLI
       file           # Other-CLI
       htop           # Other-CLI
-      btop           # Other-CLI
-
-      pulsemixer     # Sound Sound-Manager
       parted         # Partition-manager
     ];
     # }}}
@@ -294,13 +295,20 @@
     # }}}
 
     # {{{ Nvidia
-    nvidia =
+    /*nvidia =
     {
-        prime.offload =
+      prime =
+      {
+        intelBusId =  "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+
+        offload =
         {
-            enable = true;
+          enable =           true;
+          enableOffloadCmd = true;
         };
-    };
+      };
+    };*/
     # }}}
 
     xone.enable =    true;
@@ -370,6 +378,7 @@
     hyprland =
     {
       enable =        true;
+      nvidiaPatches = true;
     };
     # }}}
 
@@ -439,8 +448,10 @@
     # {{{ X Server
     xserver =
     {
-      enable = true;
+      enable =       true;
+      videoDrivers = [ "modesetting" "nvidia" ];
 
+      # {{{ Display manager
       displayManager =
       {
         defaultSession = "hyprland";
@@ -452,6 +463,7 @@
           theme =       "breeze";
         };
       };
+      # }}}
     };
     # }}}
   };
