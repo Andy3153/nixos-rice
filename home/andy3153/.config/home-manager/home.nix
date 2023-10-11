@@ -13,16 +13,6 @@
     username = "andy3153";
     homeDirectory = "/home/andy3153";
 
-    # {{{ Activation
-    activation =
-    {
-      myActivationAction = lib.hm.dag.entryAfter ["writeBoundary"]
-      ''
-
-      '';
-    };
-    # }}}
-
     # {{{ Packages
     packages = with pkgs;
     [
@@ -59,6 +49,14 @@
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
+    };
+    # }}}
+
+    # {{{ XDG
+    xdg =
+    {
+      enable = true;
+
     };
     # }}}
 
@@ -169,9 +167,9 @@
       {
         MangoHud.top-center=
         {
-          position=top-center   # On-screen position
-        }
-      }
+          position=top-center;   # On-screen position
+        };
+      };
       # }}}
     };
     # }}}
@@ -180,7 +178,7 @@
     zsh =
     {
       enable = true;
-      dotDir = ".config/zsh"
+      dotDir = ".config/zsh";
     };
     # }}}
   };

@@ -9,7 +9,7 @@
 {
   imports =
   [
-    (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz}/nixos")
+    #(import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz}/nixos")
     ./hardware-configuration.nix
     #<home-manager/nixos>
   ];
@@ -98,7 +98,7 @@
     # {{{ System packages
     systemPackages = with pkgs;
     [
-      home-manager   # NixOS-Components
+      # home-manager   # NixOS-Components
       neovim         # Text-Editors LaTeX
       sshfs          # Other-CLI
       wget           # Other-CLI
@@ -107,7 +107,8 @@
       tmux           # Other-CLI
       file           # Other-CLI
       htop           # Other-CLI
-      parted         # Partition-manager
+      git            # Programming
+      parted         # Partition-Manager
     ];
     # }}}
 
@@ -472,13 +473,85 @@
   # {{{ System
   system =
   {
-    copySystemConfiguration = true;
     stateVersion =            "23.05";
+
+    # {{{ Activation scripts
+    activationScripts =
+    {
+      setup.text =
+      ''
+      # Check if it's the first time the script ran
+      if [ -e /etc/nixos/.setup-done ]
+      then exit
+      else
+        # Variables
+        ghlink="https://github.com/Andy3153"
+        git="${pkgs.git}/bin/git"
+        su="${pkgs.su}/bin/su"
+
+        # Create folder structure
+        mkdir -p /home/andy3153/src
+        cd /home/andy3153/src
+
+        mkdir -p hyprland/hyprland-rice
+        mkdir -p nixos/nixos-rice
+        mkdir -p nvim/andy3153-init.lua
+        mkdir -p sh/andy3153-zshrc
+
+        # Clone Git repos
+        $git clone $ghlink/hyprland-rice hyprland/hyprland-rice
+        $git clone $ghlink/nixos-rice nixos/nixos-rice
+        $git clone $ghlink/andy3153-init.lua nvim/andy3153-init.lua
+        $git clone $ghlink/andy3153-zshrc sh/andy3153-zshrc
+
+        # Link NixOS configs in their place
+        rm -r /etc/nixos
+        ln -s /home/andy3153/src/nixos/nixos-rice/etc/nixos /etc/
+
+        # Link home-manager configs in their place
+        rm -r /home/andy3153/.config/home-manager
+        ln -s /home/andy3153/src/nixos/nixos-rice/home/andy3153/.config/home-manager/ ~andy3153/.config/
+
+        # Install Home Manager for andy3153
+        $su andy3153 -c "\
+        nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager\
+        nix-channel --update\
+        nix-shell \<home-manager\> -A install\
+        "
+
+        # Make sure andy3153 owns his files
+        chown -R andy3153:andy3153 /home/andy3153
+
+        # Ensure it's the last time the script runs
+        touch /etc/nixos/.setup-done
+      fi
+      '';
+    };
+    # }}}
   };
   # }}}
 
   # {{{ Systemd
   #systemd.ctrlAltDelUnit = null;
+  /*systemd =
+  {
+    user =
+    {
+      services =
+      {
+        getDotfiles =
+        {
+          enable =           true;
+          description =      "User service to clone dotfiles";
+          restartIfChanged = false;
+          script =
+          ''
+
+          '';
+        };
+      };
+    };
+  };*/
   # }}}
 
   # {{{ Time
@@ -491,7 +564,7 @@
     #defaultUserShell =    pkgs.dash;
     enforceIdUniqueness = false;
 
-    # {{{ Users
+    # {{{ Groups
     groups =
     {
       andy3153 =
@@ -507,14 +580,15 @@
     {
       andy3153 =
       {
-        description =  "Andy3153";
+        description =     "Andy3153";
         initialPassword = "sdfsdfsdf";
-        isNormalUser = true;
-        createHome =   true;
-        home =         "/home/andy3153";
-        group =        "andy3153";
-        shell =        pkgs.zsh;
-        uid =          3153;
+        isNormalUser =    true;
+        createHome =      true;
+        home =            "/home/andy3153";
+        group =           "andy3153";
+        extraGroups =     [ "wheel" ];
+        shell =           pkgs.zsh;
+        uid =             3153;
       };
     };
     # }}}
@@ -532,4 +606,3 @@
   };
   # }}}
 }
-
