@@ -488,8 +488,8 @@
         ghlink="https://github.com/Andy3153"
         git="${pkgs.git}/bin/git"
         su="${pkgs.su}/bin/su"
-        nix-channel="${pkgs.nix}/bin/nix-channel"
-        nix-shell="${pkgs.nix}/bin/nix-shell"
+        nix_channel="${pkgs.nix}/bin/nix-channel"
+        nix_shell="${pkgs.nix}/bin/nix-shell"
 
         # Create folder structure
         mkdir -p /home/andy3153/src
@@ -516,9 +516,9 @@
 
         # Install Home Manager for andy3153
         $su andy3153 --shell ${pkgs.runtimeShell} --command "\
-          $nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager && \
-          $nix-channel --update && \
-          $nix-shell \<home-manager\> -A install \
+          $nix_channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager && \
+          $nix_channel --update && \
+          $nix_shell \<home-manager\> -A install \
         "
 
         # Make sure andy3153 owns his files
