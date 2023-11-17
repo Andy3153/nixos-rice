@@ -98,7 +98,7 @@
     # {{{ System packages
     systemPackages = with pkgs;
     [
-      # home-manager   # NixOS-Components
+      #home-manager   # NixOS-Components
       neovim         # Text-Editors LaTeX
       sshfs          # Other-CLI
       wget           # Other-CLI
@@ -506,6 +506,16 @@
         $git clone $ghlink/andy3153-init.lua nvim/andy3153-init.lua
         $git clone $ghlink/andy3153-zshrc sh/andy3153-zshrc
 
+        # Clone zsh config deps
+        mkdir -p sh/andy3153-zshrc/plugins
+        mkdir -p sh/andy3153-zshrc/programs
+
+        $git clone https://github.com/zdharma-continuum/fast-syntax-highlighting sh/andy3153-zshrc/plugins/fast-syntax-highlighting
+        $git clone https://github.com/zsh-users/zsh-autosuggestions sh/andy3153-zshrc/plugins/zsh-autosuggestions
+        $git clone https://github.com/jeffreytse/zsh-vi-mode sh/andy3153-zshrc/plugins/zsh-vi-mode
+        $git clone https://github.com/bake/ddate.sh sh/andy3153-zshrc/progs/ddate.sh
+
+
         # Link NixOS configs in their place
         rm -r /etc/nixos
         ln -s /home/andy3153/src/nixos/nixos-rice/etc/nixos /etc/
@@ -515,11 +525,12 @@
         ln -s /home/andy3153/src/nixos/nixos-rice/home/andy3153/.config/home-manager/ ~andy3153/.config/
 
         # Install Home Manager for andy3153
-        $su andy3153 --shell ${pkgs.runtimeShell} --command "\
-          $nix_channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager && \
-          $nix_channel --update && \
-          $nix_shell \<home-manager\> -A install \
-        "
+        #$su andy3153 --shell ${pkgs.runtimeShell} --command "\
+        #  source /etc/profile
+        #  $nix_channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager && \
+        #  $nix_channel --update && \
+        #  $nix_shell \<home-manager\> -A install \
+        #"
 
         # Make sure andy3153 owns his files
         chown -R andy3153:andy3153 /home/andy3153

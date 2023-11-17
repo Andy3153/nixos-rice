@@ -43,6 +43,13 @@
       # # the Nix store. Activating the configuration will then make '~/.screenrc' a
       # # symlink to the Nix store copy.
       # ".screenrc".source = dotfiles/screenrc;
+      ".config/zsh" =
+      {
+        source    = ~/src/sh/andy3153-zshrc;
+        recursive = true;
+      };
+      ".config/zsh/.zshenv".source     = ~/src/sh/andy3153-zshrc/zshenv;
+      ".config/zsh/.zshrc".source     = ~/src/sh/andy3153-zshrc/zshrc;
 
       # # You can also set the file content immediately.
       # ".gradle/gradle.properties".text = ''
@@ -53,11 +60,10 @@
     # }}}
 
     # {{{ XDG
-    xdg =
-    {
-      enable = true;
-
-    };
+    #xdg =
+    #{
+    #  enable = true;
+    #};
     # }}}
 
     stateVersion = "23.05";
@@ -105,71 +111,71 @@
       enable = true;
 
       # {{{ Default settings
-      settings =
-      {
-        legacy_layout=false # Disable legacy layout
-        position=top-left   # On-screen position
-        round_corners=0     # Rounded corners
-
-        # Background
-        background_alpha=0.4
-        background_color=020202
-
-        # Font
-        font_size=22
-        font_size_text=24
-        font_scale=0.7
-        text_color=ffffff
-
-        # Keybinds
-        toggle_hud=Control_L+Alt_L+M
-        toggle_logging=Shift_L+F2
-        upload_log=Shift_L+F5
-
-        output_folder=~/.cache/MangoHud/logs # Log folder
-
-        # FPS Counter
-        fps
-        engine_color=eb5b5b
-        wine_color=eb5b5b
-
-        # CPU Stats
-        cpu_stats
-        cpu_temp
-        cpu_color=2e97cb
-        cpu_text=CPU
-
-        # GPU Stats
-        gpu_stats
-        gpu_temp
-        gpu_color=2e9762
-        gpu_text=GPU
-
-        # RAM/VRAM Usage
-        ram
-        ram_color=c26693
-        swap
-        vram
-
-        battery             # Battery Percentage
-        time                # Clock
-
-        # Media PLayer
-        media_player
-        media_player_format={title};{artist};{album}
-
-        frame_timing=0      # Frame timing
-      };
+      #settings =
+      #{
+      #  legacy_layout=false # Disable legacy layout
+      #  position=top-left   # On-screen position
+      #  round_corners=0     # Rounded corners
+      #
+      #  # Background
+      #  background_alpha=0.4
+      #  background_color=020202
+      #
+      #  # Font
+      #  font_size=22
+      #  font_size_text=24
+      #  font_scale=0.7
+      #  text_color=ffffff
+      #
+      #  # Keybinds
+      #  toggle_hud=Control_L+Alt_L+M
+      #  toggle_logging=Shift_L+F2
+      #  upload_log=Shift_L+F5
+      #
+      #  output_folder=~/.cache/MangoHud/logs # Log folder
+      #
+      #  # FPS Counter
+      #  fps
+      #  engine_color=eb5b5b
+      #  wine_color=eb5b5b
+      #
+      #  # CPU Stats
+      #  cpu_stats
+      #  cpu_temp
+      #  cpu_color=2e97cb
+      #  cpu_text=CPU
+      #
+      #  # GPU Stats
+      #  gpu_stats
+      #  gpu_temp
+      #  gpu_color=2e9762
+      #  gpu_text=GPU
+      #
+      #  # RAM/VRAM Usage
+      #  ram
+      #  ram_color=c26693
+      #  swap
+      #  vram
+      #
+      #  battery             # Battery Percentage
+      #  time                # Clock
+      #
+      #  # Media PLayer
+      #  media_player
+      #  media_player_format={title};{artist};{album}
+      #
+      #  frame_timing=0      # Frame timing
+      #};
       # }}}
 
       # {{{ Settings per application
-      settingsPerApplication =
-      {
-        MangoHud.top-center=
-        {
-          position=top-center;   # On-screen position
-        };
-      };
+      #settingsPerApplication =
+      #{
+      #  MangoHud.top-center=
+      #  {
+      #    position=top-center;   # On-screen position
+      #  };
+      #};
       # }}}
     };
     # }}}
