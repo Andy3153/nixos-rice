@@ -1,0 +1,17 @@
+**/*.bak
+**/*.old
+**/.directory
+**/*.kate-swp
+**/*.kdev4
+**/.idea
+**/*.aux
+**/*.log
+**/*.out
+**/*.synctex.gz
+**/*.toc
+**/*.pyg
+**/*.latexrun.db
+**/*.latexrun.db.lock
+**/*.fdb_latexmk
+**/*.fls
+**/*.xdv
