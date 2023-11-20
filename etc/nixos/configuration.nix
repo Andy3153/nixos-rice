@@ -10,7 +10,8 @@
   imports =
   [
     #(import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz}/nixos")
-    ./hardware-configuration.nix
+    ./hardware-configuration-vm.nix
+    #./hardware-configuration-milog.nix
     #<home-manager/nixos>
   ];
 
@@ -70,13 +71,18 @@
 
       systemd-boot =
       {
-        enable = true;
         editor = false;
+      };
+
+      grub =
+      {
+        efiSupport = false;
       };
 
       efi =
       {
         canTouchEfiVariables = true;
+        efiSysMountPoint     = "/boot";
       };
     };
     # }}}
@@ -130,125 +136,6 @@
     };
     # }}}
   };
-  # }}}
-
-  # {{{ Filesystems
-  boot.initrd.luks.devices."nixos-crypt".device = "/dev/disk/by-partlabel/nixos-crypt";
-
-  fileSystems =
-  {
-    "/" =
-    {
-      device  = "/dev/disk/by-label/nixos";
-      fsType  = "btrfs";
-      options = [ "subvol=/root" ];
-    };
-
-    "/boot" =
-    {
-      device  = "/dev/disk/by-label/ESP";
-      fsType  = "vfat";
-      depends = [ "/" ];
-    };
-
-    "/.btrfs-root" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/" ];
-    };
-
-    "/nix" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/nix" ];
-    };
-
-    "/home" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/home" ];
-    };
-
-    "/.swap" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/swap" ];
-    };
-
-    "/.snapshots" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/snapshots" ];
-    };
-
-    "/.snapshots.externalhdd" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/snapshots.externalhdd" ];
-    };
-
-    "/var/cache" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/var-cache" ];
-    };
-
-    "/var/log" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/var-log" ];
-    };
-
-    "/var/tmp" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/var-tmp" ];
-    };
-
-    "/var/lib/libvirt/images" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" ];
-      options = [ "subvol=/vms" ];
-    };
-
-    "/home/andy3153/games" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" "/home" ];
-      options = [ "subvol=/games" ];
-    };
-
-    "/home/andy3153/torrents" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      depends = [ "/" "/home" ];
-      options = [ "subvol=/torrents" ];
-    };
-  };
-
-  swapDevices = [ { device = "/.swap/swapfile"; } ];
   # }}}
 
   # {{{ Fonts
@@ -354,7 +241,6 @@
   # {{{ Networking
   networking =
   {
-    hostName =           "nixos";
     stevenblack.enable = true;
 
     # {{{ NetworkManager
