@@ -15,3 +15,5 @@
 **/*.fdb_latexmk
 **/*.fls
 **/*.xdv
+
+/etc/nixos/.setup-done
