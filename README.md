@@ -80,13 +80,22 @@ ln -s /mnt/nixconfig/home/andy3153/.config/home-manager/ ~andy3153/.config/
 </details>
 <!-- }}} -->
 
+<!-- {{{ Mount configs through SSHFS to edit configs from another machine -->
+<details><summary>Mount configs through SSHFS for already-installed system</summary>
+
+```bash
+sshfs -o allow_other,idmap=user root@catfish:/ /mnt/sshfs
+```
+</details>
+<!-- }}} -->
+
 <!-- {{{ System update -->
 <details><summary>System update</summary>
 
 ```bash
-doas nix-channel --update # update package databases
-doas nixos-rebuild switch # download updates and apply them to current Nix generation
-home-manager switch       # apply updates to current home manager generation
+doas nix-channel --update                                   # update package databases
+doas nixos-rebuild switch --flake /etc/nixos#andy3153-nixos # download updates and apply them to current Nix generation
+home-manager switch --flake ~/.config/home-manager/         # apply updates to current home manager generation
 ```
 </details>
 <!-- }}} -->

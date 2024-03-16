@@ -8,7 +8,13 @@
 #export _ospart="${_disk}2"
 #export _oscryptvol="/dev/mapper/${_hostname}-crypt"
 
-export _hostname="milog"
+#export _hostname="milog"
+#export _disk="/dev/sda"
+#export _bootpart="${_disk}1"
+#export _ospart="${_disk}2"
+#export _oscryptvol="/dev/mapper/${_hostname}-crypt"
+
+export _hostname="catfish"
 export _disk="/dev/sda"
 export _bootpart="${_disk}1"
 export _ospart="${_disk}2"
@@ -17,8 +23,8 @@ export _oscryptvol="/dev/mapper/${_hostname}-crypt"
 
 # {{{ Initial formatting and mounting
 parted --script "${_disk}" mklabel gpt
-parted --script "${_disk}" mkpart \""EFI System Partition"\" fat32 0% 512MiB
-parted --script "${_disk}" mkpart \""${_hostname}-crypt"\" ext4 512MiB 100%
+parted --script "${_disk}" mkpart \""EFI System Partition"\" fat32 0% 2GiB
+parted --script "${_disk}" mkpart \""${_hostname}-crypt"\" ext4 2GiB 100%
 parted --script "${_disk}" set 1 esp on
 
 mkfs.fat -F 32 -n "ESP" "${_bootpart}"

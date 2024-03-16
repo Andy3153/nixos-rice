@@ -8,7 +8,13 @@
 #export _ospart="${_disk}2"
 #export _oscryptvol="/dev/mapper/${_hostname}-crypt"
 
-export _hostname="milog"
+#export _hostname="milog"
+#export _disk="/dev/sda"
+#export _bootpart="${_disk}1"
+#export _ospart="${_disk}2"
+#export _oscryptvol="/dev/mapper/${_hostname}-crypt"
+
+export _hostname="catfish"
 export _disk="/dev/sda"
 export _bootpart="${_disk}1"
 export _ospart="${_disk}2"
