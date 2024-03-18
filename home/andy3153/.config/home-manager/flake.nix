@@ -21,12 +21,12 @@
     };
 
     # Nix-Flatpak
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0";
+    #nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0"; # I'll just use it globally
   };
   # }}}
 
   # {{{ Outputs
-  outputs = { nixpkgs, home-manager, nix-flatpak, ... }:
+  outputs = { nixpkgs, home-manager, ... }: # nix-flatpak, ... }:
   # {{{ Variables
   let
     system = "x86_64-linux";
@@ -43,7 +43,7 @@
 
         modules =
         [
-          nix-flatpak.homeManagerModules.nix-flatpak
+          #nix-flatpak.homeManagerModules.nix-flatpak
           ./home.nix
         ];
       };

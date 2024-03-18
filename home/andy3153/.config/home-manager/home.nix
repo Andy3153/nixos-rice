@@ -10,6 +10,19 @@
 {
   news.display = "notify";
 
+  # {{{ Dconf
+  dconf.settings =
+  {
+    # {{{ Autoconnect virt-manager to system QEMU
+    "org/virt-manager/virt-manager/connections" =
+    {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+    # }}}
+  };
+  # }}}
+
   # {{{ Fonts
   fonts.fontconfig.enable = true;
   # }}}
@@ -78,65 +91,81 @@
     packages = with pkgs;
     [
       # {{{ Hyprland Rice
-      libcanberra-gtk3           # hyprland-rice play-system-sounds
-      hyprpaper                  # hyprland-rice wallpaper
-      hypridle                   # hyprland-rice idle-manager
-      hyprlock                   # hyprland-rice lock-screen
-      hyprpicker                 # hyprland-rice color-picker
-      wl-clipboard               # for-nvim hyprland-rice clipboard
-      swayosd                    # hyprland-rice osd
-      polkit-kde-agent           # hyprland-rice polkit-agent
-      xwaylandvideobridge        # hyprland-rice xwayland-screenshare
-      rofi-wayland               # hyprland-rice appmenu
-      kitty                      # hyprland-rice terminal
-      waybar                     # hyprland-rice status-bar
-      dunst                      # hyprland-rice notification-daemon
-      blueman                    # hyprland-rice bluetooth-control
-      networkmanager_dmenu       # hyprland-rice network-control
-      lxqt.pavucontrol-qt        # hyprland-rice Sound sound-control
-      nwg-bar                    # hyprland-rice logout-menu
-      flameshot                  # hyprland-rice screenshot
-      grim                       # hyprland-rice screenshot for-flameshot
-      slurp                      # hyprland-rice screenshot for-flameshot
+      libcanberra-gtk3             # hyprland-rice play-system-sounds
+      hyprpaper                    # hyprland-rice wallpaper
+      hypridle                     # hyprland-rice idle-manager
+      hyprlock                     # hyprland-rice lock-screen
+      hyprpicker                   # hyprland-rice color-picker
+      swayosd                      # hyprland-rice osd
+      polkit-kde-agent             # hyprland-rice polkit-agent
+      xwaylandvideobridge          # hyprland-rice xwayland-screenshare
+      wev                          # hyprland-rice event-viewer
+      rofi-wayland                 # hyprland-rice appmenu
+      kitty                        # hyprland-rice terminal
+      waybar                       # hyprland-rice status-bar
+      blueman                      # hyprland-rice bluetooth-control
+      networkmanager_dmenu         # hyprland-rice network-control
+      lxqt.pavucontrol-qt          # hyprland-rice Sound sound-control
+      nwg-bar                      # hyprland-rice logout-menu
+      flameshot                    # hyprland-rice screenshot
+      grim                         # hyprland-rice screenshot for-flameshot
+      slurp                        # hyprland-rice screenshot for-flameshot
 
-      mpv                        # hyprland-rice video-player
-      mpvScripts.mpris           # hyprland-rice for-mpv
+      mpv                          # hyprland-rice video-player
+      mpvScripts.mpris             # hyprland-rice for-mpv
 
-      zathura                    # pdf-viewer
+      zathura                      # hyprland-rice pdf-viewer
 
-      kcalc                      # hyprland-rice KDE-Apps calculator
-      kdePackages.kdeconnect-kde # hyprland-rice KDE-Apps
-      dolphin                    # hyprland-rice KDE-Apps file-manager
-      ark                        # hyprland-rice KDE-Apps archive-manager
-      gwenview                   # hyprland-rice KDE-Apps image-viewer
-      okular                     # hyprland-rice KDE-Apps pdf-viewer
-      kcharselect                # hyprland-rice KDE-Apps character-select
-      filelight                  # hyprland-rice KDE-Apps disk-usage-analyzer
-      kdePackages.kruler         # hyprland-rice KDE-Apps on-screen-ruler
-      merkuro                    # hyprland-rice KDE-Apps calendar contacts
+      kcalc                        # hyprland-rice KDE-Apps calculator
+      kdePackages.kdeconnect-kde   # hyprland-rice KDE-Apps
+      dolphin                      # hyprland-rice KDE-Apps file-manager
+      ark                          # hyprland-rice KDE-Apps archive-manager
+      gwenview                     # hyprland-rice KDE-Apps image-viewer
+      okular                       # hyprland-rice KDE-Apps pdf-viewer
+      kcharselect                  # hyprland-rice KDE-Apps character-select
+      filelight                    # hyprland-rice KDE-Apps disk-usage-analyzer
+      kdePackages.kruler           # hyprland-rice KDE-Apps on-screen-ruler
+      merkuro                      # hyprland-rice KDE-Apps calendar contacts
       # }}}
 
-      extest                     # for-steam controller
-      yt-dlp                     # download
+      extest                       # for-steam controller
+      yt-dlp                       # download
 
-      qpwgraph                   # Sound PipeWire Patchbay
-      easyeffects                # Sound PipeWire
-      pulsemixer                 # Sound sound-control
+      qpwgraph                     # Sound PipeWire Patchbay
+      easyeffects                  # Sound PipeWire
+      pulsemixer                   # Sound sound-control
 
-      linux-wifi-hotspot         # Internet hotspot
+      linux-wifi-hotspot           # Internet hotspot
 
-      gparted                    # Partition-Manager
+      gparted                      # Partition-Manager
 
-      okteta                     # KDE-Apps hex-editor
+      okteta                       # KDE-Apps hex-editor
 
-      mousai                     # GNOME-Apps song-identifier
+      mousai                       # GNOME-Apps song-identifier
 
-      libreoffice-fresh          # Office
-      gimp                       # Office photo-editing
-      inkscape                   # Office photo-editing
+      libreoffice-fresh            # Office
+      gimp                         # Office photo-editing
+      inkscape                     # Office photo-editing
 
-      pdftk                      # pdf-tools
-      pdfarranger                # pdf-tools
+      pdftk                        # pdf-tools
+      pdfarranger                  # pdf-tools
+
+      cantata                      # music-player for-mpd
+      youtube-music                # music-player
+      flac                         # music
+      opusTools                    # music
+      ffmpeg                       # music video
+      audacity                     # music
+
+      texliveFull                  # LaTeX
+      python312Packages.pygments   # for-latex
+      pandoc                       # for-latex
+
+      betterdiscordctl             # for-discord
+
+      virt-manager                 # for-libvirt
+
+      qbittorrent                  # torrents
     ];
     # }}}
 
@@ -198,6 +227,19 @@
     #kitty.enable  = true;  # hyprland-rice terminal
     #waybar.enable = true;  # hyprland-rice status-bar
     # }}}
+
+    # {{{ OBS
+    obs-studio =
+    {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins;
+      [
+        wlrobs
+        obs-pipewire-audio-capture
+        obs-vkcapture
+      ];
+    };
+    # }}}
   };
   # }}}
 
@@ -220,9 +262,23 @@
   # {{{ Services
   services =
   {
+    # {{{ MPD
+    mpd =                          # music-player for-cantata
+    {
+      enable = true;
+
+      extraConfig =
+      ''
+      '';
+    };
+
+    mpd-mpris.enable       = true; # for-mpd
+    mpd-discord-rpc.enable = true; # for-discord for-mpd
+    # }}}
+
     # {{{ Hyprland Rice
     # {{{ Dunst
-    #dunst.enable = true;   # hyprland-rice notification-daemon
+    dunst.enable = true;           # hyprland-rice notification-daemon
     # }}}
     # }}}
   };

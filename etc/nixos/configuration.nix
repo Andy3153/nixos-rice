@@ -19,21 +19,36 @@
   # {{{ Boot
   boot =
   {
-    consoleLogLevel = 0;
+    consoleLogLevel = 0; # Quiet boot
     kernelPackages =  pkgs.linuxPackages_zen;
+
+    # {{{ Kernel modules
+    kernelModules =
+    [
+      "i2c-dev"
+    ];
+    # }}}
 
     # {{{ Extra module packages
     extraModulePackages = with config.boot.kernelPackages;
     [
+      #v4l2loopback
       nvidia_x11
     ];
+    # }}}
+
+    # {{{ Extra modprobe config
+    #extraModprobeConfig =
+    #''
+    #  options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    #'';
     # }}}
 
     # {{{ Kernel parameters
     kernelParams =
     [
-      "quiet"                  # Quiet boot
-      "udev.log_level=0"       # [ ... ]
+      "quiet"            # Quiet boot
+      "udev.log_level=0" # [ ... ]
     ];
     # }}}
 
@@ -115,13 +130,15 @@
     [
       home-manager          # NixOS-Components
 
-      neovim                # Text-Editors
       hunspell              # for-nvim for-libreoffice
       hunspellDicts.en_US   # for-nvim for-libreoffice
 
       efibootmgr            # EFI
-      doas-sudo-shim        # Other-CLI doas
-      git                   # Other-CLI Programming
+      doas-sudo-shim        # for-doas
+
+      git                   # Programming
+      python3               # Programming
+
       file                  # Other-CLI
       killall               # Other-CLI
       fastfetch             # Other-CLI fetch-system-info
@@ -143,6 +160,8 @@
 
       wl-clipboard          # hyprland-rice for-zsh for-nvim clipboard
 
+      inotify-tools         # for-scripts
+      libnotify             # for-scripts
     ];
     # }}}
 
@@ -243,7 +262,8 @@
     };
     # }}}
 
-    #xone.enable =    true;
+    i2c.enable     = true;
+    #xone.enable    = true;
     xpadneo.enable = true;
   };
   # }}}
@@ -327,7 +347,8 @@
   {
     dconf.enable    = true;
     hyprland.enable = true; # hyprland-rice wm
-    htop.enable     = true; # Other-CLI task-manager
+    htop.enable     = true; # task-manager
+    java.enable     = true; # Programming
 
     # {{{ ReGreet
     regreet =
@@ -337,11 +358,17 @@
     # }}}
 
     # {{{ Neovim
-    neovim =
+    neovim =                # Text-Editors
     {
-      enable =        true;
+      enable        = true;
       defaultEditor = true;
-      vimAlias=       true;
+
+      viAlias       = true;
+      vimAlias      = true;
+
+      withNodeJs    = true;
+      withPython3   = true;
+      withRuby      = true;
     };
     # }}}
 
@@ -381,7 +408,51 @@
   # {{{ Services
   services =
   {
-    flatpak.enable = true;
+    # {{{ Flatpak
+    flatpak =
+    {
+      enable = true;
+
+      # {{{ Packages
+      packages =
+      [
+        "com.github.tchx84.Flatseal"         # Base-System
+        "io.gitlab.librewolf-community"      # Browsers
+        "com.brave.Browser"                  # Browsers
+        "org.torproject.torbrowser-launcher" # Browsers Tor
+
+        "com.discordapp.Discord"             # Social
+        "io.github.trigg.discover_overlay"   # for-discord
+        "org.ferdium.Ferdium"                # Social
+
+        "com.spotify.Client"                 # Music-Players
+      ];
+      # }}}
+
+      # {{{ Overrides
+      overrides =
+      {
+        global =
+        {
+          Context =
+          {
+            filesystems =
+            [
+              "$HOME/.local/share/icons"
+              "$HOME/.local/share/themes"
+              "$HOME/.local/share/fonts"
+            ];
+          };
+
+          Environment =
+          {
+            XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+          };
+        };
+      };
+      # }}}
+    };
+    # }}}
 
     # {{{ greetd
     greetd =
@@ -602,12 +673,51 @@
         createHome =      true;
         home =            "/home/andy3153";
         group =           "andy3153";
-        extraGroups =     [ "wheel" ];
         shell =           pkgs.zsh;
         uid =             3153;
+
+        extraGroups =
+        [
+          "docker"
+          "libvirtd"
+          "wheel"
+        ];
       };
     };
     # }}}
+  };
+  # }}}
+
+  # {{{ Virtualisation
+  virtualisation =
+  {
+    # {{{ Docker
+    docker =
+    {
+      enable           = true;
+      enableNvidia     = true;
+      enableOnBoot     = false;
+
+      autoPrune.enable = true;
+    };
+    # }}}
+
+    # {{{ Libvirtd
+    libvirtd =
+    {
+      enable     = true;
+      onBoot     = "ignore";
+      onShutdown = "suspend";
+
+      qemu =
+      {
+        runAsRoot    = false;
+        swtpm.enable = true;
+      };
+    };
+    # }}}
+
+    waydroid.enable = true;
   };
   # }}}
 
