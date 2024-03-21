@@ -11,7 +11,7 @@
   inputs =
   {
     # NixPkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url  = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-Manager
     home-manager =
@@ -22,11 +22,14 @@
 
     # Nix-Flatpak
     #nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0"; # I'll just use it globally
+
+    # Impurity
+    #impurity.url = "github:outfoxxed/impurity.nix";
   };
   # }}}
 
   # {{{ Outputs
-  outputs = { nixpkgs, home-manager, ... }: # nix-flatpak, ... }:
+  outputs = { nixpkgs, home-manager, ... }: # nix-flatpak, impurity, ... }:
   # {{{ Variables
   let
     system = "x86_64-linux";
@@ -43,10 +46,24 @@
 
         modules =
         [
+          #{
+          #  imports = [ impurity.nixosModules.impurity ];
+          #  impurity.configRoot = self;
+          #}
+
           #nix-flatpak.homeManagerModules.nix-flatpak
+
           ./home.nix
         ];
       };
+
+      #andy3153-impure = self.homeConfigurations.andy3153.extendModules
+      #{
+      #  modules =
+      #  [
+      #    { impurity.enable = true; }
+      #  ];
+      #};
       # }}}
     };
   };

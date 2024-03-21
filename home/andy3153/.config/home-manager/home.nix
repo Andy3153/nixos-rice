@@ -128,60 +128,92 @@
       merkuro                      # hyprland-rice KDE-Apps calendar contacts
       # }}}
 
-      extest                       # for-steam controller
-      yt-dlp                       # download
-
+      # {{{ Sound
       qpwgraph                     # Sound PipeWire Patchbay
       easyeffects                  # Sound PipeWire
       pulsemixer                   # Sound sound-control
+      # }}}
 
-      linux-wifi-hotspot           # Internet hotspot
-
-      gparted                      # Partition-Manager
-
-      okteta                       # KDE-Apps hex-editor
-
-      mousai                       # GNOME-Apps song-identifier
-
+      # {{{ Office
       libreoffice-fresh            # Office
       gimp                         # Office photo-editing
       inkscape                     # Office photo-editing
 
+      texliveFull                  # LaTeX
+      python312Packages.pygments   # for-latex
+      pandoc                       # for-latex
+
       pdftk                        # pdf-tools
       pdfarranger                  # pdf-tools
+      # }}}
 
+      # {{{ Media
       cantata                      # music-player for-mpd
       youtube-music                # music-player
       flac                         # music
       opusTools                    # music
       ffmpeg                       # music video
       audacity                     # music
+      # }}}
 
-      texliveFull                  # LaTeX
-      python312Packages.pygments   # for-latex
-      pandoc                       # for-latex
+      # {{{ Games
+      depotdownloader              # for-steam
+      extest                       # for-steam for-controllers
+      wineWowPackages.staging      # wine
+      protonup-qt                  # for-steam for-wine
+      protontricks                 # for-steam for-wine
 
+      bottles                      # for-wine
+      lutris                       # for-wine
+      # }}}
+
+      yt-dlp                       # download
+      linux-wifi-hotspot           # Internet hotspot
+      gparted                      # Partition-Manager
+      okteta                       # KDE-Apps hex-editor
+      mousai                       # GNOME-Apps song-identifier
       betterdiscordctl             # for-discord
-
       virt-manager                 # for-libvirt
-
       qbittorrent                  # torrents
     ];
     # }}}
 
     # {{{ File
-    file =
-    {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
+    # {{{ Get the files
+    ## Variables
+    #ghlink="https://github.com/Andy3153"
+    #
+    ## Create folder structure
+    #mkdir -p /home/andy3153/src
+    #cd /home/andy3153/src
+    #mkdir -p hyprland/hyprland-rice
+    #mkdir -p nixos/nixos-rice
+    #mkdir -p nvim/andy3153-init.lua
+    #mkdir -p sh/andy3153-zshrc
+    #
+    ## Clone Git repos
+    #git clone $ghlink/hyprland-rice hyprland/hyprland-rice
+    #git clone $ghlink/nixos-rice nixos/nixos-rice
+    #git clone $ghlink/andy3153-init.lua nvim/andy3153-init.lua
+    #git clone $ghlink/andy3153-zshrc sh/andy3153-zshrc
+    #
+    ## Finish
+    #cd
+    # }}}
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
+    file =
+    let
+      hyprConfig     = ~/src/hyprland/hyprland-rice/dotconfig;
+      hyprLocalShare = ~/src/hyprland/hyprland-rice/dotlocal/share;
+    in
+    {
+      ".config/zsh".source     = ~/src/sh/andy3153-zshrc;
+
+      ".config/nvim".source    = ~/src/nvim/andy3153-init.lua;
+      ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
+
+      ".config/hypr".source    = ${hyprConfig}/hypr;
+      ".config/kitty".source    = ${hyprConfig}/kitty;
     };
     # }}}
 
@@ -228,6 +260,128 @@
     #waybar.enable = true;  # hyprland-rice status-bar
     # }}}
 
+    # {{{ Git
+    git =
+    {
+      enable    = true;
+      userEmail = "andy3153@protonmail.com";
+      userName  = "Andy3153";
+
+      # {{{ Extra configuration
+      extraConfig =
+      {
+        core =
+        {
+          autocrlf = "input";
+          safecrlf = "true";
+        };
+
+        merge.tool              = "vimdiff";
+        mergetool.prompt        = true;
+        mergetool."vimdiff".cmd = "nvim -d $REMOTE $LOCAL";
+
+        diff.tool               = "vimdiff";
+        difftool.prompt         = false;
+      };
+      # }}}
+
+      # {{{ Files to ignore
+      ignores =
+      [
+        "**/*.bak"
+        "**/*.old"
+        "**/.directory"
+        "**/*.kate-swp"
+        "**/*.kdev4"
+        "**/.idea"
+        "**/*.aux"
+        "**/*.log"
+        "**/*.out"
+        "**/*.synctex.gz"
+        "**/*.toc"
+        "**/*.pyg"
+        "**/*.latexrun.db"
+        "**/*.latexrun.db.lock"
+        "**/*.fdb_latexmk"
+        "**/*.fls"
+        "**/*.xdv"
+      ];
+      # }}}
+    };
+    # }}}
+
+    # {{{ MangoHud
+    mangohud =
+    {
+      enable   = true;
+      settings =
+      {
+        position         = "top-left"; # on-screen position
+        round_corners    = 0;          # rounded corners
+        frame_timing     = false;      # frame timing
+
+        # {{{ Horizontal layout
+        horizontal          = true;
+        hud_compact         = true;
+        hud_no_margin       = true;
+        # }}}
+
+        # {{{ Background
+        background_alpha    = "0";
+        background_color    = "020202";
+        # }}}
+
+        # {{{ Font
+        font_size           = 20;
+        font_size_text      = 24;
+        font_scale          = 0.7;
+        text_color          = "ffffff";
+        # }}}
+
+        # {{{ Keybinds
+        toggle_hud          = "Control_L+Alt_L+M";
+        toggle_logging      = "Shift_L+F2";
+        upload_log          = "Shift_L+F5";
+        # }}}
+
+        # {{{ FPS Counter
+        fps                 = true;
+        engine_color        = "eb5b5b";
+        wine_color          = "eb5b5b";
+        # }}}
+
+        # {{{ CPU Stats
+        cpu_stats           = true;
+        cpu_temp            = true;
+        cpu_color           = "2e97cb";
+        cpu_text            = "CPU";
+        # }}}
+
+        # {{{ GPU Stats
+        gpu_stats           = true;
+        gpu_temp            = true;
+        gpu_color           = "2e9762";
+        gpu_text            = "GPU";
+        # }}}
+
+        # {{{ RAM/Swap/VRAM Usage
+        ram                 = true;
+        ram_color           = "c26693";
+        swap                = true;
+        vram                = true;
+        # }}}
+
+        battery             = true;       # battery
+        time                = true;       # clock
+
+        # {{{ Media PLayer
+        media_player        = true;
+        media_player_format = "{title};{artist};{album}";
+        # }}}
+      };
+    };
+    # }}}
+
     # {{{ OBS
     obs-studio =
     {
@@ -257,6 +411,10 @@
     };
     # }}}
   };
+  # }}}
+
+  # {{{ Nix packages
+  nixpkgs.config.allowUnfree = true;
   # }}}
 
   # {{{ Services

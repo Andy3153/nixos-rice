@@ -137,7 +137,8 @@
       doas-sudo-shim        # for-doas
 
       git                   # Programming
-      python3               # Programming
+      python3               # Programming for-nvim
+      gcc                   # Programming for-nvim
 
       file                  # Other-CLI
       killall               # Other-CLI
@@ -147,6 +148,8 @@
       curl                  # download
       rsync                 # cp
       lsd                   # ls for-zsh
+      lolcat                # for-zsh
+      colordiff             # for-zsh
       ranger                # file-manager for-zsh for-nvim
       tmux                  # terminal-multiplexer
       htop                  # task-manager
@@ -171,16 +174,6 @@
       pkgs.dash
       pkgs.zsh
     ];
-    # }}}
-
-    # {{{ Variables
-    variables =
-    {
-      EDITOR =      "nvim";
-      VISUAL =      "$EDITOR";
-      SUDO_EDITOR = "$EDITOR";
-      GIT_EDITOR =  "$EDITOR";
-    };
     # }}}
   };
   # }}}
@@ -218,7 +211,8 @@
   # {{{ Hardware
   hardware =
   {
-    enableAllFirmware = true;
+    enableAllFirmware         = true;
+    cpu.intel.updateMicrocode = true;
 
     # {{{ Bluetooth
     bluetooth =
@@ -228,25 +222,18 @@
     };
     # }}}
 
-    # {{{ Intel CPU
-    cpu.intel =
-    {
-        updateMicrocode = true;
-    };
-    # }}}
-
     # {{{ Nvidia
     /*nvidia =
     {
       modesetting.enable = true;
       prime =
       {
-        intelBusId =  "PCI:0:2:0";
+        intelBusId  = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
 
         offload =
         {
-          enable =           true;
+          enable           = true;
           enableOffloadCmd = true;
         };
       };
@@ -256,15 +243,24 @@
     # {{{ OpenGL
     opengl =
     {
-      enable = true;
-      driSupport = true;
+      enable          = true;
+      driSupport      = true;
       driSupport32Bit = true;
     };
     # }}}
 
-    i2c.enable     = true;
-    #xone.enable    = true;
-    xpadneo.enable = true;
+    # {{{ OpenTabletDriver
+    opentabletdriver =
+    {
+      enable        = true;
+      daemon.enable = true;
+    };
+    # }}}
+
+    i2c.enable                = true;
+    #sane.enable               = true;
+    #xone.enable               = true;
+    xpadneo.enable            = true;
   };
   # }}}
 
@@ -346,6 +342,7 @@
   programs =
   {
     dconf.enable    = true;
+    gamemode.enable = true; # games
     hyprland.enable = true; # hyprland-rice wm
     htop.enable     = true; # task-manager
     java.enable     = true; # Programming
@@ -372,11 +369,31 @@
     };
     # }}}
 
-    # {{{ ZSH
+  # {{{ Steam
+  steam =
+  {
+    enable                       = true;
+
+    #gamescopeSession.enable      = true;
+
+    dedicatedServer.openFirewall = true;
+    remotePlay.openFirewall      = true;
+
+  };
+  # }}}
+
+    # {{{ Zsh
     zsh =
     {
       enable =               true;
       enableBashCompletion = true;
+      shellInit = # use ZDOTDIR
+      ''
+        export ZDOTDIR="~/.config/zsh"
+        if [ -e ~/.config/zsh/.zshenv ]
+        then source ~/.config/zsh/.zshenv
+        fi
+      '';
     };
     # }}}
   };
@@ -408,6 +425,14 @@
   # {{{ Services
   services =
   {
+    # {{{ Ananicy
+    ananicy =
+    {
+      enable  = true;
+      package = pkgs.ananicy-cpp;
+    };
+    # }}}
+
     # {{{ Flatpak
     flatpak =
     {
@@ -670,8 +695,6 @@
         description =     "Andy3153";
         initialPassword = "sdfsdf";
         isNormalUser =    true;
-        createHome =      true;
-        home =            "/home/andy3153";
         group =           "andy3153";
         shell =           pkgs.zsh;
         uid =             3153;
