@@ -202,18 +202,47 @@
     # }}}
 
     file =
-    let
-      hyprConfig     = ~/src/hyprland/hyprland-rice/dotconfig;
-      hyprLocalShare = ~/src/hyprland/hyprland-rice/dotlocal/share;
-    in
     {
       ".config/zsh".source     = ~/src/sh/andy3153-zshrc;
 
       ".config/nvim".source    = ~/src/nvim/andy3153-init.lua;
       ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
 
-      ".config/hypr".source    = ${hyprConfig}/hypr;
-      ".config/kitty".source    = ${hyprConfig}/kitty;
+      # {{{ Hyprland Rice
+      ".config/btop".source                    = ~/src/hyprland/hyprland-rice/dotconfig/btop;
+      #".config/cava".source                    = ~/src/hyprland/hyprland-rice/dotconfig/cava;
+      ".config/css-common".source              = ~/src/hyprland/hyprland-rice/dotconfig/css-common;
+      ".config/dunst".source                   = ~/src/hyprland/hyprland-rice/dotconfig/dunst;
+      ".config/fastfetch".source               = ~/src/hyprland/hyprland-rice/dotconfig/fastfetch;
+      ".config/flameshot".source               = ~/src/hyprland/hyprland-rice/dotconfig/flameshot;
+      ##".config/fontconfig".source              = ~/src/hyprland/hyprland-rice/dotconfig/fontconfig;
+      #".config/fuzzel".source                  = ~/src/hyprland/hyprland-rice/dotconfig/fuzzel;
+      ##".config/gtk-2.0".source                 = ~/src/hyprland/hyprland-rice/dotconfig/gtk-2.0;
+      ##".config/gtk-3.0".source                 = ~/src/hyprland/hyprland-rice/dotconfig/gtk-3.0;
+      ".config/htop".source                    = ~/src/hyprland/hyprland-rice/dotconfig/htop;
+      ".config/hypr".source                    = ~/src/hyprland/hyprland-rice/dotconfig/hypr;
+      ".config/kitty".source                   = ~/src/hyprland/hyprland-rice/dotconfig/kitty;
+      #".config/lf".source                      = ~/src/hyprland/hyprland-rice/dotconfig/lf;
+      ".config/mpv".source                     = ~/src/hyprland/hyprland-rice/dotconfig/mpv;
+      ".config/networkmanager-dmenu".source    = ~/src/hyprland/hyprland-rice/dotconfig/networkmanager-dmenu;
+      ".config/nwg-bar".source                 = ~/src/hyprland/hyprland-rice/dotconfig/nwg-bar;
+      #".config/nwg-dock-hyprland".source       = ~/src/hyprland/hyprland-rice/dotconfig/nwg-dock-hyprland;
+      #".config/nwg-drawer".source              = ~/src/hyprland/hyprland-rice/dotconfig/nwg-drawer;
+      ".config/qt5ct".source                   = ~/src/hyprland/hyprland-rice/dotconfig/qt5ct;
+      ".config/qt6ct".source                   = ~/src/hyprland/hyprland-rice/dotconfig/qt5ct;
+      ".config/rofi".source                    = ~/src/hyprland/hyprland-rice/dotconfig/rofi;
+      #".config/swayidle".source                = ~/src/hyprland/hyprland-rice/dotconfig/swayidle;
+      #".config/swaylock".source                = ~/src/hyprland/hyprland-rice/dotconfig/swaylock;
+      #".config/swaync".source                  = ~/src/hyprland/hyprland-rice/dotconfig/swaync;
+      ".config/waybar".source                  = ~/src/hyprland/hyprland-rice/dotconfig/waybar;
+      #".config/xava".source                    = ~/src/hyprland/hyprland-rice/dotconfig/xava;
+      ".config/zathura".source                 = ~/src/hyprland/hyprland-rice/dotconfig/zathura;
+
+      ".local/share/sounds".source             = ~/src/hyprland/hyprland-rice/dotlocal/share/sounds;
+      ".local/share/wallpapers".source         = ~/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
+      ".local/share/wallpaper.png".source      = ~/.local/share/wallpapers/wallpaper4.png;
+      ".local/share/wallpaper-lock.png".source = ~/.local/share/wallpapers/wallpaper4.png;
+      # }}}
     };
     # }}}
 

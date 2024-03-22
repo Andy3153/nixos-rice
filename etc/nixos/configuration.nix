@@ -188,7 +188,7 @@
     packages = with pkgs;
     [
       cantarell-fonts
-      (nerdfonts.override{fonts = [ "Iosevka" ]; })
+      (nerdfonts.override{fonts = [ "IosevkaTerm" "Iosevka" ]; })
       noto-fonts-color-emoji
       noto-fonts-monochrome-emoji
     ];
@@ -199,7 +199,7 @@
     {
         defaultFonts =
         {
-            monospace = [ "Iosevka" ];
+            monospace = [ "IosevkaTerm" ];
             serif     = [ "Cantarell" ];
             sansSerif = [ "Cantarell" ];
         };
