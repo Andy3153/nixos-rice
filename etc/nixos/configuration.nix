@@ -128,43 +128,44 @@
     # {{{ System packages
     systemPackages = with pkgs;
     [
-      home-manager          # NixOS-Components
+      home-manager               # NixOS-Components
 
-      hunspell              # for-nvim for-libreoffice
-      hunspellDicts.en_US   # for-nvim for-libreoffice
+      hunspell                   # for-nvim for-libreoffice
+      hunspellDicts.en_US        # for-nvim for-libreoffice
 
-      efibootmgr            # EFI
-      doas-sudo-shim        # for-doas
+      efibootmgr                 # EFI
+      doas-sudo-shim             # for-doas
 
-      git                   # Programming
-      python3               # Programming for-nvim
-      gcc                   # Programming for-nvim
+      git                        # Programming
+      python3                    # Programming for-nvim
+      python3Packages.requests   # for-waybar
+      gcc                        # Programming for-nvim
 
-      file                  # Other-CLI
-      killall               # Other-CLI
-      fastfetch             # Other-CLI fetch-system-info
-      sshfs                 # for-ssh fs-support
-      wget                  # download
-      curl                  # download
-      rsync                 # cp
-      lsd                   # ls for-zsh
-      lolcat                # for-zsh
-      colordiff             # for-zsh
-      ranger                # file-manager for-zsh for-nvim
-      tmux                  # terminal-multiplexer
-      htop                  # task-manager
-      btop                  # task-manager
-      nvtop                 # task-manager
-      kitty.terminfo        # terminfo
+      file                       # Other-CLI
+      killall                    # Other-CLI
+      fastfetch                  # Other-CLI fetch-system-info
+      sshfs                      # for-ssh fs-support
+      wget                       # download
+      curl                       # download
+      rsync                      # cp
+      lsd                        # ls for-zsh
+      lolcat                     # for-zsh
+      colordiff                  # for-zsh
+      ranger                     # file-manager for-zsh for-nvim
+      tmux                       # terminal-multiplexer
+      htop                       # task-manager
+      btop                       # task-manager
+      nvtop                      # task-manager
+      kitty.terminfo             # terminfo
 
-      brightnessctl         # Other-CLI brightness hyprland-rice
+      brightnessctl              # Other-CLI brightness hyprland-rice
 
-      parted                # Partition-Manager
+      parted                     # Partition-Manager
 
-      wl-clipboard          # hyprland-rice for-zsh for-nvim clipboard
+      wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
 
-      inotify-tools         # for-scripts
-      libnotify             # for-scripts
+      inotify-tools              # for-scripts
+      libnotify                  # for-scripts
     ];
     # }}}
 
@@ -197,12 +198,12 @@
     # {{{ Fontconfig
     fontconfig =
     {
-        defaultFonts =
-        {
-            monospace = [ "IosevkaTerm" ];
-            serif     = [ "Cantarell" ];
-            sansSerif = [ "Cantarell" ];
-        };
+      defaultFonts =
+      {
+          monospace = [ "IosevkaTerm NF" ];
+          serif     = [ "Cantarell" ];
+          sansSerif = [ "Cantarell" ];
+      };
     };
     # }}}
   };
@@ -398,6 +399,18 @@
     # }}}
   };
   # }}}
+
+  ## {{{ Qt
+  #qt =
+  #{
+  #  enable        = true;
+  #  platformTheme = "qt5ct";
+  #
+  #  # {{{ Qt style
+  #  style = lightly;
+  #  # }}}
+  #};
+  ## }}}
 
   # {{{ Security
   security =
