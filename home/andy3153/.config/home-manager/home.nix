@@ -8,7 +8,7 @@
 { config, pkgs, ... }:
 
 {
-  news.display = "notify";
+  news.display = "notify"; # Show news
 
   # {{{ Dconf
   dconf.settings =
@@ -204,10 +204,14 @@
 
     file =
     {
+      # {{{ Zsh
       ".config/zsh".source     = ~/src/sh/andy3153-zshrc;
+      # }}}
 
+      # {{{ Neovim
       ".config/nvim".source    = ~/src/nvim/andy3153-init.lua;
       ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
+      # }}}
 
       # {{{ Hyprland Rice
       ".config/btop".source                    = ~/src/hyprland/hyprland-rice/dotconfig/btop;

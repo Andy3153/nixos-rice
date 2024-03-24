@@ -130,6 +130,7 @@
     [
       home-manager               # NixOS-Components
 
+      nvimpager                  # for-nvim
       hunspell                   # for-nvim for-libreoffice
       hunspellDicts.en_US        # for-nvim for-libreoffice
 
@@ -607,70 +608,87 @@
     stateVersion =            "23.05"; #"23.11";
 
     # {{{ Activation scripts
-    #activationScripts =
-    #{
-    #  setup.text =
-    #  ''
-    #  # Check if it's the first time the script ran
-    #  if [ -e /etc/nixos/.setup-done ]
-    #  then exit
-    #  else
-    #    # Variables
-    #    ghlink="https://github.com/Andy3153"
-    #    git="${pkgs.git}/bin/git"
-    #    su="${pkgs.su}/bin/su"
-    #    nix_channel="${pkgs.nix}/bin/nix-channel"
-    #    nix_shell="${pkgs.nix}/bin/nix-shell"
-    #
-    #    # Create folder structure
-    #    mkdir -p /home/andy3153/src
-    #    cd /home/andy3153/src
-    #
-    #    mkdir -p hyprland/hyprland-rice
-    #    mkdir -p nixos/nixos-rice
-    #    mkdir -p nvim/andy3153-init.lua
-    #    mkdir -p sh/andy3153-zshrc
-    #
-    #    # Clone Git repos
-    #    $git clone $ghlink/hyprland-rice hyprland/hyprland-rice
-    #    $git clone $ghlink/nixos-rice nixos/nixos-rice
-    #    $git clone $ghlink/andy3153-init.lua nvim/andy3153-init.lua
-    #    $git clone $ghlink/andy3153-zshrc sh/andy3153-zshrc
-    #
-    #    # Clone zsh config deps
-    #    mkdir -p sh/andy3153-zshrc/plugins
-    #    mkdir -p sh/andy3153-zshrc/programs
-    #
-    #    $git clone https://github.com/zdharma-continuum/fast-syntax-highlighting sh/andy3153-zshrc/plugins/fast-syntax-highlighting
-    #    $git clone https://github.com/zsh-users/zsh-autosuggestions sh/andy3153-zshrc/plugins/zsh-autosuggestions
-    #    $git clone https://github.com/jeffreytse/zsh-vi-mode sh/andy3153-zshrc/plugins/zsh-vi-mode
-    #    $git clone https://github.com/bake/ddate.sh sh/andy3153-zshrc/progs/ddate.sh
-    #
-    #
-    #    # Link NixOS configs in their place
-    #    rm -r /etc/nixos
-    #    ln -s /home/andy3153/src/nixos/nixos-rice/etc/nixos /etc/
-    #
-    #    # Link home-manager configs in their place
-    #    rm -r /home/andy3153/.config/home-manager
-    #    ln -s /home/andy3153/src/nixos/nixos-rice/home/andy3153/.config/home-manager/ ~andy3153/.config/
-    #
-    #    # Install Home Manager for andy3153
-    #    #$su andy3153 --shell ${pkgs.runtimeShell} --command "\
-    #    #  source /etc/profile
-    #    #  $nix_channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager && \
-    #    #  $nix_channel --update && \
-    #    #  $nix_shell \<home-manager\> -A install \
-    #    #"
-    #
-    #    # Make sure andy3153 owns his files
-    #    chown -R andy3153:andy3153 /home/andy3153
-    #
-    #    # Ensure it's the last time the script runs
-    #    touch /etc/nixos/.setup-done
-    #  fi
-    #  '';
-    #};
+    activationScripts =
+    {
+      # {{{ Post-install script
+      postInstall.text =
+      ''
+## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
+##
+## NixOS post-install script
+##
+
+# Check if it's the first time the script ran
+if [ -e "/etc/nixos/.setup-done" ]
+then exit 1
+else
+
+# {{{ Variables
+# {{{ Basic
+user="andy3153"
+userHome="~${user}"
+
+ghlink="https://github.com/Andy3153"
+# }}}
+
+# {{{ Programs
+ping="${pkgs.unixtools.ping}/bin/ping"
+git="${pkgs.git}/bin/git"
+su="${pkgs.su}/bin/su"
+nix="${pkgs.nix}/bin/nix"
+# }}}
+# }}}
+
+  # {{{ Check internet connection
+  if ! $ping -q -c1 1.1.1.1 &> /dev/null
+  then print "No internet!" ; exit 1
+  fi
+  # }}}
+
+  # {{{ Create the folder structure
+  mkdir -p "${userHome}/src"
+  cd "${userHome}/src"
+  mkdir -p "nixos/nixos-rice" "hyprland/hyprland-rice" "nvim/andy3153-init.lua" "sh/andy3153-zshrc"
+  # }}}
+
+  # {{{ Clone the Git repos
+  if [ -z "$(ls -A "nixos/nixos-rice")" ]
+  then $git clone "${ghlink}/nixos-rice" "nixos/nixos-rice"
+  fi
+
+  if [ -z "$(ls -A "hyprland/hyprland-rice")" ]
+  then $git clone "${ghlink}/hyprland-rice" "hyprland/hyprland-rice"
+  fi
+
+  if [ -z "$(ls -A "nvim/andy3153-init.lua")" ]
+  then $git clone "${ghlink}/andy3153-init.lua" "nvim/andy3153-init.lua"
+  fi
+
+  if [ -z "$(ls -A "sh/andy3153-zshrc")" ]
+  then $git clone "${ghlink}/andy3153-zshrc" "sh/andy3153-zshrc"
+  fi
+  # }}}
+
+  $su "${user}" -c "$nix run home-manager/master -- init"            # Initialize HM for user
+
+  # {{{ Link NixOS configs in their place
+  rm -r "/etc/nixos"
+  ln -s "${userHome}/src/nixos/nixos-rice/etc/nixos" "/etc/"
+
+  rm -r "${userHome}/.config/home-manager"
+  ln -s "${userHome}/src/nixos/nixos-rice/home/andy3153/.config/home-manager/" "${userHome}/.config/"
+  # }}}
+
+  # {{{ Finishing steps
+  chown -R "${user}:${user}" "${userHome}"                           # Make sure user owns his files
+  $su "${user}" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
+  touch "/etc/nixos/.setup-done"                                     # Make sure it's the last time this script runs
+  # }}}
+
+fi
+      '';
+      # }}}
+    };
     # }}}
   };
   # }}}
@@ -697,6 +715,11 @@
         gid = 3153;
         members = [ "andy3153" ];
       };
+
+      #bot =
+      #{
+      #  members = [ "bot" ];
+      #};
     };
     # }}}
 
@@ -719,6 +742,14 @@
           "wheel"
         ];
       };
+
+      #bot =
+      #{
+      #  description =     "Bot";
+      #  initialPassword = "sdfsdf";
+      #  isNormalUser =    true;
+      #  group =           "bot";
+      #};
     };
     # }}}
   };
