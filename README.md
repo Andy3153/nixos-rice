@@ -93,9 +93,17 @@ sshfs -o allow_other,idmap=user root@catfish:/ /mnt/sshfs
 <details><summary>System update</summary>
 
 ```bash
-doas nixos-rebuild switch --update --flake /etc/nixos#andy3153-nixos # download updates and apply them to current Nix generation
-nix-channel --update
-home-manager switch --flake ~/.config/home-manager/         # apply updates to current home manager generation
+doas nix flake update /etc/nixos
+doas nixos-rebuild switch --flake /etc/nixos#andy3153-nixos
+
+nix flake update ~/.config/home-manager
+home-manager switch --impure --flake ~/.config/home-manager/
+```
+
+Run one after the other
+```bash
+doas nix flake update /etc/nixos && doas nixos-rebuild switch --flake /etc/nixos#andy3153-nixos
+nix flake update ~/.config/home-manager && home-manager switch --impure --flake ~/.config/home-manager/
 ```
 </details>
 <!-- }}} -->

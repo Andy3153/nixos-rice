@@ -11,7 +11,7 @@ else
 # {{{ Variables
 # {{{ Basic
 user="andy3153"
-userHome="~${user}"
+userHome="~$user"
 
 ghlink="https://github.com/Andy3153"
 # }}}
@@ -31,43 +31,43 @@ nix="${pkgs.nix}/bin/nix"
   # }}}
 
   # {{{ Create the folder structure
-  mkdir -p "${userHome}/src"
-  cd "${userHome}/src"
+  mkdir -p "$userHome/src"
+  cd "$userHome/src"
   mkdir -p "nixos/nixos-rice" "hyprland/hyprland-rice" "nvim/andy3153-init.lua" "sh/andy3153-zshrc"
   # }}}
 
   # {{{ Clone the Git repos
   if [ -z "$(ls -A "nixos/nixos-rice")" ]
-  then $git clone "${ghlink}/nixos-rice" "nixos/nixos-rice"
+  then $git clone "$ghlink/nixos-rice" "nixos/nixos-rice"
   fi
 
   if [ -z "$(ls -A "hyprland/hyprland-rice")" ]
-  then $git clone "${ghlink}/hyprland-rice" "hyprland/hyprland-rice"
+  then $git clone "$ghlink/hyprland-rice" "hyprland/hyprland-rice"
   fi
 
   if [ -z "$(ls -A "nvim/andy3153-init.lua")" ]
-  then $git clone "${ghlink}/andy3153-init.lua" "nvim/andy3153-init.lua"
+  then $git clone "$ghlink/andy3153-init.lua" "nvim/andy3153-init.lua"
   fi
 
   if [ -z "$(ls -A "sh/andy3153-zshrc")" ]
-  then $git clone "${ghlink}/andy3153-zshrc" "sh/andy3153-zshrc"
+  then $git clone "$ghlink/andy3153-zshrc" "sh/andy3153-zshrc"
   fi
   # }}}
 
-  $su "${user}" -c "$nix run home-manager/master -- init"            # Initialize HM for user
+  $su "$user" -c "$nix run home-manager/master -- init"            # Initialize HM for user
 
   # {{{ Link NixOS configs in their place
   rm -r "/etc/nixos"
-  ln -s "${userHome}/src/nixos/nixos-rice/etc/nixos" "/etc/"
+  ln -s "$userHome/src/nixos/nixos-rice/etc/nixos" "/etc/"
 
-  rm -r "${userHome}/.config/home-manager"
-  ln -s "${userHome}/src/nixos/nixos-rice/home/andy3153/.config/home-manager/" "${userHome}/.config/"
+  rm -r "$userHome/.config/home-manager"
+  ln -s "$userHome/src/nixos/nixos-rice/home/andy3153/.config/home-manager/" "$userHome/.config/"
   # }}}
 
   # {{{ Finishing steps
-  chown -R "${user}:${user}" "${userHome}"                           # Make sure user owns his files
-  $su "${user}" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
-  touch "/etc/nixos/.setup-done"                                     # Make sure it's the last time this script runs
+  chown -R "$user":"$user" "$userHome"                             # Make sure user owns his files
+  $su "$user" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
+  touch "/etc/nixos/.setup-done"                                   # Make sure it's the last time this script runs
   # }}}
 
 fi
