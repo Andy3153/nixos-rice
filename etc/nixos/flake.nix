@@ -22,12 +22,12 @@
     };
 
     # Nix-Flatpak
-    #nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0";
   };
   # }}}
 
   # {{{ Outputs
-  outputs = { self, nixpkgs, ... }@inputs: #nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, nix-flatpak, ... }@inputs:
   # {{{ Variables
   let
     system= "x86_64-linux";
@@ -48,7 +48,7 @@
 
         modules =
         [
-          #nix-flatpak.nixosModules.nix-flatpak
+          nix-flatpak.nixosModules.nix-flatpak
           ./configuration.nix
         ];
       };

@@ -64,10 +64,10 @@
     {
       verbose = false;
 
-      systemd =
-      {
-        enable = true;
-      };
+      #systemd =
+      #{
+      #  enable = true;
+      #};
 
       supportedFilesystems =
       [
@@ -156,7 +156,7 @@
       tmux                       # terminal-multiplexer
       htop                       # task-manager
       btop                       # task-manager
-      nvtop                      # task-manager
+      nvtopPackages.full         # task-manager
       kitty.terminfo             # terminfo
 
       brightnessctl              # Other-CLI brightness hyprland-rice
@@ -447,49 +447,155 @@
     };
     # }}}
 
+    # {{{ Btrbk
+    btrbk.instances =
+    {
+      # {{{ Daily local backup
+      ##
+      ## Contains subvolumes that get backed up daily, and kept locally as snapshots
+      ##
+
+      daily-local =
+      {
+        onCalendar = "daily";
+        settings =
+        {
+          timestamp_format      = "long";
+
+          snapshot_preserve     = "5d";
+          snapshot_preserve_min = "2d";
+
+          volume."/.btrfs-root" =
+          {
+            snapshot_dir = "snapshots";
+            subvolume."root".snapshot_create = "onchange";
+            subvolume."nix".snapshot_create = "onchange";
+            subvolume."home".snapshot_create = "onchange";
+          };
+        };
+      };
+      # }}}
+
+      # {{{ Backup to external hard drive
+      ##
+      ## Contains subvolumes that get backed up to an external hard drive
+      ##
+
+      externalhdd =
+      {
+        onCalendar = "null";
+        settings =
+        {
+          timestamp_format      = "long";
+
+          snapshot_preserve_min = "latest";
+
+          volume."/.btrfs-root" =
+          {
+            snapshot_dir = "snapshots.externalhdd";
+
+            subvolume."root".snapshot_create = "onchange";
+            subvolume."root".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."nix".snapshot_create = "onchange";
+            subvolume."nix".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."home".snapshot_create = "onchange";
+            subvolume."home".target = "/mnt/sparkle_snapshots/";
+          };
+        };
+      };
+      # }}}
+
+      # {{{ Backup to external hard drive (full)
+      ##
+      ## Contains subvolumes that get backed up to an external hard drive
+      ##
+
+      externalhdd-full =
+      {
+        onCalendar = "null";
+        settings =
+        {
+          timestamp_format      = "long";
+
+          snapshot_preserve_min = "latest";
+
+          volume."/.btrfs-root" =
+          {
+            snapshot_dir = "snapshots.externalhdd";
+
+            subvolume."root".snapshot_create = "onchange";
+            subvolume."root".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."nix".snapshot_create = "onchange";
+            subvolume."nix".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."home".snapshot_create = "onchange";
+            subvolume."home".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."games".snapshot_create = "onchange";
+            subvolume."games".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."vms".snapshot_create = "onchange";
+            subvolume."vms".target = "/mnt/sparkle_snapshots/";
+
+            subvolume."torrents".snapshot_create = "onchange";
+            subvolume."torrents".target = "/mnt/sparkle_snapshots/";
+
+            subvolume.".beeshome".snapshot_create = "onchange";
+            subvolume.".beeshome".target = "/mnt/sparkle_snapshots/";
+          };
+        };
+      };
+      # }}}
+
+    };
+    # }}}
+
     # {{{ Flatpak
     flatpak =
     {
       enable = true;
 
-      ## {{{ Packages
-      #packages =
-      #[
-      #  "com.github.tchx84.Flatseal"         # Base-System
-      #  "io.gitlab.librewolf-community"      # Browsers
-      #  "com.brave.Browser"                  # Browsers
-      #  "org.torproject.torbrowser-launcher" # Browsers Tor
-      #
-      #  "com.discordapp.Discord"             # Social
-      #  "io.github.trigg.discover_overlay"   # for-discord
-      #  "org.ferdium.Ferdium"                # Social
-      #
-      #  "com.spotify.Client"                 # Music-Players
-      #];
-      ## }}}
-      #
-      ## {{{ Overrides
-      #overrides =
-      #{
-      #  global =
-      #  {
-      #    Context =
-      #    {
-      #      filesystems =
-      #      [
-      #        "$HOME/.local/share/icons"
-      #        "$HOME/.local/share/themes"
-      #        "$HOME/.local/share/fonts"
-      #      ];
-      #    };
-      #
-      #    Environment =
-      #    {
-      #      XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
-      #    };
-      #  };
-      #};
-      ## }}}
+      # {{{ Packages
+      packages =
+      [
+        "com.github.tchx84.Flatseal"         # Base-System
+        "io.gitlab.librewolf-community"      # Browsers
+        "com.brave.Browser"                  # Browsers
+        "org.torproject.torbrowser-launcher" # Browsers Tor
+
+        "com.discordapp.Discord"             # Social
+        "io.github.trigg.discover_overlay"   # for-discord
+        "org.ferdium.Ferdium"                # Social
+
+        "com.spotify.Client"                 # Music-Players
+      ];
+      # }}}
+
+      # {{{ Overrides
+      overrides =
+      {
+        global =
+        {
+          Context =
+          {
+            filesystems =
+            [
+              "$HOME/.local/share/icons"
+              "$HOME/.local/share/themes"
+              "$HOME/.local/share/fonts"
+            ];
+          };
+
+          Environment =
+          {
+            XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+          };
+        };
+      };
+      # }}}
     };
     # }}}
 
