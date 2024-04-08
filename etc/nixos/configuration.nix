@@ -20,7 +20,7 @@
   boot =
   {
     consoleLogLevel = 0; # Quiet boot
-    kernelPackages =  pkgs.linuxPackages_zen;
+    kernelPackages  = pkgs.linuxPackages_zen;
 
     # {{{ Kernel modules
     kernelModules =
@@ -32,16 +32,16 @@
     # {{{ Extra module packages
     extraModulePackages = with config.boot.kernelPackages;
     [
-      #v4l2loopback
+      v4l2loopback
       nvidia_x11
     ];
     # }}}
 
     # {{{ Extra modprobe config
-    #extraModprobeConfig =
-    #''
-    #  options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    #'';
+    extraModprobeConfig =
+    ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
     # }}}
 
     # {{{ Kernel parameters
@@ -114,7 +114,7 @@
     # {{{ Plymouth
     plymouth =
     {
-      enable =true;
+      enable = true;
     };
     # }}}
   };
@@ -219,7 +219,7 @@
     # {{{ Bluetooth
     bluetooth =
     {
-        enable =      true;
+        enable      = true;
         powerOnBoot = false;
     };
     # }}}
@@ -261,7 +261,7 @@
 
     i2c.enable                = true;
     #sane.enable               = true;
-    #xone.enable               = true;
+    xone.enable               = true;
     xpadneo.enable            = true;
   };
   # }}}
@@ -387,7 +387,7 @@
     # {{{ Zsh
     zsh =
     {
-      enable =               true;
+      enable               = true;
       enableBashCompletion = true;
       shellInit = # use ZDOTDIR
       ''
@@ -417,12 +417,12 @@
   security =
   {
     rtkit.enable = true; # pipewire wants it
-    sudo.enable =  false;
+    sudo.enable  = false;
 
     # {{{ Doas
     doas =
     {
-      enable =      true;
+      enable      = true;
       extraConfig = "permit persist setenv { WAYLAND_DISPLAY XAUTHORITY LANG LC_ALL } andy3153";
     };
     # }}}
@@ -430,7 +430,7 @@
     # {{{ Polkit
     polkit =
     {
-      enable =true;
+      enable = true;
     };
     # }}}
   };
@@ -602,7 +602,7 @@
     # {{{ greetd
     greetd =
     {
-      enable =  true;
+      enable  = true;
       restart = true;
       settings = rec
       {
@@ -635,7 +635,7 @@
 
       settings =
       {
-        X11Forwarding =   true;
+        X11Forwarding   = true;
         PermitRootLogin = "yes";
       };
     };
@@ -644,9 +644,9 @@
     # {{{ Printing
     printing =
     {
-      enable =          true;
+      enable          = true;
       startWhenNeeded = true;
-      webInterface =    false;
+      webInterface    = false;
 
       drivers = with pkgs; [ brlaser ];
     };
@@ -655,17 +655,17 @@
     # {{{ PipeWire
     pipewire =
     {
-      enable =            true;
-      alsa.enable =       true;
+      enable            = true;
+      alsa.enable       = true;
       alsa.support32Bit = true;
-      pulse.enable =      true;
+      pulse.enable      = true;
     };
     # }}}
 
     # {{{ X Server
     xserver =
     {
-      enable =       false;
+      enable       = false;
       videoDrivers =
       [
         "modesetting"
@@ -682,9 +682,9 @@
       #  # {{{ SDDM
       #  sddm =
       #  {
-      #    enable =      true;
+      #    enable      = true;
       #    autoNumlock = true;
-      #    theme =       "breeze";
+      #    theme       = "breeze";
       #    settings =
       #    {
       #      Autologin =
@@ -711,7 +711,7 @@
   # {{{ System
   system =
   {
-    stateVersion =            "23.05"; #"23.11";
+    stateVersion = "23.05"; #"23.11";
 
     # {{{ Activation scripts
     activationScripts =
@@ -818,7 +818,7 @@
     {
       andy3153 =
       {
-        gid = 3153;
+        gid     = 3153;
         members = [ "andy3153" ];
       };
 
@@ -834,12 +834,12 @@
     {
       andy3153 =
       {
-        description =     "Andy3153";
+        description     = "Andy3153";
         initialPassword = "sdfsdf";
-        isNormalUser =    true;
-        group =           "andy3153";
-        shell =           pkgs.zsh;
-        uid =             3153;
+        isNormalUser    = true;
+        group           = "andy3153";
+        shell           = pkgs.zsh;
+        uid             = 3153;
 
         extraGroups =
         [
@@ -851,10 +851,10 @@
 
       #bot =
       #{
-      #  description =     "Bot";
+      #  description     = "Bot";
       #  initialPassword = "sdfsdf";
-      #  isNormalUser =    true;
-      #  group =           "bot";
+      #  isNormalUser    = true;
+      #  group           = "bot";
       #};
     };
     # }}}
