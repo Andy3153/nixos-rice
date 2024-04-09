@@ -21,6 +21,7 @@ ping="${pkgs.unixtools.ping}/bin/ping"
 git="${pkgs.git}/bin/git"
 su="${pkgs.su}/bin/su"
 nix="${pkgs.nix}/bin/nix"
+runtimeShell="${pkgs.runtimeShell}"
 # }}}
 # }}}
 
@@ -54,7 +55,7 @@ nix="${pkgs.nix}/bin/nix"
   fi
   # }}}
 
-  $su "$user" -c "$nix run home-manager/master -- init"            # Initialize HM for user
+  $su "$user" --shell "$runtimeShell" -c "$nix run home-manager/master -- init"            # Initialize HM for user
 
   # {{{ Link NixOS configs in their place
   rm -r "/etc/nixos 2> /dev/null"
@@ -66,7 +67,7 @@ nix="${pkgs.nix}/bin/nix"
 
   # {{{ Finishing steps
   chown -R "$user":"$user" "$userHome"                             # Make sure user owns his files
-  $su "$user" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
+  $su "$user" --shell "$runtimeShell" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
   touch "/etc/nixos/.setup-done"                                   # Make sure it's the last time this script runs
   # }}}
 fi
