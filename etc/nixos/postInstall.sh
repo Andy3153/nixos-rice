@@ -31,7 +31,7 @@ nix="${pkgs.nix}/bin/nix"
   # }}}
 
   # {{{ Create the folder structure
-  mkdir -p "$userHome/src"
+  mkdir -p "$userHome/src $userHome/.config"
   cd "$userHome/src"
   mkdir -p "nixos/nixos-rice" "hyprland/hyprland-rice" "nvim/andy3153-init.lua" "sh/andy3153-zshrc"
   # }}}
@@ -57,10 +57,10 @@ nix="${pkgs.nix}/bin/nix"
   $su "$user" -c "$nix run home-manager/master -- init"            # Initialize HM for user
 
   # {{{ Link NixOS configs in their place
-  rm -r "/etc/nixos"
+  rm -r "/etc/nixos 2> /dev/null"
   ln -s "$userHome/src/nixos/nixos-rice/etc/nixos" "/etc/"
 
-  rm -r "$userHome/.config/home-manager"
+  rm -r "$userHome/.config/home-manager 2> /dev/null"
   ln -s "$userHome/src/nixos/nixos-rice/home/andy3153/.config/home-manager/" "$userHome/.config/"
   # }}}
 
