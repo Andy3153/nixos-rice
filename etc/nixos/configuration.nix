@@ -723,7 +723,7 @@ else
 # {{{ Variables
 # {{{ Basic
 user="andy3153"
-userHome="~$user"
+userHome="/home/$user"
 
 ghlink="https://github.com/Andy3153"
 # }}}

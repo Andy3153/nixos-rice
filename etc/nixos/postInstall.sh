@@ -11,7 +11,7 @@ else
 # {{{ Variables
 # {{{ Basic
 user="andy3153"
-userHome="~$user"
+userHome="/home/$user"
 
 ghlink="https://github.com/Andy3153"
 # }}}
@@ -69,5 +69,4 @@ nix="${pkgs.nix}/bin/nix"
   $su "$user" -c "$nix run home-manager/master -- switch --impure" # Install HM for user
   touch "/etc/nixos/.setup-done"                                   # Make sure it's the last time this script runs
   # }}}
-
 fi
