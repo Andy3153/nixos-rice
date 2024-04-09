@@ -64,10 +64,7 @@
     {
       verbose = false;
 
-      #systemd =
-      #{
-      #  enable = true;
-      #};
+      systemd.enable = true;
 
       supportedFilesystems =
       [
@@ -171,11 +168,11 @@
     # }}}
 
     # {{{ Shells
-    shells =
-    [
-      pkgs.dash
-      pkgs.zsh
-    ];
+    #shells =
+    #[
+    #  pkgs.dash
+    #  pkgs.zsh
+    #];
     # }}}
   };
   # }}}
@@ -190,7 +187,7 @@
     packages = with pkgs;
     [
       cantarell-fonts
-      (nerdfonts.override{fonts = [ "IosevkaTerm" "Iosevka" ]; })
+      (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; })
       noto-fonts-color-emoji
       noto-fonts-monochrome-emoji
     ];
@@ -302,14 +299,8 @@
   # {{{ Networking
   networking =
   {
-    stevenblack.enable = true;
-
-    # {{{ NetworkManager
-    networkmanager =
-    {
-        enable = true;
-    };
-    # }}}
+    stevenblack.enable    = true;
+    networkmanager.enable = true;
   };
   # }}}
 
