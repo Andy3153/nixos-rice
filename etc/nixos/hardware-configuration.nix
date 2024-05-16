@@ -8,93 +8,95 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "firewire_ohci" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  boot.initrd.luks.devices."sparkle-crypt".device = "/dev/disk/by-uuid/f95604b4-c637-404b-af25-023a0a0c0820";
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
-
-  boot.initrd.luks.devices."catfish-crypt".device = "/dev/disk/by-uuid/39ee46d1-f9bf-4332-a438-9db1a42d6312";
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/60E0-A7D2";
-      fsType = "vfat";
+      options = [ "subvol=nixos/root" ];
     };
 
   fileSystems."/.btrfs-root" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
-      fsType = "btrfs";
-      options = [ "subvol=nix" ];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
-
-  fileSystems."/.swap" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
-      fsType = "btrfs";
-      options = [ "subvol=swap" ];
+      options = [ "subvol=/" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=snapshots" ];
+      options = [ "subvol=nixos/snapshots" ];
     };
 
   fileSystems."/.snapshots.externalhdd" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=snapshots.externalhdd" ];
+      options = [ "subvol=nixos/snapshots.externalhdd" ];
+    };
+
+  fileSystems."/.swap" =
+    { device = "/dev/mapper/sparkle-crypt";
+      fsType = "btrfs";
+      options = [ "subvol=nixos/swap" ];
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/BDD7-6A6D";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/mapper/sparkle-crypt";
+      fsType = "btrfs";
+      options = [ "subvol=nixos/nix" ];
     };
 
   fileSystems."/var/cache" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=var-cache" ];
+      options = [ "subvol=nixos/var-cache" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=var-log" ];
+      options = [ "subvol=nixos/var-log" ];
     };
 
   fileSystems."/var/tmp" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=var-tmp" ];
+      options = [ "subvol=nixos/var-tmp" ];
     };
 
   fileSystems."/var/lib/libvirt/images" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=vms" ];
+      options = [ "subvol=nixos/vms" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/mapper/sparkle-crypt";
+      fsType = "btrfs";
+      options = [ "subvol=nixos/home" ];
     };
 
   fileSystems."/home/andy3153/games" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=games" ];
+      options = [ "subvol=nixos/games" ];
     };
 
   fileSystems."/home/andy3153/torrents" =
-    { device = "/dev/disk/by-uuid/f44c3630-808d-4d73-a195-d3e36bde2ce3";
+    { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=torrents" ];
+      options = [ "subvol=nixos/torrents" ];
     };
 
   swapDevices = [ ];
@@ -104,7 +106,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s25.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp45s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

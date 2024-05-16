@@ -11,8 +11,8 @@
   # {{{ Inputs
   inputs =
   {
-    # NixPkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # switch to unstable
+    # NixPkgs Unstable
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-Manager
     home-manager =
@@ -27,29 +27,40 @@
   # }}}
 
   # {{{ Outputs
-  outputs = { self, nixpkgs, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs:
   # {{{ Variables
   let
-    system= "x86_64-linux";
+    system = "x86_64-linux";
+
+    # NixPkgs Unstable
     pkgs = import nixpkgs
     {
       inherit system;
-      config = { allowUnfree = true; };
+      config.allowUnfree = true;
     };
   in
   # }}}
   {
     nixosConfigurations =
     {
-      # {{{ andy3153-nixos NixOS configuration
-      andy3153-nixos = nixpkgs.lib.nixosSystem
+      # {{{ sparkle
+      sparkle = nixpkgs.lib.nixosSystem
       {
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit inputs system pkgs; };
 
         modules =
         [
           nix-flatpak.nixosModules.nix-flatpak
           ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager =
+            {
+              useGlobalPkgs   = true;
+              useUserPackages = true;
+              users.andy3153  = import ./home.nix;
+            };
+          }
         ];
       };
       # }}}

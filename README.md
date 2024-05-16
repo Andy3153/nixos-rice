@@ -111,10 +111,22 @@ nix flake update ~/.config/home-manager && home-manager switch --impure --flake 
 <!-- {{{ Garbage collection -->
 <details><summary>Garbage collection</summary>
 
+Old:
 ```bash
 nix-collect-garbage       # delete old packages
 nix-collect-garbage -d    # delete old roots
 doas nixos-rebuild switch # recommended after deleting old roots
+```
+
+New:
+```bash
+nixos-rebuild list-generations
+for ((i=firstGen; i<=lastGen; i++)); do doas rm --verbose "system-${i}-link"; done
+doas nix store gc
+#rebuild
+
+home-manager generations
+home-manager remove-generations generations
 ```
 </details>
 <!-- }}} -->

@@ -10,8 +10,12 @@
   # {{{ Inputs
   inputs =
   {
-    # NixPkgs
-    nixpkgs.url  = "github:nixos/nixpkgs/nixos-unstable";
+    # NixPkgs Stable (use as default)
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+
+    # NixPkgs Unstable
+    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home-Manager
     home-manager =
@@ -29,11 +33,25 @@
   # }}}
 
   # {{{ Outputs
-  outputs = { nixpkgs, home-manager, ... }: # nix-flatpak, impurity, ... }:
+  outputs = { nixpkgs, home-manager, ... }: #nixpkgs-unstable, nix-flatpak, impurity, ... }:
   # {{{ Variables
   let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    #pkgs = nixpkgs.legacyPackages.${system};
+
+    # NixPkgs Stable (default)
+    pkgs = import nixpkgs
+    {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    ## NixPkgs Unstable
+    #pkgs-unstable = import nixpkgs-unstable
+    #{
+    #  inherit system;
+    #  config.allowUnfree = true;
+    #};
   in
   # }}}
   {
@@ -43,6 +61,7 @@
       andy3153 = home-manager.lib.homeManagerConfiguration
       {
         inherit pkgs;
+        #specialArgs = { inherit inputs system pkgs; }; # pkgs-unstable; };
 
         modules =
         [
