@@ -319,6 +319,14 @@
   {
     package = pkgs.nixFlakes;
 
+    # {{{ Garbage collector
+    gc =
+    {
+      automatic = true;
+      dates     = "weekly";
+    };
+    # }}}
+
     # {{{ Nix Path
     nixPath =
     [
