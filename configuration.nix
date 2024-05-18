@@ -149,6 +149,7 @@
 
       file                       # Other-CLI
       killall                    # Other-CLI
+      ripgrep                    # Other-CLI
       fastfetch                  # Other-CLI fetch-system-info
       sshfs                      # for-ssh fs-support
       wget                       # download
@@ -357,7 +358,6 @@
     dconf.enable    = true;
     gamemode.enable = true; # games
     hyprland.enable = true; # hyprland-rice wm
-    #hyprland.package = pkgs-unstable.hyprland;
     htop.enable     = true; # task-manager
     java.enable     = true; # Programming
 
