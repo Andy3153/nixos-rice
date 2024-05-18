@@ -136,13 +136,15 @@
       doas-sudo-shim             # for-doas
 
       git                        # Programming
-      # Programming for-nvim
-      (python3.withPackages (python-pkgs:
-      [
-        python-pkgs.requests
-      ]))
 
-      #python3Packages.requests   # for-waybar
+      (python3.withPackages(     # Programming for-nvim
+      python-pkgs:
+      [
+        python-pkgs.requests     # for-waybar
+      ])) # nix purists don't
+          # kill me for doing
+          # this pls
+
       gcc                        # Programming for-nvim
 
       file                       # Other-CLI
