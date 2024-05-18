@@ -491,6 +491,7 @@
   {
     enable = true;
     xwayland.enable = true;
+    extraConfig = " "; # make nixos-rebuild shut up about a warn
   };
   # }}}
 
