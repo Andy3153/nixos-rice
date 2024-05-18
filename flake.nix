@@ -23,11 +23,18 @@
 
     # Nix-Flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0";
+
+    # programs.sqlite for Nix Flakes
+    flake-programs-sqlite =
+    {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   # }}}
 
   # {{{ Outputs
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, flake-programs-sqlite, ... }@inputs:
   # {{{ Variables
   let
     system = "x86_64-linux";
@@ -50,8 +57,11 @@
 
         modules =
         [
+          flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
+
           ./configuration.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager =
