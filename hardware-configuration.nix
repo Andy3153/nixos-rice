@@ -78,7 +78,7 @@
   fileSystems."/var/lib/libvirt/images" =
     { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=nixos/vms" ];
+      options = [ "subvol=vms" ];
     };
 
   fileSystems."/home" =
@@ -90,14 +90,29 @@
   fileSystems."/home/andy3153/games" =
     { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=nixos/games" ];
+      options = [ "subvol=games" ];
     };
 
   fileSystems."/home/andy3153/torrents" =
     { device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
-      options = [ "subvol=nixos/torrents" ];
+      options = [ "subvol=torrents" ];
     };
+
+  fileSystems."/home/andy3153/.local/share/Steam" =
+    { device = "/.btrfs-root/home/andy3153/.local/share/Steam";
+      options = [ "bind" ];
+    };
+
+  #fileSystems."/home/andy3153/.local/share/lutris" =
+  #  { device = "/.btrfs-root/home/andy3153/.local/share/lutris";
+  #    options = [ "bind" ];
+  #  };
+  #
+  #fileSystems."/home/andy3153/.local/share/lutris/games" =
+  #  { device = "/.btrfs-root/home/andy3153/.config/lutris/games";
+  #    options = [ "bind" ];
+  #  };
 
   swapDevices = [ ];
 

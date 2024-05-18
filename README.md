@@ -121,7 +121,7 @@ doas nixos-rebuild switch # recommended after deleting old roots
 New:
 ```bash
 nixos-rebuild list-generations
-for ((i=firstGen; i<=lastGen; i++)); do doas rm --verbose "system-${i}-link"; done
+for ((i=firstGen; i<=lastGen; i++)); do doas rm --verbose "/nix/var/nix/profiles/system-${i}-link"; done
 doas nix store gc
 #rebuild
 

@@ -93,6 +93,7 @@
       {
         enable = true;
         editor = false;
+        memtest86.enable = true;
       };
 
       grub =
@@ -291,7 +292,6 @@
         LC_TIME =           "ro_RO.UTF-8";
         LC_COLLATE =        "ro_RO.UTF-8";
         LC_MONETARY =       "ro_RO.UTF-8";
-        LC_MESSAGES =       "ro_RO.UTF-8";
         LC_PAPER =          "ro_RO.UTF-8";
         LC_NAME =           "ro_RO.UTF-8";
         LC_ADDRESS =        "ro_RO.UTF-8";
@@ -314,10 +314,12 @@
 # {{{ Nix
   nix =
   {
+    package = pkgs.nixFlakes;
+
     # {{{ Nix Path
     nixPath =
     [
-      "nixos-config = /home/andy3153/src/nixos/nixos-rice/etc/nixos/configuration.nix"
+      "nixos-config = /home/andy3153/src/nixos/nixos-rice/configuration.nix"
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
@@ -465,7 +467,8 @@
 
       daily-local =
       {
-        onCalendar = "daily";
+        #onCalendar = "daily";
+        onCalendar = "null";
         settings =
         {
           timestamp_format      = "long";
@@ -605,6 +608,8 @@
         "org.ferdium.Ferdium"                # Social
 
         "com.spotify.Client"                 # Music-Players
+
+        "sh.ppy.osu"                         # Games
       ];
       # }}}
 
@@ -822,7 +827,6 @@
   # {{{ Users
   users =
   {
-    #defaultUserShell =    pkgs.dash;
     enforceIdUniqueness = false;
 
     # {{{ Groups
@@ -909,6 +913,21 @@
   # {{{ XDG
   xdg =
   {
+    # {{{ MIME
+    mime =
+    {
+      enable = true;
+
+      defaultApplications =
+      {
+        "text/plain"      = "neovide.desktop";
+        "text/html"       = "io.gitlab.librewolf-community.desktop";
+        "application/pdf" = "org.pwmt.zathura.desktop";
+      };
+    };
+    # }}}
+
+    # {{{ Portal
     portal =
     {
       enable = true;
@@ -926,6 +945,7 @@
         };
       };
     };
+    # }}}
   };
   # }}}
 }

@@ -84,7 +84,7 @@
     stateVersion = "23.11";
 
     username      = "andy3153";
-    homeDirectory = "/home/andy3153/";
+    homeDirectory = "/home/andy3153";
     # }}}
 
     # {{{ Packages
@@ -165,6 +165,11 @@
 
       bottles                      # for-wine
       lutris                       # for-wine
+
+      prismlauncher                # games
+      xonotic                      # games
+
+      mesa-demos                   # glxgears
       # }}}
 
       neovide                      # for-nvim
@@ -205,53 +210,53 @@
     file =
     {
       # {{{ Zsh
-      ".config/zsh".source = ~/src/sh/andy3153-zshrc;
+      ".config/zsh".source = /home/andy3153/src/sh/andy3153-zshrc;
       # }}}
 
       # {{{ Neovim
-      ".config/nvim".source    = ~/src/nvim/andy3153-init.lua;
+      ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
       ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
       # }}}
 
       # {{{ Hyprland Rice
-      ".config/btop".source                    = ~/src/hyprland/hyprland-rice/dotconfig/btop;
-      #".config/cava".source                    = ~/src/hyprland/hyprland-rice/dotconfig/cava;
-      ".config/css-common".source              = ~/src/hyprland/hyprland-rice/dotconfig/css-common;
-      ".config/dunst".source                   = ~/src/hyprland/hyprland-rice/dotconfig/dunst;
-      ".config/fastfetch".source               = ~/src/hyprland/hyprland-rice/dotconfig/fastfetch;
-      ".config/flameshot".source               = ~/src/hyprland/hyprland-rice/dotconfig/flameshot;
-      ##".config/fontconfig".source              = ~/src/hyprland/hyprland-rice/dotconfig/fontconfig;
-      #".config/fuzzel".source                  = ~/src/hyprland/hyprland-rice/dotconfig/fuzzel;
-      ##".config/gtk-2.0".source                 = ~/src/hyprland/hyprland-rice/dotconfig/gtk-2.0;
-      ##".config/gtk-3.0".source                 = ~/src/hyprland/hyprland-rice/dotconfig/gtk-3.0;
-      ".config/htop".source                    = ~/src/hyprland/hyprland-rice/dotconfig/htop;
-      ".config/hypr".source                    = ~/src/hyprland/hyprland-rice/dotconfig/hypr;
-      ".config/kitty".source                   = ~/src/hyprland/hyprland-rice/dotconfig/kitty;
-      #".config/lf".source                      = ~/src/hyprland/hyprland-rice/dotconfig/lf;
-      ".config/mpv".source                     = ~/src/hyprland/hyprland-rice/dotconfig/mpv;
-      ".config/networkmanager-dmenu".source    = ~/src/hyprland/hyprland-rice/dotconfig/networkmanager-dmenu;
-      ".config/nwg-bar".source                 = ~/src/hyprland/hyprland-rice/dotconfig/nwg-bar;
-      #".config/nwg-dock-hyprland".source       = ~/src/hyprland/hyprland-rice/dotconfig/nwg-dock-hyprland;
-      #".config/nwg-drawer".source              = ~/src/hyprland/hyprland-rice/dotconfig/nwg-drawer;
-      ##".config/qt5ct".source                   = ~/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ##".config/qt6ct".source                   = ~/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ".config/rofi".source                    = ~/src/hyprland/hyprland-rice/dotconfig/rofi;
-      #".config/swayidle".source                = ~/src/hyprland/hyprland-rice/dotconfig/swayidle;
-      #".config/swaylock".source                = ~/src/hyprland/hyprland-rice/dotconfig/swaylock;
-      #".config/swaync".source                  = ~/src/hyprland/hyprland-rice/dotconfig/swaync;
-      ".config/waybar".source                  = ~/src/hyprland/hyprland-rice/dotconfig/waybar;
-      #".config/xava".source                    = ~/src/hyprland/hyprland-rice/dotconfig/xava;
-      ".config/zathura".source                 = ~/src/hyprland/hyprland-rice/dotconfig/zathura;
+      ".config/btop".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/btop;
+      #".config/cava".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/cava;
+      ".config/css-common".source              = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/css-common;
+      ".config/dunst".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/dunst;
+      ".config/fastfetch".source               = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fastfetch;
+      ".config/flameshot".source               = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/flameshot;
+      ##".config/fontconfig".source              = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fontconfig;
+      #".config/fuzzel".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fuzzel;
+      ##".config/gtk-2.0".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-2.0;
+      ##".config/gtk-3.0".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-3.0;
+      ".config/htop".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/htop;
+      ".config/hypr".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr;
+      ".config/kitty".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/kitty;
+      #".config/lf".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/lf;
+      ".config/mpv".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/mpv;
+      ".config/networkmanager-dmenu".source    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/networkmanager-dmenu;
+      ".config/nwg-bar".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-bar;
+      #".config/nwg-dock-hyprland".source       = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-dock-hyprland;
+      #".config/nwg-drawer".source              = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-drawer;
+      ##".config/qt5ct".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
+      ##".config/qt6ct".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
+      ".config/rofi".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/rofi;
+      #".config/swayidle".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swayidle;
+      #".config/swaylock".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaylock;
+      #".config/swaync".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaync;
+      ".config/waybar".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/waybar;
+      #".config/xava".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/xava;
+      ".config/zathura".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/zathura;
 
-      ".local/share/sounds".source             = ~/src/hyprland/hyprland-rice/dotlocal/share/sounds;
-      ".local/share/wallpapers".source         = ~/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
-      ".local/share/wallpaper.png".source      = ~/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
-      ".local/share/wallpaper-lock.png".source = ~/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
+      ".local/share/sounds".source             = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/sounds;
+      ".local/share/wallpapers".source         = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
+      ".local/share/wallpaper.png".source      = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
+      ".local/share/wallpaper-lock.png".source = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
       # }}}
 
       # {{{ For Flatpak
-      ".local/share/fonts".source = /run/current-system/sw/share/X11/fonts;
-      ".local/share/icons".source = /run/current-system/sw/share/icons;
+      #".local/share/fonts".source = /run/current-system/sw/share/X11/fonts;
+      #".local/share/icons".source = /run/current-system/sw/share/icons;
       # }}}
     };
     # }}}
@@ -410,10 +415,10 @@
         vram                = true;
         # }}}
 
-        battery             = true;       # battery
-        time                = true;       # clock
+        battery             = true;
+        time                = true;
 
-        # {{{ Media PLayer
+        # {{{ Media Player
         media_player        = true;
         media_player_format = "{title};{artist};{album}";
         # }}}
@@ -439,8 +444,8 @@
   # {{{ Qt
   qt =
   {
-    enable        = true;
-    platformTheme = "qtct";
+    enable             = true;
+    platformTheme.name = "qtct";
 
     # {{{ Qt style
     style =
