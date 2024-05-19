@@ -60,7 +60,8 @@
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
 
-          ./configuration.nix
+          #./configuration.nix
+          ./hosts/sparkle/configuration.nix
 
           home-manager.nixosModules.home-manager
           {

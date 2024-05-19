@@ -1,0 +1,22 @@
+## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
+##
+## Virtualisation bundle
+##
+
+{ config, lib, pkgs, ... }:
+
+{
+  imports =
+  [
+    ./docker.nix
+    ./libvirtd.nix
+    ./waydroid.nix
+  ];
+
+  custom.virtualisation =
+  {
+    docker.enable   = lib.mkDefault false;
+    libvirtd.enable = lib.mkDefault false;
+    waydroid.enable = lib.mkDefault false;
+  };
+}

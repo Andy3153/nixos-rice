@@ -1,6 +1,6 @@
 ## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 ##
-## Default NixOS config
+## Default settings that every host shares
 ##
 
 { config, lib, pkgs, ... }:
@@ -13,17 +13,6 @@
     initrd =
     {
       systemd.enable = true;
-    };
-    # }}}
-
-    # {{{ Kernel
-    kernel =
-    {
-      sysctl =
-      {
-        "vm.swappiness" = 30;  # Swappiness
-        "kernel.sysrq"  = 244; # Enable Magic SysRQ keys (REISUB sequence only (4+64+16+32+128))
-      };
     };
     # }}}
 
@@ -49,7 +38,7 @@
       };
     };
     # }}}
-  }
+  };
   # }}}
 
   # {{{ Environment
@@ -63,15 +52,27 @@
       home-manager               # NixOS-Components
 
       nvimpager                  # for-nvim
+      hunspell                   # for-nvim for-libreoffice
+      hunspellDicts.en_US        # for-nvim for-libreoffice
 
+      efibootmgr                 # EFI
       doas-sudo-shim             # for-doas
 
       git                        # Programming
-      python3                    # Programming for-nvim
+
+      (python3.withPackages(     # Programming for-nvim
+      python-pkgs:
+      [
+        python-pkgs.requests     # for-waybar
+      ])) # nix purists don't
+          # kill me for doing
+          # this pls
+
       gcc                        # Programming for-nvim
 
       file                       # Other-CLI
       killall                    # Other-CLI
+      ripgrep                    # Other-CLI
       fastfetch                  # Other-CLI fetch-system-info
       sshfs                      # for-ssh fs-support
       wget                       # download
@@ -95,16 +96,18 @@
 
       inotify-tools              # for-scripts
       libnotify                  # for-scripts
+
+      unzip                      # archives
     ];
     # }}}
-  }
+  };
   # }}}
 
   # {{{ Fonts
   fonts =
   {
     enableDefaultPackages = true;
-    fontDir.enable        = true;
+    fontDir.enable        = true; # for flatpak
 
     # {{{ Fonts
     packages = with pkgs;
@@ -134,8 +137,6 @@
   hardware =
   {
     enableAllFirmware         = true;
-    cpu.amd.updateMicrocode   = true;
-    cpu.intel.updateMicrocode = true;
   };
   # }}}
 
@@ -155,18 +156,17 @@
     # {{{ Extra locale settings
     extraLocaleSettings =
     {
-        #LC_CTYPE =          "ro_RO.UTF-8";
+        LC_CTYPE =          "ro_RO.UTF-8";
         LC_NUMERIC =        "ro_RO.UTF-8";
         LC_TIME =           "ro_RO.UTF-8";
-        #LC_COLLATE =        "ro_RO.UTF-8";
+        LC_COLLATE =        "ro_RO.UTF-8";
         LC_MONETARY =       "ro_RO.UTF-8";
-        #LC_MESSAGES =       "ro_RO.UTF-8";
         LC_PAPER =          "ro_RO.UTF-8";
         LC_NAME =           "ro_RO.UTF-8";
         LC_ADDRESS =        "ro_RO.UTF-8";
         LC_TELEPHONE =      "ro_RO.UTF-8";
         LC_MEASUREMENT =    "ro_RO.UTF-8";
-        #LC_IDENTIFICATION = "ro_RO.UTF-8";
+        LC_IDENTIFICATION = "ro_RO.UTF-8";
     };
     # }}}
   };
@@ -182,6 +182,25 @@
 # {{{ Nix
   nix =
   {
+    package = pkgs.nixFlakes;
+
+    # {{{ Garbage collector
+    gc =
+    {
+      automatic = true;
+      dates     = "weekly";
+    };
+    # }}}
+
+    # {{{ Nix Path
+    nixPath =
+    [
+      "nixos-config = /home/andy3153/src/nixos/nixos-rice/configuration.nix"
+      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+      "/nix/var/nix/profiles/per-user/root/channels"
+    ];
+    # }}}
+
     # {{{ Settings
     settings =
     {
@@ -204,9 +223,6 @@
   # {{{ Programs
   programs =
   {
-    htop.enable     = true; # task-manager
-    java.enable     = true; # Programming
-
     # {{{ Neovim
     neovim =                # Text-Editors
     {
@@ -242,8 +258,8 @@
   # {{{ Security
   security =
   {
-    sudo.enable   = false;
-    polkit.enable = true;
+    rtkit.enable = true; # pipewire wants it
+    sudo.enable  = false;
 
     # {{{ Doas
     doas =
@@ -252,12 +268,21 @@
       extraConfig = "permit persist setenv { WAYLAND_DISPLAY XAUTHORITY LANG LC_ALL } andy3153";
     };
     # }}}
+
+    # {{{ Polkit
+    polkit =
+    {
+      enable = true;
+    };
+    # }}}
   };
   # }}}
 
   # {{{ Services
   services =
   {
+    xserver.enable = false;
+
     # {{{ OpenSSH
     openssh =
     {
@@ -267,7 +292,7 @@
       settings =
       {
         X11Forwarding   = true;
-        PermitRootLogin = "yes";
+        PermitRootLogin = "prohibit-password";
       };
     };
     # }}}
@@ -275,10 +300,7 @@
   # }}}
 
   # {{{ System
-  system =
-  {
-    stateVersion = "23.05"; #"23.11";
-  };
+  system.stateVersion = "23.05";
   # }}}
 
   # {{{ Systemd
@@ -288,58 +310,4 @@
   # {{{ Time
   time.timeZone = "Europe/Bucharest";
   # }}}
-
-  # {{{ Users
-  users =
-  {
-    enforceIdUniqueness = false;
-
-    # {{{ Groups
-    groups =
-    {
-      andy3153 =
-      {
-        gid     = 3153;
-        members = [ "andy3153" ];
-      };
-
-      #bot =
-      #{
-      #  members = [ "bot" ];
-      #};
-    };
-    # }}}
-
-    # {{{ Users
-    users =
-    {
-      andy3153 =
-      {
-        description     = "Andy3153";
-        initialPassword = "sdfsdf";
-        isNormalUser    = true;
-        group           = "andy3153";
-        shell           = pkgs.zsh;
-        uid             = 3153;
-
-        extraGroups =
-        [
-          "docker"
-          "libvirtd"
-          "wheel"
-        ];
-      };
-
-      #bot =
-      #{
-      #  description     = "Bot";
-      #  initialPassword = "sdfsdf";
-      #  isNormalUser    = true;
-      #  group           = "bot";
-      #};
-    };
-    # }}}
-  };
-  # }}}
-
 }

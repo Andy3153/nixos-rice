@@ -9,10 +9,9 @@
 
 {
   imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  [
+    ./hardware-configuration.nix
+  ];
 
   networking.hostName = "sparkle"; # Define your hostname.
 
