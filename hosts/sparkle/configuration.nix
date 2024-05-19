@@ -18,21 +18,29 @@
     ../../nixosModules/services/servicesbundle.nix
     ../../nixosModules/users/usersbundle.nix
     ../../nixosModules/virtualisation/virtualisationbundle.nix
+    ../../nixosModules/xdg.portal.nix
   ];
 
+  # {{{ Custom modules
   custom =
   {
+    # {{{ Boot
     boot =
     {
       plymouth.enable = true;
       quiet           = true;
     };
+    # }}}
 
+    # {{{ GUI
     gui =
     {
-      dm.sddm.enable = true;
+      dm.sddm.enable     = true;
+      wm.hyprland.enable = true;
     };
+    # }}}
 
+    # {{{ Hardware
     hardware =
     {
       bluetooth.enable        = true;
@@ -47,7 +55,9 @@
         prime.enable = true;
       };
     };
+    # }}}
 
+    # {{{ Services
     services =
     {
       ananicy.enable  = true;
@@ -55,16 +65,26 @@
       pipewire.enable = true;
       printing.enable = true;
     };
+    # }}}
 
+    # {{{ Users
     users.andy3153.enable = true;
+    # }}}
 
+    # {{{ Virtualisation
     virtualisation =
     {
       docker.enable   = false;
       libvirtd.enable = false;
       waydroid.enable = false;
     };
+    # }}}
+
+    # {{{ XDG
+    xdg.portal.enable = true;
+    # }}}
   };
+  # }}}
 
   networking.hostName = "sparkle";
 
@@ -230,43 +250,12 @@
   };
   # }}}
 
-# {{{ Nix
-  nix =
-  {
-    # {{{ Garbage collector
-    gc =
-    {
-      automatic = true;
-      dates     = "weekly";
-    };
-    # }}}
-
-    # {{{ Settings
-    settings =
-    {
-      # {{{ Enable Hyprland Cachix
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-      # }}}
-    };
-    # }}}
-  };
-# }}}
-
   # {{{ Programs
   programs =
   {
     dconf.enable    = true;
     gamemode.enable = true; # games
-    hyprland.enable = true; # hyprland-rice wm
     java.enable     = true; # Programming
-
-    # {{{ ReGreet
-    #regreet =
-    #{
-    #  enable = true;
-    #};
-    # }}}
 
   # {{{ Steam
   steam =
@@ -277,7 +266,6 @@
 
     dedicatedServer.openFirewall = true;
     remotePlay.openFirewall      = true;
-
   };
   # }}}
   };
@@ -286,18 +274,12 @@
   # {{{ Services
   services =
   {
-    # {{{ Display manager
-    displayManager =
-    {
-      defaultSession = "hyprland";
-    };
-    # }}}
-
     # {{{ X Server
     xserver.videoDrivers =
     [
       "modesetting"
       "intel"
+      "nvidia"
       "fbdev"
     ];
     # }}}
@@ -317,26 +299,6 @@
         "text/plain"      = "neovide.desktop";
         "text/html"       = "io.gitlab.librewolf-community.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
-      };
-    };
-    # }}}
-
-    # {{{ Portal
-    portal =
-    {
-      enable = true;
-
-      extraPortals = with pkgs;
-      [
-        xdg-desktop-portal-gtk
-      ];
-
-      config =
-      {
-        common =
-        {
-          default = "*";
-        };
       };
     };
     # }}}

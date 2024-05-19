@@ -18,6 +18,7 @@ in
   {
     boot.extraModulePackages           = [ config.boot.kernelPackages.nvidia_x11 ];
     hardware.nvidia.modesetting.enable = true;
+    hardware.opengl.extraPackages      = [ pkgs.vaapiVdpau ];
     services.xserver.videoDrivers      = [ "nvidia" ];
     virtualisation.docker.enableNvidia = true;
   };

@@ -26,7 +26,6 @@ in
       {
         initial_session =
         {
-          #command = "${pkgs.hyprland}/bin/Hyprland";
           user = "andy3153";
         };
 
