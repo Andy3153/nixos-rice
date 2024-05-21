@@ -6,23 +6,20 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.gui.dm.greetd;
+  cfg = config.custom.gui.dm.greetd;
 in
 {
-  options =
-  {
-    custom.gui.dm.greetd.enable = lib.mkEnableOption "enables greetd";
-  };
+  options.custom.gui.dm.greetd.enable = lib.mkEnableOption "enables greetd";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    programs.regreet.enable = true;
+    programs.regreet.enable = lib.mkDefault true;
 
     services.greetd =
     {
-      enable  = true;
-      restart = true;
-      settings = rec
+      enable  = lib.mkDefault true;
+      restart = lib.mkDefault true;
+      settings = lib.mkDefault rec
       {
         initial_session =
         {

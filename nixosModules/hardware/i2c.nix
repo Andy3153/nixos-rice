@@ -6,17 +6,14 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.i2c;
+  cfg = config.custom.hardware.i2c;
 in
 {
-  options =
-  {
-    custom.hardware.i2c.enable = lib.mkEnableOption "enables I2C";
-  };
+  options.custom.hardware.i2c.enable = lib.mkEnableOption "enables I2C";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    boot.kernelModules  = [ "i2c-dev" ];
-    hardware.i2c.enable = true;
+    boot.kernelModules     = [ "i2c-dev" ];
+    hardware.i2c.enable = lib.mkDefault true;
   };
 }

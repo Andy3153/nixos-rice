@@ -6,26 +6,23 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.virtualisation.libvirtd;
+  cfg = config.custom.virtualisation.libvirtd;
 in
 {
-  options =
-  {
-    custom.virtualisation.libvirtd.enable = lib.mkEnableOption "enables Libvirtd";
-  };
+  options.custom.virtualisation.libvirtd.enable = lib.mkEnableOption "enables Libvirtd";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     virtualisation.libvirtd =
     {
-      enable     = true;
-      onBoot     = "ignore";
-      onShutdown = "suspend";
+      enable     = lib.mkDefault true;
+      onBoot     = lib.mkDefault "ignore";
+      onShutdown = lib.mkDefault "suspend";
 
       qemu =
       {
-        runAsRoot    = false;
-        swtpm.enable = true;
+        runAsRoot    = lib.mkDefault false;
+        swtpm.enable = lib.mkDefault true;
       };
     };
   };

@@ -6,17 +6,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.openrgb;
+  cfg = config.custom.hardware.openrgb;
 in
 {
-  options =
-  {
-    custom.hardware.openrgb.enable = lib.mkEnableOption "enables OpenRGB";
-  };
+  options.custom.hardware.openrgb.enable = lib.mkEnableOption "enables OpenRGB";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    services.udev.packages = [ pkgs.openrgb ];
-    services.hardware.openrgb.enable = true;
+    custom.hardware.i2c.enable = lib.mkForce true; # force enable custom i2c
+
+    services.udev.packages           = [ pkgs.openrgb ];
+    services.hardware.openrgb.enable = lib.mkDefault true;
   };
 }

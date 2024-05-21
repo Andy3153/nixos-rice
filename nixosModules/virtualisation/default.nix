@@ -12,11 +12,4 @@
     ./libvirtd.nix
     ./waydroid.nix
   ];
-
-  custom.virtualisation =
-  {
-    docker.enable   = lib.mkDefault false;
-    libvirtd.enable = lib.mkDefault false;
-    waydroid.enable = lib.mkDefault false;
-  };
 }

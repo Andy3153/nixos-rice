@@ -6,20 +6,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.graphictablets;
+  cfg = config.custom.hardware.graphictablets;
 in
 {
-  options =
-  {
-    custom.hardware.graphictablets.enable = lib.mkEnableOption "enables graphic tablets";
-  };
+  options.custom.hardware.graphictablets.enable = lib.mkEnableOption "enables graphic tablets";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     hardware.opentabletdriver =
     {
-      enable        = true;
-      daemon.enable = true;
+      enable        = lib.mkDefault true;
+      daemon.enable = lib.mkDefault true;
     };
   };
 }

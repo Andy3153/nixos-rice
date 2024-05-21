@@ -6,15 +6,12 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.users.bot;
+  cfg = config.custom.users.bot;
 in
 {
-  options =
-  {
-    custom.users.bot.enable = lib.mkEnableOption "enables Bot user (sample user)";
-  };
+  options.custom.users.bot.enable = lib.mkEnableOption "enables Bot user (sample user)";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     users =
     {

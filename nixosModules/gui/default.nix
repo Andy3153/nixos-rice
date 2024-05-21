@@ -12,18 +12,4 @@
     ./dm/sddm.nix
     ./wm/hyprland.nix
   ];
-
-  custom.gui =
-  {
-    dm =
-    {
-      greetd.enable = lib.mkDefault false;
-      sddm.enable   = lib.mkDefault false;
-    };
-
-    wm =
-    {
-      hyprland.enable = lib.mkDefault false;
-    };
-  };
 }

@@ -6,20 +6,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.bluetooth;
+  cfg = config.custom.hardware.bluetooth;
 in
 {
-  options =
-  {
-    custom.hardware.bluetooth.enable = lib.mkEnableOption "enables Bluetooth";
-  };
+  options.custom.hardware.bluetooth.enable = lib.mkEnableOption "enables Bluetooth";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     hardware.bluetooth =
     {
-      enable      = true;
-      powerOnBoot = false;
+      enable      = lib.mkDefault true;
+      powerOnBoot = lib.mkDefault true;
     };
   };
 }

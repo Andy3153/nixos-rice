@@ -6,19 +6,15 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.boot.plymouth;
+  cfg = config.custom.boot.plymouth;
 in
 {
-  options =
-  {
-    custom.boot.plymouth.enable = lib.mkEnableOption "enables Plymouth";
-  };
+  options.custom.boot.plymouth.enable = lib.mkEnableOption "enables Plymouth";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    boot.plymouth =
-    {
-      enable = true;
-    };
+    custom.boot.quiet = lib.mkForce true; # force enable quiet boot
+
+    boot.plymouth.enable = lib.mkDefault true;
   };
 }

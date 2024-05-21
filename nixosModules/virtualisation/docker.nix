@@ -6,21 +6,18 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.virtualisation.docker;
+  cfg = config.custom.virtualisation.docker;
 in
 {
-  options =
-  {
-    custom.virtualisation.docker.enable = lib.mkEnableOption "enables Docker";
-  };
+  options.custom.virtualisation.docker.enable = lib.mkEnableOption "enables Docker";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     virtualisation.docker =
     {
-      enable           = true;
-      enableOnBoot     = true;
-      autoPrune.enable = true;
+      enable           = lib.mkDefault true;
+      enableOnBoot     = lib.mkDefault true;
+      autoPrune.enable = lib.mkDefault true;
     };
   };
 }

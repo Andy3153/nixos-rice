@@ -6,16 +6,13 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.virtualisation.waydroid;
+  cfg = config.custom.virtualisation.waydroid;
 in
 {
-  options =
-  {
-    custom.virtualisation.waydroid.enable = lib.mkEnableOption "enables Waydroid";
-  };
+  options.custom.virtualisation.waydroid.enable = lib.mkEnableOption "enables Waydroid";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.enable = lib.mkDefault true;
   };
 }

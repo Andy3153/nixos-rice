@@ -6,19 +6,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.services.flatpak;
+  cfg = config.custom.services.flatpak;
 in
 {
-  options =
-  {
-    custom.services.flatpak.enable = lib.mkEnableOption "enables Flatpak";
-  };
+  options.custom.services.flatpak.enable = lib.mkEnableOption "enables Flatpak";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     services.flatpak =
     {
-      enable = true;
+      enable = lib.mkDefault true;
 
       overrides.global =
       {

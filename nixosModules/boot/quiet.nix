@@ -6,19 +6,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.boot.quiet;
+  cfg = config.custom.boot.quiet;
 in
 {
-  options =
-  {
-    custom.boot.quiet = lib.mkEnableOption "enables quiet boot";
-  };
+  options.custom.boot.quiet = lib.mkEnableOption "enables quiet boot";
 
-  config = lib.mkIf module
+  config = lib.mkIf cfg
   {
     boot =
     {
-      consoleLogLevel = 0;
+      consoleLogLevel = lib.mkDefault 0;
 
       kernelParams =
       [
@@ -26,7 +23,7 @@ in
         "udev.log_level=0"
       ];
 
-      initrd.verbose = false;
+      initrd.verbose = lib.mkDefault false;
     };
   };
 }

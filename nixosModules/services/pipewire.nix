@@ -6,22 +6,19 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.services.pipewire;
+  cfg = config.custom.services.pipewire;
 in
 {
-  options =
-  {
-    custom.services.pipewire.enable = lib.mkEnableOption "enables PipeWire";
-  };
+  options.custom.services.pipewire.enable = lib.mkEnableOption "enables PipeWire";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     services.pipewire =
     {
-      enable            = true;
-      alsa.enable       = true;
-      alsa.support32Bit = true;
-      pulse.enable      = true;
+      enable            = lib.mkDefault true;
+      alsa.enable       = lib.mkDefault true;
+      alsa.support32Bit = lib.mkDefault true;
+      pulse.enable      = lib.mkDefault true;
     };
   };
 }

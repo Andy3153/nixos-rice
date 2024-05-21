@@ -6,21 +6,18 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.services.printing;
+  cfg = config.custom.services.printing;
 in
 {
-  options =
-  {
-    custom.services.printing.enable = lib.mkEnableOption "enables printing";
-  };
+  options.custom.services.printing.enable = lib.mkEnableOption "enables printing";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     services.printing =
     {
-      enable          = true;
-      startWhenNeeded = true;
-      webInterface    = true;
+      enable          = lib.mkDefault true;
+      startWhenNeeded = lib.mkDefault true;
+      webInterface    = lib.mkDefault true;
     };
   };
 }

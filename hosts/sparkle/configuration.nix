@@ -12,13 +12,6 @@
   [
     ./hardware-configuration.nix
     ../../nixosModules
-    ../../nixosModules/boot
-    ../../nixosModules/gui
-    ../../nixosModules/hardware
-    ../../nixosModules/services
-    ../../nixosModules/users
-    ../../nixosModules/virtualisation
-    ../../nixosModules/xdg.portal.nix
   ];
 
   environment.systemPackages = [ pkgs-andy3153.hunspellDicts.ro_RO ];
@@ -30,7 +23,7 @@
     boot =
     {
       plymouth.enable = true;
-      quiet           = true;
+      reisub.enable   = true;
     };
     # }}}
 
@@ -50,12 +43,7 @@
       graphictablets.enable   = true;
       opengl.enable           = true;
       openrgb.enable          = true;
-
-      nvidia =
-      {
-        enable       = true;
-        prime.enable = true;
-      };
+      nvidia.prime.enable     = true;
     };
     # }}}
 
@@ -94,6 +82,7 @@
   boot.kernel.sysctl                        = { "vm.swappiness" = 30; };
   boot.loader.systemd-boot.enable           = true;
   boot.loader.systemd-boot.memtest86.enable = true;
+  hardware.bluetooth.powerOnBoot            = false;
   hardware.cpu.intel.updateMicrocode        = true;
   networking.stevenblack.enable             = true;
   services.printing.drivers                 = with pkgs; [ brlaser ];

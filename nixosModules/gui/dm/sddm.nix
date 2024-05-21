@@ -6,28 +6,24 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.gui.dm.sddm;
+  cfg = config.custom.gui.dm.sddm;
 in
 {
-  options =
-  {
-    custom.gui.dm.sddm.enable = lib.mkEnableOption "enables SDDM";
-  };
+  options.custom.gui.dm.sddm.enable = lib.mkEnableOption "enables SDDM";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     services.displayManager.sddm =
     {
-      enable         = true;
-      autoNumlock    = true;
-      #theme          = "breeze";
-      wayland.enable = true;
+      enable         = lib.mkDefault true;
+      autoNumlock    = lib.mkDefault true;
+      wayland.enable = lib.mkDefault true;
 
       settings =
       {
         Autologin =
         {
-          User    = "andy3153";
+          User = "andy3153";
         };
       };
     };

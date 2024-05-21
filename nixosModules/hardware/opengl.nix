@@ -6,21 +6,18 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.opengl;
+  cfg = config.custom.hardware.opengl;
 in
 {
-  options =
-  {
-    custom.hardware.opengl.enable = lib.mkEnableOption "enables OpenGL";
-  };
+  options.custom.hardware.opengl.enable = lib.mkEnableOption "enables OpenGL";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     hardware.opengl =
     {
-      enable          = true;
-      driSupport      = true;
-      driSupport32Bit = true;
+      enable          = lib.mkDefault true;
+      driSupport      = lib.mkDefault true;
+      driSupport32Bit = lib.mkDefault true;
     };
   };
 }

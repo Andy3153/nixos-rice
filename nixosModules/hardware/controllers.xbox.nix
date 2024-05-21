@@ -6,20 +6,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.hardware.controllers.xbox;
+  cfg = config.custom.hardware.controllers.xbox;
 in
 {
-  options =
-  {
-    custom.hardware.controllers.xbox.enable = lib.mkEnableOption "enables Xbox controllers";
-  };
+  options.custom.hardware.controllers.xbox.enable = lib.mkEnableOption "enables Xbox controllers";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     hardware =
     {
-      xone.enable               = true;
-      xpadneo.enable            = true;
+      xone.enable    = lib.mkDefault true;
+      xpadneo.enable = lib.mkDefault true;
     };
   };
 }

@@ -6,20 +6,17 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.services.ananicy;
+  cfg = config.custom.services.ananicy;
 in
 {
-  options =
-  {
-    custom.services.ananicy.enable = lib.mkEnableOption "enables Ananicy";
-  };
+  options.custom.services.ananicy.enable = lib.mkEnableOption "enables Ananicy";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     services.ananicy =
     {
-      enable  = true;
-      package = pkgs.ananicy-cpp;
+      enable  = lib.mkDefault true;
+      package = lib.mkDefault pkgs.ananicy-cpp;
     };
   };
 }

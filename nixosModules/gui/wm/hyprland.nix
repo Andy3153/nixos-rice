@@ -6,18 +6,15 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.gui.wm.hyprland;
+  cfg = config.custom.gui.wm.hyprland;
 in
 {
-  options =
-  {
-    custom.gui.wm.hyprland.enable = lib.mkEnableOption "enables Hyprland";
-  };
+  options.custom.gui.wm.hyprland.enable = lib.mkEnableOption "enables Hyprland";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
-    custom.xdg.portal.enable = true;
-    programs.hyprland.enable = true;
+    custom.xdg.portal.enable = lib.mkDefault true;
+    programs.hyprland.enable = lib.mkDefault true;
 
     nix.settings = # Enable Hyprland Cachix
     {
@@ -27,7 +24,7 @@ in
 
     services =
     {
-      displayManager.defaultSession = "hyprland";
+      displayManager.defaultSession = lib.mkDefault "hyprland";
 
       greetd.settings = rec
       {

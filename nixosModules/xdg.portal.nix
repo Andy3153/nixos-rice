@@ -6,19 +6,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  module = config.custom.xdg.portal;
+  cfg = config.custom.xdg.portal;
 in
 {
-  options =
-  {
-    custom.xdg.portal.enable = lib.mkEnableOption "enables XDG portals";
-  };
+  options.custom.xdg.portal.enable = lib.mkEnableOption "enables XDG portals";
 
-  config = lib.mkIf module.enable
+  config = lib.mkIf cfg.enable
   {
     xdg.portal =
     {
-      enable = true;
+      enable       = lib.mkDefault true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       config =
       {

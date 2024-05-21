@@ -12,11 +12,4 @@
     ./quiet.nix
     ./reisub.nix
   ];
-
-  custom.boot =
-  {
-    plymouth.enable = lib.mkDefault false;
-    quiet           = lib.mkIf config.custom.boot.plymouth.enable true;
-    reisub.enable   = lib.mkDefault false;
-  };
 }

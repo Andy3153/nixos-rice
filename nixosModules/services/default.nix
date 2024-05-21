@@ -13,12 +13,4 @@
     ./pipewire.nix
     ./printing.nix
   ];
-
-  custom.services =
-  {
-    ananicy.enable  = lib.mkDefault false;
-    flatpak.enable  = lib.mkDefault false;
-    pipewire.enable = lib.mkDefault false;
-    printing.enable = lib.mkDefault false;
-  };
 }

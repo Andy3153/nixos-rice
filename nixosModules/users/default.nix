@@ -11,10 +11,4 @@
     ./andy3153.nix
     ./bot.nix
   ];
-
-  custom.users =
-  {
-    andy3153.enable = lib.mkDefault false;
-    bot.enable      = lib.mkDefault false;
-  };
 }
