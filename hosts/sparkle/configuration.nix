@@ -5,21 +5,23 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-andy3153, ... }:
 
 {
   imports =
   [
     ./hardware-configuration.nix
-    ../../nixosModules/default.nix
-    ../../nixosModules/boot/bootbundle.nix
-    ../../nixosModules/gui/guibundle.nix
-    ../../nixosModules/hardware/hardwarebundle.nix
-    ../../nixosModules/services/servicesbundle.nix
-    ../../nixosModules/users/usersbundle.nix
-    ../../nixosModules/virtualisation/virtualisationbundle.nix
+    ../../nixosModules
+    ../../nixosModules/boot
+    ../../nixosModules/gui
+    ../../nixosModules/hardware
+    ../../nixosModules/services
+    ../../nixosModules/users
+    ../../nixosModules/virtualisation
     ../../nixosModules/xdg.portal.nix
   ];
+
+  environment.systemPackages = [ pkgs-andy3153.hunspellDicts.ro_RO ];
 
   # {{{ Custom modules
   custom =
@@ -75,7 +77,7 @@
     virtualisation =
     {
       docker.enable   = false;
-      libvirtd.enable = false;
+      libvirtd.enable = true;
       waydroid.enable = false;
     };
     # }}}
@@ -96,6 +98,12 @@
   networking.stevenblack.enable             = true;
   services.printing.drivers                 = with pkgs; [ brlaser ];
   virtualisation.docker.enableOnBoot        = false;
+
+  hardware.asus.battery =
+  {
+    chargeUpto             = 90;
+    enableChargeUptoScript = true;
+  };
 
   # {{{ Flatpak packages
   services.flatpak.packages =
@@ -218,14 +226,6 @@
       };
     };
     # }}}
-  };
-  # }}}
-
-  # {{{ Specific for this hardware
-  hardware.nvidia.prime =
-  {
-    intelBusId  = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
   };
   # }}}
 

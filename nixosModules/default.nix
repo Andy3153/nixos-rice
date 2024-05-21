@@ -51,7 +51,7 @@
     [
       home-manager               # NixOS-Components
 
-      nvimpager                  # for-nvim
+      #nvimpager                  # for-nvim
       hunspell                   # for-nvim for-libreoffice
       hunspellDicts.en_US        # for-nvim for-libreoffice
 

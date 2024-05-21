@@ -49,7 +49,7 @@ doas nix store gc
 <details><summary>Optimize Nix store</summary>
 
 ```console
-nix store optimise
+doas nix store optimise
 ```
 </details>
 <!-- }}} -->

@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1716036960,
-        "narHash": "sha256-R86BPqy4Q06BaGBqe5RCcryW8m1Q9E29vCd+/2XGZp8=",
+        "lastModified": 1716218156,
+        "narHash": "sha256-BU7aD9sJzOheWoGXMwIKZP1YggW/cH3JXZ8l1pisUGc=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "692a37a196c5470a9a91907496c63c17a505332a",
+        "rev": "227e000b8e8921726e8f1dece1bf27699dc19074",
         "type": "github"
       },
       "original": {
@@ -57,13 +57,29 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1716200158,
+        "narHash": "sha256-UsWUbtEe7yia13Vyn6o63uAz842BO6kPVvg0i8EIpyg=",
+        "owner": "Andy3153",
+        "repo": "nixos-hardware",
+        "rev": "cdf433f0c302d30712ab481984b0fbc100491b17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Andy3153",
+        "ref": "asus-fx506hm",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1715787315,
-        "narHash": "sha256-cYApT0NXJfqBkKcci7D9Kr4CBYZKOQKDYA23q8XNuWg=",
+        "lastModified": 1716137900,
+        "narHash": "sha256-sowPU+tLQv8GlqtVtsXioTKeaQvlMz/pefcdwg8MvfM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "33d1e753c82ffc557b4a585c77de43d4c922ebb5",
+        "rev": "6c0b7a92c30122196a761b440ac0d46d3d9954f1",
         "type": "github"
       },
       "original": {
@@ -73,12 +89,30 @@
         "type": "github"
       }
     },
+    "nixpkgs-andy3153": {
+      "locked": {
+        "lastModified": 1716226304,
+        "narHash": "sha256-xvaJl1tgdDG4g88hQDIq8IAVak4qFFgO90HcsTfKMss=",
+        "owner": "Andy3153",
+        "repo": "nixpkgs",
+        "rev": "e8b2efdc22dd3cfcce9705652147b2c9a206eb6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Andy3153",
+        "ref": "hunspell-ro_RO",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-programs-sqlite": "flake-programs-sqlite",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs"
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-andy3153": "nixpkgs-andy3153"
       }
     },
     "utils": {
