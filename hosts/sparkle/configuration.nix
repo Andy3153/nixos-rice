@@ -107,21 +107,6 @@
   };
 
   # {{{ Flatpak packages
-  services.flatpak.packages =
-  [
-    "com.github.tchx84.Flatseal"         # Base-System
-    "io.gitlab.librewolf-community"      # Browsers
-    "com.brave.Browser"                  # Browsers
-    "org.torproject.torbrowser-launcher" # Browsers Tor
-
-    "com.discordapp.Discord"             # Social
-    "io.github.trigg.discover_overlay"   # for-discord
-    "org.ferdium.Ferdium"                # Social
-
-    "com.spotify.Client"                 # Music-Players
-
-    "sh.ppy.osu"                         # Games
-  ];
   # }}}
 
   # {{{ Btrbk instances

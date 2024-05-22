@@ -23,6 +23,7 @@ in
     {
       gui =
       {
+        apps.enable        = lib.mkDefault true;
         dm.sddm.enable     = lib.mkDefault true;
         wm.hyprland.enable = lib.mkDefault true;
       };

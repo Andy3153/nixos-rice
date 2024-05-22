@@ -9,13 +9,24 @@ let
   cfg = config.custom.services.flatpak;
 in
 {
-  options.custom.services.flatpak.enable = lib.mkEnableOption "enables Flatpak";
+  options.custom.services.flatpak =
+  {
+    enable   = lib.mkEnableOption "enables Flatpak";
+    packages = lib.mkOption
+    {
+      type        = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
+      default     = [ ];
+      description = "declares a list of applications to install";
+    }
+  };
 
   config = lib.mkIf cfg.enable
   {
     services.flatpak =
     {
-      enable = lib.mkDefault true;
+      enable   = lib.mkDefault true;
+
+      packages = lib.mkDefault cfg.packages;
 
       overrides.global =
       {
