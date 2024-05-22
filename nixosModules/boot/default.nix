@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./kernel.nix
     ./plymouth.nix
     ./quiet.nix
     ./reisub.nix
