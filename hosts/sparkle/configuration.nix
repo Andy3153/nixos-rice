@@ -30,6 +30,10 @@
     };
     # }}}
 
+    # {{{ Gaming
+    gaming.enable = true;
+    # }}}
+
     # {{{ GUI
     gui.enable             = true;
     # }}}
@@ -48,13 +52,6 @@
       opengl.enable           = true;
       openrgb.enable          = true;
       nvidia.prime.enable     = true;
-    };
-    # }}}
-
-    # {{{ Programs
-    programs =
-    {
-      steam.enable = true;
     };
     # }}}
 
@@ -249,7 +246,6 @@
   # {{{ Programs
   programs =
   {
-    gamemode.enable = true; # games
     java.enable     = true; # Programming
   };
   # }}}
