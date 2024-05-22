@@ -96,13 +96,17 @@
   };
   # }}}
 
+  # {{{ Hosts file block list
   networking.stevenblack.enable = true;
+  # }}}
 
+  # {{{ Battery charging limit
   hardware.asus.battery =
   {
     chargeUpto             = 90;
     enableChargeUptoScript = true;
   };
+  # }}}
 
   # {{{ Btrbk instances
   services.btrbk.instances =
