@@ -14,6 +14,7 @@ in
     ./dm
     ./wm
     ./apps.nix
+    ./gaming.nix
   ];
 
   options.custom.gui.enable = lib.mkEnableOption "enables a GUI";
@@ -25,6 +26,7 @@ in
       gui =
       {
         apps.enable        = lib.mkDefault true;
+        gaming.enable      = lib.mkDefault false;
         dm.sddm.enable     = lib.mkDefault true;
         wm.hyprland.enable = lib.mkDefault true;
       };

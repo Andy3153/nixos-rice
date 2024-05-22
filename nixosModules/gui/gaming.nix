@@ -6,10 +6,10 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.gaming;
+  cfg = config.custom.gui.gaming;
 in
 {
-  options.custom.gaming.enable = lib.mkEnableOption "enables various gaming things";
+  options.custom.gui.gaming.enable = lib.mkEnableOption "enables various gaming things";
 
   config = lib.mkIf cfg.enable
   {

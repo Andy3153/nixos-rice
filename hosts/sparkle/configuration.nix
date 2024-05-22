@@ -35,7 +35,11 @@
     # }}}
 
     # {{{ GUI
-    gui.enable = true;
+    gui =
+    {
+      enable = true;
+      gaming.enable = true;
+    };
     # }}}
 
     # {{{ Hardware
