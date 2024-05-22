@@ -76,7 +76,6 @@
   };
   # }}}
 
-  networking.hostName = "sparkle";
 
   boot.kernelPackages                       = pkgs.linuxPackages_zen;
   boot.kernel.sysctl                        = { "vm.swappiness" = 30; };

@@ -71,6 +71,8 @@
 
         modules =
         [
+          { networking.hostName = "sparkle"; }
+
           nixos-hardware.nixosModules.asus-fx506hm
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
