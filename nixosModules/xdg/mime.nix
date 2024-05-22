@@ -16,8 +16,7 @@ in
     defaultApplications = lib.mkOption
     {
       type        = with lib.types; attrsOf (coercedTo (either (listOf str) str) (x: lib.concatStringsSep ";" (lib.toList x)) str);
-      default     = 0;
-      example     = 5;
+      default     = { };
       description = "sets the default applications for given mimetypes";
     };
   };
