@@ -31,11 +31,7 @@
     # }}}
 
     # {{{ GUI
-    gui =
-    {
-      dm.sddm.enable     = true;
-      wm.hyprland.enable = true;
-    };
+    gui.enable             = true;
     # }}}
 
     # {{{ Hardware
@@ -59,7 +55,7 @@
     programs =
     {
       steam.enable = true;
-    }
+    };
     # }}}
 
     # {{{ Services

@@ -5,10 +5,24 @@
 
 { config, lib, pkgs, ... }:
 
+let
+  cfg = config.custom.gui;
+in
 {
   imports =
   [
     ./dm
     ./wm
   ];
+
+  options.custom.gui.enable = lib.mkEnableOption "enables a GUI";
+
+  config = lib.mkIf cfg.enable
+  {
+    custom.gui =
+    {
+      dm.sddm.enable     = lib.mkDefault true;
+      wm.hyprland.enable = lib.mkDefault true;
+    };
+  };
 }
