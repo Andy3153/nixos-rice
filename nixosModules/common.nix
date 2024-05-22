@@ -7,48 +7,7 @@
 
 {
   # {{{ Boot
-  boot =
-  {
-    # {{{ Initial ramdisk
-    initrd =
-    {
-      systemd.enable = true;
-    };
-    # }}}
-
-    # {{{ Bootloader
-    loader =
-    {
-      timeout = 0;
-
-      systemd-boot =
-      {
-        editor = false;
-
-        # Rename boot entries
-        extraInstallCommands = # thx @m0tholith on discord
-        ''
-          search_dir=/boot/loader/entries
-          for file in "$search_dir"/*
-          do
-            ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
-          done
-        '';
-      };
-
-      grub =
-      {
-        efiSupport = false;
-      };
-
-      efi =
-      {
-        canTouchEfiVariables = true;
-        efiSysMountPoint     = "/boot";
-      };
-    };
-    # }}}
-  };
+  boot.initrd.systemd.enable = true;
   # }}}
 
   # {{{ Environment

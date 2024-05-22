@@ -26,6 +26,7 @@
       plymouth.enable   = true;
       reisub.enable     = true;
       sysctl.swappiness = 30;
+      uefiBoot.enable   = true;
     };
     # }}}
 
@@ -93,8 +94,6 @@
   };
   # }}}
 
-  boot.loader.systemd-boot.enable           = true;
-  boot.loader.systemd-boot.memtest86.enable = true;
   networking.stevenblack.enable             = true;
 
   hardware.asus.battery =
