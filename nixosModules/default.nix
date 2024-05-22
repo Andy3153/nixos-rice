@@ -12,6 +12,7 @@
     ./boot
     ./gui
     ./hardware
+    ./programs
     ./services
     ./users
     ./virtualisation

@@ -55,6 +55,13 @@
     };
     # }}}
 
+    # {{{ Programs
+    programs =
+    {
+      steam.enable = true;
+    }
+    # }}}
+
     # {{{ Services
     services =
     {
@@ -253,18 +260,6 @@
     dconf.enable    = true;
     gamemode.enable = true; # games
     java.enable     = true; # Programming
-
-  # {{{ Steam
-  steam =
-  {
-    enable                       = true;
-
-    #gamescopeSession.enable      = true;
-
-    dedicatedServer.openFirewall = true;
-    remotePlay.openFirewall      = true;
-  };
-  # }}}
   };
   # }}}
 
