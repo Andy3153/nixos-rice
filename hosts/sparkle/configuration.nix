@@ -60,7 +60,12 @@
       ananicy.enable  = true;
       flatpak.enable  = true;
       pipewire.enable = true;
-      printing.enable = true;
+
+      printing =
+      {
+        enable  = true;
+        drivers = [ pkgs.brlaser ];
+      };
     };
     # }}}
 
@@ -91,7 +96,6 @@
   boot.loader.systemd-boot.enable           = true;
   boot.loader.systemd-boot.memtest86.enable = true;
   networking.stevenblack.enable             = true;
-  services.printing.drivers                 = with pkgs; [ brlaser ];
 
   hardware.asus.battery =
   {
