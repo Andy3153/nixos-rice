@@ -13,6 +13,7 @@ in
   [
     ./dm
     ./wm
+    ./apps.nix
   ];
 
   options.custom.gui.enable = lib.mkEnableOption "enables a GUI";
