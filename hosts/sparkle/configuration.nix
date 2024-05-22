@@ -90,10 +90,6 @@
       waydroid.enable = false;
     };
     # }}}
-
-    # {{{ XDG
-    xdg.portal.enable = true;
-    # }}}
   };
   # }}}
 
@@ -253,7 +249,6 @@
   # {{{ Programs
   programs =
   {
-    dconf.enable    = true;
     gamemode.enable = true; # games
     java.enable     = true; # Programming
   };

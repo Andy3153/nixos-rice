@@ -19,10 +19,17 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.gui =
+    custom =
     {
-      dm.sddm.enable     = lib.mkDefault true;
-      wm.hyprland.enable = lib.mkDefault true;
+      gui =
+      {
+        dm.sddm.enable     = lib.mkDefault true;
+        wm.hyprland.enable = lib.mkDefault true;
+      };
+
+      xdg.portal.enable = lib.mkDefault true;
     };
+
+    programs.dconf.enable = lib.mkDefault true;
   };
 }
