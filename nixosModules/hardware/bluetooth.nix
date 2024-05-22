@@ -9,14 +9,21 @@ let
   cfg = config.custom.hardware.bluetooth;
 in
 {
-  options.custom.hardware.bluetooth.enable = lib.mkEnableOption "enables Bluetooth";
-
-  config = lib.mkIf cfg.enable
+  options.custom.hardware.bluetooth =
   {
-    hardware.bluetooth =
+    enable      = lib.mkEnableOption "enables Bluetooth";
+    powerOnBoot = lib.mkOption
     {
-      enable      = lib.mkDefault true;
-      powerOnBoot = lib.mkDefault true;
+      type        = lib.types.bool;
+      default     = true;
+      example     = false;
+      description = "whether to power up the default Bluetooth controller on boot";
     };
   };
+
+  config = lib.mkMerge
+  [
+    (lib.mkIf cfg.enable         { hardware.bluetooth.enable      = lib.mkDefault true; })
+    (lib.mkIf (!cfg.powerOnBoot) { hardware.bluetooth.powerOnBoot = lib.mkDefault false; })
+  ];
 }

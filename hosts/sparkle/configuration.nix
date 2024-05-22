@@ -40,7 +40,12 @@
     # {{{ Hardware
     hardware =
     {
-      bluetooth.enable        = true;
+      bluetooth =
+      {
+        enable      = true;
+        powerOnBoot = false;
+      };
+
       controllers.xbox.enable = true;
       graphictablets.enable   = true;
       opengl.enable           = true;
@@ -78,11 +83,8 @@
   };
   # }}}
 
-
-  #boot.kernel.sysctl                        = { "vm.swappiness" = 30; };
   boot.loader.systemd-boot.enable           = true;
   boot.loader.systemd-boot.memtest86.enable = true;
-  hardware.bluetooth.powerOnBoot            = false;
   hardware.cpu.intel.updateMicrocode        = true;
   networking.stevenblack.enable             = true;
   services.printing.drivers                 = with pkgs; [ brlaser ];
