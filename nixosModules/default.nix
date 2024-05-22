@@ -10,7 +10,6 @@
   [
     ./common.nix
     ./boot
-    ./gaming.nix
     ./gui
     ./hardware
     ./programs

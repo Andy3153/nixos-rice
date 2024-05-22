@@ -30,10 +30,6 @@
     };
     # }}}
 
-    # {{{ Gaming
-    gaming.enable = true;
-    # }}}
-
     # {{{ GUI
     gui =
     {
@@ -109,9 +105,6 @@
     chargeUpto             = 90;
     enableChargeUptoScript = true;
   };
-
-  # {{{ Flatpak packages
-  # }}}
 
   # {{{ Btrbk instances
   services.btrbk.instances =

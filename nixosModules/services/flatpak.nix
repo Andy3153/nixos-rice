@@ -17,7 +17,7 @@ in
       type        = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
       default     = [ ];
       description = "declares a list of applications to install";
-    }
+    };
   };
 
   config = lib.mkIf cfg.enable
