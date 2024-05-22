@@ -23,7 +23,7 @@ in
       {
         Autologin =
         {
-          User = "andy3153";
+          User = ${config.custom.users.mainUser};
         };
       };
     };

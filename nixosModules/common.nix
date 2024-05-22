@@ -176,7 +176,7 @@
     # {{{ Nix Path
     nixPath =
     [
-      "nixos-config=/home/andy3153/src/nixos/nixos-rice/hosts/sparkle/configuration.nix"
+      "nixos-config=/home/${config.custom.users.mainUser}/src/nixos/nixos-rice/hosts/sparkle/configuration.nix"
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
@@ -246,7 +246,7 @@
     doas =
     {
       enable      = true;
-      extraConfig = "permit persist setenv { WAYLAND_DISPLAY XAUTHORITY LANG LC_ALL } andy3153";
+      extraConfig = "permit persist setenv { WAYLAND_DISPLAY XAUTHORITY LANG LC_ALL } ${config.custom.users.mainUser}";
     };
     # }}}
 

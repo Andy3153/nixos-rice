@@ -23,7 +23,7 @@ in
       {
         initial_session =
         {
-          user = "andy3153";
+          user = ${config.custom.users.mainUser};
         };
 
         default_session =
