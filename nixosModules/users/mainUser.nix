@@ -10,13 +10,14 @@
   {
     type        = lib.types.str;
     description = "the main user of this configuration";
-    default     = "bot";
+    default     = "";
     example     = "andy3153";
   };
 
   config = lib.mkMerge
   [
+    (lib.mkIf (config.custom.users.mainUser == "")         { } )
     (lib.mkIf (config.custom.users.mainUser == "andy3153") { custom.users.andy3153.enable = true; })
-    (lib.mkIf (config.custom.users.mainUser == "bot")      { custom.users.bot.enable = true; })
+    (lib.mkIf (config.custom.users.mainUser == "bot")      { custom.users.bot.enable      = true; })
   ];
 }
