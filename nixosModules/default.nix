@@ -8,7 +8,7 @@
 {
   imports =
   [
-    ./settings.nix
+    ./common.nix
     ./boot
     ./gui
     ./hardware
