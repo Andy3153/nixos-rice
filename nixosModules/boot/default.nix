@@ -12,5 +12,6 @@
     ./plymouth.nix
     ./quiet.nix
     ./reisub.nix
+    ./sysctl.nix
   ];
 }

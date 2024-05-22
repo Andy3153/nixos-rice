@@ -22,9 +22,10 @@
     # {{{ Boot
     boot =
     {
-      kernel          = pkgs.linuxKernel.packages.linux_zen;
-      plymouth.enable = true;
-      reisub.enable   = true;
+      kernel            = pkgs.linuxKernel.packages.linux_zen;
+      plymouth.enable   = true;
+      reisub.enable     = true;
+      sysctl.swappiness = 30;
     };
     # }}}
 
@@ -78,8 +79,7 @@
   # }}}
 
 
-  #boot.kernelPackages                       = pkgs.linuxKernel.packages.linux;
-  boot.kernel.sysctl                        = { "vm.swappiness" = 30; };
+  #boot.kernel.sysctl                        = { "vm.swappiness" = 30; };
   boot.loader.systemd-boot.enable           = true;
   boot.loader.systemd-boot.memtest86.enable = true;
   hardware.bluetooth.powerOnBoot            = false;
