@@ -77,7 +77,8 @@
     # }}}
 
     # {{{ Users
-    users.andy3153.enable = true;
+    #users.andy3153.enable = true;
+    users.mainUser = "andy3153";
     # }}}
 
     # {{{ Virtualisation

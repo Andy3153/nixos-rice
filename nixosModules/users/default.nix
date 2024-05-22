@@ -10,5 +10,6 @@
   [
     ./andy3153.nix
     ./bot.nix
+    ./mainUser.nix
   ];
 }
