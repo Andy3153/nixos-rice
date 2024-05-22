@@ -16,6 +16,13 @@
 
   config = lib.mkMerge
   [
+    {
+      warnings =
+        if (config.custom.users.mainUser == "")
+        then [ ''You did not set a value for `custom.users.mainUser`. This might break things.'' ]
+        else [];
+    }
+
     (lib.mkIf (config.custom.users.mainUser == "")         { } )
     (lib.mkIf (config.custom.users.mainUser == "andy3153") { custom.users.andy3153.enable = true; })
     (lib.mkIf (config.custom.users.mainUser == "bot")      { custom.users.bot.enable      = true; })
