@@ -14,8 +14,6 @@
     ../../nixosModules
   ];
 
-  environment.systemPackages = [ pkgs-andy3153.hunspellDicts.ro_RO ];
-
   # {{{ Custom modules
   custom =
   {

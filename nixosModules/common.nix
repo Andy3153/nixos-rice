@@ -3,7 +3,7 @@
 ## Common settings that every host shares
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-andy3153, ... }:
 
 {
   # {{{ Boot
@@ -16,57 +16,69 @@
     localBinInPath = true;
 
     # {{{ System packages
-    systemPackages = with pkgs;
+    systemPackages = lib.mkMerge
     [
-      home-manager               # NixOS-Components
-
-      #nvimpager                  # for-nvim
-      hunspell                   # for-nvim for-libreoffice
-      hunspellDicts.en_US        # for-nvim for-libreoffice
-
-      efibootmgr                 # EFI
-      doas-sudo-shim             # for-doas
-
-      git                        # Programming
-
-      (python3.withPackages(     # Programming for-nvim
-      python-pkgs:
+      # {{{ NixPkgs Unstable
+      (with pkgs;
       [
-        python-pkgs.requests     # for-waybar
-      ])) # nix purists don't
-          # kill me for doing
-          # this pls
+        home-manager               # NixOS-Components
 
-      gcc                        # Programming for-nvim
+        #nvimpager                  # for-nvim
+        hunspell                   # for-nvim for-libreoffice
+        hunspellDicts.en_US        # for-nvim for-libreoffice
 
-      file                       # Other-CLI
-      killall                    # Other-CLI
-      ripgrep                    # Other-CLI
-      fastfetch                  # Other-CLI fetch-system-info
-      sshfs                      # for-ssh fs-support
-      wget                       # download
-      curl                       # download
-      rsync                      # cp
-      lsd                        # ls for-zsh
-      lolcat                     # for-zsh
-      colordiff                  # for-zsh
-      ranger                     # file-manager for-zsh for-nvim
-      tmux                       # terminal-multiplexer
-      htop                       # task-manager
-      btop                       # task-manager
-      nvtopPackages.full         # task-manager
-      kitty.terminfo             # terminfo
+        efibootmgr                 # EFI
+        doas-sudo-shim             # for-doas
 
-      brightnessctl              # Other-CLI brightness hyprland-rice
+        git                        # Programming
 
-      parted                     # Partition-Manager
+        (python3.withPackages(     # Programming for-nvim
+        python-pkgs:
+        [
+          python-pkgs.requests     # for-waybar
+        ])) # nix purists don't
+            # kill me for doing
+            # this pls
 
-      wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
+        gcc                        # Programming for-nvim
 
-      inotify-tools              # for-scripts
-      libnotify                  # for-scripts
+        file                       # Other-CLI
+        killall                    # Other-CLI
+        ripgrep                    # Other-CLI
+        fastfetch                  # Other-CLI fetch-system-info
+        sshfs                      # for-ssh fs-support
+        wget                       # download
+        curl                       # download
+        rsync                      # cp
+        lsd                        # ls for-zsh
+        lolcat                     # for-zsh
+        colordiff                  # for-zsh
+        ranger                     # file-manager for-zsh for-nvim
+        tmux                       # terminal-multiplexer
+        htop                       # task-manager
+        btop                       # task-manager
+        nvtopPackages.full         # task-manager
+        kitty.terminfo             # terminfo
 
-      unzip                      # archives
+        brightnessctl              # Other-CLI brightness hyprland-rice
+
+        parted                     # Partition-Manager
+
+        wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
+
+        inotify-tools              # for-scripts
+        libnotify                  # for-scripts
+
+        unzip                      # archives
+      ])
+      # }}}
+
+      # {{{ NixPkgs (my fork for when I'm working on something)
+      (with pkgs-andy3153;
+      [
+        hunspellDicts.ro_RO
+      ])
+      # }}}
     ];
     # }}}
   };
