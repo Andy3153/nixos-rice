@@ -71,7 +71,12 @@
     # {{{ Virtualisation
     virtualisation =
     {
-      docker.enable   = false;
+      docker =
+      {
+        enable       = false;
+        enableOnBoot = false;
+      };
+
       libvirtd.enable = true;
       waydroid.enable = false;
     };
@@ -85,10 +90,8 @@
 
   boot.loader.systemd-boot.enable           = true;
   boot.loader.systemd-boot.memtest86.enable = true;
-  hardware.cpu.intel.updateMicrocode        = true;
   networking.stevenblack.enable             = true;
   services.printing.drivers                 = with pkgs; [ brlaser ];
-  virtualisation.docker.enableOnBoot        = false;
 
   hardware.asus.battery =
   {

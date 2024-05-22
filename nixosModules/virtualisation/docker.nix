@@ -9,15 +9,29 @@ let
   cfg = config.custom.virtualisation.docker;
 in
 {
-  options.custom.virtualisation.docker.enable = lib.mkEnableOption "enables Docker";
-
-  config = lib.mkIf cfg.enable
+  options.custom.virtualisation.docker =
   {
-    virtualisation.docker =
+    enable = lib.mkEnableOption "enables Docker";
+    enableOnBoot = lib.mkOption
     {
-      enable           = lib.mkDefault true;
-      enableOnBoot     = lib.mkDefault true;
-      autoPrune.enable = lib.mkDefault true;
+      type        = lib.types.bool;
+      default     = true;
+      example     = false;
+      description = "whether enabled dockerd is started on boot.";
     };
   };
+
+  config = lib.mkMerge
+  [
+    (lib.mkIf cfg.enable
+    {
+      virtualisation.docker =
+      {
+        enable           = lib.mkDefault true;
+        autoPrune.enable = lib.mkDefault true;
+      };
+    })
+
+    (lib.mkIf (!cfg.enableOnBoot) { virtualisation.docker.enableOnBoot = lib.mkDefault false; })
+  ];
 }
