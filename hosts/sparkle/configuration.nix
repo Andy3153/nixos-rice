@@ -77,7 +77,6 @@
     # }}}
 
     # {{{ Users
-    #users.andy3153.enable = true;
     users.mainUser = "andy3153";
     # }}}
 

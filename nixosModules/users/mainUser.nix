@@ -16,7 +16,6 @@
 
   config = lib.mkMerge
   [
-    ({custom.users.mainUser = "andy3153";})
     (lib.mkIf (config.custom.users.mainUser == "andy3153") { custom.users.andy3153.enable = true; })
     (lib.mkIf (config.custom.users.mainUser == "bot")      { custom.users.bot.enable = true; })
   ];
