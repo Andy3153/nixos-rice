@@ -27,9 +27,18 @@ in
         wm.hyprland.enable = lib.mkDefault true;
       };
 
-      xdg.portal.enable = lib.mkDefault true;
-    };
+      programs.dconf.enable = lib.mkDefault true;
 
-    programs.dconf.enable = lib.mkDefault true;
+      xdg =
+      {
+        portal.enable = lib.mkDefault true;
+        mime.defaultApplications =
+        {
+          "text/plain"      = "neovide.desktop";
+          "text/html"       = "io.gitlab.librewolf-community.desktop";
+          "application/pdf" = "org.pwmt.zathura.desktop";
+        };
+      };
+    };
   };
 }

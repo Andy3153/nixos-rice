@@ -17,6 +17,6 @@
     ./services
     ./users
     ./virtualisation
-    ./xdg.portal.nix
+    ./xdg
   ];
 }

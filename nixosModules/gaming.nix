@@ -13,7 +13,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.programs.steam.enable = lib.mkDefault true;
-    programs.gamemode.enable     = lib.mkDefault true;
+    custom.programs.steam.enable    = lib.mkDefault true;
+    custom.programs.gamemode.enable = lib.mkDefault true;
   };
 }

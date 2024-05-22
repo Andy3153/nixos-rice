@@ -35,7 +35,7 @@
     # }}}
 
     # {{{ GUI
-    gui.enable             = true;
+    gui.enable = true;
     # }}}
 
     # {{{ Hardware
@@ -52,6 +52,14 @@
       opengl.enable           = true;
       openrgb.enable          = true;
       nvidia.prime.enable     = true;
+    };
+    # }}}
+
+    # {{{ Programs
+    programs =
+    {
+      java.enable = true;
+      obs.enable  = true;
     };
     # }}}
 
@@ -90,7 +98,7 @@
   };
   # }}}
 
-  networking.stevenblack.enable             = true;
+  networking.stevenblack.enable = true;
 
   hardware.asus.battery =
   {
@@ -222,65 +230,13 @@
   };
   # }}}
 
-
-
-  # {{{ Boot
-  boot =
-  {
-    # {{{ Extra module packages
-    extraModulePackages = with config.boot.kernelPackages;
-    [
-      v4l2loopback
-    ];
-    # }}}
-
-    # {{{ Extra modprobe config
-    extraModprobeConfig =
-    ''
-      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    '';
-    # }}}
-  };
-  # }}}
-
-  # {{{ Programs
-  programs =
-  {
-    java.enable     = true; # Programming
-  };
-  # }}}
-
-  # {{{ Services
-  services =
-  {
-    # {{{ X Server
-    xserver.videoDrivers =
-    [
-      "modesetting"
-      "intel"
-      "nvidia"
-      "fbdev"
-    ];
-    # }}}
-  };
-  # }}}
-
-  # {{{ XDG
-  xdg =
-  {
-    # {{{ MIME
-    mime =
-    {
-      enable = true;
-
-      defaultApplications =
-      {
-        "text/plain"      = "neovide.desktop";
-        "text/html"       = "io.gitlab.librewolf-community.desktop";
-        "application/pdf" = "org.pwmt.zathura.desktop";
-      };
-    };
-    # }}}
-  };
+  # {{{ Video drivers
+  services.xserver.videoDrivers = lib.mkForce
+  [
+    "modesetting"
+    "intel"
+    "nvidia"
+    "fbdev"
+  ];
   # }}}
 }

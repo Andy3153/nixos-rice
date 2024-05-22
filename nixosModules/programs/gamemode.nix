@@ -1,0 +1,18 @@
+## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
+##
+## GameMode config
+##
+
+{ config, lib, pkgs, ... }:
+
+let
+  cfg = config.custom.programs.gamemode;
+in
+{
+  options.custom.programs.gamemode.enable = lib.mkEnableOption "enables Feral GameMode";
+
+  config = lib.mkIf cfg.enable
+  {
+    programs.gamemode.enable = true;
+  };
+}

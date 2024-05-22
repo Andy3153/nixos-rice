@@ -1,6 +1,6 @@
 ## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 ##
-## Programs bundle
+## XDG bundle
 ##
 
 { config, lib, pkgs, ... }:
@@ -8,10 +8,7 @@
 {
   imports =
   [
-    ./dconf.nix
-    ./gamemode.nix
-    ./java.nix
-    ./obs.nix
-    ./steam.nix
+    ./portal.nix
+    ./mime.nix
   ];
 }

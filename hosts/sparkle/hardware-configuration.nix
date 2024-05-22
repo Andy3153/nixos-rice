@@ -104,16 +104,6 @@
       options = [ "bind" ];
     };
 
-  #fileSystems."/home/andy3153/.local/share/lutris" =
-  #  { device = "/.btrfs-root/home/andy3153/.local/share/lutris";
-  #    options = [ "bind" ];
-  #  };
-  #
-  #fileSystems."/home/andy3153/.local/share/lutris/games" =
-  #  { device = "/.btrfs-root/home/andy3153/.config/lutris/games";
-  #    options = [ "bind" ];
-  #  };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
