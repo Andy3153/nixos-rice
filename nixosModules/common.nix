@@ -1,6 +1,6 @@
 ## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 ##
-## Default settings that every host shares
+## Common settings that every host shares
 ##
 
 { config, lib, pkgs, ... }:
@@ -24,6 +24,16 @@
       systemd-boot =
       {
         editor = false;
+
+        # Rename boot entries
+        extraInstallCommands = # thx @m0tholith on discord
+        ''
+          search_dir=/boot/loader/entries
+          for file in "$search_dir"/*
+          do
+            ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
+          done
+        '';
       };
 
       grub =
