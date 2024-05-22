@@ -17,5 +17,5 @@ in
     description = "what Linux kernel to use";
   };
 
-  config.boot.kernelPackages = config.custom.boot.kernel;
+  config.boot.kernelPackages = cfg;
 }
