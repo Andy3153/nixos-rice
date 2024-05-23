@@ -7,6 +7,7 @@
 
 let
   cfg = config.custom.gui.dm.sddm;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.gui.dm.sddm.enable = lib.mkEnableOption "enables SDDM";
@@ -23,7 +24,7 @@ in
       {
         Autologin =
         {
-          User = ${config.custom.users.mainUser};
+          User = mainUser;
         };
       };
     };

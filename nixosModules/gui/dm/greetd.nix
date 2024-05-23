@@ -7,6 +7,7 @@
 
 let
   cfg = config.custom.gui.dm.greetd;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.gui.dm.greetd.enable = lib.mkEnableOption "enables greetd";
@@ -23,7 +24,7 @@ in
       {
         initial_session =
         {
-          user = ${config.custom.users.mainUser};
+          user = mainUser;
         };
 
         default_session =
