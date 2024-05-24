@@ -43,6 +43,7 @@
         gcc                        # Programming for-nvim
 
         file                       # Other-CLI
+        usbutils                   # Other-CLI
         killall                    # Other-CLI
         ripgrep                    # Other-CLI
         fastfetch                  # Other-CLI fetch-system-info
