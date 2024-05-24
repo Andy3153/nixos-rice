@@ -33,6 +33,7 @@ doas nix flake update ~andy3153/src/nixos/nixos-rice/ && doas nixos-rebuild swit
 
 <!-- {{{ Garbage collection -->
 <details><summary>Garbage collection</summary>
+
 ```console
 nixos-rebuild list-generations
 for ((i=1; i<=$lastGen; i++)) ; do doas rm --verbose "/nix/var/nix/profiles/system-${i}-link" 2> /dev/null ; done
@@ -45,8 +46,8 @@ doas nix store gc
 </details>
 <!-- }}} -->
 
-<!-- {{{ Optimize Nix store -->
-<details><summary>Optimize Nix store</summary>
+<!-- {{{ Optimise Nix store -->
+<details><summary>Optimise Nix store</summary>
 
 ```console
 doas nix store optimise
