@@ -64,5 +64,14 @@ export PATH=/nix/var/nix/profiles/system/sw/sbin/:/nix/var/nix/profiles/system/s
 ```
 </details>
 <!-- }}} -->
+
+<!-- {{{ Manually add a file to the Nix store -->
+<details><summary>Manually add a file to the Nix store</summary>
+
+```console
+nix-store --add-fixed sha256 filename
+```
+</details>
+<!-- }}} -->
 <!-- }}} -->
 <!-- }}} -->
