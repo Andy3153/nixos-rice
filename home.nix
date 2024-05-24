@@ -91,96 +91,119 @@
     packages = with pkgs;
     [
       # {{{ Hyprland Rice
-      libcanberra-gtk3             # hyprland-rice play-system-sounds
-      hyprpaper                    # hyprland-rice wallpaper
-      hypridle                     # hyprland-rice idle-manager
-      hyprlock                     # hyprland-rice lock-screen
-      hyprpicker                   # hyprland-rice color-picker
-      swayosd                      # hyprland-rice osd
-      polkit-kde-agent             # hyprland-rice polkit-agent
-      xwaylandvideobridge          # hyprland-rice xwayland-screenshare
-      wev                          # hyprland-rice event-viewer
-      rofi-wayland                 # hyprland-rice appmenu
-      kitty                        # hyprland-rice terminal
-      waybar                       # hyprland-rice status-bar
-      blueman                      # hyprland-rice bluetooth-control
-      networkmanager_dmenu         # hyprland-rice network-control
-      lxqt.pavucontrol-qt          # hyprland-rice Sound sound-control
-      nwg-bar                      # hyprland-rice logout-menu
-      flameshot                    # hyprland-rice screenshot
-      grim                         # hyprland-rice screenshot for-flameshot
-      slurp                        # hyprland-rice screenshot for-flameshot
+      libcanberra-gtk3                    # hyprland-rice play-system-sounds
+      hyprpaper                           # hyprland-rice wallpaper
+      hypridle                            # hyprland-rice idle-manager
+      hyprlock                            # hyprland-rice lock-screen
+      hyprpicker                          # hyprland-rice color-picker
+      swayosd                             # hyprland-rice osd
+      polkit-kde-agent                    # hyprland-rice polkit-agent
+      xwaylandvideobridge                 # hyprland-rice xwayland-screenshare
+      wev                                 # hyprland-rice event-viewer
+      rofi-wayland                        # hyprland-rice appmenu
+      kitty                               # hyprland-rice terminal
+      waybar                              # hyprland-rice status-bar
+      blueman                             # hyprland-rice bluetooth-control
+      networkmanager_dmenu                # hyprland-rice network-control
+      lxqt.pavucontrol-qt                 # hyprland-rice Sound sound-control
+      nwg-bar                             # hyprland-rice logout-menu
+      flameshot                           # hyprland-rice screenshot
+      grim                                # hyprland-rice screenshot for-flameshot
+      slurp                               # hyprland-rice screenshot for-flameshot
 
-      mpv                          # hyprland-rice video-player
-      mpvScripts.mpris             # hyprland-rice for-mpv
+      mpv                                 # hyprland-rice video-player
+      mpvScripts.mpris                    # hyprland-rice for-mpv
 
-      zathura                      # hyprland-rice pdf-viewer
+      zathura                             # hyprland-rice pdf-viewer
 
-      kcalc                        # hyprland-rice KDE-Apps calculator
-      kdePackages.kdeconnect-kde   # hyprland-rice KDE-Apps
-      dolphin                      # hyprland-rice KDE-Apps file-manager
-      ark                          # hyprland-rice KDE-Apps archive-manager
-      gwenview                     # hyprland-rice KDE-Apps image-viewer
-      okular                       # hyprland-rice KDE-Apps pdf-viewer
-      kcharselect                  # hyprland-rice KDE-Apps character-select
-      filelight                    # hyprland-rice KDE-Apps disk-usage-analyzer
-      kdePackages.kruler           # hyprland-rice KDE-Apps on-screen-ruler
-      merkuro                      # hyprland-rice KDE-Apps calendar contacts
+      kcalc                               # hyprland-rice KDE-Apps calculator
+      kdePackages.kdeconnect-kde          # hyprland-rice KDE-Apps
+      dolphin                             # hyprland-rice KDE-Apps file-manager
+      ark                                 # hyprland-rice KDE-Apps archive-manager
+      gwenview                            # hyprland-rice KDE-Apps image-viewer
+      okular                              # hyprland-rice KDE-Apps pdf-viewer
+      kcharselect                         # hyprland-rice KDE-Apps character-select
+      filelight                           # hyprland-rice KDE-Apps disk-usage-analyzer
+      kdePackages.kruler                  # hyprland-rice KDE-Apps on-screen-ruler
+      merkuro                             # hyprland-rice KDE-Apps calendar contacts
       # }}}
 
       # {{{ Sound
-      qpwgraph                     # Sound PipeWire Patchbay
-      easyeffects                  # Sound PipeWire
-      pulsemixer                   # Sound sound-control
+      qpwgraph                            # Sound PipeWire Patchbay
+      easyeffects                         # Sound PipeWire
+      pulsemixer                          # Sound sound-control
       # }}}
 
       # {{{ Office
-      libreoffice-fresh            # Office
-      gimp                         # Office photo-editing
-      inkscape                     # Office photo-editing
+      libreoffice-fresh                   # Office
+      gimp                                # Office photo-editing
+      inkscape                            # Office photo-editing
 
-      texliveFull                  # LaTeX
-      python312Packages.pygments   # for-latex
-      pandoc                       # for-latex
+      texliveFull                         # LaTeX
+      python312Packages.pygments          # for-latex
+      pandoc                              # for-latex
 
-      pdftk                        # pdf-tools
-      pdfarranger                  # pdf-tools
+      pdftk                               # pdf-tools
+      pdfarranger                         # pdf-tools
       # }}}
 
       # {{{ Media
-      cantata                      # music-player for-mpd
-      youtube-music                # music-player
-      flac                         # music
-      opusTools                    # music
-      ffmpeg                       # music video
-      audacity                     # music
+      cantata                             # music-player for-mpd
+      youtube-music                       # music-player
+      flac                                # music
+      opusTools                           # music
+      ffmpeg                              # music video
+      audacity                            # music
       # }}}
 
       # {{{ Games
-      depotdownloader              # for-steam
-      extest                       # for-steam for-controllers
-      wineWowPackages.staging      # wine
-      protonup-qt                  # for-steam for-wine
-      protontricks                 # for-steam for-wine
+      depotdownloader                     # for-steam
+      extest                              # for-steam for-controllers
+      wineWowPackages.staging             # wine
+      protonup-qt                         # for-steam for-wine
+      protontricks                        # for-steam for-wine
 
-      bottles                      # for-wine
-      lutris                       # for-wine
+      bottles                             # for-wine
+      lutris                              # for-wine
 
-      prismlauncher                # games
-      xonotic                      # games
+      prismlauncher                       # games
+      xonotic                             # games
 
-      mesa-demos                   # glxgears
+      mesa-demos                          # glxgears
       # }}}
 
-      neovide                      # for-nvim
-      yt-dlp                       # download
-      linux-wifi-hotspot           # Internet hotspot
-      gparted                      # Partition-Manager
-      okteta                       # KDE-Apps hex-editor
-      mousai                       # GNOME-Apps song-identifier
-      betterdiscordctl             # for-discord
-      virt-manager                 # for-libvirt
-      qbittorrent                  # torrents
+      # {{{ For Neovim
+      neovide                             # for-nvim
+
+      # {{{ LSPs
+      arduino-language-server             # Programming for-nvim for-lsp
+      nodePackages.bash-language-server   # Programming for-nvim for-lsp
+      clang-tools                         # Programming for-nvim for-lsp
+      cmake-language-server               # Programming for-nvim for-lsp
+      dockerfile-language-server-nodejs   # Programming for-nvim for-lsp
+      lua-language-server                 # Programming for-nvim for-lsp
+      marksman                            # Programming for-nvim for-lsp
+      nil                                 # Programming for-nvim for-lsp
+      python311Packages.python-lsp-server # Programming for-nvim for-lsp
+      texlab                              # Programming for-nvim for-lsp
+      nodePackages.vim-language-server    # Programming for-nvim for-lsp
+      # }}}
+
+      # {{{ For LSPs
+      #cargo                               # Programming for-nvim for-lsp
+      #rustc                               # Programming for-nvim for-lsp
+      # }}}
+      # }}}
+
+      yt-dlp                              # download
+      linux-wifi-hotspot                  # Internet hotspot
+      gparted                             # Partition-Manager
+      okteta                              # KDE-Apps hex-editor
+      mousai                              # GNOME-Apps song-identifier
+      betterdiscordctl                    # for-discord
+      virt-manager                        # for-libvirt
+      virtiofsd                           # for-libvirt
+      qbittorrent                         # torrents
     ];
     # }}}
 
