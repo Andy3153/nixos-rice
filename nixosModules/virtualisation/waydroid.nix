@@ -3,7 +3,7 @@
 ## Waydroid config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.virtualisation.waydroid;

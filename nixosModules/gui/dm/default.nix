@@ -3,7 +3,7 @@
 ## Display manager bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

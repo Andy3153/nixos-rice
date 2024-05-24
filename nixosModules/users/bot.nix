@@ -3,7 +3,7 @@
 ## Bot user (sample user) config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.users.bot;

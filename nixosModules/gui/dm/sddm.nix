@@ -3,7 +3,7 @@
 ## SDDM config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.gui.dm.sddm;

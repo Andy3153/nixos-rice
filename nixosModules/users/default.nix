@@ -3,7 +3,7 @@
 ## Users bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

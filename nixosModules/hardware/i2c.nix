@@ -3,7 +3,7 @@
 ## I2C config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.hardware.i2c;

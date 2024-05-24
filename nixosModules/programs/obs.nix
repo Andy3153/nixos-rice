@@ -3,7 +3,7 @@
 ## OBS config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.programs.obs;

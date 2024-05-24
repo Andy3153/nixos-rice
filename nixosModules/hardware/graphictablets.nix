@@ -3,7 +3,7 @@
 ## Graphic tablets config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.hardware.graphictablets;

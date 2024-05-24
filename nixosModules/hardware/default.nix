@@ -3,7 +3,7 @@
 ## Hardware bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

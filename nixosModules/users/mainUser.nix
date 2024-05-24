@@ -3,7 +3,7 @@
 ## Main user config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 {
   options.custom.users.mainUser = lib.mkOption

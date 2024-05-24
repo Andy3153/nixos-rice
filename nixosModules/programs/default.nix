@@ -3,7 +3,7 @@
 ## Programs bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

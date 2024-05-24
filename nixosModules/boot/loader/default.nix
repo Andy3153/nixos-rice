@@ -3,7 +3,7 @@
 ## Bootloader bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

@@ -5,7 +5,7 @@
 ## HP EliteBook 8460P
 ##
 
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   networking.hostName = "catfish"; # Define your hostname.

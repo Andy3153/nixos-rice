@@ -3,7 +3,7 @@
 ## Custom NixOS modules bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

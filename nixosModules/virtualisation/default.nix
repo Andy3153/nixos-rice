@@ -3,7 +3,7 @@
 ## Virtualisation bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

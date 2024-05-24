@@ -3,7 +3,7 @@
 ## REISUB config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.boot.reisub;

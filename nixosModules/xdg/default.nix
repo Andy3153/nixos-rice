@@ -3,7 +3,7 @@
 ## XDG bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

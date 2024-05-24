@@ -3,7 +3,7 @@
 ## Boot bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

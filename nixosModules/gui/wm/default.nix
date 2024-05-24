@@ -3,7 +3,7 @@
 ## Window manager bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

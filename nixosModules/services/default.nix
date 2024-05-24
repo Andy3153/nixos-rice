@@ -3,7 +3,7 @@
 ## Services bundle
 ##
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports =

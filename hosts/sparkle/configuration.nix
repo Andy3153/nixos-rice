@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, pkgs-andy3153, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports =
