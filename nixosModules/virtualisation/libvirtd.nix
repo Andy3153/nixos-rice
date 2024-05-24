@@ -25,5 +25,7 @@ in
         swtpm.enable = lib.mkDefault true;
       };
     };
+
+    virtualisation.spiceUSBRedirection.enable = true;
   };
 }
