@@ -195,6 +195,11 @@
       # }}}
       # }}}
 
+      # {{{ Fonts
+      corefonts                           # fonts ms-fonts
+      vistafonts                          # fonts ms-fonts
+      # }}}
+
       yt-dlp                              # download
       linux-wifi-hotspot                  # Internet hotspot
       gparted                             # Partition-Manager
