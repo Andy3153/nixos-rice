@@ -200,6 +200,10 @@
       vistafonts                          # fonts ms-fonts
       # }}}
 
+      # {{{ 3D
+      blender                             # 3D
+      # }}}
+
       yt-dlp                              # download
       linux-wifi-hotspot                  # Internet hotspot
       gparted                             # Partition-Manager
