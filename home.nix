@@ -282,8 +282,8 @@
 
       ".local/share/sounds".source             = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/sounds;
       ".local/share/wallpapers".source         = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
-      ".local/share/wallpaper.png".source      = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
-      ".local/share/wallpaper-lock.png".source = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper4.png;
+      ".local/share/wallpaper.png".source      = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
+      ".local/share/wallpaper-lock.png".source = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
       # }}}
 
       # {{{ For Flatpak
