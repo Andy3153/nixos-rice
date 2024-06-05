@@ -12,5 +12,6 @@
     ./flatpak.nix
     ./pipewire.nix
     ./printing.nix
+    ./udisks.nix
   ];
 }
