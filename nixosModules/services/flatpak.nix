@@ -25,8 +25,13 @@ in
     services.flatpak =
     {
       enable   = lib.mkDefault true;
-
       packages = lib.mkDefault cfg.packages;
+
+      update.auto =
+      {
+        enable     = true;
+        onCalendar = "daily";
+      };
 
       overrides.global =
       {
