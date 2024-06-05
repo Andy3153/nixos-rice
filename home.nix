@@ -118,6 +118,7 @@
 
       kcalc                               # hyprland-rice KDE-Apps calculator
       kdePackages.kdeconnect-kde          # hyprland-rice KDE-Apps
+      #kdePackages.dolphin                 # hyprland-rice KDE-Apps file-manager
       dolphin                             # hyprland-rice KDE-Apps file-manager
       ark                                 # hyprland-rice KDE-Apps archive-manager
       gwenview                            # hyprland-rice KDE-Apps image-viewer
@@ -145,6 +146,7 @@
 
       pdftk                               # pdf-tools
       pdfarranger                         # pdf-tools
+      poppler_utils                       # pdf-tools
       # }}}
 
       # {{{ Media
@@ -154,6 +156,7 @@
       opusTools                           # music
       ffmpeg                              # music video
       audacity                            # music
+      mousai                              # find music
       # }}}
 
       # {{{ Games
