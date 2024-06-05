@@ -3,7 +3,7 @@
 ## I2C config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.hardware.i2c;
@@ -13,7 +13,8 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    boot.kernelModules     = [ "i2c-dev" ];
-    hardware.i2c.enable = lib.mkDefault true;
+    boot.kernelModules         = [ "i2c-dev" ];
+    environment.systemPackages = [ pkgs.i2c-tools ];
+    hardware.i2c.enable        = lib.mkDefault true;
   };
 }
