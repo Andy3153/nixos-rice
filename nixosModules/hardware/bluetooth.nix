@@ -23,7 +23,24 @@ in
 
   config = lib.mkMerge
   [
-    (lib.mkIf cfg.enable         { hardware.bluetooth.enable      = lib.mkDefault true; })
+    (lib.mkIf cfg.enable
+    {
+      hardware.bluetooth =
+      {
+        enable = lib.mkDefault true;
+        settings =
+        {
+          General =
+          {
+            Enable       = "Source,Sink,Media,Socket";
+            Experimental = true;
+          };
+        };
+      };
+
+      services.blueman.enable   = lib.mkDefault true;
+    })
+
     (lib.mkIf (!cfg.powerOnBoot) { hardware.bluetooth.powerOnBoot = lib.mkDefault false; })
   ];
 }
