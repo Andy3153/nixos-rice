@@ -20,13 +20,7 @@ If you need to mount the partitions in a live environment post-install and **you
 <details><summary>System update</summary>
 
 ```console
-doas nix flake update ~andy3153/src/nixos/nixos-rice/
-doas nixos-rebuild switch --impure --flake ~andy3153/src/nixos/nixos-rice/
-```
-
-Run one after the other
-```console
-doas nix flake update ~andy3153/src/nixos/nixos-rice/ && doas nixos-rebuild switch --impure --flake ~andy3153/src/nixos/nixos-rice/
+nh os switch --update -- --impure
 ```
 </details>
 <!-- }}} -->
@@ -35,13 +29,7 @@ doas nix flake update ~andy3153/src/nixos/nixos-rice/ && doas nixos-rebuild swit
 <details><summary>Garbage collection</summary>
 
 ```console
-nixos-rebuild list-generations
-for ((i=1; i<=$lastGen; i++)) ; do doas rm --verbose "/nix/var/nix/profiles/system-${i}-link" 2> /dev/null ; done
-
-home-manager generations
-home-manager remove-generations generations
-
-doas nix store gc
+nh clean all --keep 2 && nh clean user --keep 2
 ```
 </details>
 <!-- }}} -->

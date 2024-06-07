@@ -219,6 +219,20 @@ in
     };
     # }}}
 
+    # {{{ Nh
+    nh =                # NixOS-Components
+    {
+      enable = true;
+      flake  = "${nixConfigFolderPath}";
+      clean =
+      {
+        enable    = true;
+        dates     = "weekly";
+        extraArgs = "--keep 2 --keep-since 2d";
+      };
+    };
+    # }}}
+
     # {{{ Zsh
     zsh =
     {
