@@ -32,6 +32,7 @@ in
 
         extraGroups =
         [
+          "adbusers"
           "docker"
           "libvirtd"
           "wheel"

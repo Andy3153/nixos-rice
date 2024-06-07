@@ -56,6 +56,7 @@
     # {{{ Programs
     programs =
     {
+      adb.enable  = true;
       java.enable = true;
       obs.enable  = true;
     };

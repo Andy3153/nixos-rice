@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./adb.nix
     ./dconf.nix
     ./gamemode.nix
     ./java.nix
