@@ -5,6 +5,12 @@
 
 { config, lib, pkgs, pkgs-andy3153, ... }:
 
+# {{{ Variables
+let
+  nixConfigFolderPath  = "/home/${config.custom.users.mainUser}/src/nixos/nixos-rice";
+  nixConfigurationPath = "${nixConfigFolderPath}/hosts/sparkle/configuration.nix";
+in
+# }}}
 {
   # {{{ Boot
   boot.initrd.systemd.enable = true;
@@ -166,18 +172,10 @@
   {
     package = pkgs.nixFlakes;
 
-    # {{{ Garbage collector
-    gc =
-    {
-      automatic = true;
-      dates     = "weekly";
-    };
-    # }}}
-
     # {{{ Nix Path
     nixPath =
     [
-      "nixos-config=/home/${config.custom.users.mainUser}/src/nixos/nixos-rice/hosts/sparkle/configuration.nix"
+      "nixos-config=${nixConfigurationPath}"
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
