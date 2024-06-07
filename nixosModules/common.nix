@@ -53,6 +53,7 @@ in
         killall                    # Other-CLI
         ripgrep                    # Other-CLI
         fastfetch                  # Other-CLI fetch-system-info
+        lm_sensors                 # Other-CLI sensors
         sshfs                      # for-ssh fs-support
         wget                       # download
         curl                       # download
