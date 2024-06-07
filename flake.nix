@@ -16,6 +16,7 @@
 
     # NixPkgs (my fork for when I'm working on something)
     nixpkgs-andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
+    #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
 
     # Home-Manager
     home-manager =
