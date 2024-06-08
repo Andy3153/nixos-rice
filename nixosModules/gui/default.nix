@@ -23,6 +23,8 @@ in
   {
     custom =
     {
+      boot.plymouth.enable = lib.mkDefault true;
+
       gui =
       {
         apps.enable        = lib.mkDefault true;
@@ -31,6 +33,7 @@ in
         wm.hyprland.enable = lib.mkDefault true;
       };
 
+      hardware.opengl.enable  = lib.mkDefault true;
       programs.dconf.enable   = lib.mkDefault true;
       services.udisks2.enable = lib.mkDefault true;
 

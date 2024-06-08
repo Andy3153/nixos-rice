@@ -13,7 +13,15 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.programs.steam.enable    = lib.mkDefault true;
-    custom.programs.gamemode.enable = lib.mkDefault true;
+    custom =
+    {
+      hardware.controllers.xbox.enable = true;
+
+      programs =
+      {
+        steam.enable    = lib.mkDefault true;
+        gamemode.enable = lib.mkDefault true;
+      };
+    };
   };
 }

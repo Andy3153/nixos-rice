@@ -21,7 +21,6 @@
     boot =
     {
       kernel            = pkgs.linuxKernel.packages.linux_zen;
-      plymouth.enable   = true;
       reisub.enable     = true;
       sysctl.swappiness = 30;
       uefiBoot.enable   = true;
@@ -31,7 +30,7 @@
     # {{{ GUI
     gui =
     {
-      enable = true;
+      enable        = true;
       gaming.enable = true;
     };
     # }}}
@@ -45,9 +44,7 @@
         powerOnBoot = false;
       };
 
-      controllers.xbox.enable = true;
       graphictablets.enable   = true;
-      opengl.enable           = true;
       openrgb.enable          = true;
       nvidia.prime.enable     = true;
     };
