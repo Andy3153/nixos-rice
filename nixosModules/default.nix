@@ -14,6 +14,7 @@
     ./hardware
     ./programs
     ./services
+    ./systemd
     ./users
     ./virtualisation
     ./xdg

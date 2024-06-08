@@ -77,6 +77,10 @@
     };
     # }}}
 
+    # {{{ Systemd
+    systemd.services.TUFFanSpeed.enable = true;
+    # }}}
+
     # {{{ Users
     users.mainUser = "andy3153";
     # }}}
