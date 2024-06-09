@@ -111,11 +111,13 @@ in
     # {{{ Fontconfig
     fontconfig =
     {
+      enable = true;
+
       defaultFonts =
       {
-          monospace = [ "IosevkaTerm NF" ];
-          serif     = [ "Cantarell" ];
-          sansSerif = [ "Cantarell" ];
+        monospace = [ "IosevkaTerm NF" ];
+        serif     = [ "Cantarell" ];
+        sansSerif = [ "Cantarell" ];
       };
     };
     # }}}
@@ -281,7 +283,7 @@ in
     # {{{ OpenSSH
     openssh =
     {
-      enable =       true;
+      enable       = true;
       openFirewall = true;
 
       settings =
@@ -304,5 +306,21 @@ in
 
   # {{{ Time
   time.timeZone = "Europe/Bucharest";
+  # }}}
+
+  # {{{ Home-Manager
+  home-manager.users.${config.custom.users.mainUser} =
+  {
+    home =
+    {
+      stateVersion  = config.system.stateVersion;
+
+      username      = config.custom.users.mainUser;
+      homeDirectory = "/home/${config.custom.users.mainUser}";
+    };
+
+    fonts.fontconfig.enable = true;
+    nixpkgs.config.allowUnfree = true;
+  };
   # }}}
 }

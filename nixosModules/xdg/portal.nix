@@ -24,5 +24,16 @@ in
         };
       };
     };
+
+    # {{{ Home-Manager
+    home-manager.users.${config.custom.users.mainUser} =
+    {
+      xdg.portal =
+      {
+        enable = true;
+        xdgOpenUsePortal = true;
+      };
+    };
+    # }}}
   };
 }

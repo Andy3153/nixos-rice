@@ -28,5 +28,17 @@ in
       enable              = lib.mkDefault cfg.enable;
       defaultApplications = lib.mkDefault cfg.defaultApplications;
     };
+
+    # {{{ Home-Manager
+    home-manager.users.${config.custom.users.mainUser} =
+    {
+      xdg.mime.enable = lib.mkForce cfg.enable;
+      xdg.mimeApps =
+      {
+        enable              = lib.mkForce cfg.enable;
+        defaultApplications = lib.mkForce cfg.defaultApplications;
+      };
+    };
+    # }}}
   };
 }

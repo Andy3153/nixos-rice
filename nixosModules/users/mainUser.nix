@@ -21,6 +21,14 @@
         if (config.custom.users.mainUser == "")
         then [ ''You did not set a value for `custom.users.mainUser`. This might break things.'' ]
         else [];
+
+      assertions =
+      [
+        {
+          assertion = config.custom.users.mainUser != "";
+          message = "set a main user!!";
+        }
+      ];
     }
 
     (lib.mkIf (config.custom.users.mainUser == "")         { } )

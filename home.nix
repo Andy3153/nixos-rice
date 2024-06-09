@@ -23,10 +23,6 @@
   };
   # }}}
 
-  # {{{ Fonts
-  fonts.fontconfig.enable = true;
-  # }}}
-
   # {{{ GTK
   gtk =
   {
@@ -80,13 +76,6 @@
   # {{{ Home
   home =
   {
-    # {{{ Basic info
-    stateVersion = "23.11";
-
-    username      = "andy3153";
-    homeDirectory = "/home/andy3153";
-    # }}}
-
     # {{{ Packages
     packages = with pkgs;
     [
@@ -220,28 +209,6 @@
     # }}}
 
     # {{{ File
-    # {{{ Get the files
-    ## Variables
-    #ghlink="https://github.com/Andy3153"
-    #
-    ## Create folder structure
-    #mkdir -p /home/andy3153/src
-    #cd /home/andy3153/src
-    #mkdir -p hyprland/hyprland-rice
-    #mkdir -p nixos/nixos-rice
-    #mkdir -p nvim/andy3153-init.lua
-    #mkdir -p sh/andy3153-zshrc
-    #
-    ## Clone Git repos
-    #git clone $ghlink/hyprland-rice hyprland/hyprland-rice
-    #git clone $ghlink/nixos-rice nixos/nixos-rice
-    #git clone $ghlink/andy3153-init.lua nvim/andy3153-init.lua
-    #git clone $ghlink/andy3153-zshrc sh/andy3153-zshrc
-    #
-    ## Finish
-    #cd
-    # }}}
-
     file =
     {
       # {{{ Zsh
@@ -307,27 +274,6 @@
       size    = 24;
     };
     # }}}
-
-    # {{{ Environment variables
-    sessionVariables =
-    {
-      # Home Manager can also manage your environment variables through
-      # 'home.sessionVariables'. If you don't want to manage your shell through Home
-      # Manager then you have to manually source 'hm-session-vars.sh' located at
-      # either
-      #
-      #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      #
-      # or
-      #
-      #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-      #
-      # or
-      #
-      #  /etc/profiles/per-user/andy3153/etc/profile.d/hm-session-vars.sh
-      #
-    };
-    # }}}
   };
   # }}}
 
@@ -335,11 +281,6 @@
   programs =
   {
     home-manager.enable = true; # let HM manage itself
-
-    # {{{ Hyprland Rice
-    #kitty.enable  = true;  # hyprland-rice terminal
-    #waybar.enable = true;  # hyprland-rice status-bar
-    # }}}
 
     # {{{ Git
     git =
@@ -462,19 +403,6 @@
       };
     };
     # }}}
-
-    # {{{ OBS
-    obs-studio =
-    {
-      enable = true;
-      plugins = with pkgs.obs-studio-plugins;
-      [
-        wlrobs
-        obs-pipewire-audio-capture
-        obs-vkcapture
-      ];
-    };
-    # }}}
   };
   # }}}
 
@@ -492,10 +420,6 @@
     };
     # }}}
   };
-  # }}}
-
-  # {{{ Nix packages
-  nixpkgs.config.allowUnfree = true;
   # }}}
 
   # {{{ Services
@@ -520,15 +444,6 @@
     dunst.enable = true;           # hyprland-rice notification-daemon
     # }}}
     # }}}
-  };
-  # }}}
-
-  # {{{ Hyprland
-  wayland.windowManager.hyprland =
-  {
-    enable = true;
-    xwayland.enable = true;
-    extraConfig = " "; # make nixos-rebuild shut up about a warn
   };
   # }}}
 
@@ -589,34 +504,6 @@
       "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
       "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
       "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-      # }}}
-    };
-    # }}}
-
-    # {{{ Portal
-    portal =
-    {
-      enable = true;
-      xdgOpenUsePortal = true;
-
-      extraPortals = with pkgs;
-      [
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
-      ];
-
-      # {{{ Config
-      config =
-      {
-        common =
-        {
-          default =
-          [
-            "hyprland"
-            "gtk"
-          ];
-        };
-      };
       # }}}
     };
     # }}}

@@ -26,15 +26,42 @@ in
     {
       displayManager.defaultSession = lib.mkDefault "hyprland";
 
-      greetd.settings = rec
+      greetd.settings =
       {
         initial_session =
         {
-          command = "${pkgs.hyprland}/bin/Hyprland";
+          command = lib.getExe pkgs.hyprland;
         };
       };
     };
 
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    xdg.portal.extraPortals = with pkgs;
+    [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+
+    # {{{ Home-Manager
+    home-manager.users.${config.custom.users.mainUser} =
+    {
+      wayland.windowManager.hyprland =
+      {
+        enable          = lib.mkDefault true;
+        xwayland.enable = lib.mkDefault true;
+        extraConfig     = " ";
+      };
+
+      xdg.portal =
+      {
+        extraPortals = config.xdg.portal.extraPortals;
+
+        config.common.default =
+        [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
+    # }}}
   };
 }
