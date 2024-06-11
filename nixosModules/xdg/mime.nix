@@ -26,17 +26,19 @@ in
     xdg.mime =
     {
       enable              = lib.mkDefault cfg.enable;
+      addedAssociations   = lib.mkDefault cfg.defaultApplications;
       defaultApplications = lib.mkDefault cfg.defaultApplications;
     };
 
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =
     {
-      xdg.mime.enable = lib.mkForce cfg.enable;
+      xdg.mime.enable = lib.mkDefault cfg.enable;
       xdg.mimeApps =
       {
-        enable              = lib.mkForce cfg.enable;
-        defaultApplications = lib.mkForce cfg.defaultApplications;
+        enable              = lib.mkDefault cfg.enable;
+        associations.added  = lib.mkDefault cfg.defaultApplications;
+        defaultApplications = lib.mkDefault cfg.defaultApplications;
       };
     };
     # }}}
