@@ -128,6 +128,7 @@
       libreoffice-fresh                   # Office
       gimp                                # Office photo-editing
       inkscape                            # Office photo-editing
+      krita                               # Office photo-editing
 
       texliveFull                         # LaTeX
       python312Packages.pygments          # for-latex
@@ -205,6 +206,8 @@
       virt-manager                        # for-libvirt
       virtiofsd                           # for-libvirt
       qbittorrent                         # torrents
+
+      ventoy-full
     ];
     # }}}
 
