@@ -27,9 +27,12 @@ in
 
       gui =
       {
-        apps.enable        = lib.mkDefault true;
-        gaming.enable      = lib.mkDefault false;
-        wm.hyprland.enable = lib.mkDefault true;
+        apps.enable                 = lib.mkDefault true;
+
+        gaming.enable               = lib.mkDefault false;
+        gaming.optimizations.enable = lib.mkDefault config.custom.gui.gaming.enable;
+
+        wm.hyprland.enable          = lib.mkDefault true;
       };
 
       hardware.opengl.enable  = lib.mkDefault true;
