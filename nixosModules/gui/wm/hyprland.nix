@@ -13,8 +13,9 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.xdg.portal.enable = lib.mkDefault true;
-    programs.hyprland.enable = lib.mkDefault true;
+    custom.gui.dm.sddm.enable = lib.mkDefault true;
+    custom.xdg.portal.enable  = lib.mkDefault true;
+    programs.hyprland.enable  = lib.mkDefault true;
 
     nix.settings = # Enable Hyprland Cachix
     {
