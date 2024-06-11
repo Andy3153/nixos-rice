@@ -3,7 +3,7 @@
 ## Steam config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.programs.steam;
@@ -15,10 +15,12 @@ in
   {
     programs.steam =
     {
-      enable                       = true;
-      #gamescopeSession.enable      = true;
-      dedicatedServer.openFirewall = true;
-      remotePlay.openFirewall      = true;
+      enable                       = lib.mkDefault true;
+      #gamescopeSession.enable      = lib.mkDefault true;
+      dedicatedServer.openFirewall = lib.mkDefault true;
+      remotePlay.openFirewall      = lib.mkDefault true;
     };
+
+    custom.programs.java.enable = lib.mkDefault true;
   };
 }
