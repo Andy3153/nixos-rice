@@ -262,7 +262,7 @@ in
     doas =
     {
       enable      = true;
-      extraConfig = "permit persist setenv { WAYLAND_DISPLAY XAUTHORITY LANG LC_ALL } ${config.custom.users.mainUser}";
+      extraConfig = "permit persist setenv { WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY LANG LC_ALL } ${config.custom.users.mainUser}";
     };
     # }}}
 
