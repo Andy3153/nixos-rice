@@ -3,7 +3,8 @@
 ## Common settings that every host shares
 ##
 
-{ config, lib, pkgs, pkgs-andy3153, ... }:
+#{ config, lib, pkgs, pkgs-andy3153, ... }:
+{ config, lib, pkgs, ... }:
 
 # {{{ Variables
 let
@@ -32,6 +33,7 @@ in
         nvimpager                  # for-nvim
         hunspell                   # for-nvim for-libreoffice
         hunspellDicts.en_US        # for-nvim for-libreoffice
+        hunspellDicts.ro_RO        # for-nvim for-libreoffice
 
         efibootmgr                 # EFI
         doas-sudo-shim             # for-doas
@@ -82,10 +84,10 @@ in
       # }}}
 
       # {{{ NixPkgs (my fork for when I'm working on something)
-      (with pkgs-andy3153;
-      [
-        hunspellDicts.ro_RO
-      ])
+      #(with pkgs-andy3153;
+      #[
+      #  #hunspellDicts.ro_RO
+      #])
       # }}}
     ];
     # }}}

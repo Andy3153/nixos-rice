@@ -15,7 +15,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NixPkgs (my fork for when I'm working on something)
-    nixpkgs-andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
+    #nixpkgs-andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
     #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
 
     # Home-Manager
@@ -41,7 +41,8 @@
   # }}}
 
   # {{{ Outputs
-  outputs = { self, nixpkgs, nixpkgs-andy3153, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
+  #outputs = { self, nixpkgs, nixpkgs-andy3153, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
   # {{{ Variables
   let
     system = "x86_64-linux";
@@ -54,11 +55,11 @@
     };
 
     # NixPkgs (my fork for when I'm working on something)
-    pkgs-andy3153 = import nixpkgs-andy3153
-    {
-      inherit system;
-      config.allowUnfree = true;
-    };
+    #pkgs-andy3153 = import nixpkgs-andy3153
+    #{
+    #  inherit system;
+    #  config.allowUnfree = true;
+    #};
   in
   # }}}
   {
@@ -67,7 +68,8 @@
       # {{{ sparkle
       sparkle = nixpkgs.lib.nixosSystem
       {
-        specialArgs = { inherit inputs system pkgs pkgs-andy3153; };
+        #specialArgs = { inherit inputs system pkgs pkgs-andy3153; };
+        specialArgs = { inherit inputs system pkgs; };
 
         modules =
         [
