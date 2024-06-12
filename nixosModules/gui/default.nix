@@ -74,7 +74,7 @@ in
             };
           };
 
-          gtk.theme =
+          gtk =
           {
             name    = "Catppuccin-Mocha-Standard-Blue-Dark";
             package = pkgs.catppuccin-gtk.override { variant = "mocha"; };

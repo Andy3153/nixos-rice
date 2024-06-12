@@ -9,7 +9,7 @@ let
   cfg = config.custom.gui.theme.gtk;
   gtkModule = lib.types.submodule
   {
-    options.theme =
+    options =
     {
       name = lib.mkOption
       {
@@ -49,17 +49,17 @@ in
 
         theme =
         {
-          name    = cfg.theme.name;
-          package = cfg.theme.package;
+          name    = cfg.name;
+          package = cfg.package;
         };
       };
 
       # Apply GTK theme to GTK4 apps
       xdg.configFile =
       {
-        "gtk-4.0/assets".source = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0/assets";
-        "gtk-4.0/gtk.css".source = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0/gtk.css";
-        "gtk-4.0/gtk-dark.css".source = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0/gtk-dark.css";
+        "gtk-4.0/assets".source = "${cfg.package}/share/themes/${cfg.name}/gtk-4.0/assets";
+        "gtk-4.0/gtk.css".source = "${cfg.package}/share/themes/${cfg.name}/gtk-4.0/gtk.css";
+        "gtk-4.0/gtk-dark.css".source = "${cfg.package}/share/themes/${cfg.name}/gtk-4.0/gtk-dark.css";
       };
     };
     # }}}
