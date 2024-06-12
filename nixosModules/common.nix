@@ -92,37 +92,37 @@ in
   };
   # }}}
 
-  # {{{ Fonts
-  fonts =
-  {
-    enableDefaultPackages = true;
-    fontDir.enable        = true; # for flatpak
-
-    # {{{ Fonts
-    packages = with pkgs;
-    [
-      cantarell-fonts
-      (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; })
-      noto-fonts-color-emoji
-      noto-fonts-monochrome-emoji
-    ];
-    # }}}
-
-    # {{{ Fontconfig
-    fontconfig =
-    {
-      enable = true;
-
-      defaultFonts =
-      {
-        monospace = [ "IosevkaTerm NF" ];
-        serif     = [ "Cantarell" ];
-        sansSerif = [ "Cantarell" ];
-      };
-    };
-    # }}}
-  };
-  #}}}
+  ## {{{ Fonts
+  #fonts =
+  #{
+  #  enableDefaultPackages = true;
+  #  fontDir.enable        = true; # for flatpak
+  #
+  #  # {{{ Fonts
+  #  packages = with pkgs;
+  #  [
+  #    cantarell-fonts
+  #    (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; })
+  #    noto-fonts-color-emoji
+  #    noto-fonts-monochrome-emoji
+  #  ];
+  #  # }}}
+  #
+  #  # {{{ Fontconfig
+  #  fontconfig =
+  #  {
+  #    enable = true;
+  #
+  #    defaultFonts =
+  #    {
+  #      monospace = [ "IosevkaTerm NF" ];
+  #      serif     = [ "Cantarell" ];
+  #      sansSerif = [ "Cantarell" ];
+  #    };
+  #  };
+  #  # }}}
+  #};
+  ## }}}
 
   # {{{ Hardware
   hardware =

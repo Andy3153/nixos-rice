@@ -39,5 +39,23 @@ in
         ];
       };
     };
+
+    custom.xdg.userDirs =
+    let
+      homeDir       = config.home-manager.users.andy3153.home.homeDirectory;
+      xdg.cacheHome = config.home-manager.users.andy3153.xdg.cacheHome;
+      xdg.dataHome  = config.home-manager.users.andy3153.xdg.dataHome;
+    in
+    {
+      enable = lib.mkDefault true;
+      desktop           = "${xdg.cacheHome}/xdg_desktop_folder"; # I don't need it
+      documents         = "${homeDir}/docs";
+      download          = "${homeDir}/downs";
+      music             = "${homeDir}/music";
+      pictures          = "${homeDir}/pics";
+      publicShare       = "${xdg.dataHome}/xdg_public_folder";
+      templates         = "${xdg.dataHome}/xdg_templates_folder";
+      videos            = "${homeDir}/vids";
+    };
   };
 }

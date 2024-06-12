@@ -3,7 +3,7 @@
 ## GUI bundle
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.gui;
@@ -12,6 +12,7 @@ in
   imports =
   [
     ./dm
+    ./theme
     ./wm
     ./apps.nix
     ./gaming.nix
@@ -32,6 +33,54 @@ in
         gaming.enable               = lib.mkDefault false;
         gaming.optimizations.enable = lib.mkDefault config.custom.gui.gaming.enable;
 
+        theme =
+        {
+          cursor =
+          {
+            package = pkgs.apple-cursor;
+            name    = "macOS-Monterey";
+            size    = 24;
+          };
+
+          font =
+          {
+            size = 11;
+
+            defaultFonts =
+            {
+              monospace =
+              {
+                names    = [ "IosevkaTerm NF" ];
+                packages = with pkgs; [ (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; }) ];
+              };
+
+              serif =
+              {
+                names    = config.custom.gui.theme.font.defaultFonts.sansSerif.names;
+                packages = config.custom.gui.theme.font.defaultFonts.sansSerif.packages;
+              };
+
+              sansSerif =
+              {
+                names    = [ "Cantarell" ];
+                packages = with pkgs; [ cantarell-fonts ];
+              };
+
+              emoji =
+              {
+                names    = [ "Noto Color Emoji" ];
+                packages = with pkgs; [ noto-fonts-color-emoji ];
+              };
+            };
+          };
+
+          gtk.theme =
+          {
+            name    = "Catppuccin-Mocha-Standard-Blue-Dark";
+            package = pkgs.catppuccin-gtk.override { variant = "mocha"; };
+          };
+        };
+
         wm.hyprland.enable          = lib.mkDefault true;
       };
 
@@ -41,6 +90,7 @@ in
 
       xdg =
       {
+        enable        = lib.mkDefault true;
         portal.enable = lib.mkDefault true;
         mime =
         {

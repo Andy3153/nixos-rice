@@ -10,43 +10,9 @@
 {
   news.display = "notify"; # Show news
 
-  # {{{ Dconf
-  dconf.settings =
-  {
-    # {{{ Autoconnect virt-manager to system QEMU
-    "org/virt-manager/virt-manager/connections" =
-    {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-    # }}}
-  };
-  # }}}
-
   # {{{ GTK
   gtk =
   {
-    enable              = true;
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
-    # {{{ Cursor
-    cursorTheme =
-    {
-      package = config.home.pointerCursor.package;
-      name    = config.home.pointerCursor.name;
-      size    = config.home.pointerCursor.size;
-    };
-    # }}}
-
-    # {{{ Font
-    font =
-    {
-      package = pkgs.cantarell-fonts;
-      name    = "Cantarell";
-      size    = 11;
-    };
-    # }}}
-
     # {{{ Icon theme
     iconTheme =
     {
@@ -56,18 +22,6 @@
       };
 
       name    = "Papirus-Dark";
-    };
-    # }}}
-
-    # {{{ Theme
-    theme =
-    {
-      package = pkgs.catppuccin-gtk.override
-      {
-        variant = "mocha";
-      };
-
-      name    = "Catppuccin-Mocha-Standard-Blue-Dark";
     };
     # }}}
   };
@@ -265,16 +219,6 @@
       #".local/share/fonts".source = /run/current-system/sw/share/X11/fonts;
       #".local/share/icons".source = /run/current-system/sw/share/icons;
       # }}}
-    };
-    # }}}
-
-    # {{{ Cursor
-    pointerCursor =
-    {
-      gtk.enable = true;
-      package = pkgs.apple-cursor;
-      name    = "macOS-Monterey";
-      size    = 24;
     };
     # }}}
   };
@@ -502,29 +446,6 @@
       "qt5ct/qt5ct.conf".text = qtctConf;
       "qt6ct/qt6ct.conf".text = qtctConf;
       # }}}
-
-      # {{{ Apply GTK theme to GTK4 apps
-      "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-      "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-      "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-      # }}}
-    };
-    # }}}
-
-    # {{{ User directories
-    userDirs =
-    {
-      enable            = true;
-      createDirectories = true;
-
-      desktop           = "${config.xdg.cacheHome}/xdg_desktop_folder"; # I don't need it
-      documents         = "${config.home.homeDirectory}/docs";
-      download          = "${config.home.homeDirectory}/downs";
-      music             = "${config.home.homeDirectory}/music";
-      pictures          = "${config.home.homeDirectory}/pics";
-      publicShare       = "${config.xdg.dataHome}/xdg_public_folder";
-      templates         = "${config.xdg.dataHome}/xdg_templates_folder";
-      videos            = "${config.home.homeDirectory}/vids";
     };
     # }}}
   };

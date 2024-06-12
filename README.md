@@ -43,21 +43,39 @@ doas nix store optimise
 </details>
 <!-- }}} -->
 
+<!-- {{{ Manually add a file to the Nix store -->
+<details><summary>Manually add a file to the Nix store</summary>
+
+```console
+nix-store --add-fixed sha256 filename
+```
+</details>
+<!-- }}} -->
+
+<!-- {{{ Get values set in configuration
+<details><summary>Get values set in configuration</summary>
+
+- `nix eval`
+```console
+nix eval --no-eval-cache ~/src/nixos/nixos-rice\#nixosConfigurations.HOSTNAME.config.sdfsdfsdfsdf
+```
+
+- `nix repl`
+```console
+nix repl
+
+:lf /home/andy3153/src/nixos/nixos-rice
+nixosConfigurations.HOSTNAME.config.sdfsdfsdfsdf.tabcompletion
+```
+</details>
+<!-- }}} -->
+
 <!-- {{{ nixos-enter somehow doesn't pick up $PATH right -->
 <details><summary>nixos-enter somehow doesn't pick up $PATH right</summary>
 
 ```console
 nixos-enter --root /mnt
 export PATH=/nix/var/nix/profiles/system/sw/sbin/:/nix/var/nix/profiles/system/sw/bin/:$PATH
-```
-</details>
-<!-- }}} -->
-
-<!-- {{{ Manually add a file to the Nix store -->
-<details><summary>Manually add a file to the Nix store</summary>
-
-```console
-nix-store --add-fixed sha256 filename
 ```
 </details>
 <!-- }}} -->

@@ -27,5 +27,19 @@ in
     };
 
     virtualisation.spiceUSBRedirection.enable = true;
+
+  # {{{ Home-Manager
+  home-manager.users.${config.custom.users.mainUser} =
+  {
+    dconf.settings =
+    {
+      "org/virt-manager/virt-manager/connections" =
+      {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
+  };
+  # }}}
   };
 }
