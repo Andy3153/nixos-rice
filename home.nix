@@ -10,23 +10,6 @@
 {
   news.display = "notify"; # Show news
 
-  # {{{ GTK
-  gtk =
-  {
-    # {{{ Icon theme
-    iconTheme =
-    {
-      package = pkgs.catppuccin-papirus-folders.override
-      {
-        flavor = "mocha";
-      };
-
-      name    = "Papirus-Dark";
-    };
-    # }}}
-  };
-  # }}}
-
   # {{{ Home
   home =
   {
@@ -354,19 +337,19 @@
   # }}}
 
   # {{{ Qt
-  qt =
-  {
-    enable             = true;
-    platformTheme.name = "qtct";
-
-    # {{{ Qt style
-    style =
-    {
-      package = pkgs.lightly-boehs;
-      name    = "Lightly";
-    };
-    # }}}
-  };
+  #qt =
+  #{
+  #  enable             = true;
+  #  platformTheme.name = "qtct";
+  #
+  #  # {{{ Qt style
+  #  style =
+  #  {
+  #    package = pkgs.lightly-boehs;
+  #    name    = "Lightly";
+  #  };
+  #  # }}}
+  #};
   # }}}
 
   # {{{ Services
@@ -442,10 +425,6 @@
       # }}}
     in
     {
-      # {{{ Dealing with QTCT
-      "qt5ct/qt5ct.conf".text = qtctConf;
-      "qt6ct/qt6ct.conf".text = qtctConf;
-      # }}}
     };
     # }}}
   };

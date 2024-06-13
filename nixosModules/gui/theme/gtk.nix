@@ -29,7 +29,6 @@ in
 {
   options.custom.gui.theme.gtk = lib.mkOption
   {
-
     type        = lib.types.nullOr gtkModule;
     default     = lib.types.null;
     description = "GTK theme configuration";

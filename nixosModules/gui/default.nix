@@ -44,13 +44,14 @@ in
 
           font =
           {
-            size = 11;
+            generalFontSize = 11;
+            fixedFontSize   = 12;
 
             defaultFonts =
             {
               monospace =
               {
-                names    = [ "IosevkaTerm NF" ];
+                names    = [ "IosevkaTerm Nerd Font Mono" ];
                 packages = with pkgs; [ (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; }) ];
               };
 
@@ -77,7 +78,35 @@ in
           gtk =
           {
             name    = "Catppuccin-Mocha-Standard-Blue-Dark";
-            package = pkgs.catppuccin-gtk.override { variant = "mocha"; };
+            package = pkgs.catppuccin-gtk.override
+            {
+              variant = "mocha";
+              accents = [ "blue" ];
+            };
+          };
+
+          icon =
+          {
+            name    = "Papirus-Dark";
+            package = pkgs.catppuccin-papirus-folders.override
+            {
+              flavor = "mocha";
+              accent = "blue";
+            };
+          };
+
+          qt.style.kvantum =
+          {
+            enable = lib.mkDefault true;
+            theme =
+            {
+              name    = "Catppuccin-Mocha-Blue";
+              package = pkgs.catppuccin-kvantum.override
+              {
+                variant = "Mocha";
+                accent  = "Blue";
+              };
+            };
           };
         };
 

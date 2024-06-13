@@ -11,12 +11,20 @@ let
   {
     options =
     {
-      size = lib.mkOption
+      generalFontSize = lib.mkOption
       {
         type        = lib.types.int;
         default     = 11;
         example     = 12;
-        description = "font size in GUI programs";
+        description = "font size for general fonts";
+      };
+
+      fixedFontSize = lib.mkOption
+      {
+        type        = lib.types.int;
+        default     = 12;
+        example     = 15;
+        description = "font size for fixed width fonts";
       };
 
       extraFontPackages = lib.mkOption
@@ -135,7 +143,7 @@ in
       gtk.font =
       {
         name = builtins.head cfg.defaultFonts.sansSerif.names;
-        size = cfg.size;
+        size = cfg.generalFontSize;
       };
     };
     # }}}

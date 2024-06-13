@@ -9,7 +9,9 @@
   imports =
   [
     ./cursor.nix
-    ./gtk.nix
     ./font.nix
+    ./gtk.nix
+    ./icon.nix
+    ./qt.nix
   ];
 }
