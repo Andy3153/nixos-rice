@@ -9,6 +9,6 @@
   imports =
   [
     ./qt.nix
-    ./setKvantumThemeFiles.nix
+    #./setKvantumThemeFiles.nix
   ];
 }
