@@ -7,16 +7,21 @@
 { config, lib, ... }:
 let
   cfg              = config.custom.gui.theme.qt;
+  cfgFont          = config.custom.gui.theme.font;
+
   qtStyle          = lib.mkIf cfg.style.kvantum.enable "kvantum";
   kvantumThemePkg  = cfg.style.kvantum.theme.package;
   kvantumThemeName = cfg.style.kvantum.theme.name;
 
-  qtStyleString    = config.custom.gui.theme.qt.style.name;
+  qtStyleString    = cfg.style.name;
   iconTheme        = config.custom.gui.theme.icon.name;
-  generalFont      = builtins.head config.custom.gui.theme.font.defaultFonts.sansSerif.names;
-  generalFontSize  = builtins.toString config.custom.gui.theme.font.generalFontSize;
-  fixedFont        = builtins.head config.custom.gui.theme.font.defaultFonts.monospace.names;
-  fixedFontSize    = builtins.toString config.custom.gui.theme.font.fixedFontSize;
+  generalFont      = builtins.head     cfgFont.defaultFonts.sansSerif.names;
+  generalFontSize  = builtins.toString cfgFont.generalFontSize;
+  fixedFont        = builtins.head     cfgFont.defaultFonts.monospace.names;
+  fixedFontSize    = builtins.toString cfgFont.fixedFontSize;
+
+  kvconfigFile     = cfg.style.kvantum.theme.kvconfigFile;
+  svgFile          = cfg.style.kvantum.theme.svgFile;
 
   # {{{ Qt5CT config
   qt5ctConf =
@@ -193,8 +198,12 @@ in
         # Configure Kvantum
         "Kvantum/kvantum.kvconfig".text = kvantumConf;
 
+        # Set Kvantum theme files
         #"Kvantum/${kvantumThemeName}/${kvantumThemeName}.kvconfig".source = "${kvantumThemePkg}/share/Kvantum/${kvantumThemeName}/${kvantumThemeName}.kvconfig";
         #"Kvantum/${kvantumThemeName}/${kvantumThemeName}.svg".source      = "${kvantumThemePkg}/share/Kvantum/${kvantumThemeName}/${kvantumThemeName}.svg";
+
+        "Kvantum/${kvantumThemeName}/${kvantumThemeName}.kvconfig".source = kvconfigFile;
+        "Kvantum/${kvantumThemeName}/${kvantumThemeName}.svg".source      = svgFile;
 
         #"Kvantum/${kvantumThemeName}/${kvantumThemeName}.kvconfig".source = lib.mkMerge
         #[
