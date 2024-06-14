@@ -12,6 +12,6 @@
     ./font.nix
     ./gtk.nix
     ./icon.nix
-    ./qt
+    ./qt.nix
   ];
 }

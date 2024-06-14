@@ -5,7 +5,7 @@
 ## rewrote   15/03/24 ~ 17:06:25
 ##
 
-{ config, pkgs, ... }: #pkgs-unstable, ... }:
+{ pkgs, ... }: #pkgs-unstable, ... }:
 
 {
   news.display = "notify"; # Show news
@@ -373,59 +373,6 @@
     # {{{ Dunst
     dunst.enable = true;           # hyprland-rice notification-daemon
     # }}}
-    # }}}
-  };
-  # }}}
-
-  # {{{ XDG
-  xdg =
-  {
-    enable = true;
-
-    # {{{ Config files
-    configFile =
-    let
-      # {{{ QTCT config
-      # Get the colorscheme
-      # Catppuccin Mocha
-      colorScheme = pkgs.fetchurl
-      {
-        url  = "https://raw.githubusercontent.com/catppuccin/qt5ct/main/themes/Catppuccin-Mocha.conf";
-        hash = "sha256-NKrzBU9fvchVP2UFuFPNnCYlW/YDPdiwniao0KQOMBs=";
-      };
-
-      qtctConf =
-      ''
-        [Appearance]
-        style=${config.qt.style.name}
-        icon_theme=${config.gtk.iconTheme.name}
-        color_scheme_path=${colorScheme}
-        custom_palette=true
-        standard_dialogs=xdgdesktopportal
-
-        [Fonts]
-        general="${config.gtk.font.name},${builtins.toString config.gtk.font.size},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-        fixed="IosevkaTerm NF,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-
-        [Interface]
-        activate_item_on_single_click=1
-        buttonbox_layout=2
-        cursor_flash_time=1000
-        dialog_buttons_have_icons=1
-        double_click_interval=400
-        gui_effects=General, AnimateMenu, AnimateCombo, AnimateTooltip, AnimateToolBox
-        keyboard_scheme=3
-        menus_have_icons=true
-        show_shortcuts_in_context_menus=true
-        stylesheets=@Invalid()
-        toolbutton_style=4
-        underline_shortcut=1
-        wheel_scroll_lines=3
-      '';
-      # }}}
-    in
-    {
-    };
     # }}}
   };
   # }}}
