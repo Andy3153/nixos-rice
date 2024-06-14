@@ -7,13 +7,13 @@
 
 {
   imports =
-  [
-    ./bluetooth.nix
-    ./controllers.xbox.nix
-    ./graphictablets.nix
-    ./i2c.nix
-    ./nvidia.nix
-    ./opengl.nix
-    ./openrgb.nix
-  ];
+    [
+      ./bluetooth.nix
+      ./controllers.xbox.nix
+      ./graphictablets.nix
+      ./i2c.nix
+      ./nvidia.nix
+      ./opengl.nix
+      ./openrgb.nix
+    ];
 }

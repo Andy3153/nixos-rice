@@ -7,11 +7,11 @@
 
 {
   imports =
-  [
-    ./ananicy.nix
-    ./flatpak.nix
-    ./pipewire.nix
-    ./printing.nix
-    ./udisks.nix
-  ];
+    [
+      ./ananicy.nix
+      ./flatpak.nix
+      ./pipewire.nix
+      ./printing.nix
+      ./udisks.nix
+    ];
 }

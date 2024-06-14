@@ -7,8 +7,8 @@
 
 {
   imports =
-  [
-    ./greetd.nix
-    ./sddm.nix
-  ];
+    [
+      ./greetd.nix
+      ./sddm.nix
+    ];
 }

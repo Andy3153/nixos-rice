@@ -12,7 +12,7 @@ in
   options.custom.programs.gamemode.enable = lib.mkEnableOption "enables Feral GameMode";
 
   config = lib.mkIf cfg.enable
-  {
-    programs.gamemode.enable = true;
-  };
+    {
+      programs.gamemode.enable = true;
+    };
 }

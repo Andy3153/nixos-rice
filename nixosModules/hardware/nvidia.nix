@@ -10,40 +10,40 @@ let
 in
 {
   options.custom.hardware.nvidia =
-  {
-    enable       = lib.mkEnableOption "enables Nvidia";
-    prime.enable = lib.mkEnableOption "enables Nvidia PRIME render offloading";
-  };
+    {
+      enable = lib.mkEnableOption "enables Nvidia";
+      prime.enable = lib.mkEnableOption "enables Nvidia PRIME render offloading";
+    };
 
   config = lib.mkMerge
-  [
-    (lib.mkIf cfg.enable
-    {
-      boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-
-      hardware =
-      {
-        opengl.extraPackages = [ pkgs.vaapiVdpau ];
-
-        nvidia =
+    [
+      (lib.mkIf cfg.enable
         {
-          modesetting.enable = lib.mkDefault true;
-        };
-      };
+          boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-      services.xserver.videoDrivers      = [ "nvidia" ];
-      virtualisation.docker.enableNvidia = lib.mkDefault true;
-    })
+          hardware =
+            {
+              opengl.extraPackages = [ pkgs.vaapiVdpau ];
 
-    (lib.mkIf cfg.prime.enable
-    {
-      custom.hardware.nvidia.enable = lib.mkForce true; # force enable custom nvidia
+              nvidia =
+                {
+                  modesetting.enable = lib.mkDefault true;
+                };
+            };
 
-      hardware.nvidia.prime.offload =
-      {
-        enable           = lib.mkDefault true;
-        enableOffloadCmd = lib.mkDefault true;
-      };
-    })
-  ];
+          services.xserver.videoDrivers = [ "nvidia" ];
+          virtualisation.docker.enableNvidia = lib.mkDefault true;
+        })
+
+      (lib.mkIf cfg.prime.enable
+        {
+          custom.hardware.nvidia.enable = lib.mkForce true; # force enable custom nvidia
+
+          hardware.nvidia.prime.offload =
+            {
+              enable = lib.mkDefault true;
+              enableOffloadCmd = lib.mkDefault true;
+            };
+        })
+    ];
 }

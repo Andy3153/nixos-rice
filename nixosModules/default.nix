@@ -7,16 +7,16 @@
 
 {
   imports =
-  [
-    ./common.nix
-    ./boot
-    ./gui
-    ./hardware
-    ./programs
-    ./services
-    ./systemd
-    ./users
-    ./virtualisation
-    ./xdg
-  ];
+    [
+      ./common.nix
+      ./boot
+      ./gui
+      ./hardware
+      ./programs
+      ./services
+      ./systemd
+      ./users
+      ./virtualisation
+      ./xdg
+    ];
 }

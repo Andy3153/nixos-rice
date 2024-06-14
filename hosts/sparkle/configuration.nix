@@ -9,93 +9,93 @@
 
 {
   imports =
-  [
-    ./hardware-configuration.nix
-    ../../nixosModules
-  ];
+    [
+      ./hardware-configuration.nix
+      ../../nixosModules
+    ];
 
   # {{{ Custom modules
   custom =
-  {
-    # {{{ Boot
-    boot =
     {
-      kernel            = pkgs.linuxKernel.packages.linux_zen;
-      reisub.enable     = true;
-      sysctl.swappiness = 30;
-      uefiBoot.enable   = true;
+      # {{{ Boot
+      boot =
+        {
+          kernel = pkgs.linuxKernel.packages.linux_zen;
+          reisub.enable = true;
+          sysctl.swappiness = 30;
+          uefiBoot.enable = true;
+        };
+      # }}}
+
+      # {{{ GUI
+      gui =
+        {
+          enable = true;
+          gaming.enable = true;
+          rices.hyprland-rice.enable = true;
+        };
+      # }}}
+
+      # {{{ Hardware
+      hardware =
+        {
+          bluetooth =
+            {
+              enable = true;
+              powerOnBoot = false;
+            };
+
+          graphictablets.enable = true;
+          openrgb.enable = true;
+          nvidia.prime.enable = true;
+        };
+      # }}}
+
+      # {{{ Programs
+      programs =
+        {
+          adb.enable = true;
+          obs.enable = true;
+        };
+      # }}}
+
+      # {{{ Services
+      services =
+        {
+          ananicy.enable = true;
+          flatpak.enable = true;
+          pipewire.enable = true;
+
+          printing =
+            {
+              enable = true;
+              drivers = [ pkgs.brlaser ];
+            };
+        };
+      # }}}
+
+      # {{{ Systemd
+      systemd.services.TUFFanSpeed.enable = true;
+      # }}}
+
+      # {{{ Users
+      users.mainUser = "andy3153";
+      # }}}
+
+      # {{{ Virtualisation
+      virtualisation =
+        {
+          docker =
+            {
+              enable = false;
+              enableOnBoot = false;
+            };
+
+          libvirtd.enable = true;
+          waydroid.enable = false;
+        };
+      # }}}
     };
-    # }}}
-
-    # {{{ GUI
-    gui =
-    {
-      enable                     = true;
-      gaming.enable              = true;
-      rices.hyprland-rice.enable = true;
-    };
-    # }}}
-
-    # {{{ Hardware
-    hardware =
-    {
-      bluetooth =
-      {
-        enable      = true;
-        powerOnBoot = false;
-      };
-
-      graphictablets.enable   = true;
-      openrgb.enable          = true;
-      nvidia.prime.enable     = true;
-    };
-    # }}}
-
-    # {{{ Programs
-    programs =
-    {
-      adb.enable  = true;
-      obs.enable  = true;
-    };
-    # }}}
-
-    # {{{ Services
-    services =
-    {
-      ananicy.enable  = true;
-      flatpak.enable  = true;
-      pipewire.enable = true;
-
-      printing =
-      {
-        enable  = true;
-        drivers = [ pkgs.brlaser ];
-      };
-    };
-    # }}}
-
-    # {{{ Systemd
-    systemd.services.TUFFanSpeed.enable = true;
-    # }}}
-
-    # {{{ Users
-    users.mainUser = "andy3153";
-    # }}}
-
-    # {{{ Virtualisation
-    virtualisation =
-    {
-      docker =
-      {
-        enable       = false;
-        enableOnBoot = false;
-      };
-
-      libvirtd.enable = true;
-      waydroid.enable = false;
-    };
-    # }}}
-  };
   # }}}
 
   # {{{ Hosts file block list
@@ -104,125 +104,125 @@
 
   # {{{ Battery charging limit
   hardware.asus.battery =
-  {
-    chargeUpto             = 90;
-    enableChargeUptoScript = true;
-  };
+    {
+      chargeUpto = 90;
+      enableChargeUptoScript = true;
+    };
   # }}}
 
   # {{{ Btrbk instances
   services.btrbk.instances =
-  {
-    # {{{ Daily local backup
-    ##
-    ## Contains subvolumes that get backed up daily, and kept locally as snapshots
-    ##
-
-    daily-local =
     {
-      #onCalendar = "daily";
-      onCalendar = "null";
-      settings =
-      {
-        timestamp_format      = "long";
+      # {{{ Daily local backup
+      ##
+      ## Contains subvolumes that get backed up daily, and kept locally as snapshots
+      ##
 
-        snapshot_preserve     = "5d";
-        snapshot_preserve_min = "2d";
-
-        volume."/.btrfs-root" =
+      daily-local =
         {
-          snapshot_dir = "snapshots";
-          subvolume."root".snapshot_create = "onchange";
-          subvolume."nix".snapshot_create = "onchange";
-          subvolume."home".snapshot_create = "onchange";
+          #onCalendar = "daily";
+          onCalendar = "null";
+          settings =
+            {
+              timestamp_format = "long";
+
+              snapshot_preserve = "5d";
+              snapshot_preserve_min = "2d";
+
+              volume."/.btrfs-root" =
+                {
+                  snapshot_dir = "snapshots";
+                  subvolume."root".snapshot_create = "onchange";
+                  subvolume."nix".snapshot_create = "onchange";
+                  subvolume."home".snapshot_create = "onchange";
+                };
+            };
         };
-      };
-    };
-    # }}}
+      # }}}
 
-    # {{{ Backup to external hard drive
-    ##
-    ## Contains subvolumes that get backed up to an external hard drive
-    ##
+      # {{{ Backup to external hard drive
+      ##
+      ## Contains subvolumes that get backed up to an external hard drive
+      ##
 
-    externalhdd =
-    {
-      onCalendar = "null";
-      settings =
-      {
-        timestamp_format      = "long";
-
-        snapshot_preserve_min = "latest";
-
-        volume."/.btrfs-root" =
+      externalhdd =
         {
-          snapshot_dir = "snapshots.externalhdd";
+          onCalendar = "null";
+          settings =
+            {
+              timestamp_format = "long";
 
-          subvolume."root".snapshot_create = "onchange";
-          subvolume."root".target = "/mnt/sparkle_snapshots/";
+              snapshot_preserve_min = "latest";
 
-          subvolume."nix".snapshot_create = "onchange";
-          subvolume."nix".target = "/mnt/sparkle_snapshots/";
+              volume."/.btrfs-root" =
+                {
+                  snapshot_dir = "snapshots.externalhdd";
 
-          subvolume."home".snapshot_create = "onchange";
-          subvolume."home".target = "/mnt/sparkle_snapshots/";
+                  subvolume."root".snapshot_create = "onchange";
+                  subvolume."root".target = "/mnt/sparkle_snapshots/";
+
+                  subvolume."nix".snapshot_create = "onchange";
+                  subvolume."nix".target = "/mnt/sparkle_snapshots/";
+
+                  subvolume."home".snapshot_create = "onchange";
+                  subvolume."home".target = "/mnt/sparkle_snapshots/";
+                };
+            };
         };
-      };
-    };
-    # }}}
+      # }}}
 
-    # {{{ Backup to external hard drive (full)
-    ##
-    ## Contains subvolumes that get backed up to an external hard drive
-    ##
+      # {{{ Backup to external hard drive (full)
+      ##
+      ## Contains subvolumes that get backed up to an external hard drive
+      ##
 
-    externalhdd-full =
-    {
-      onCalendar = "null";
-      settings =
-      {
-        timestamp_format      = "long";
-
-        snapshot_preserve_min = "latest";
-
-        volume."/.btrfs-root" =
+      externalhdd-full =
         {
-          snapshot_dir = "snapshots.externalhdd";
+          onCalendar = "null";
+          settings =
+            {
+              timestamp_format = "long";
 
-          subvolume."root".snapshot_create = "onchange";
-          subvolume."root".target = "/mnt/sparkle_snapshots/";
+              snapshot_preserve_min = "latest";
 
-          subvolume."nix".snapshot_create = "onchange";
-          subvolume."nix".target = "/mnt/sparkle_snapshots/";
+              volume."/.btrfs-root" =
+                {
+                  snapshot_dir = "snapshots.externalhdd";
 
-          subvolume."home".snapshot_create = "onchange";
-          subvolume."home".target = "/mnt/sparkle_snapshots/";
+                  subvolume."root".snapshot_create = "onchange";
+                  subvolume."root".target = "/mnt/sparkle_snapshots/";
 
-          subvolume."games".snapshot_create = "onchange";
-          subvolume."games".target = "/mnt/sparkle_snapshots/";
+                  subvolume."nix".snapshot_create = "onchange";
+                  subvolume."nix".target = "/mnt/sparkle_snapshots/";
 
-          subvolume."vms".snapshot_create = "onchange";
-          subvolume."vms".target = "/mnt/sparkle_snapshots/";
+                  subvolume."home".snapshot_create = "onchange";
+                  subvolume."home".target = "/mnt/sparkle_snapshots/";
 
-          subvolume."torrents".snapshot_create = "onchange";
-          subvolume."torrents".target = "/mnt/sparkle_snapshots/";
+                  subvolume."games".snapshot_create = "onchange";
+                  subvolume."games".target = "/mnt/sparkle_snapshots/";
 
-          subvolume.".beeshome".snapshot_create = "onchange";
-          subvolume.".beeshome".target = "/mnt/sparkle_snapshots/";
+                  subvolume."vms".snapshot_create = "onchange";
+                  subvolume."vms".target = "/mnt/sparkle_snapshots/";
+
+                  subvolume."torrents".snapshot_create = "onchange";
+                  subvolume."torrents".target = "/mnt/sparkle_snapshots/";
+
+                  subvolume.".beeshome".snapshot_create = "onchange";
+                  subvolume.".beeshome".target = "/mnt/sparkle_snapshots/";
+                };
+            };
         };
-      };
+      # }}}
     };
-    # }}}
-  };
   # }}}
 
   # {{{ Video drivers
   services.xserver.videoDrivers = lib.mkForce
-  [
-    "modesetting"
-    "intel"
-    "nvidia"
-    "fbdev"
-  ];
+    [
+      "modesetting"
+      "intel"
+      "nvidia"
+      "fbdev"
+    ];
   # }}}
 }

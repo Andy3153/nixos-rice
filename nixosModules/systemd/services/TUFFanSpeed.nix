@@ -12,19 +12,19 @@ in
   options.custom.systemd.services.TUFFanSpeed.enable = lib.mkEnableOption "systemd service that changes an ASUS TUF's fan speed to 'Performance' at boot";
 
   config = lib.mkIf cfg.enable
-  {
-    systemd.services.TUFFanSpeed =
     {
-      enable      = lib.mkDefault true;
-      description = "systemd service that changes an ASUS TUF's fan speed to 'Performance' at boot";
-      wantedBy    = [ "multi-user.target" ];
+      systemd.services.TUFFanSpeed =
+        {
+          enable = lib.mkDefault true;
+          description = "systemd service that changes an ASUS TUF's fan speed to 'Performance' at boot";
+          wantedBy = [ "multi-user.target" ];
 
-      serviceConfig =
-      {
-        Type    = "oneshot";
-        Restart = "on-failure";
-        ExecStart = "${lib.getExe pkgs.bash} -c 'echo 1 > /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy'";
-      };
+          serviceConfig =
+            {
+              Type = "oneshot";
+              Restart = "on-failure";
+              ExecStart = "${lib.getExe pkgs.bash} -c 'echo 1 > /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy'";
+            };
+        };
     };
-  };
 }

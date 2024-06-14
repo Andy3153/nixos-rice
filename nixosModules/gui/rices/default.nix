@@ -7,7 +7,7 @@
 
 {
   imports =
-  [
-    ./hyprland-rice.nix
-  ];
+    [
+      ./hyprland-rice.nix
+    ];
 }

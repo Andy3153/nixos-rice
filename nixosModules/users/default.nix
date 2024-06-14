@@ -7,9 +7,9 @@
 
 {
   imports =
-  [
-    ./andy3153.nix
-    ./bot.nix
-    ./mainUser.nix
-  ];
+    [
+      ./andy3153.nix
+      ./bot.nix
+      ./mainUser.nix
+    ];
 }

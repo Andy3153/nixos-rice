@@ -12,12 +12,12 @@ in
   options.custom.hardware.opengl.enable = lib.mkEnableOption "enables OpenGL";
 
   config = lib.mkIf cfg.enable
-  {
-    hardware.opengl =
     {
-      enable          = lib.mkDefault true;
-      driSupport      = lib.mkDefault true;
-      driSupport32Bit = lib.mkDefault true;
+      hardware.opengl =
+        {
+          enable = lib.mkDefault true;
+          driSupport = lib.mkDefault true;
+          driSupport32Bit = lib.mkDefault true;
+        };
     };
-  };
 }

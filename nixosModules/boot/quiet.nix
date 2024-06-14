@@ -12,18 +12,18 @@ in
   options.custom.boot.quiet = lib.mkEnableOption "enables quiet boot";
 
   config = lib.mkIf cfg
-  {
-    boot =
     {
-      consoleLogLevel = lib.mkDefault 0;
+      boot =
+        {
+          consoleLogLevel = lib.mkDefault 0;
 
-      kernelParams =
-      [
-        "quiet"
-        "udev.log_level=0"
-      ];
+          kernelParams =
+            [
+              "quiet"
+              "udev.log_level=0"
+            ];
 
-      initrd.verbose = lib.mkDefault false;
+          initrd.verbose = lib.mkDefault false;
+        };
     };
-  };
 }

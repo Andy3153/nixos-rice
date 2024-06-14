@@ -12,21 +12,21 @@ in
   options.custom.gui.apps.enable = lib.mkEnableOption "enables the default programs desired in a gui";
 
   config = lib.mkIf cfg.enable
-  {
-    services.flatpak.packages =
-    [
-      "com.github.tchx84.Flatseal"         # Base-System
-      "io.gitlab.librewolf-community"      # Browsers
-      "com.brave.Browser"                  # Browsers
-      "org.torproject.torbrowser-launcher" # Browsers Tor
+    {
+      services.flatpak.packages =
+        [
+          "com.github.tchx84.Flatseal" # Base-System
+          "io.gitlab.librewolf-community" # Browsers
+          "com.brave.Browser" # Browsers
+          "org.torproject.torbrowser-launcher" # Browsers Tor
 
-      "com.discordapp.Discord"             # Social
-      "io.github.trigg.discover_overlay"   # for-discord
-      "org.ferdium.Ferdium"                # Social
+          "com.discordapp.Discord" # Social
+          "io.github.trigg.discover_overlay" # for-discord
+          "org.ferdium.Ferdium" # Social
 
-      "com.spotify.Client"                 # Music-Players
+          "com.spotify.Client" # Music-Players
 
-      "sh.ppy.osu"                         # Games
-    ];
-  };
+          "sh.ppy.osu" # Games
+        ];
+    };
 }

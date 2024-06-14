@@ -12,28 +12,28 @@ in
   options.custom.xdg.portal.enable = lib.mkEnableOption "enables XDG portals";
 
   config = lib.mkIf cfg.enable
-  {
-    xdg.portal =
-    {
-      enable = lib.mkDefault true;
-      config =
-      {
-        common =
-        {
-          default = "*";
-        };
-      };
-    };
-
-    # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
     {
       xdg.portal =
-      {
-        enable = true;
-        xdgOpenUsePortal = true;
-      };
+        {
+          enable = lib.mkDefault true;
+          config =
+            {
+              common =
+                {
+                  default = "*";
+                };
+            };
+        };
+
+      # {{{ Home-Manager
+      home-manager.users.${config.custom.users.mainUser} =
+        {
+          xdg.portal =
+            {
+              enable = true;
+              xdgOpenUsePortal = true;
+            };
+        };
+      # }}}
     };
-    # }}}
-  };
 }

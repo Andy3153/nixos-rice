@@ -13,20 +13,20 @@ in
   options.custom.gui.dm.sddm.enable = lib.mkEnableOption "enables SDDM";
 
   config = lib.mkIf cfg.enable
-  {
-    services.displayManager.sddm =
     {
-      enable         = lib.mkDefault true;
-      autoNumlock    = lib.mkDefault true;
-      wayland.enable = lib.mkDefault true;
-
-      settings =
-      {
-        Autologin =
+      services.displayManager.sddm =
         {
-          User = mainUser;
+          enable = lib.mkDefault true;
+          autoNumlock = lib.mkDefault true;
+          wayland.enable = lib.mkDefault true;
+
+          settings =
+            {
+              Autologin =
+                {
+                  User = mainUser;
+                };
+            };
         };
-      };
     };
-  };
 }

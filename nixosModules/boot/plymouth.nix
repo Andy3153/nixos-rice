@@ -12,9 +12,9 @@ in
   options.custom.boot.plymouth.enable = lib.mkEnableOption "enables Plymouth";
 
   config = lib.mkIf cfg.enable
-  {
-    custom.boot.quiet = lib.mkForce true; # force enable quiet boot
+    {
+      custom.boot.quiet = lib.mkForce true; # force enable quiet boot
 
-    boot.plymouth.enable = lib.mkDefault true;
-  };
+      boot.plymouth.enable = lib.mkDefault true;
+    };
 }

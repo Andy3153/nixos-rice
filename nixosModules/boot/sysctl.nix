@@ -10,15 +10,15 @@ let
 in
 {
   options.custom.boot.sysctl.swappiness = lib.mkOption
-  {
-    type        = lib.types.int;
-    default     = 60;
-    example     = 30;
-    description = "what swappiness value should be used";
-  };
+    {
+      type = lib.types.int;
+      default = 60;
+      example = 30;
+      description = "what swappiness value should be used";
+    };
 
   config.boot.kernel.sysctl =
-  {
-    "vm.swappiness" = cfg.swappiness;
-  };
+    {
+      "vm.swappiness" = cfg.swappiness;
+    };
 }

@@ -10,37 +10,37 @@ let
 in
 {
   options.custom.xdg.mime =
-  {
-    enable = lib.mkEnableOption "enables XDG MIME";
-
-    defaultApplications = lib.mkOption
     {
-      type        = with lib.types; attrsOf (coercedTo (either (listOf str) str) (x: lib.concatStringsSep ";" (lib.toList x)) str);
-      default     = { };
-      description = "sets the default applications for given mimetypes";
+      enable = lib.mkEnableOption "enables XDG MIME";
+
+      defaultApplications = lib.mkOption
+        {
+          type = with lib.types; attrsOf (coercedTo (either (listOf str) str) (x: lib.concatStringsSep ";" (lib.toList x)) str);
+          default = { };
+          description = "sets the default applications for given mimetypes";
+        };
     };
-  };
 
   config =
-  {
-    xdg.mime =
     {
-      enable              = lib.mkDefault cfg.enable;
-      addedAssociations   = lib.mkDefault cfg.defaultApplications;
-      defaultApplications = lib.mkDefault cfg.defaultApplications;
-    };
+      xdg.mime =
+        {
+          enable = lib.mkDefault cfg.enable;
+          addedAssociations = lib.mkDefault cfg.defaultApplications;
+          defaultApplications = lib.mkDefault cfg.defaultApplications;
+        };
 
-    # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
-    {
-      xdg.mime.enable = lib.mkDefault cfg.enable;
-      xdg.mimeApps =
-      {
-        enable              = lib.mkDefault cfg.enable;
-        associations.added  = lib.mkDefault cfg.defaultApplications;
-        defaultApplications = lib.mkDefault cfg.defaultApplications;
-      };
+      # {{{ Home-Manager
+      home-manager.users.${config.custom.users.mainUser} =
+        {
+          xdg.mime.enable = lib.mkDefault cfg.enable;
+          xdg.mimeApps =
+            {
+              enable = lib.mkDefault cfg.enable;
+              associations.added = lib.mkDefault cfg.defaultApplications;
+              defaultApplications = lib.mkDefault cfg.defaultApplications;
+            };
+        };
+      # }}}
     };
-    # }}}
-  };
 }

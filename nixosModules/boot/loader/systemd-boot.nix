@@ -10,28 +10,28 @@ let
 in
 {
   options.custom.boot.loader.systemd-boot =
-  {
-    enable = lib.mkEnableOption "enables systemd-boot";
-    memtest86.enable = lib.mkEnableOption "enables memtest86";
-  };
+    {
+      enable = lib.mkEnableOption "enables systemd-boot";
+      memtest86.enable = lib.mkEnableOption "enables memtest86";
+    };
 
   config = lib.mkIf cfg.enable
-  {
-    boot.loader.systemd-boot =
     {
-      enable           = true;
-      editor           = false;
-      memtest86.enable = cfg.memtest86.enable;
+      boot.loader.systemd-boot =
+        {
+          enable = true;
+          editor = false;
+          memtest86.enable = cfg.memtest86.enable;
 
-      # Rename boot entries
-      extraInstallCommands = # thx @m0tholith on discord
-      ''
-        search_dir=/boot/loader/entries
-        for file in "$search_dir"/*
-        do
-          ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
-        done
-      '';
+          # Rename boot entries
+          extraInstallCommands = # thx @m0tholith on discord
+            ''
+              search_dir=/boot/loader/entries
+              for file in "$search_dir"/*
+              do
+                ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
+              done
+            '';
+        };
     };
-  };
 }

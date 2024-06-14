@@ -7,7 +7,7 @@
 
 {
   imports =
-  [
-    ./hyprland.nix
-  ];
+    [
+      ./hyprland.nix
+    ];
 }

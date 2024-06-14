@@ -10,37 +10,37 @@ let
 in
 {
   options.custom.hardware.bluetooth =
-  {
-    enable      = lib.mkEnableOption "enables Bluetooth";
-    powerOnBoot = lib.mkOption
     {
-      type        = lib.types.bool;
-      default     = true;
-      example     = false;
-      description = "whether to power up the default Bluetooth controller on boot";
+      enable = lib.mkEnableOption "enables Bluetooth";
+      powerOnBoot = lib.mkOption
+        {
+          type = lib.types.bool;
+          default = true;
+          example = false;
+          description = "whether to power up the default Bluetooth controller on boot";
+        };
     };
-  };
 
   config = lib.mkMerge
-  [
-    (lib.mkIf cfg.enable
-    {
-      hardware.bluetooth =
-      {
-        enable = lib.mkDefault true;
-        settings =
+    [
+      (lib.mkIf cfg.enable
         {
-          General =
-          {
-            Enable       = "Source,Sink,Media,Socket";
-            Experimental = true;
-          };
-        };
-      };
+          hardware.bluetooth =
+            {
+              enable = lib.mkDefault true;
+              settings =
+                {
+                  General =
+                    {
+                      Enable = "Source,Sink,Media,Socket";
+                      Experimental = true;
+                    };
+                };
+            };
 
-      services.blueman.enable   = lib.mkDefault true;
-    })
+          services.blueman.enable = lib.mkDefault true;
+        })
 
-    (lib.mkIf (!cfg.powerOnBoot) { hardware.bluetooth.powerOnBoot = lib.mkDefault false; })
-  ];
+      (lib.mkIf (!cfg.powerOnBoot) { hardware.bluetooth.powerOnBoot = lib.mkDefault false; })
+    ];
 }

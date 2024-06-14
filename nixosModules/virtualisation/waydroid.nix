@@ -12,7 +12,7 @@ in
   options.custom.virtualisation.waydroid.enable = lib.mkEnableOption "enables Waydroid";
 
   config = lib.mkIf cfg.enable
-  {
-    virtualisation.waydroid.enable = lib.mkDefault true;
-  };
+    {
+      virtualisation.waydroid.enable = lib.mkDefault true;
+    };
 }

@@ -7,8 +7,8 @@
 
 {
   imports =
-  [
-    ./systemd-boot.nix
-    ./timeout.nix
-  ];
+    [
+      ./systemd-boot.nix
+      ./timeout.nix
+    ];
 }

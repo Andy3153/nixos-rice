@@ -7,13 +7,13 @@
 
 {
   imports =
-  [
-    ./loader
-    ./kernel.nix
-    ./plymouth.nix
-    ./quiet.nix
-    ./reisub.nix
-    ./sysctl.nix
-    ./uefiBoot.nix
-  ];
+    [
+      ./loader
+      ./kernel.nix
+      ./plymouth.nix
+      ./quiet.nix
+      ./reisub.nix
+      ./sysctl.nix
+      ./uefiBoot.nix
+    ];
 }
