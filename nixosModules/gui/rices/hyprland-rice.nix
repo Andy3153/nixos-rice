@@ -10,7 +10,7 @@ let
   cfg = config.custom.gui.rices.hyprland-rice;
 in
 {
-  options.custom.gui.rices.hyprland-rice = lib.mkEnableOption "enables my Hyprland rice";
+  options.custom.gui.rices.hyprland-rice.enable = lib.mkEnableOption "enables my Hyprland rice";
 
   config = lib.mkIf cfg.enable
   {
