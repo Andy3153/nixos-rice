@@ -10,25 +10,25 @@ let
 in
 {
   options.custom.services.printing =
-  {
-    enable = lib.mkEnableOption "enables printing";
-    drivers = lib.mkOption
     {
-      type        = lib.types.listOf lib.types.path;
-      default     = [ ];
-      example     = [ pkgs.brlaser ];
-      description = "CUPS drivers to use";
+      enable = lib.mkEnableOption "enables printing";
+      drivers = lib.mkOption
+        {
+          type = lib.types.listOf lib.types.path;
+          default = [ ];
+          example = [ pkgs.brlaser ];
+          description = "CUPS drivers to use";
+        };
     };
-  };
 
   config = lib.mkIf cfg.enable
-  {
-    services.printing =
     {
-      enable          = lib.mkDefault true;
-      drivers         = cfg.drivers;
-      startWhenNeeded = lib.mkDefault true;
-      webInterface    = lib.mkDefault true;
+      services.printing =
+        {
+          enable = lib.mkDefault true;
+          drivers = cfg.drivers;
+          startWhenNeeded = lib.mkDefault true;
+          webInterface = lib.mkDefault true;
+        };
     };
-  };
 }

@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" ];
@@ -16,95 +17,110 @@
   boot.initrd.luks.devices."sparkle-crypt".device = "/dev/disk/by-uuid/f95604b4-c637-404b-af25-023a0a0c0820";
 
   fileSystems."/" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/root" ];
     };
 
   fileSystems."/.btrfs-root" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=/" ];
 
     };
   fileSystems."/.snapshots" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/snapshots" ];
     };
 
   fileSystems."/.snapshots.externalhdd" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/snapshots.externalhdd" ];
     };
 
   fileSystems."/.swap" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/swap" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BDD7-6A6D";
+    {
+      device = "/dev/disk/by-uuid/BDD7-6A6D";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/nix" ];
     };
 
   fileSystems."/var/cache" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/var-cache" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/var-log" ];
     };
 
   fileSystems."/var/tmp" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/var-tmp" ];
     };
 
   fileSystems."/var/lib/libvirt/images" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=vms" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=nixos/home" ];
     };
 
   fileSystems."/home/andy3153/games" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=games" ];
     };
 
   fileSystems."/home/andy3153/torrents" =
-    { device = "/dev/mapper/sparkle-crypt";
+    {
+      device = "/dev/mapper/sparkle-crypt";
       fsType = "btrfs";
       options = [ "subvol=torrents" ];
     };
 
   fileSystems."/home/andy3153/.local/share/Steam" =
-    { device = "/.btrfs-root/home/andy3153/.local/share/Steam";
+    {
+      device = "/.btrfs-root/home/andy3153/.local/share/Steam";
       options = [ "bind" ];
     };
 
-  swapDevices = [ { device = "/.swap/swapfile"; } ];
+  swapDevices = [{ device = "/.swap/swapfile"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

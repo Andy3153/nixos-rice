@@ -12,21 +12,21 @@ in
   options.custom.boot.uefiBoot.enable = lib.mkEnableOption "enables UEFI boot";
 
   config = lib.mkIf cfg.enable
-  {
-    custom.boot.loader.systemd-boot.enable = lib.mkDefault true;
-    boot.loader =
     {
-      grub =
-      {
-        enable     = lib.mkForce false;
-        efiSupport = lib.mkDefault false;
-      };
+      custom.boot.loader.systemd-boot.enable = lib.mkDefault true;
+      boot.loader =
+        {
+          grub =
+            {
+              enable = lib.mkForce false;
+              efiSupport = lib.mkDefault false;
+            };
 
-      efi =
-      {
-        canTouchEfiVariables = lib.mkDefault true;
-        efiSysMountPoint     = "/boot";
-      };
+          efi =
+            {
+              canTouchEfiVariables = lib.mkDefault true;
+              efiSysMountPoint = "/boot";
+            };
+        };
     };
-  };
 }

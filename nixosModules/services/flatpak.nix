@@ -10,44 +10,44 @@ let
 in
 {
   options.custom.services.flatpak =
-  {
-    enable   = lib.mkEnableOption "enables Flatpak";
-    packages = lib.mkOption
     {
-      type        = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
-      default     = [ ];
-      description = "declares a list of applications to install";
+      enable = lib.mkEnableOption "enables Flatpak";
+      packages = lib.mkOption
+        {
+          type = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
+          default = [ ];
+          description = "declares a list of applications to install";
+        };
     };
-  };
 
   config = lib.mkIf cfg.enable
-  {
-    services.flatpak =
     {
-      enable   = lib.mkDefault true;
-      packages = lib.mkDefault cfg.packages;
-
-      update.auto =
-      {
-        enable     = true;
-        onCalendar = "daily";
-      };
-
-      overrides.global =
-      {
-        Context.filesystems =
-        [
-          "$HOME/.local/share/icons:ro"
-          "$HOME/.local/share/themes:ro"
-          "$HOME/.local/share/fonts:ro"
-          "/nix/store:ro"
-        ];
-
-        Environment =
+      services.flatpak =
         {
-          XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+          enable = lib.mkDefault true;
+          packages = lib.mkDefault cfg.packages;
+
+          update.auto =
+            {
+              enable = true;
+              onCalendar = "daily";
+            };
+
+          overrides.global =
+            {
+              Context.filesystems =
+                [
+                  "$HOME/.local/share/icons:ro"
+                  "$HOME/.local/share/themes:ro"
+                  "$HOME/.local/share/fonts:ro"
+                  "/nix/store:ro"
+                ];
+
+              Environment =
+                {
+                  XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+                };
+            };
         };
-      };
     };
-  };
 }

@@ -12,21 +12,21 @@ in
   options.custom.users.bot.enable = lib.mkEnableOption "enables Bot user (sample user)";
 
   config = lib.mkIf cfg.enable
-  {
-    users =
     {
-      groups.bot =
-      {
-        members = [ "bot" ];
-      };
+      users =
+        {
+          groups.bot =
+            {
+              members = [ "bot" ];
+            };
 
-      users.bot =
-      {
-        description     = "Bot";
-        initialPassword = "sdfsdf";
-        isNormalUser    = true;
-        group           = "bot";
-      };
+          users.bot =
+            {
+              description = "Bot";
+              initialPassword = "sdfsdf";
+              isNormalUser = true;
+              group = "bot";
+            };
+        };
     };
-  };
 }

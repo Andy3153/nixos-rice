@@ -12,7 +12,7 @@ in
   options.custom.programs.adb.enable = lib.mkEnableOption "enables ADB";
 
   config = lib.mkIf cfg.enable
-  {
-    programs.adb.enable = lib.mkDefault true;
-  };
+    {
+      programs.adb.enable = lib.mkDefault true;
+    };
 }

@@ -7,12 +7,12 @@
 
 {
   imports =
-  [
-    ./adb.nix
-    ./dconf.nix
-    ./gamemode.nix
-    ./java.nix
-    ./obs.nix
-    ./steam.nix
-  ];
+    [
+      ./adb.nix
+      ./dconf.nix
+      ./gamemode.nix
+      ./java.nix
+      ./obs.nix
+      ./steam.nix
+    ];
 }

@@ -12,34 +12,34 @@ in
   options.custom.virtualisation.libvirtd.enable = lib.mkEnableOption "enables Libvirtd";
 
   config = lib.mkIf cfg.enable
-  {
-    virtualisation.libvirtd =
     {
-      enable     = lib.mkDefault true;
-      onBoot     = lib.mkDefault "ignore";
-      onShutdown = lib.mkDefault "suspend";
+      virtualisation.libvirtd =
+        {
+          enable = lib.mkDefault true;
+          onBoot = lib.mkDefault "ignore";
+          onShutdown = lib.mkDefault "suspend";
 
-      qemu =
-      {
-        runAsRoot    = lib.mkDefault false;
-        swtpm.enable = lib.mkDefault true;
-      };
+          qemu =
+            {
+              runAsRoot = lib.mkDefault false;
+              swtpm.enable = lib.mkDefault true;
+            };
+        };
+
+      virtualisation.spiceUSBRedirection.enable = true;
+
+      # {{{ Home-Manager
+      home-manager.users.${config.custom.users.mainUser} =
+        {
+          dconf.settings =
+            {
+              "org/virt-manager/virt-manager/connections" =
+                {
+                  autoconnect = [ "qemu:///system" ];
+                  uris = [ "qemu:///system" ];
+                };
+            };
+        };
+      # }}}
     };
-
-    virtualisation.spiceUSBRedirection.enable = true;
-
-  # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
-  {
-    dconf.settings =
-    {
-      "org/virt-manager/virt-manager/connections" =
-      {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    };
-  };
-  # }}}
-  };
 }

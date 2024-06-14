@@ -12,9 +12,9 @@ in
   options.custom.hardware.i2c.enable = lib.mkEnableOption "enables I2C";
 
   config = lib.mkIf cfg.enable
-  {
-    boot.kernelModules         = [ "i2c-dev" ];
-    environment.systemPackages = [ pkgs.i2c-tools ];
-    hardware.i2c.enable        = lib.mkDefault true;
-  };
+    {
+      boot.kernelModules = [ "i2c-dev" ];
+      environment.systemPackages = [ pkgs.i2c-tools ];
+      hardware.i2c.enable = lib.mkDefault true;
+    };
 }

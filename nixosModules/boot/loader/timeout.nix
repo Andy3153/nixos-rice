@@ -10,12 +10,12 @@ let
 in
 {
   options.custom.boot.loader.timeout = lib.mkOption
-  {
-    type        = lib.types.int;
-    default     = 0;
-    example     = 5;
-    description = "timeout until loader boots the default menu item";
-  };
+    {
+      type = lib.types.int;
+      default = 0;
+      example = 5;
+      description = "timeout until loader boots the default menu item";
+    };
 
   config.boot.loader.timeout = cfg;
 }

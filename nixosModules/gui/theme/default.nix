@@ -7,11 +7,11 @@
 
 {
   imports =
-  [
-    ./cursor.nix
-    ./font.nix
-    ./gtk.nix
-    ./icon.nix
-    ./qt.nix
-  ];
+    [
+      ./cursor.nix
+      ./font.nix
+      ./gtk.nix
+      ./icon.nix
+      ./qt.nix
+    ];
 }

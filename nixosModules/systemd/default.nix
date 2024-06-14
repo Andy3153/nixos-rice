@@ -7,7 +7,7 @@
 
 {
   imports =
-  [
-    ./services
-  ];
+    [
+      ./services
+    ];
 }

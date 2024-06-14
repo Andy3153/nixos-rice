@@ -12,57 +12,57 @@ in
   options.custom.gui.wm.hyprland.enable = lib.mkEnableOption "enables Hyprland";
 
   config = lib.mkIf cfg.enable
-  {
-    custom.gui.dm.sddm.enable = lib.mkDefault true;
-    custom.xdg.portal.enable  = lib.mkDefault true;
-    programs.hyprland.enable  = lib.mkDefault true;
-
-    nix.settings = # Enable Hyprland Cachix
     {
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
+      custom.gui.dm.sddm.enable = lib.mkDefault true;
+      custom.xdg.portal.enable = lib.mkDefault true;
+      programs.hyprland.enable = lib.mkDefault true;
 
-    services =
-    {
-      displayManager.defaultSession = lib.mkDefault "hyprland";
-
-      greetd.settings =
-      {
-        initial_session =
+      nix.settings = # Enable Hyprland Cachix
         {
-          command = lib.getExe pkgs.hyprland;
+          substituters = [ "https://hyprland.cachix.org" ];
+          trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
         };
-      };
-    };
 
-    xdg.portal.extraPortals = with pkgs;
-    [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
+      services =
+        {
+          displayManager.defaultSession = lib.mkDefault "hyprland";
 
-    # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
-    {
-      wayland.windowManager.hyprland =
-      {
-        enable          = lib.mkDefault true;
-        xwayland.enable = lib.mkDefault true;
-        extraConfig     = " ";
-      };
+          greetd.settings =
+            {
+              initial_session =
+                {
+                  command = lib.getExe pkgs.hyprland;
+                };
+            };
+        };
 
-      xdg.portal =
-      {
-        extraPortals = config.xdg.portal.extraPortals;
-
-        config.common.default =
+      xdg.portal.extraPortals = with pkgs;
         [
-          "hyprland"
-          "gtk"
+          xdg-desktop-portal-hyprland
+          xdg-desktop-portal-gtk
         ];
-      };
+
+      # {{{ Home-Manager
+      home-manager.users.${config.custom.users.mainUser} =
+        {
+          wayland.windowManager.hyprland =
+            {
+              enable = lib.mkDefault true;
+              xwayland.enable = lib.mkDefault true;
+              extraConfig = " ";
+            };
+
+          xdg.portal =
+            {
+              extraPortals = config.xdg.portal.extraPortals;
+
+              config.common.default =
+                [
+                  "hyprland"
+                  "gtk"
+                ];
+            };
+        };
+      # }}}
     };
-    # }}}
-  };
 }

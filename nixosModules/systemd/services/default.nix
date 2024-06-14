@@ -7,7 +7,7 @@
 
 {
   imports =
-  [
-    ./TUFFanSpeed.nix
-  ];
+    [
+      ./TUFFanSpeed.nix
+    ];
 }

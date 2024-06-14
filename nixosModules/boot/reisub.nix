@@ -12,10 +12,10 @@ in
   options.custom.boot.reisub.enable = lib.mkEnableOption "enables REISUB";
 
   config = lib.mkIf cfg.enable
-  {
-    boot.kernel.sysctl =
     {
-      "kernel.sysrq"  = lib.mkDefault 244; # Enable Magic SysRQ keys (REISUB sequence only (4+64+16+32+128))
+      boot.kernel.sysctl =
+        {
+          "kernel.sysrq" = lib.mkDefault 244; # Enable Magic SysRQ keys (REISUB sequence only (4+64+16+32+128))
+        };
     };
-  };
 }

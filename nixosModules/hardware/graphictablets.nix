@@ -12,11 +12,11 @@ in
   options.custom.hardware.graphictablets.enable = lib.mkEnableOption "enables graphic tablets";
 
   config = lib.mkIf cfg.enable
-  {
-    hardware.opentabletdriver =
     {
-      enable        = lib.mkDefault true;
-      daemon.enable = lib.mkDefault true;
+      hardware.opentabletdriver =
+        {
+          enable = lib.mkDefault true;
+          daemon.enable = lib.mkDefault true;
+        };
     };
-  };
 }

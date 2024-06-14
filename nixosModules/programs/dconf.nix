@@ -12,7 +12,7 @@ in
   options.custom.programs.dconf.enable = lib.mkEnableOption "enables Dconf";
 
   config = lib.mkIf cfg.enable
-  {
-    programs.dconf.enable = true;
-  };
+    {
+      programs.dconf.enable = true;
+    };
 }

@@ -12,11 +12,11 @@ in
   options.custom.hardware.controllers.xbox.enable = lib.mkEnableOption "enables Xbox controllers";
 
   config = lib.mkIf cfg.enable
-  {
-    hardware =
     {
-      xone.enable    = lib.mkDefault true;
-      xpadneo.enable = lib.mkDefault true;
+      hardware =
+        {
+          xone.enable = lib.mkDefault true;
+          xpadneo.enable = lib.mkDefault true;
+        };
     };
-  };
 }

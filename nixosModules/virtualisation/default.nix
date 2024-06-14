@@ -7,9 +7,9 @@
 
 {
   imports =
-  [
-    ./docker.nix
-    ./libvirtd.nix
-    ./waydroid.nix
-  ];
+    [
+      ./docker.nix
+      ./libvirtd.nix
+      ./waydroid.nix
+    ];
 }

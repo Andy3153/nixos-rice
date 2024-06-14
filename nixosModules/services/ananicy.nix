@@ -12,11 +12,11 @@ in
   options.custom.services.ananicy.enable = lib.mkEnableOption "enables Ananicy";
 
   config = lib.mkIf cfg.enable
-  {
-    services.ananicy =
     {
-      enable  = lib.mkDefault true;
-      package = lib.mkDefault pkgs.ananicy-cpp;
+      services.ananicy =
+        {
+          enable = lib.mkDefault true;
+          package = lib.mkDefault pkgs.ananicy-cpp;
+        };
     };
-  };
 }

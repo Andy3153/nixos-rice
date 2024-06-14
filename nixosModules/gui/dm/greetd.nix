@@ -13,25 +13,25 @@ in
   options.custom.gui.dm.greetd.enable = lib.mkEnableOption "enables greetd";
 
   config = lib.mkIf cfg.enable
-  {
-    programs.regreet.enable = lib.mkDefault true;
-
-    services.greetd =
     {
-      enable  = lib.mkDefault true;
-      restart = lib.mkDefault true;
-      settings = lib.mkDefault rec
-      {
-        initial_session =
-        {
-          user = mainUser;
-        };
+      programs.regreet.enable = lib.mkDefault true;
 
-        default_session =
+      services.greetd =
         {
-          command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
+          enable = lib.mkDefault true;
+          restart = lib.mkDefault true;
+          settings = lib.mkDefault rec
+          {
+            initial_session =
+              {
+                user = mainUser;
+              };
+
+            default_session =
+              {
+                command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
+              };
+          };
         };
-      };
     };
-  };
 }

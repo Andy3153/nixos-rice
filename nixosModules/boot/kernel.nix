@@ -10,12 +10,12 @@ let
 in
 {
   options.custom.boot.kernel = lib.mkOption
-  {
-    type        = lib.types.raw;
-    default     = pkgs.linuxPackages;
-    example     = pkgs.linuxKernel.packages.linux_zen;
-    description = "what Linux kernel to use";
-  };
+    {
+      type = lib.types.raw;
+      default = pkgs.linuxPackages;
+      example = pkgs.linuxKernel.packages.linux_zen;
+      description = "what Linux kernel to use";
+    };
 
   config.boot.kernelPackages = cfg;
 }

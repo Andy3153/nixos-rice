@@ -12,15 +12,15 @@ in
   options.custom.programs.steam.enable = lib.mkEnableOption "enables Steam";
 
   config = lib.mkIf cfg.enable
-  {
-    programs.steam =
     {
-      enable                       = lib.mkDefault true;
-      #gamescopeSession.enable      = lib.mkDefault true;
-      dedicatedServer.openFirewall = lib.mkDefault true;
-      remotePlay.openFirewall      = lib.mkDefault true;
-    };
+      programs.steam =
+        {
+          enable = lib.mkDefault true;
+          #gamescopeSession.enable      = lib.mkDefault true;
+          dedicatedServer.openFirewall = lib.mkDefault true;
+          remotePlay.openFirewall = lib.mkDefault true;
+        };
 
-    custom.programs.java.enable = lib.mkDefault true;
-  };
+      custom.programs.java.enable = lib.mkDefault true;
+    };
 }
