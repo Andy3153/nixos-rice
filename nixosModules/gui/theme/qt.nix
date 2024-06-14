@@ -3,7 +3,6 @@
 ## Qt theming config
 ##
 
-
 { config, lib, ... }:
 let
   cfg              = config.custom.gui.theme.qt;

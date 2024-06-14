@@ -30,8 +30,9 @@
     # {{{ GUI
     gui =
     {
-      enable        = true;
-      gaming.enable = true;
+      enable                     = true;
+      gaming.enable              = true;
+      rices.hyprland-rice.enable = true;
     };
     # }}}
 

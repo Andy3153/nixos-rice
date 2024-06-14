@@ -16,45 +16,6 @@
     # {{{ Packages
     packages = with pkgs;
     [
-      # {{{ Hyprland Rice
-      libcanberra-gtk3                    # hyprland-rice play-system-sounds
-      hyprpaper                           # hyprland-rice wallpaper
-      hypridle                            # hyprland-rice idle-manager
-      hyprlock                            # hyprland-rice lock-screen
-      hyprpicker                          # hyprland-rice color-picker
-      swayosd                             # hyprland-rice osd
-      polkit-kde-agent                    # hyprland-rice polkit-agent
-      xwaylandvideobridge                 # hyprland-rice xwayland-screenshare
-      wev                                 # hyprland-rice event-viewer
-      rofi-wayland                        # hyprland-rice appmenu
-      kitty                               # hyprland-rice terminal
-      waybar                              # hyprland-rice status-bar
-      blueman                             # hyprland-rice bluetooth-control
-      networkmanager_dmenu                # hyprland-rice network-control
-      lxqt.pavucontrol-qt                 # hyprland-rice Sound sound-control
-      nwg-bar                             # hyprland-rice logout-menu
-      flameshot                           # hyprland-rice screenshot
-      grim                                # hyprland-rice screenshot for-flameshot
-      slurp                               # hyprland-rice screenshot for-flameshot
-
-      mpv                                 # hyprland-rice video-player
-      mpvScripts.mpris                    # hyprland-rice for-mpv
-
-      zathura                             # hyprland-rice pdf-viewer
-
-      kcalc                               # hyprland-rice KDE-Apps calculator
-      kdePackages.kdeconnect-kde          # hyprland-rice KDE-Apps
-      #kdePackages.dolphin                 # hyprland-rice KDE-Apps file-manager
-      dolphin                             # hyprland-rice KDE-Apps file-manager
-      ark                                 # hyprland-rice KDE-Apps archive-manager
-      gwenview                            # hyprland-rice KDE-Apps image-viewer
-      okular                              # hyprland-rice KDE-Apps pdf-viewer
-      kcharselect                         # hyprland-rice KDE-Apps character-select
-      filelight                           # hyprland-rice KDE-Apps disk-usage-analyzer
-      kdePackages.kruler                  # hyprland-rice KDE-Apps on-screen-ruler
-      merkuro                             # hyprland-rice KDE-Apps calendar contacts
-      # }}}
-
       # {{{ Sound
       qpwgraph                            # Sound PipeWire Patchbay
       easyeffects                         # Sound PipeWire
@@ -158,44 +119,6 @@
       # {{{ Neovim
       ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
       ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
-      # }}}
-
-      # {{{ Hyprland Rice
-      ".config/btop".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/btop;
-      #".config/cava".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/cava;
-      ".config/css-common".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/css-common;
-      ".config/dunst".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/dunst;
-      ".config/fastfetch".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fastfetch;
-      ".config/flameshot".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/flameshot;
-      ##".config/fontconfig".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fontconfig;
-      #".config/fuzzel".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fuzzel;
-      ##".config/gtk-2.0".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-2.0;
-      ##".config/gtk-3.0".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-3.0;
-      ".config/htop".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/htop;
-      ".config/hypr".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr;
-      ".config/kitty".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/kitty;
-      #".config/lf".source                        = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/lf;
-      ".config/mpv".source                       = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/mpv;
-      ".config/networkmanager-dmenu".source      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/networkmanager-dmenu;
-      ".config/nwg-bar".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-bar;
-      #".config/nwg-dock-hyprland".source         = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-dock-hyprland;
-      #".config/nwg-drawer".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-drawer;
-      ##".config/qt5ct".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ##".config/qt6ct".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ".config/rofi".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/rofi;
-      #".config/swayidle".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swayidle;
-      #".config/swaylock".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaylock;
-      #".config/swaync".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaync;
-      ".config/waybar".source                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/waybar;
-      #".config/xava".source                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/xava;
-      ".config/zathura".source                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/zathura;
-
-      ".local/share/sounds".source               = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/sounds;
-      ".local/share/wallpapers".source           = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
-      ".local/share/wallpaper.png".source        = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
-      ".local/share/wallpaper-lock.png".source   = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
-
-      ".local/bin/suspend_compositing.sh".source = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr/scripts/suspend_compositing.sh;
       # }}}
 
       # {{{ For Flatpak
@@ -336,22 +259,6 @@
   };
   # }}}
 
-  # {{{ Qt
-  #qt =
-  #{
-  #  enable             = true;
-  #  platformTheme.name = "qtct";
-  #
-  #  # {{{ Qt style
-  #  style =
-  #  {
-  #    package = pkgs.lightly-boehs;
-  #    name    = "Lightly";
-  #  };
-  #  # }}}
-  #};
-  # }}}
-
   # {{{ Services
   services =
   {
@@ -367,12 +274,6 @@
 
     mpd-mpris.enable       = true; # for-mpd
     mpd-discord-rpc.enable = true; # for-discord for-mpd
-    # }}}
-
-    # {{{ Hyprland Rice
-    # {{{ Dunst
-    dunst.enable = true;           # hyprland-rice notification-daemon
-    # }}}
     # }}}
   };
   # }}}
