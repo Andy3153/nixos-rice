@@ -4,7 +4,7 @@
 ##
 
 #{ config, lib, pkgs, pkgs-andy3153, ... }:
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-stable, ... }:
 
 # {{{ Variables
 let
@@ -80,6 +80,12 @@ in
         libnotify                  # for-scripts
 
         unzip                      # archives
+      ])
+      # }}}
+
+      # {{{ NixPkgs 24.05
+      (with pkgs-stable;
+      [
       ])
       # }}}
 

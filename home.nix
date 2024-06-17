@@ -5,7 +5,7 @@
 ## rewrote   15/03/24 ~ 17:06:25
 ##
 
-{ pkgs, ... }: #pkgs-unstable, ... }:
+{ lib, pkgs, pkgs-stable, ... }:
 
 {
   news.display = "notify"; # Show news
@@ -14,98 +14,110 @@
   home =
   {
     # {{{ Packages
-    packages = with pkgs;
+    packages = lib.mkMerge
     [
-      # {{{ Sound
-      qpwgraph                            # Sound PipeWire Patchbay
-      easyeffects                         # Sound PipeWire
-      pulsemixer                          # Sound sound-control
+      # {{{ NixPkgs Unstable
+      (with pkgs;
+      [
+        # {{{ Sound
+        qpwgraph                            # Sound PipeWire Patchbay
+        easyeffects                         # Sound PipeWire
+        pulsemixer                          # Sound sound-control
+        # }}}
+
+        # {{{ Office
+        libreoffice-fresh                   # Office
+        gimp                                # Office photo-editing
+        inkscape                            # Office photo-editing
+        krita                               # Office photo-editing
+
+        texliveFull                         # LaTeX
+        python312Packages.pygments          # for-latex
+        pandoc                              # for-latex
+
+        pdftk                               # pdf-tools
+        pdfarranger                         # pdf-tools
+        poppler_utils                       # pdf-tools
+        # }}}
+
+        # {{{ Media
+        cantata                             # music-player for-mpd
+        youtube-music                       # music-player
+        flac                                # music
+        opusTools                           # music
+        ffmpeg                              # music video
+        audacity                            # music
+        mousai                              # find music
+        # }}}
+
+        # {{{ Games
+        depotdownloader                     # for-steam
+        extest                              # for-steam for-controllers
+        wineWowPackages.staging             # wine
+        protonup-qt                         # for-steam for-wine
+        protontricks                        # for-steam for-wine
+
+        bottles                             # for-wine
+        lutris                              # for-wine
+
+        prismlauncher                       # games
+        xonotic                             # games
+
+        mesa-demos                          # glxgears
+        # }}}
+
+        # {{{ For Neovim
+        neovide                             # for-nvim
+
+        # {{{ LSPs
+        arduino-language-server             # Programming for-nvim for-lsp
+        #nodePackages.bash-language-server   # Programming for-nvim for-lsp
+        clang-tools                         # Programming for-nvim for-lsp
+        cmake-language-server               # Programming for-nvim for-lsp
+        dockerfile-language-server-nodejs   # Programming for-nvim for-lsp
+        lua-language-server                 # Programming for-nvim for-lsp
+        marksman                            # Programming for-nvim for-lsp
+        nil                                 # Programming for-nvim for-lsp
+        python311Packages.python-lsp-server # Programming for-nvim for-lsp
+        texlab                              # Programming for-nvim for-lsp
+        nodePackages.vim-language-server    # Programming for-nvim for-lsp
+        # }}}
+
+        # {{{ For LSPs
+        #cargo                               # Programming for-nvim for-lsp
+        #rustc                               # Programming for-nvim for-lsp
+        # }}}
+        # }}}
+
+        # {{{ Fonts
+        corefonts                           # fonts ms-fonts
+        vistafonts                          # fonts ms-fonts
+        # }}}
+
+        # {{{ 3D
+        blender                             # 3D
+        # }}}
+
+        yt-dlp                              # download
+        linux-wifi-hotspot                  # Internet hotspot
+        gparted                             # Partition-Manager
+        okteta                              # KDE-Apps hex-editor
+        mousai                              # GNOME-Apps song-identifier
+        betterdiscordctl                    # for-discord
+        virt-manager                        # for-libvirt
+        virtiofsd                           # for-libvirt
+        qbittorrent                         # torrents
+
+        ventoy-full
+      ])
       # }}}
 
-      # {{{ Office
-      libreoffice-fresh                   # Office
-      gimp                                # Office photo-editing
-      inkscape                            # Office photo-editing
-      krita                               # Office photo-editing
-
-      texliveFull                         # LaTeX
-      python312Packages.pygments          # for-latex
-      pandoc                              # for-latex
-
-      pdftk                               # pdf-tools
-      pdfarranger                         # pdf-tools
-      poppler_utils                       # pdf-tools
+      # {{{ NixPkgs 24.05
+      (with pkgs-stable;
+      [
+        nodePackages.bash-language-server   # Programming for-nvim for-lsp
+      ])
       # }}}
-
-      # {{{ Media
-      cantata                             # music-player for-mpd
-      youtube-music                       # music-player
-      flac                                # music
-      opusTools                           # music
-      ffmpeg                              # music video
-      audacity                            # music
-      mousai                              # find music
-      # }}}
-
-      # {{{ Games
-      depotdownloader                     # for-steam
-      extest                              # for-steam for-controllers
-      wineWowPackages.staging             # wine
-      protonup-qt                         # for-steam for-wine
-      protontricks                        # for-steam for-wine
-
-      bottles                             # for-wine
-      lutris                              # for-wine
-
-      prismlauncher                       # games
-      xonotic                             # games
-
-      mesa-demos                          # glxgears
-      # }}}
-
-      # {{{ For Neovim
-      neovide                             # for-nvim
-
-      # {{{ LSPs
-      arduino-language-server             # Programming for-nvim for-lsp
-      nodePackages.bash-language-server   # Programming for-nvim for-lsp
-      clang-tools                         # Programming for-nvim for-lsp
-      cmake-language-server               # Programming for-nvim for-lsp
-      dockerfile-language-server-nodejs   # Programming for-nvim for-lsp
-      lua-language-server                 # Programming for-nvim for-lsp
-      marksman                            # Programming for-nvim for-lsp
-      nil                                 # Programming for-nvim for-lsp
-      python311Packages.python-lsp-server # Programming for-nvim for-lsp
-      texlab                              # Programming for-nvim for-lsp
-      nodePackages.vim-language-server    # Programming for-nvim for-lsp
-      # }}}
-
-      # {{{ For LSPs
-      #cargo                               # Programming for-nvim for-lsp
-      #rustc                               # Programming for-nvim for-lsp
-      # }}}
-      # }}}
-
-      # {{{ Fonts
-      corefonts                           # fonts ms-fonts
-      vistafonts                          # fonts ms-fonts
-      # }}}
-
-      # {{{ 3D
-      blender                             # 3D
-      # }}}
-
-      yt-dlp                              # download
-      linux-wifi-hotspot                  # Internet hotspot
-      gparted                             # Partition-Manager
-      okteta                              # KDE-Apps hex-editor
-      mousai                              # GNOME-Apps song-identifier
-      betterdiscordctl                    # for-discord
-      virt-manager                        # for-libvirt
-      virtiofsd                           # for-libvirt
-      qbittorrent                         # torrents
-
-      ventoy-full
     ];
     # }}}
 
