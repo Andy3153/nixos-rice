@@ -93,8 +93,9 @@
         rootless.enable = true;
       };
 
-      libvirtd.enable = true;
-      waydroid.enable = false;
+      #distrobox.enable = true;
+      libvirtd.enable  = true;
+      waydroid.enable  = false;
     };
     # }}}
   };

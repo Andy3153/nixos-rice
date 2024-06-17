@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./distrobox.nix
     ./docker.nix
     ./libvirtd.nix
     ./waydroid.nix
