@@ -88,8 +88,9 @@
     {
       docker =
       {
-        enable       = false;
-        enableOnBoot = false;
+        enable          = true;
+        enableOnBoot    = false;
+        rootless.enable = true;
       };
 
       libvirtd.enable = true;

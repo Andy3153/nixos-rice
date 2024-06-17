@@ -11,27 +11,19 @@ in
 {
   options.custom.virtualisation.docker =
   {
-    enable = lib.mkEnableOption "enables Docker";
-    enableOnBoot = lib.mkOption
-    {
-      type        = lib.types.bool;
-      default     = true;
-      example     = false;
-      description = "whether enabled dockerd is started on boot.";
-    };
+    enable          = lib.mkEnableOption "enables Docker";
+    enableOnBoot    = lib.mkEnableOption "whether enabled dockerd is started on boot.";
+    rootless.enable = lib.mkEnableOption "enable Docker in a rootless mode";
   };
 
-  config = lib.mkMerge
-  [
-    (lib.mkIf cfg.enable
+  config = lib.mkIf cfg.enable
+  {
+    virtualisation.docker =
     {
-      virtualisation.docker =
-      {
-        enable           = lib.mkDefault true;
-        autoPrune.enable = lib.mkDefault true;
-      };
-    })
-
-    (lib.mkIf (!cfg.enableOnBoot) { virtualisation.docker.enableOnBoot = lib.mkDefault false; })
-  ];
+      enable           = lib.mkDefault true;
+      autoPrune.enable = lib.mkDefault true;
+      enableOnBoot     = cfg.enableOnBoot;
+      rootless.enable  = cfg.rootless.enable;
+    };
+  };
 }
