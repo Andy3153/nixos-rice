@@ -14,6 +14,12 @@
     # NixPkgs Unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # NixPkgs 24.05
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    # NixPkgs for TiLP
+    nixpkgs-tilp.url = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
+
     # NixPkgs (my fork for when I'm working on something)
     #nixpkgs-andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
     #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
@@ -42,13 +48,27 @@
 
   # {{{ Outputs
   #outputs = { self, nixpkgs, nixpkgs-andy3153, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-tilp, home-manager, nix-flatpak, flake-programs-sqlite, nixos-hardware, ... }@inputs:
   # {{{ Variables
   let
     system = "x86_64-linux";
 
     # NixPkgs Unstable
     pkgs = import nixpkgs
+    {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    # NixPkgs 24.05
+    pkgs-stable = import nixpkgs-stable
+    {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    # NixPkgs for TiLP.05
+    pkgs-tilp = import nixpkgs-tilp
     {
       inherit system;
       config.allowUnfree = true;
@@ -69,7 +89,7 @@
       sparkle = nixpkgs.lib.nixosSystem
       {
         #specialArgs = { inherit inputs system pkgs pkgs-andy3153; };
-        specialArgs = { inherit inputs system pkgs; };
+        specialArgs = { inherit inputs system pkgs pkgs-stable pkgs-tilp; };
 
         modules =
         [
@@ -79,12 +99,16 @@
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
 
+          #"${nixpkgs-tilp}/nixos/modules/programs/tilp2.nix"
+          #"${nixpkgs-tilp}/nixos/modules/rename.nix"
+
           ./hosts/sparkle/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
             home-manager =
             {
+              extraSpecialArgs = { inherit pkgs-stable; };
               useGlobalPkgs   = true;
               useUserPackages = true;
               users.andy3153  = import ./home.nix;

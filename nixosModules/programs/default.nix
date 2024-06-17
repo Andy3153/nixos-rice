@@ -14,5 +14,6 @@
     ./java.nix
     ./obs.nix
     ./steam.nix
+    ./tilp2.nix
   ];
 }

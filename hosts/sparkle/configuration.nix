@@ -54,8 +54,9 @@
     # {{{ Programs
     programs =
     {
-      adb.enable  = true;
-      obs.enable  = true;
+      adb.enable   = true;
+      obs.enable   = true;
+      tilp2.enable = true;
     };
     # }}}
 
