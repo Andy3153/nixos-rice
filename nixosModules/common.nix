@@ -253,7 +253,8 @@ in
       homeDirectory = "/home/${config.custom.users.mainUser}";
     };
 
-    nixpkgs.config.allowUnfree = true;
+    programs.home-manager.enable = true; # let HM manage itself
+    nixpkgs.config.allowUnfree   = true;
   };
   # }}}
 }

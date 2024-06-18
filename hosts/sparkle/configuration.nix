@@ -74,6 +74,13 @@
         enableCustomConfigs = true;
       };
 
+      git =
+      {
+        enable    = true;
+        userName  = "Andy3153";
+        userEmail = "andy3153@protonmail.com";
+      };
+
       adb.enable   = true;
       obs.enable   = true;
       tilp2.enable = true;

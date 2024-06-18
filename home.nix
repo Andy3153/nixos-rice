@@ -102,58 +102,6 @@
   # {{{ Programs
   programs =
   {
-    home-manager.enable = true; # let HM manage itself
-
-    # {{{ Git
-    git =
-    {
-      enable    = true;
-      userEmail = "andy3153@protonmail.com";
-      userName  = "Andy3153";
-
-      # {{{ Extra configuration
-      extraConfig =
-      {
-        core =
-        {
-          autocrlf = "input";
-          safecrlf = "true";
-        };
-
-        merge.tool              = "vimdiff";
-        mergetool.prompt        = true;
-        mergetool."vimdiff".cmd = "nvim -d $REMOTE $LOCAL";
-
-        diff.tool               = "vimdiff";
-        difftool.prompt         = false;
-      };
-      # }}}
-
-      # {{{ Files to ignore
-      ignores =
-      [
-        "**/*.bak"
-        "**/*.old"
-        "**/.directory"
-        "**/*.kate-swp"
-        "**/*.kdev4"
-        "**/.idea"
-        "**/*.aux"
-        "**/*.log"
-        "**/*.out"
-        "**/*.synctex.gz"
-        "**/*.toc"
-        "**/*.pyg"
-        "**/*.latexrun.db"
-        "**/*.latexrun.db.lock"
-        "**/*.fdb_latexmk"
-        "**/*.fls"
-        "**/*.xdv"
-      ];
-      # }}}
-    };
-    # }}}
-
     # {{{ MangoHud
     mangohud =
     {

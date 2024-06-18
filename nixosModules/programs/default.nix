@@ -11,6 +11,7 @@
     ./adb.nix
     ./dconf.nix
     ./gamemode.nix
+    ./git.nix
     ./java.nix
     ./neovim.nix
     ./obs.nix
