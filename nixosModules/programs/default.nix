@@ -12,6 +12,7 @@
     ./dconf.nix
     ./gamemode.nix
     ./java.nix
+    ./neovim.nix
     ./obs.nix
     ./steam.nix
     ./tilp2.nix

@@ -66,29 +66,6 @@
         mesa-demos                          # glxgears
         # }}}
 
-        # {{{ For Neovim
-        neovide                             # for-nvim
-
-        # {{{ LSPs
-        arduino-language-server             # Programming for-nvim for-lsp
-        #nodePackages.bash-language-server   # Programming for-nvim for-lsp
-        clang-tools                         # Programming for-nvim for-lsp
-        cmake-language-server               # Programming for-nvim for-lsp
-        dockerfile-language-server-nodejs   # Programming for-nvim for-lsp
-        lua-language-server                 # Programming for-nvim for-lsp
-        marksman                            # Programming for-nvim for-lsp
-        nil                                 # Programming for-nvim for-lsp
-        python311Packages.python-lsp-server # Programming for-nvim for-lsp
-        texlab                              # Programming for-nvim for-lsp
-        nodePackages.vim-language-server    # Programming for-nvim for-lsp
-        # }}}
-
-        # {{{ For LSPs
-        #cargo                               # Programming for-nvim for-lsp
-        #rustc                               # Programming for-nvim for-lsp
-        # }}}
-        # }}}
-
         # {{{ Fonts
         corefonts                           # fonts ms-fonts
         vistafonts                          # fonts ms-fonts
@@ -115,7 +92,6 @@
       # {{{ NixPkgs 24.05
       (with pkgs-stable;
       [
-        nodePackages.bash-language-server   # Programming for-nvim for-lsp
       ])
       # }}}
     ];
@@ -126,16 +102,6 @@
     {
       # {{{ Zsh
       ".config/zsh".source = /home/andy3153/src/sh/andy3153-zshrc;
-      # }}}
-
-      # {{{ Neovim
-      ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
-      ".config/nvim".recursive = true; # because packer creates some files in the nvim folder
-      # }}}
-
-      # {{{ For Flatpak
-      #".local/share/fonts".source = /run/current-system/sw/share/X11/fonts;
-      #".local/share/icons".source = /run/current-system/sw/share/icons;
       # }}}
     };
     # }}}

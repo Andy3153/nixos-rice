@@ -30,7 +30,6 @@ in
       [
         home-manager               # NixOS-Components
 
-        nvimpager                  # for-nvim
         hunspell                   # for-nvim for-libreoffice
         hunspellDicts.en_US        # for-nvim for-libreoffice
         hunspellDicts.ro_RO        # for-nvim for-libreoffice
@@ -216,21 +215,6 @@ in
   # {{{ Programs
   programs =
   {
-    # {{{ Neovim
-    neovim =                # Text-Editors
-    {
-      enable        = true;
-      defaultEditor = true;
-
-      viAlias       = true;
-      vimAlias      = true;
-
-      withNodeJs    = true;
-      withPython3   = true;
-      withRuby      = true;
-    };
-    # }}}
-
     # {{{ Nh
     nh =                # NixOS-Components
     {
