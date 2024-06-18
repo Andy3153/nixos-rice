@@ -195,6 +195,8 @@ in
     # {{{ Settings
     settings =
     {
+      auto-optimise-store = true;
+
       # {{{ Experimental features
       experimental-features =
       [
