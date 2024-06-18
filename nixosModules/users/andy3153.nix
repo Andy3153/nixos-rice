@@ -13,6 +13,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    # {{{ User config
     users =
     {
       groups.andy3153 =
@@ -39,7 +40,9 @@ in
         ];
       };
     };
+    # }}}
 
+    # {{{ XDG user directories
     custom.xdg.userDirs =
     let
       homeDir       = config.home-manager.users.andy3153.home.homeDirectory;
@@ -57,5 +60,6 @@ in
       templates         = "${xdg.dataHome}/xdg_templates_folder";
       videos            = "${homeDir}/vids";
     };
+    # }}}
   };
 }

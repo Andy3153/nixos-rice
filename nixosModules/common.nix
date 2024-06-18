@@ -8,7 +8,8 @@
 
 # {{{ Variables
 let
-  nixConfigFolderPath  = "/home/${config.custom.users.mainUser}/src/nixos/nixos-rice";
+  mainUser = config.custom.users.mainUser;
+  nixConfigFolderPath  = "/home/${mainUser}/src/nixos/nixos-rice";
   nixConfigurationPath = "${nixConfigFolderPath}/hosts/sparkle/configuration.nix";
 in
 # }}}
@@ -99,43 +100,8 @@ in
   };
   # }}}
 
-  ## {{{ Fonts
-  #fonts =
-  #{
-  #  enableDefaultPackages = true;
-  #  fontDir.enable        = true; # for flatpak
-  #
-  #  # {{{ Fonts
-  #  packages = with pkgs;
-  #  [
-  #    cantarell-fonts
-  #    (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; })
-  #    noto-fonts-color-emoji
-  #    noto-fonts-monochrome-emoji
-  #  ];
-  #  # }}}
-  #
-  #  # {{{ Fontconfig
-  #  fontconfig =
-  #  {
-  #    enable = true;
-  #
-  #    defaultFonts =
-  #    {
-  #      monospace = [ "IosevkaTerm NF" ];
-  #      serif     = [ "Cantarell" ];
-  #      sansSerif = [ "Cantarell" ];
-  #    };
-  #  };
-  #  # }}}
-  #};
-  ## }}}
-
   # {{{ Hardware
-  hardware =
-  {
-    enableAllFirmware         = true;
-  };
+  hardware.enableAllFirmware         = true;
   # }}}
 
   # {{{ I18n
@@ -171,10 +137,7 @@ in
   # }}}
 
   # {{{ Networking
-  networking =
-  {
-    networkmanager.enable = true;
-  };
+  networking.networkmanager.enable = true;
   # }}}
 
 # {{{ Nix
@@ -228,21 +191,6 @@ in
       };
     };
     # }}}
-
-    # {{{ Zsh
-    zsh =
-    {
-      enable               = true;
-      enableBashCompletion = true;
-      shellInit = # use ZDOTDIR
-      ''
-        export ZDOTDIR="~/.config/zsh"
-        if [ -e ~/.config/zsh/.zshenv ]
-        then source ~/.config/zsh/.zshenv
-        fi
-      '';
-    };
-    # }}}
   };
   # }}}
 
@@ -250,6 +198,7 @@ in
   security =
   {
     rtkit.enable = true; # pipewire wants it
+    polkit.enable = true;
     sudo.enable  = false;
 
     # {{{ Doas
@@ -259,21 +208,12 @@ in
       extraConfig = "permit persist setenv { WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY LANG LC_ALL } ${config.custom.users.mainUser}";
     };
     # }}}
-
-    # {{{ Polkit
-    polkit =
-    {
-      enable = true;
-    };
-    # }}}
   };
   # }}}
 
   # {{{ Services
   services =
   {
-    xserver.enable = false;
-
     # {{{ OpenSSH
     openssh =
     {
@@ -313,7 +253,6 @@ in
       homeDirectory = "/home/${config.custom.users.mainUser}";
     };
 
-    fonts.fontconfig.enable = true;
     nixpkgs.config.allowUnfree = true;
   };
   # }}}

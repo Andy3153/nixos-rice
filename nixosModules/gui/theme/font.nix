@@ -140,6 +140,8 @@ in
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =
     {
+      fonts.fontconfig.enable = true;
+
       gtk.font =
       {
         name = builtins.head cfg.defaultFonts.sansSerif.names;
