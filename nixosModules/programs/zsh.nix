@@ -41,7 +41,7 @@ in
     programs.zsh =
     {
       enable = true;
-      dotDir = "${xdgConfigHome}/zsh";
+      dotDir = ".config/zsh";
     };
     # }}}
   };
