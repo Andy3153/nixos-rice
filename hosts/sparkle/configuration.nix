@@ -45,6 +45,14 @@
         powerOnBoot = false;
       };
 
+      gpuDrivers = lib.mkForce
+      [
+        "modesetting"
+        "intel"
+        "nvidia"
+        "fbdev"
+      ];
+
       graphictablets.enable   = true;
       openrgb.enable          = true;
       nvidia.prime.enable     = true;
@@ -217,15 +225,5 @@
     };
     # }}}
   };
-  # }}}
-
-  # {{{ Video drivers
-  services.xserver.videoDrivers = lib.mkForce
-  [
-    "modesetting"
-    "intel"
-    "nvidia"
-    "fbdev"
-  ];
   # }}}
 }

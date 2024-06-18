@@ -11,6 +11,7 @@
     ./bluetooth.nix
     ./controllers.xbox.nix
     ./graphictablets.nix
+    ./gpuDrivers.nix
     ./i2c.nix
     ./nvidia.nix
     ./opengl.nix
