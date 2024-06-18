@@ -16,5 +16,6 @@
     ./obs.nix
     ./steam.nix
     ./tilp2.nix
+    ./zsh.nix
   ];
 }

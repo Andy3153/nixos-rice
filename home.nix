@@ -96,15 +96,6 @@
       # }}}
     ];
     # }}}
-
-    # {{{ File
-    file =
-    {
-      # {{{ Zsh
-      ".config/zsh".source = /home/andy3153/src/sh/andy3153-zshrc;
-      # }}}
-    };
-    # }}}
   };
   # }}}
 

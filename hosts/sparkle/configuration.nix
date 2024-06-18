@@ -68,6 +68,12 @@
         enableCustomConfigs = true;
       };
 
+      zsh =
+      {
+        enable              = true;
+        enableCustomConfigs = true;
+      };
+
       adb.enable   = true;
       obs.enable   = true;
       tilp2.enable = true;
