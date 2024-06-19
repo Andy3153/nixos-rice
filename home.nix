@@ -8,73 +8,64 @@
 { lib, pkgs, pkgs-stable, ... }:
 
 {
-  news.display = "notify"; # Show news
-
-  # {{{ Home
-  home =
-  {
-    # {{{ Packages
-    packages = lib.mkMerge
+  home.packages = lib.mkMerge
+  [
+    # {{{ NixPkgs Unstable
+    (with pkgs;
     [
-      # {{{ NixPkgs Unstable
-      (with pkgs;
-      [
-        # {{{ Sound
-        qpwgraph                            # Sound PipeWire Patchbay
-        easyeffects                         # Sound PipeWire
-        pulsemixer                          # Sound sound-control
-        # }}}
-
-        # {{{ Office
-        libreoffice-fresh                   # Office
-        gimp                                # Office photo-editing
-        inkscape                            # Office photo-editing
-        krita                               # Office photo-editing
-
-        texliveFull                         # LaTeX
-        python312Packages.pygments          # for-latex
-        pandoc                              # for-latex
-
-        pdftk                               # pdf-tools
-        pdfarranger                         # pdf-tools
-        poppler_utils                       # pdf-tools
-        # }}}
-
-        # {{{ Media
-        cantata                             # music-player for-mpd
-        youtube-music                       # music-player
-        flac                                # music
-        opusTools                           # music
-        ffmpeg                              # music video
-        audacity                            # music
-        mousai                              # find music
-        # }}}
-
-        # {{{ 3D
-        blender                             # 3D
-        # }}}
-
-        yt-dlp                              # download
-        linux-wifi-hotspot                  # Internet hotspot
-        gparted                             # Partition-Manager
-        okteta                              # KDE-Apps hex-editor
-        mousai                              # GNOME-Apps song-identifier
-        betterdiscordctl                    # for-discord
-        virt-manager                        # for-libvirt
-        virtiofsd                           # for-libvirt
-        qbittorrent                         # torrents
-
-        ventoy-full
-      ])
+      # {{{ Sound
+      qpwgraph                            # Sound PipeWire Patchbay
+      easyeffects                         # Sound PipeWire
+      pulsemixer                          # Sound sound-control
       # }}}
 
-      # {{{ NixPkgs 24.05
-      (with pkgs-stable;
-      [
-      ])
+      # {{{ Office
+      libreoffice-fresh                   # Office
+      gimp                                # Office photo-editing
+      inkscape                            # Office photo-editing
+      krita                               # Office photo-editing
+
+      texliveFull                         # LaTeX
+      python312Packages.pygments          # for-latex
+      pandoc                              # for-latex
+
+      pdftk                               # pdf-tools
+      pdfarranger                         # pdf-tools
+      poppler_utils                       # pdf-tools
       # }}}
-    ];
+
+      # {{{ Media
+      cantata                             # music-player for-mpd
+      youtube-music                       # music-player
+      flac                                # music
+      opusTools                           # music
+      ffmpeg                              # music video
+      audacity                            # music
+      mousai                              # find music
+      # }}}
+
+      # {{{ 3D
+      blender                             # 3D
+      # }}}
+
+      yt-dlp                              # download
+      linux-wifi-hotspot                  # Internet hotspot
+      gparted                             # Partition-Manager
+      okteta                              # KDE-Apps hex-editor
+      mousai                              # GNOME-Apps song-identifier
+      betterdiscordctl                    # for-discord
+      virt-manager                        # for-libvirt
+      virtiofsd                           # for-libvirt
+      qbittorrent                         # torrents
+
+      ventoy-full
+    ])
     # }}}
-  };
-  # }}}
+
+    # {{{ NixPkgs 24.05
+    (with pkgs-stable;
+    [
+    ])
+    # }}}
+  ];
 }

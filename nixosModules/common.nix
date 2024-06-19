@@ -252,6 +252,7 @@ in
       homeDirectory = "/home/${config.custom.users.mainUser}";
     };
 
+    news.display                 = "notify"; # Show news
     programs.home-manager.enable = true; # let HM manage itself
     nixpkgs.config.allowUnfree   = true;
   };
