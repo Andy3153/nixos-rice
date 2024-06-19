@@ -242,19 +242,25 @@ in
   # }}}
 
   # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
+  home-manager =
   {
-    home =
+    useGlobalPkgs   = true;
+    useUserPackages = true;
+
+    users.${config.custom.users.mainUser} =
     {
-      stateVersion  = config.system.stateVersion;
+      home =
+      {
+        stateVersion  = config.system.stateVersion;
 
-      username      = config.custom.users.mainUser;
-      homeDirectory = "/home/${config.custom.users.mainUser}";
+        username      = config.custom.users.mainUser;
+        homeDirectory = "/home/${config.custom.users.mainUser}";
+      };
+
+      news.display                 = "notify"; # Show news
+      programs.home-manager.enable = true;     # let HM manage itself
+      nixpkgs.config.allowUnfree   = true;
     };
-
-    news.display                 = "notify"; # Show news
-    programs.home-manager.enable = true; # let HM manage itself
-    nixpkgs.config.allowUnfree   = true;
   };
   # }}}
 }

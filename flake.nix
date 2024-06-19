@@ -98,22 +98,9 @@
           nixos-hardware.nixosModules.asus-fx506hm
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
-
-          #"${nixpkgs-tilp}/nixos/modules/programs/tilp2.nix"
-          #"${nixpkgs-tilp}/nixos/modules/rename.nix"
+          home-manager.nixosModules.home-manager
 
           ./hosts/sparkle/configuration.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager =
-            {
-              extraSpecialArgs = { inherit pkgs-stable; };
-              useGlobalPkgs   = true;
-              useUserPackages = true;
-              users.andy3153  = import ./home.nix;
-            };
-          }
         ];
       };
       # }}}
