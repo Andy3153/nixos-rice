@@ -50,22 +50,6 @@
         mousai                              # find music
         # }}}
 
-        # {{{ Games
-        depotdownloader                     # for-steam
-        extest                              # for-steam for-controllers
-        wineWowPackages.staging             # wine
-        protonup-qt                         # for-steam for-wine
-        protontricks                        # for-steam for-wine
-
-        bottles                             # for-wine
-        lutris                              # for-wine
-
-        prismlauncher                       # games
-        xonotic                             # games
-
-        mesa-demos                          # glxgears
-        # }}}
-
         # {{{ Fonts
         corefonts                           # fonts ms-fonts
         vistafonts                          # fonts ms-fonts

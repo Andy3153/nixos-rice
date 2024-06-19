@@ -20,20 +20,46 @@ in
 
   config = lib.mkMerge
   [
+    # {{{ Gaming sane defaults
     (lib.mkIf cfg.enable
     {
+      # {{{ Extra packages
+      environment.systemPackages = with pkgs;
+      [
+        depotdownloader                     # for-steam
+        extest                              # for-steam for-controllers
+        wineWowPackages.staging             # wine
+        protonup-qt                         # for-steam for-wine
+        protontricks                        # for-steam for-wine
+
+        bottles                             # for-wine
+        lutris                              # for-wine
+
+        prismlauncher                       # games
+        xonotic                             # games
+
+        mesa-demos                          # glxgears
+      ];
+      # }}}
+
       custom =
       {
+        # Enable Xbox controller drivers
         hardware.controllers.xbox.enable = lib.mkDefault true;
 
+        # {{{ Programs
         programs =
         {
           steam.enable    = lib.mkDefault true;
           gamemode.enable = lib.mkDefault true;
+          mangohud.enable = lib.mkDefault true;
         };
+        # }}}
       };
     })
+    # }}}
 
+    # {{{ Gaming optimizations
     (lib.mkIf cfg.optimizations.enable # stolen from https://github.com/fufexan/nix-gaming
     {
       # {{{ PipeWire low latency
@@ -122,5 +148,6 @@ in
       };
       # }}}
     })
+    # }}}
   ];
 }
