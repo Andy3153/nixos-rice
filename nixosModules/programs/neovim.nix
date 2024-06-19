@@ -36,7 +36,7 @@ in
         gcc
 
         arduino-language-server
-        #nodePackages.bash-language-server
+        nodePackages.bash-language-server
         clang-tools
         cmake-language-server
         dockerfile-language-server-nodejs
@@ -50,7 +50,6 @@ in
 
       (lib.mkIf cfg.enableCustomConfigs (with pkgs-stable;
       [
-        nodePackages.bash-language-server
       ]))
 
       (lib.mkIf cfgGui.enable (with pkgs;
