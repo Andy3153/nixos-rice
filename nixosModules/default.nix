@@ -70,10 +70,7 @@ in
 
   config =
   {
-    custom =
-    {
-      environment.systemPackages = cfg.extraPackages;
-      services.flatpak.packages  = cfg.extraFlatpakPackages;
-    };
+    environment.systemPackages       = cfg.extraPackages;
+    custom.services.flatpak.packages = cfg.extraFlatpakPackages;
   };
 }
