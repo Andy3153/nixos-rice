@@ -197,7 +197,6 @@ in
   # {{{ Security
   security =
   {
-    rtkit.enable = true; # pipewire wants it
     polkit.enable = true;
     sudo.enable  = false;
 

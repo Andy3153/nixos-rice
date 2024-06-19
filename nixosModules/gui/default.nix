@@ -35,9 +35,10 @@ in
         gaming.optimizations.enable = lib.mkDefault config.custom.gui.gaming.enable;
       };
 
-      hardware.opengl.enable  = lib.mkDefault true;
-      programs.dconf.enable   = lib.mkDefault true;
-      services.udisks2.enable = lib.mkDefault true;
+      hardware.opengl.enable   = lib.mkDefault true;
+      programs.dconf.enable    = lib.mkDefault true;
+      services.udisks2.enable  = lib.mkDefault true;
+      services.pipewire.enable = lib.mkDefault true;
 
       xdg =
       {

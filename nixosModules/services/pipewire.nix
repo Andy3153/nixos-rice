@@ -13,6 +13,8 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    security.rtkit.enable = true; # pipewire wants it
+
     services.pipewire =
     {
       enable            = lib.mkDefault true;

@@ -47,6 +47,9 @@ in
         # Enable Xbox controller drivers
         hardware.controllers.xbox.enable = lib.mkDefault true;
 
+        # Enable renicing daemon
+        services.ananicy.enable          = lib.mkDefault true;
+
         # {{{ Programs
         programs =
         {

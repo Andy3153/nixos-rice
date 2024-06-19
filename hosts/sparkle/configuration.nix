@@ -90,9 +90,7 @@
     # {{{ Services
     services =
     {
-      ananicy.enable  = true;
       flatpak.enable  = true;
-      pipewire.enable = true;
       mpd.enable      = true;
 
       printing =
