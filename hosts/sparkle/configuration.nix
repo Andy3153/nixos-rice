@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-stable, ... }:
 
 {
   imports =
@@ -34,6 +34,86 @@
       rices.hyprland-rice.enable = true;
     };
     # }}}
+
+  # {{{ Extra packages
+  extraPackages = lib.mkMerge
+  [
+    # {{{ NixPkgs Unstable
+    (with pkgs;
+    [
+      # {{{ Sound
+      qpwgraph                            # Sound PipeWire Patchbay
+      easyeffects                         # Sound PipeWire
+      pulsemixer                          # Sound sound-control
+      # }}}
+
+      # {{{ Office
+      libreoffice-fresh                   # Office
+      gimp                                # Office photo-editing
+      inkscape                            # Office photo-editing
+      krita                               # Office photo-editing
+
+      texliveFull                         # LaTeX
+      python312Packages.pygments          # for-latex
+      pandoc                              # for-latex
+
+      pdftk                               # pdf-tools
+      pdfarranger                         # pdf-tools
+      poppler_utils                       # pdf-tools
+      # }}}
+
+      # {{{ Media
+      cantata                             # music-player for-mpd
+      youtube-music                       # music-player
+      flac                                # music
+      opusTools                           # music
+      ffmpeg                              # music video
+      audacity                            # music
+      mousai                              # find music
+      # }}}
+
+      # {{{ 3D
+      blender                             # 3D
+      # }}}
+
+      yt-dlp                              # download
+      linux-wifi-hotspot                  # Internet hotspot
+      gparted                             # Partition-Manager
+      okteta                              # KDE-Apps hex-editor
+      mousai                              # GNOME-Apps song-identifier
+      betterdiscordctl                    # for-discord
+      virt-manager                        # for-libvirt
+      virtiofsd                           # for-libvirt
+      qbittorrent                         # torrents
+
+      ventoy-full
+    ])
+    # }}}
+
+    # {{{ NixPkgs 24.05
+    (with pkgs-stable;
+    [
+    ])
+    # }}}
+  ];
+  # }}}
+
+  # {{{ Extra Flatpak packages
+  extraFlatpakPackages =
+  [
+    "io.gitlab.librewolf-community"      # Browsers
+    "com.brave.Browser"                  # Browsers
+    "org.torproject.torbrowser-launcher" # Browsers Tor
+
+    "com.discordapp.Discord"             # Social
+    "io.github.trigg.discover_overlay"   # for-discord
+    "org.ferdium.Ferdium"                # Social
+
+    "com.spotify.Client"                 # Music-Players
+
+    "sh.ppy.osu"                         # Games
+  ];
+  # }}}
 
     # {{{ Hardware
     hardware =
