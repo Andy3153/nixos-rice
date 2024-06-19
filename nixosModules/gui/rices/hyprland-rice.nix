@@ -710,6 +710,7 @@ frame.right=0
         ".local/share/wallpaper.png".source        = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
         ".local/share/wallpaper-lock.png".source   = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
 
+        ".local/bin/checkFan.sh".source            = /home/andy3153/src/sh/other-shell-scripts/checkFan.sh;
         ".local/bin/suspend_compositing.sh".source = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr/scripts/suspend_compositing.sh;
       };
       # }}}
