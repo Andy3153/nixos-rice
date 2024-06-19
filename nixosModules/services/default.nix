@@ -10,6 +10,7 @@
   [
     ./ananicy.nix
     ./flatpak.nix
+    ./mpd.nix
     ./pipewire.nix
     ./printing.nix
     ./udisks.nix

@@ -77,23 +77,4 @@
     # }}}
   };
   # }}}
-
-  # {{{ Services
-  services =
-  {
-    # {{{ MPD
-    mpd =                          # music-player for-cantata
-    {
-      enable = true;
-
-      extraConfig =
-      ''
-      '';
-    };
-
-    mpd-mpris.enable       = true; # for-mpd
-    mpd-discord-rpc.enable = true; # for-discord for-mpd
-    # }}}
-  };
-  # }}}
 }
