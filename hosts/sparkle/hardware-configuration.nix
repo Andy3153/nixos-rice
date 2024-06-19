@@ -99,6 +99,11 @@
       options = [ "subvol=torrents" ];
     };
 
+  fileSystems."/home/andy3153/music" =
+    { device = "/.btrfs-root/home/andy3153/music";
+      options = [ "bind" ];
+    };
+
   fileSystems."/home/andy3153/.local/share/Steam" =
     { device = "/.btrfs-root/home/andy3153/.local/share/Steam";
       options = [ "bind" ];
