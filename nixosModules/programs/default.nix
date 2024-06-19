@@ -13,6 +13,7 @@
     ./gamemode.nix
     ./git.nix
     ./java.nix
+    ./mangohud.nix
     ./neovim.nix
     ./obs.nix
     ./steam.nix
