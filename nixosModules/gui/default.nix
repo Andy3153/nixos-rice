@@ -15,7 +15,6 @@ in
     ./rices
     ./theme
     ./wm
-    ./apps.nix
     ./gaming.nix
   ];
 
@@ -29,10 +28,8 @@ in
 
       gui =
       {
-        apps.enable                 = lib.mkDefault true;
-
         gaming.enable               = lib.mkDefault false;
-        gaming.optimizations.enable = lib.mkDefault config.custom.gui.gaming.enable;
+        gaming.optimizations.enable = lib.mkDefault cfg.gaming.enable;
       };
 
       hardware.opengl.enable   = lib.mkDefault true;
