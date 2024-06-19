@@ -70,7 +70,11 @@ in
 
   config =
   {
-    environment.systemPackages       = cfg.extraPackages;
-    custom.services.flatpak.packages = cfg.extraFlatpakPackages;
+    environment.systemPackages = cfg.extraPackages;
+    custom.services.flatpak =
+    {
+      enable   = lib.mkIf cfg.extraFlatpakPackages != [ ];
+      packages = cfg.extraFlatpakPackages;
+    };
   };
 }
