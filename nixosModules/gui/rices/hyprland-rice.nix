@@ -29,6 +29,12 @@ in
             generalFontSize = 11;
             fixedFontSize   = 12;
 
+            extraFontPackages = with pkgs;
+            [
+              corefonts                           # fonts ms-fonts
+              vistafonts                          # fonts ms-fonts
+            ];
+
             defaultFonts =
             {
               monospace =

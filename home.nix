@@ -50,11 +50,6 @@
         mousai                              # find music
         # }}}
 
-        # {{{ Fonts
-        corefonts                           # fonts ms-fonts
-        vistafonts                          # fonts ms-fonts
-        # }}}
-
         # {{{ 3D
         blender                             # 3D
         # }}}
