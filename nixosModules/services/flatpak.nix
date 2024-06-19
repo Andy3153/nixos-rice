@@ -7,6 +7,38 @@
 
 let
   cfg = config.custom.services.flatpak;
+  defaultPackages =
+  [
+    "com.github.tchx84.Flatseal"         # Base-System
+  ];
+
+  # {{{ Package options
+  packageOptions = _:
+  {
+    options =
+    {
+      appId = lib.mkOption
+      {
+        type        = lib.types.str;
+        description = "the app ID of the app to install";
+      };
+
+      commit = lib.mkOption
+      {
+        type        = lib.types.nullOr lib.types.str;
+        default     = null;
+        description = "hash of the app commit to install";
+      };
+
+      origin = lib.mkOption
+      {
+        type        = lib.types.str;
+        default     = "flathub";
+        description = "repository origin (default: flathub)";
+      };
+    };
+  };
+  # }}}
 in
 {
   options.custom.services.flatpak =
@@ -24,8 +56,8 @@ in
   {
     services.flatpak =
     {
-      enable   = lib.mkDefault true;
-      packages = lib.mkDefault cfg.packages;
+      enable   = true;
+      packages = defaultPackages ++ cfg.packages;
 
       update.auto =
       {
