@@ -61,10 +61,10 @@
     nixpkgs-stable,
     nixpkgs-tilp,
     #nixpkgs-andy3153,
-    home-manager,
-    nix-flatpak,
-    flake-programs-sqlite,
     nixos-hardware,
+    flake-programs-sqlite,
+    nix-flatpak,
+    home-manager,
     ...
   }:
   # }}}
