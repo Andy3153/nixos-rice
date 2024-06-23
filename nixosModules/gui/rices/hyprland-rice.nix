@@ -88,7 +88,7 @@ in
           # {{{ GTK
           gtk =
           {
-            name    = "Catppuccin-Mocha-Standard-Blue-Dark";
+            name    = "catppuccin-mocha-blue-standard+default";
             package = pkgs.catppuccin-gtk.override
             {
               variant = "mocha";
