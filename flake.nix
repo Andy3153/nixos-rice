@@ -75,36 +75,6 @@
     ...
   }:
   # }}}
-
-  # {{{ Variables
-  let
-    # NixPkgs Unstable
-    pkgs = import nixpkgs
-    {
-      config.allowUnfree = true;
-    };
-
-    # NixPkgs 24.05
-    pkgs-stable = import nixpkgs-stable
-    {
-      config.allowUnfree = true;
-    };
-
-    # NixPkgs for TiLP.05
-    pkgs-tilp = import nixpkgs-tilp
-    {
-      config.allowUnfree = true;
-    };
-
-    # NixPkgs (my fork for when I'm working on something)
-    #pkgs-andy3153 = import nixpkgs-andy3153
-    #{
-    #  config.allowUnfree = true;
-    #};
-
-    my-pkgs = my-nixpkgs.packages.x86_64-linux;
-  in
-  # }}}
   {
     # {{{ NixOS configurations
     nixosConfigurations =
@@ -112,10 +82,20 @@
       # {{{ sparkle
       sparkle = nixpkgs.lib.nixosSystem
       {
-        specialArgs = { inherit inputs pkgs pkgs-stable pkgs-tilp my-pkgs; };
-
         modules =
         [
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs-stable = import nixpkgs-stable { config = config.nixpkgs.config; };
+                pkgs-tilp   = import nixpkgs-tilp   { config = config.nixpkgs.config; };
+                my-pkgs     = my-nixpkgs.packages.x86_64-linux;
+              };
+            }
+          )
+
           { networking.hostName = "sparkle"; }
 
           nixos-hardware.nixosModules.asus-fx506hm
