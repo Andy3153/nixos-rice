@@ -48,8 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 0,
+        "lastModified": 1719234238,
         "narHash": "sha256-F45cDYkIc242ziLf6+vc9nQK2hzjOda1N8yfYbsynCU=",
+        "ref": "refs/heads/master",
+        "rev": "1bfbcd34daa9dd8e3ac02ed92431a5f6e3dcf236",
+        "revCount": 1,
         "type": "git",
         "url": "file:///home/andy3153/src/nixos/my-nixpkgs"
       },
