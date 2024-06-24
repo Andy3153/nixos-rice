@@ -6,11 +6,20 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.services.flatpak;
+  cfg      = config.custom.services.flatpak;
+
+  mainUser = config.custom.users.mainUser;
+  HM       = config.home-manager.users.${mainUser};
+  homeDir  = HM.home.homeDirectory;
+
+  gtkTheme = config.custom.gui.theme.gtk.name;
+
+  # {{{ Default packages
   defaultPackages =
   [
     "com.github.tchx84.Flatseal"         # Base-System
   ];
+  # }}}
 
   # {{{ Package options
   packageOptions = _:
@@ -67,16 +76,21 @@ in
 
       overrides.global =
       {
-        Context.filesystems =
-        [
-          "$HOME/.local/share/icons:ro"
-          "$HOME/.local/share/themes:ro"
-          "$HOME/.local/share/fonts:ro"
-          "/nix/store:ro"
-        ];
+        Context =
+        {
+          filesystems =
+          [
+            "${homeDir}/.icons:ro"
+            "${homeDir}/.local/share/fonts:ro"
+            "${homeDir}/.local/share/icons:ro"
+            "${homeDir}/.local/share/themes:ro"
+            "/nix/store:ro"
+          ];
+        };
 
         Environment =
         {
+          GTK_THEME    = gtkTheme;
           XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
         };
       };

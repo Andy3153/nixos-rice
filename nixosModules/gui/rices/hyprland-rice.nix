@@ -81,6 +81,8 @@ in
           {
             package = pkgs.apple-cursor;
             name    = "macOS-Monterey";
+            #package = pkgs.catppuccin-cursors.mochaBlue;
+            #name    = "Catppuccin-Mocha-Blue";
             size    = 24;
           };
           # }}}
