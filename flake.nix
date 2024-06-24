@@ -102,7 +102,7 @@
     #  config.allowUnfree = true;
     #};
 
-    my-pkgs = import my-nixpkgs;
+    my-pkgs = my-nixpkgs.packages.x86_64-linux;
   in
   # }}}
   {
