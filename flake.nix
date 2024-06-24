@@ -26,6 +26,12 @@
     #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
     # }}}
 
+    my-nixpkgs =
+    {
+      url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # {{{ NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # }}}
@@ -61,6 +67,7 @@
     nixpkgs-stable,
     nixpkgs-tilp,
     #nixpkgs-andy3153,
+    my-nixpkgs,
     nixos-hardware,
     flake-programs-sqlite,
     nix-flatpak,
@@ -94,6 +101,8 @@
     #{
     #  config.allowUnfree = true;
     #};
+
+    my-pkgs = import my-nixpkgs;
   in
   # }}}
   {
@@ -103,7 +112,7 @@
       # {{{ sparkle
       sparkle = nixpkgs.lib.nixosSystem
       {
-        specialArgs = { inherit inputs pkgs pkgs-stable pkgs-tilp; };
+        specialArgs = { inherit inputs pkgs pkgs-stable pkgs-tilp my-pkgs; };
 
         modules =
         [
