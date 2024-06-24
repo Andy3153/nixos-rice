@@ -714,6 +714,7 @@ frame.right=0
 
         ".local/bin/checkFan.sh".source            = /home/andy3153/src/sh/other-shell-scripts/checkFan.sh;
         ".local/bin/suspend_compositing.sh".source = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr/scripts/suspend_compositing.sh;
+        ".local/bin/launch-waybar".source          = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/waybar/launch-waybar;
       };
       # }}}
     };
