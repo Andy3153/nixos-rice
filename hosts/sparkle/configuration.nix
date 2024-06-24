@@ -14,7 +14,7 @@
     ../../nixosModules
   ];
 
-  #environment.systemPackages = [ my-pkgs.hello ];
+  environment.systemPackages = [ my-pkgs.hello ];
 
   custom =
   {
