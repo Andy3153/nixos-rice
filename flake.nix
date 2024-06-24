@@ -26,11 +26,13 @@
     #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
     # }}}
 
+    # {{{ My Nix packages
     my-nixpkgs =
     {
       url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # }}}
 
     # {{{ NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -84,6 +86,7 @@
       {
         modules =
         [
+          # {{{ Add flake inputs to configuration
           (
             { config, ... }:
             {
@@ -95,6 +98,7 @@
               };
             }
           )
+          # }}}
 
           { networking.hostName = "sparkle"; }
 
