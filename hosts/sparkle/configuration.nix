@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-stable, my-pkgs, ... }:
 
 {
   imports =
@@ -13,6 +13,8 @@
     ./hardware-configuration.nix
     ../../nixosModules
   ];
+
+  #environment.systemPackages = [ my-pkgs.hello ];
 
   custom =
   {
