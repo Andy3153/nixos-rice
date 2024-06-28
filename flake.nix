@@ -29,7 +29,8 @@
     # {{{ My Nix packages
     my-nixpkgs =
     {
-      url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
+      url = "github:Andy3153/my-nixpkgs";
+      #url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
