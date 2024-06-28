@@ -3,7 +3,7 @@
 ## Plymouth config
 ##
 
-{ config, lib, ... }:
+{ config, lib, my-pkgs, ... }:
 
 let
   cfg = config.custom.boot.plymouth;
@@ -15,6 +15,15 @@ in
   {
     custom.boot.quiet = lib.mkForce true; # force enable quiet boot
 
-    boot.plymouth.enable = lib.mkDefault true;
+    boot.plymouth =
+    {
+      enable = lib.mkDefault true;
+      theme  = "spinnerv2";
+      themePackages =
+      [
+        my-pkgs.plymouth-spinnerv2-theme
+        #(pkgs.callPackage /home/andy3153/src/nixos/my-nixpkgs/pkgs/plymouth-spinnerv2-theme.nix { })
+      ];
+    };
   };
 }
