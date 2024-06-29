@@ -67,16 +67,18 @@
       youtube-music                       # music-player
       flac                                # music
       opusTools                           # music
-      ffmpeg                              # music video
-      audacity                            # music
+      ffmpeg                              # media-convert
+      yt-dlp                              # media-download
+      converseen                          # media-convert
       mousai                              # find music
+
+      audacity                            # audio-editor
       # }}}
 
       # {{{ 3D
       blender                             # 3D
       # }}}
 
-      yt-dlp                              # download
       linux-wifi-hotspot                  # Internet hotspot
       gparted                             # Partition-Manager
       okteta                              # KDE-Apps hex-editor
