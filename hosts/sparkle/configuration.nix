@@ -183,6 +183,12 @@
         enable  = true;
         drivers = [ pkgs.brlaser ];
       };
+
+      tlp =
+      {
+        enable               = true;
+        chargeThreshold.stop = 80;
+      };
     };
     # }}}
 

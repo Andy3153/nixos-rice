@@ -13,6 +13,7 @@
     ./mpd.nix
     ./pipewire.nix
     ./printing.nix
+    ./tlp.nix
     ./udisks.nix
   ];
 }
