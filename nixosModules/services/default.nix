@@ -15,5 +15,6 @@
     ./printing.nix
     ./tlp.nix
     ./udisks.nix
+    ./upower.nix
   ];
 }
