@@ -3,8 +3,11 @@
 ## Hardware bundle
 ##
 
-{ ... }:
+{ config, lib, ... }:
 
+let
+  cfg = config.custom.hardware;
+in
 {
   imports =
   [
@@ -16,5 +19,21 @@
     ./nvidia.nix
     ./opengl.nix
     ./openrgb.nix
+  ];
+
+  options.custom.hardware.isLaptop = lib.mkEnableOption "enable this if host is a laptop";
+
+  config = lib.mkMerge
+  [
+    (lib.mkIf cfg.isLaptop # Laptop sane defaults
+    {
+      hardware.bluetooth.enable = true;
+
+      services =
+      {
+        tlp.enable    = lib.mkDefault true;
+        upower.enable = lib.mkDefault true;
+      };
+    })
   ];
 }

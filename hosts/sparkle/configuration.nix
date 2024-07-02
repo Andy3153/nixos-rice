@@ -120,11 +120,8 @@
     # {{{ Hardware
     hardware =
     {
-      bluetooth =
-      {
-        enable      = true;
-        powerOnBoot = false;
-      };
+      isLaptop              = true;
+      bluetooth.powerOnBoot = false;
 
       gpuDrivers = lib.mkForce
       [
@@ -186,11 +183,7 @@
         drivers = [ pkgs.brlaser ];
       };
 
-      tlp =
-      {
-        enable               = true;
-        chargeThreshold.stop = 80;
-      };
+      tlp.chargeThreshold.stop = 80;
     };
     # }}}
 
