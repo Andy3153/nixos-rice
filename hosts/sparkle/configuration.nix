@@ -89,6 +89,8 @@
       qbittorrent                         # torrents
 
       ventoy-full
+
+      gpt4all                             # AI
     ])
     # }}}
 
