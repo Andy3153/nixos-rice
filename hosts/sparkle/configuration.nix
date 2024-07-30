@@ -114,6 +114,7 @@
     "org.torproject.torbrowser-launcher" # Browsers Tor
 
     "com.discordapp.Discord"             # Social
+    "dev.vencord.Vesktop"                # Social
     "io.github.trigg.discover_overlay"   # for-discord
     "org.ferdium.Ferdium"                # Social
 
