@@ -14,6 +14,8 @@
     ../../nixosModules
   ];
 
+  hardware.nvidia.open = lib.mkForce true;
+
   custom =
   {
     # {{{ Boot
