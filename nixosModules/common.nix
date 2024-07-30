@@ -49,6 +49,7 @@ in
             # this pls
 
         gcc                        # Programming for-nvim
+        gnumake                    # Programming for-nvim
 
         file                       # Other-CLI
         usbutils                   # Other-CLI
