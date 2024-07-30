@@ -21,7 +21,9 @@
     # {{{ Boot
     boot =
     {
-      kernel            = pkgs.linuxKernel.packages.linux_zen;
+      #kernel            = pkgs.linuxPackages;        # LTS
+      #kernel            = pkgs.linuxPackages_latest; # Stable
+      kernel            = pkgs.linuxPackages_zen;    # Zen
       reisub.enable     = true;
       sysctl.swappiness = 30;
       uefiBoot.enable   = true;
