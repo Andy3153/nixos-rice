@@ -14,7 +14,7 @@
     ../../nixosModules
   ];
 
-  hardware.nvidia.open = lib.mkForce true;
+  hardware.nvidia.open = lib.mkIf (lib.versionAtLeast config.hardware.nvidia.package.version "555") true;
 
   custom =
   {
