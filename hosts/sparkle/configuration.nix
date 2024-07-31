@@ -15,7 +15,6 @@
   ];
 
   hardware.nvidia.open = lib.mkIf (lib.versionAtLeast config.hardware.nvidia.package.version "555") true;
-  boot.kernelParams    = [ "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1" ];
 
   custom =
   {
