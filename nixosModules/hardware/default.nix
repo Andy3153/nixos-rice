@@ -13,11 +13,11 @@ in
   [
     ./bluetooth.nix
     ./controllers.xbox.nix
+    ./graphics.nix
     ./graphictablets.nix
     ./gpuDrivers.nix
     ./i2c.nix
     ./nvidia.nix
-    ./opengl.nix
     ./openrgb.nix
   ];
 

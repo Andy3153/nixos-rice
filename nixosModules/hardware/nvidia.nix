@@ -23,7 +23,7 @@ in
 
       hardware =
       {
-        opengl.extraPackages = [ pkgs.vaapiVdpau ];
+        graphics.extraPackages = [ pkgs.vaapiVdpau ];
 
         nvidia =
         {
@@ -31,8 +31,8 @@ in
         };
       };
 
-      services.xserver.videoDrivers      = [ "nvidia" ];
-      virtualisation.docker.enableNvidia = lib.mkDefault true;
+      services.xserver.videoDrivers            = [ "nvidia" ];
+      hardware.nvidia-container-toolkit.enable = lib.mkIf config.virtualisation.docker.enable true;
     })
 
     (lib.mkIf cfg.prime.enable
