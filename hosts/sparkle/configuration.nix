@@ -205,7 +205,7 @@
     {
       docker =
       {
-        enable          = true;
+        #enable          = true;
         enableOnBoot    = false;
         rootless.enable = true;
       };
