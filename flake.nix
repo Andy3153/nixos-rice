@@ -78,13 +78,13 @@
     nix-flatpak,
     home-manager,
     ...
-  }:
+  }: rec
   # }}}
   {
     # {{{ NixOS configurations
     nixosConfigurations =
     {
-      # {{{ sparkle
+      # {{{ sparkle | ASUS TUF F15 FX506HM
       sparkle = nixpkgs.lib.nixosSystem
       {
         modules =
@@ -103,7 +103,10 @@
           )
           # }}}
 
-          { networking.hostName = "sparkle"; }
+          {
+            networking.hostName = "sparkle";
+            nixpkgs.hostPlatform.system = "x86_64-linux";
+          }
 
           nixos-hardware.nixosModules.asus-fx506hm
           flake-programs-sqlite.nixosModules.programs-sqlite
@@ -114,6 +117,46 @@
         ];
       };
       # }}}
+
+      # {{{ ember | Raspberry Pi 4
+      ember = nixpkgs-stable.lib.nixosSystem
+      {
+        modules =
+        [
+          # {{{ Add flake inputs to configuration
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs = import nixpkgs-stable { config = config.nixpkgs.config; };
+              };
+            }
+          )
+          # }}}
+
+          "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
+
+          {
+            networking.hostName           = "ember";
+            nixpkgs =
+            {
+              hostPlatform.system   = "aarch64-linux";
+              buildPlatform.system  = "x86_64-linux";
+            };
+          }
+
+          ./hosts/ember/configuration.nix
+        ];
+      };
+      # }}}
+    };
+    # }}}
+
+    # {{{ Images
+    images =
+    {
+      ember = nixosConfigurations.ember.config.system.build.sdImage;
     };
     # }}}
   };
