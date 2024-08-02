@@ -123,26 +123,15 @@
       {
         modules =
         [
-          # {{{ Add flake inputs to configuration
-          (
-            { config, ... }:
-            {
-              _module.args =
-              {
-                pkgs = import nixpkgs-stable { config = config.nixpkgs.config; };
-              };
-            }
-          )
-          # }}}
-
           "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
 
           {
             networking.hostName           = "ember";
             nixpkgs =
             {
-              hostPlatform.system   = "aarch64-linux";
-              buildPlatform.system  = "x86_64-linux";
+              config.allowUnsupportedSystem = true;
+              hostPlatform.system           = "aarch64-linux";
+              buildPlatform.system          = "x86_64-linux";
             };
           }
 
