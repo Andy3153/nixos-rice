@@ -41,14 +41,6 @@
     #nixos-hardware.url = "git+file:///home/andy3153/src/nixos/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
     # }}}
 
-    # {{{ NixOS Generators
-    nixos-generators =
-    {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # }}}
-
     # {{{ programs.sqlite for Nix Flakes
     flake-programs-sqlite =
     {
@@ -82,7 +74,6 @@
     #nixpkgs-andy3153,
     my-nixpkgs,
     nixos-hardware,
-    nixos-generators,
     flake-programs-sqlite,
     nix-flatpak,
     home-manager,
@@ -148,31 +139,6 @@
         ];
       };
       # }}}
-    };
-    # }}}
-
-    # {{{ Building SD image with nixos-generators
-    packages.aarch64-linux =
-    {
-      ember-sd-img = nixos-generators.nixosGenerate
-      {
-        system  = "aarch64-linux";
-        format  = "sd-aarch64";
-        modules =
-        [
-          {
-            networking.hostName           = "ember";
-            nixpkgs =
-            {
-              config.allowUnsupportedSystem = true;
-              hostPlatform.system           = "aarch64-linux";
-              buildPlatform.system          = "x86_64-linux";
-            };
-          }
-
-          ./hosts/ember/configuration.nix
-        ];
-      };
     };
     # }}}
 
