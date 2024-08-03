@@ -138,11 +138,10 @@
             {
               config.allowUnsupportedSystem = true;
               hostPlatform.system           = "aarch64-linux";
-              buildPlatform.system          = "x86_64-linux";
             };
           }
 
-          #nixos-hardware.nixosModules.raspberry-pi.4
+          nixos-hardware.nixosModules.raspberry-pi-4
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
           home-manager-stable.nixosModules.home-manager
