@@ -262,7 +262,7 @@ in
   options.custom.gui.theme.qt = lib.mkOption
   {
     type        = lib.types.nullOr qtModule;
-    default     = lib.types.null;
+    default     = null;
     description = "Qt theme configuration";
   };
 

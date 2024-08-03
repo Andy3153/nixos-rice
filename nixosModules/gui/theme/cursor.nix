@@ -34,7 +34,7 @@ in
 {
   options.custom.gui.theme.cursor = lib.mkOption
   {
-    default     = lib.types.null;
+    default     = null;
     description = "cursor configuration";
     type        = lib.types.nullOr cursorModule;
   };

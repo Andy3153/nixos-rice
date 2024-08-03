@@ -28,7 +28,7 @@ in
 {
   options.custom.gui.theme.icon = lib.mkOption
   {
-    default     = lib.types.null;
+    default     = null;
     description = "icon theme configuration";
     type        = lib.types.nullOr iconModule;
   };

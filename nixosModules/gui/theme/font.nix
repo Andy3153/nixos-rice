@@ -107,7 +107,7 @@ in
   options.custom.gui.theme.font = lib.mkOption
   {
     type        = lib.types.nullOr fontModule;
-    default     = lib.types.null;
+    default     = null;
     description = "font configuration";
   };
 
