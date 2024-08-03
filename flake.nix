@@ -59,6 +59,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    home-manager-stable =
+    {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     # }}}
   };
   # }}}
@@ -77,6 +83,7 @@
     flake-programs-sqlite,
     nix-flatpak,
     home-manager,
+    home-manager-stable,
     ...
   }: rec
   # }}}
@@ -134,6 +141,11 @@
               buildPlatform.system          = "x86_64-linux";
             };
           }
+
+          #nixos-hardware.nixosModules.raspberry-pi.4
+          flake-programs-sqlite.nixosModules.programs-sqlite
+          nix-flatpak.nixosModules.nix-flatpak
+          home-manager-stable.nixosModules.home-manager
 
           ./hosts/ember/configuration.nix
         ];
