@@ -5,22 +5,32 @@
 ## Raspberry Pi 4
 ##
 
-{ ... }:
+{ lib, ... }:
 
 {
   imports =
   [
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
     ../../nixosModules
   ];
+
+  custom =
+  {
+    programs =
+    {
+      zsh =
+      {
+        enable = true;
+      };
+    };
+
+    services.flatpak.enable = lib.mkForce false;
+
+    users.mainUser = "andy3153";
+  };
 
   users.users =
   {
     root.initialPassword = "sdfsdf";
-    sdfsdf =
-    {
-      initialPassword = "sdfsdf";
-      isNormalUser    = true;
-    };
   };
 }
