@@ -19,6 +19,16 @@ in
     ./i2c.nix
     ./nvidia.nix
     ./openrgb.nix
+  ]
+  ++
+  lib.optionals (lib.versionOlder lib.version "24.11pre")
+  [
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "enable" ] [ "hardware" "opengl" "enable" ])
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "extraPackages" ] [ "hardware" "opengl" "extraPackages" ])
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "extraPackages32" ] [ "hardware" "opengl" "extraPackages32" ])
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "enable32Bit" ] [ "hardware" "opengl" "driSupport32Bit" ])
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "package" ] [ "hardware" "opengl" "package" ])
+    (lib.mkAliasOptionModule [ "hardware" "graphics" "package32" ] [ "hardware" "opengl" "package32" ])
   ];
 
   options.custom.hardware.isLaptop = lib.mkEnableOption "enable this if host is a laptop";
@@ -36,4 +46,5 @@ in
       };
     })
   ];
+
 }
