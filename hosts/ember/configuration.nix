@@ -29,8 +29,5 @@
     users.mainUser = "andy3153";
   };
 
-  users.users =
-  {
-    root.initialPassword = "sdfsdf";
-  };
+  system.stateVersion = "24.05";
 }

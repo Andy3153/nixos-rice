@@ -244,10 +244,6 @@ in
   };
   # }}}
 
-  # {{{ System
-  system.stateVersion = "23.05";
-  # }}}
-
   # {{{ Systemd
   systemd.ctrlAltDelUnit = "";
   # }}}
