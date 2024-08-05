@@ -149,6 +149,18 @@
           ./hosts/ember/configuration.nix
         ];
       };
+
+      # {{{ Configuration for `ember` host when made into an SD card image
+      ember-image = self.nixosConfigurations.ember.extendModules
+      {
+        modules = [ { disabledModules =
+        [
+          # These apply to the already-installed system and its custom
+          # partitioning, we need to disable this for the image creation
+          ./hosts/ember/hardware-configuration.nix
+        ]; } ];
+      };
+      # }}}
       # }}}
     };
     # }}}
@@ -156,7 +168,7 @@
     # {{{ Images
     images =
     {
-      ember = nixosConfigurations.ember.config.system.build.sdImage;
+      ember = nixosConfigurations.ember-image.config.system.build.sdImage;
     };
     # }}}
   };
