@@ -102,9 +102,10 @@
             {
               _module.args =
               {
-                pkgs-stable = import nixpkgs-stable { config = config.nixpkgs.config; };
-                pkgs-tilp   = import nixpkgs-tilp   { config = config.nixpkgs.config; };
-                my-pkgs     = my-nixpkgs.packages.x86_64-linux;
+                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+                pkgs-tilp     = import nixpkgs-tilp   { config = config.nixpkgs.config; };
+                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
               };
             }
           )
@@ -130,6 +131,19 @@
       {
         modules =
         [
+          # {{{ Add flake inputs to configuration
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+              };
+            }
+          )
+          # }}}
+
           "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
 
           {

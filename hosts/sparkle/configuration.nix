@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
   imports =
@@ -42,7 +42,7 @@
   # {{{ Extra packages
   extraPackages = lib.mkMerge
   [
-    # {{{ NixPkgs Unstable
+    # {{{ Default NixPkgs
     (with pkgs;
     [
       # {{{ Sound
@@ -98,7 +98,13 @@
     ])
     # }}}
 
-    # {{{ NixPkgs 24.05
+    # {{{ NixPkgs Unstable
+    (with pkgs-unstable;
+    [
+    ])
+    # }}}
+
+    # {{{ NixPkgs Stable
     (with pkgs-stable;
     [
     ])
