@@ -4,7 +4,7 @@
 ##
 
 #{ config, lib, pkgs, pkgs-andy3153, ... }:
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 # {{{ Variables
 let
@@ -26,14 +26,14 @@ in
     # {{{ System packages
     systemPackages = lib.mkMerge
     [
-      # {{{ NixPkgs Unstable
+      # {{{ Default NixPkgs
       (with pkgs;
       [
         home-manager               # NixOS-Components
 
         hunspell                   # for-nvim for-libreoffice
         hunspellDicts.en_US        # for-nvim for-libreoffice
-        hunspellDicts.ro_RO        # for-nvim for-libreoffice
+        #hunspellDicts.ro_RO        # for-nvim for-libreoffice
 
         efibootmgr                 # EFI
         doas-sudo-shim             # for-doas
@@ -83,17 +83,17 @@ in
       ])
       # }}}
 
-      # {{{ NixPkgs 24.05
-      (with pkgs-stable;
+      # {{{ NixPkgs Unstable
+      (with pkgs-unstable;
       [
+        hunspellDicts.ro_RO        # for-nvim for-libreoffice
       ])
       # }}}
 
-      # {{{ NixPkgs (my fork for when I'm working on something)
-      #(with pkgs-andy3153;
-      #[
-      #  #hunspellDicts.ro_RO
-      #])
+      # {{{ NixPkgs Stable
+      (with pkgs-stable;
+      [
+      ])
       # }}}
     ];
     # }}}
