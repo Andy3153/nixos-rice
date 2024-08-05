@@ -1,5 +1,5 @@
 error out when users.mainUser is empty
 redo boot.efiBoot logic
 redo hardware.isLaptop logic
-system.stateVersion maybe?
-flatpak gets enabled by default
+separate nixpkgs stable and unstable better
+hunspellDicts.ro-RO is only in unstable
