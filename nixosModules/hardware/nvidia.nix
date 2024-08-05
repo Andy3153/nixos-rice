@@ -21,6 +21,8 @@ in
     {
       boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
+      environment.systemPackages = [ pkgs.nvtopPackages.full ];
+
       hardware =
       {
         graphics.extraPackages = [ pkgs.vaapiVdpau ];

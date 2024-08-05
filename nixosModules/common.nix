@@ -68,7 +68,6 @@ in
         tmux                       # terminal-multiplexer
         htop                       # task-manager
         btop                       # task-manager
-        nvtopPackages.full         # task-manager
         kitty.terminfo             # terminfo
 
         brightnessctl              # Other-CLI brightness hyprland-rice
