@@ -8,7 +8,7 @@
 {
   options.custom.users.mainUser = lib.mkOption
   {
-    type        = lib.types.str;
+    type        = lib.types.enum [ "andy3153" "bot" ];
     description = "the main user of this configuration";
     default     = "";
     example     = "andy3153";
@@ -16,22 +16,6 @@
 
   config = lib.mkMerge
   [
-    {
-      warnings =
-        if (config.custom.users.mainUser == "")
-        then [ ''You did not set a value for `custom.users.mainUser`. This might break things.'' ]
-        else [];
-
-      assertions =
-      [
-        {
-          assertion = config.custom.users.mainUser != "";
-          message = "set a main user!!";
-        }
-      ];
-    }
-
-    (lib.mkIf (config.custom.users.mainUser == "")         { } )
     (lib.mkIf (config.custom.users.mainUser == "andy3153") { custom.users.andy3153.enable = true; })
     (lib.mkIf (config.custom.users.mainUser == "bot")      { custom.users.bot.enable      = true; })
   ];
