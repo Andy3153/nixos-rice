@@ -11,6 +11,7 @@
     ./ananicy.nix
     ./flatpak.nix
     ./mpd.nix
+    ./openssh.nix
     ./pipewire.nix
     ./printing.nix
     ./tlp.nix
