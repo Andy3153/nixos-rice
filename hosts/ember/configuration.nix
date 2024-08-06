@@ -17,7 +17,11 @@
   custom =
   {
     # {{{ Boot
-    boot.loader.timeout = 2; #extlinux is weird af
+    boot =
+    {
+      loader.timeout    = 2; #extlinux is weird af
+      sysctl.swappiness = 40;
+    };
     # }}}
 
     # {{{ Programs
