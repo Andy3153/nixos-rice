@@ -57,6 +57,14 @@
     # {{{ Users
     users.mainUser = "andy3153";
     # }}}
+
+    # {{{ Virtualisation
+    virtualisation.docker =
+    {
+      enable       = true;
+      enableOnBoot = true;
+    };
+    # }}}
   };
 
   system.stateVersion = "24.05";

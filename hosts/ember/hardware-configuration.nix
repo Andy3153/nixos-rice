@@ -37,6 +37,12 @@
       device = "/dev/disk/by-label/ember-home";
       fsType = "ext4";
     };
+
+    "/var/lib/docker" =
+    {
+      device = "/dev/disk/by-label/ember-docker";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [ { device = "/dev/ember/swap"; } ];
