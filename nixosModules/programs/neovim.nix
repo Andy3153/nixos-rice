@@ -3,7 +3,7 @@
 ## Neovim config
 ##
 
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 let
   cfg    = config.custom.programs.neovim;
@@ -30,7 +30,7 @@ in
       [
         hunspell
         hunspellDicts.en_US
-        hunspellDicts.ro_RO
+        #hunspellDicts.ro_RO
 
         python3
         gcc
@@ -46,6 +46,11 @@ in
         python311Packages.python-lsp-server
         texlab
         nodePackages.vim-language-server
+      ]))
+
+      (lib.mkIf cfg.enableCustomConfigs (with pkgs-unstable;
+      [
+        hunspellDicts.ro_RO
       ]))
 
       (lib.mkIf cfg.enableCustomConfigs (with pkgs-stable;
