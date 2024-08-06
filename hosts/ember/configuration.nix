@@ -16,6 +16,10 @@
 
   custom =
   {
+    # {{{ Boot
+    boot.loader.timeout = 2; #extlinux is weird af
+    # }}}
+
     # {{{ Programs
     programs =
     {
