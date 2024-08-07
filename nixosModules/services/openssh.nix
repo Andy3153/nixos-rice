@@ -17,7 +17,7 @@ in
     authorizedKeys = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "";
+      default     = [ ];
       description = "list of OpenSSH public keys that will be authorized to log in for the main user of the configuration";
     };
 
