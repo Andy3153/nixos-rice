@@ -11,7 +11,8 @@ in
 {
   options.custom.networking.extraHosts = lib.mkOption
   {
-    type = options.networking.extraHosts.type;
+    type        = options.networking.extraHosts.type;
+    default     = "";
     description = "entries to be added to `/etc/hosts`";
   };
 
