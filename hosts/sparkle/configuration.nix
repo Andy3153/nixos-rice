@@ -192,39 +192,57 @@
       {
         enable = true;
 
+        # {{{ Settings to use with different hosts
         matchBlocks =
+        # {{{ Variables
         let
           mainUser = config.custom.users.mainUser;
           HM       = config.home-manager.users.${mainUser};
           homeDir  = HM.home.homeDirectory;
         in
+        # }}}
         {
-          # {{{ Settings to use with different hosts
-          ember =
+          # {{{ AUR
+          "aur.archlinux.org" =
+          {
+            hostname       = "aur.archlinux.org";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-aur"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-aur -C "sparkle-aur"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ `ember`
+          "ember" =
           {
             hostname       = "ember"; # look at custom.networking.extraHosts
             user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_rsa-ember";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-ember"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-ember -C "sparkle-ember"
             identitiesOnly = true;
           };
+          # }}}
 
+          # {{{ GitHub
           "github.com" =
           {
             hostname       = "github.com";
             user           = "git";
-            identityFile   = "${homeDir}/.ssh/id_rsa-github";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-github"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-github -C "sparkle-github"
             identitiesOnly = true;
           };
+          # }}}
 
+          # {{{ GitLab
           "gitlab.com" =
           {
             hostname       = "gitlab.com";
             user           = "git";
-            identityFile   = "${homeDir}/.ssh/id_rsa-gitlab";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-gitlab"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-gitlab -C "sparkle-gitlab"
             identitiesOnly = true;
           };
           # }}}
         };
+        # }}}
       };
       # }}}
 
