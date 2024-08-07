@@ -16,6 +16,7 @@
     ./mangohud.nix
     ./neovim.nix
     ./obs.nix
+    ./ssh.nix
     ./steam.nix
     ./tilp2.nix
     ./zsh.nix
