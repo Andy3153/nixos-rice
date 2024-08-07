@@ -224,25 +224,6 @@ in
   };
   # }}}
 
-  # {{{ Services
-  services =
-  {
-    # {{{ OpenSSH
-    openssh =
-    {
-      enable       = true;
-      openFirewall = true;
-
-      settings =
-      {
-        X11Forwarding   = true;
-        PermitRootLogin = "prohibit-password";
-      };
-    };
-    # }}}
-  };
-  # }}}
-
   # {{{ Systemd
   systemd.ctrlAltDelUnit = "";
   # }}}
