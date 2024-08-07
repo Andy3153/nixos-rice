@@ -23,14 +23,16 @@ in
 
     settings = lib.mkOption
     {
-      type    = options.services.openssh.settings.type;
+      type = options.services.openssh.settings.type;
       default =
       {
-        AllowUsers      = [ mainUser ];
-        PermitRootLogin = "no";
-        PrintMotd       = true;
-        X11Forwarding   = false;
+        AllowUsers             = [ mainUser ];
+        PasswordAuthentication = true;
+        PermitRootLogin        = "no"; # "prohibit-password"
+        PrintMotd              = true;
+        X11Forwarding          = false;
       };
+      description = "OpenSSH configuration";
     };
   };
 
