@@ -1,6 +1,6 @@
 ## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 ##
-## Neovim config
+## Git config
 ##
 
 { config, lib, ... }:
@@ -62,40 +62,40 @@ in
     };
     # }}}
 
-  # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
-  {
-    # {{{ Git program
-    programs.git =
+    # {{{ Home-Manager
+    home-manager.users.${config.custom.users.mainUser} =
     {
-      enable      = true;
-      extraConfig = gitExtraConfig;
+      # {{{ Git program
+      programs.git =
+      {
+        enable      = true;
+        extraConfig = gitExtraConfig;
 
-      # {{{ Files to ignore
-      ignores =
-      [
-        "**/*.bak"
-        "**/*.old"
-        "**/.directory"
-        "**/*.kate-swp"
-        "**/*.kdev4"
-        "**/.idea"
-        "**/*.aux"
-        "**/*.log"
-        "**/*.out"
-        "**/*.synctex.gz"
-        "**/*.toc"
-        "**/*.pyg"
-        "**/*.latexrun.db"
-        "**/*.latexrun.db.lock"
-        "**/*.fdb_latexmk"
-        "**/*.fls"
-        "**/*.xdv"
-      ];
+        # {{{ Files to ignore
+        ignores =
+        [
+          "**/*.bak"
+          "**/*.old"
+          "**/.directory"
+          "**/*.kate-swp"
+          "**/*.kdev4"
+          "**/.idea"
+          "**/*.aux"
+          "**/*.log"
+          "**/*.out"
+          "**/*.synctex.gz"
+          "**/*.toc"
+          "**/*.pyg"
+          "**/*.latexrun.db"
+          "**/*.latexrun.db.lock"
+          "**/*.fdb_latexmk"
+          "**/*.fls"
+          "**/*.xdv"
+        ];
+        # }}}
+      };
       # }}}
     };
     # }}}
-  };
-  # }}}
   };
 }
