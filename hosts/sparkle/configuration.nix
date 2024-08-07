@@ -154,6 +154,16 @@
     networking =
     {
       stevenblack.enable = true;
+
+      # {{{ Extra hosts
+      extraHosts =
+      ''
+        ember ember
+        ember ember.lan
+        ember andy3153.duckdns.org
+        ember andy3153.go.ro
+      '';
+      # }}}
     };
     # }}}
 
@@ -192,8 +202,8 @@
           # {{{ Settings to use with different hosts
           ember =
           {
-            hostname       = "ember";
-            user           = "git";
+            hostname       = "ember"; # look at custom.networking.extraHosts
+            user           = mainUser;
             identityFile   = "${homeDir}/.ssh/id_rsa-ember";
             identitiesOnly = true;
           };
