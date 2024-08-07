@@ -208,7 +208,7 @@
             identitiesOnly = true;
           };
 
-          github =
+          "github.com" =
           {
             hostname       = "github.com";
             user           = "git";
@@ -216,7 +216,7 @@
             identitiesOnly = true;
           };
 
-          gitlab =
+          "gitlab.com" =
           {
             hostname       = "gitlab.com";
             user           = "git";
