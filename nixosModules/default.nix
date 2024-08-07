@@ -43,6 +43,7 @@ in
     ./boot
     ./gui
     ./hardware
+    ./networking
     ./programs
     ./services
     ./systemd
