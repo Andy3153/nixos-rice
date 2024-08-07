@@ -15,7 +15,7 @@ in
     description = "entries to be added to `/etc/hosts`";
   };
 
-  config = lib.mkIf cfg.enable
+  config =
   {
     networking.extraHosts = cfg;
   };

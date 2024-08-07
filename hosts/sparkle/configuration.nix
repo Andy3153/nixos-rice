@@ -150,9 +150,25 @@
     };
     # }}}
 
+    # {{{ Networking
+    networking =
+    {
+      stevenblack.enable = true;
+    };
+    # }}}
+
     # {{{ Programs
     programs =
     {
+      # {{{ Git
+      git =
+      {
+        enable    = true;
+        userName  = "Andy3153";
+        userEmail = "andy3153@protonmail.com";
+      };
+      # }}}
+
       # {{{ Neovim
       neovim =
       {
@@ -161,20 +177,52 @@
       };
       # }}}
 
+      # {{{ SSH
+      ssh =
+      {
+        enable = true;
+
+        matchBlocks =
+        let
+          mainUser = config.custom.users.mainUser;
+          HM       = config.home-manager.users.${mainUser};
+          homeDir  = HM.home.homeDirectory;
+        in
+        {
+          # {{{ Settings to use with different hosts
+          ember =
+          {
+            hostname       = "ember";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_rsa-ember";
+            identitiesOnly = true;
+          };
+
+          github =
+          {
+            hostname       = "github.com";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_rsa-github";
+            identitiesOnly = true;
+          };
+
+          gitlab =
+          {
+            hostname       = "gitlab.com";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_rsa-gitlab";
+            identitiesOnly = true;
+          };
+          # }}}
+        };
+      };
+      # }}}
+
       # {{{ Zsh
       zsh =
       {
         enable              = true;
         enableCustomConfigs = true;
-      };
-      # }}}
-
-      # {{{ Git
-      git =
-      {
-        enable    = true;
-        userName  = "Andy3153";
-        userEmail = "andy3153@protonmail.com";
       };
       # }}}
 
@@ -187,8 +235,17 @@
     # {{{ Services
     services =
     {
-      flatpak.enable  = true;
-      mpd.enable      = true;
+      flatpak.enable = true;
+      mpd.enable     = true;
+
+      openssh =
+      {
+        enable = true;
+        settings =
+        {
+          X11Forwarding = true;
+        };
+      };
 
       printing =
       {
@@ -413,10 +470,6 @@
     };
     # }}}
   };
-
-  # {{{ Hosts file block list
-  networking.stevenblack.enable = true;
-  # }}}
 
   # {{{ Btrbk instances
   services.btrbk.instances =
