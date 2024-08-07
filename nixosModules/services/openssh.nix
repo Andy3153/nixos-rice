@@ -13,6 +13,14 @@ in
   options.custom.services.openssh =
   {
     enable   = lib.mkEnableOption "enables OpenSSH";
+
+    authorizedKeys = lib.mkOption
+    {
+      type        = lib.types.anything;
+      default     = "";
+      description = "list of OpenSSH public keys that will be authorized to log in for the main user of the configuration";
+    };
+
     settings = lib.mkOption
     {
       type    = options.services.openssh.settings.type;
@@ -33,5 +41,7 @@ in
       enable   = true;
       settings = cfg.settings;
     };
+
+    users.users.${mainUser}.openssh.authorizedKeys.keys = cfg.authorizedKeys;
   };
 }
