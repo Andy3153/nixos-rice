@@ -27,6 +27,15 @@
     # {{{ Programs
     programs =
     {
+      # {{{ Git
+      git =
+      {
+        enable    = true;
+        userName  = "Andy3153";
+        userEmail = "andy3153@protonmail.com";
+      };
+      # }}}
+
       # {{{ Neovim
       neovim =
       {
@@ -42,20 +51,24 @@
         enableCustomConfigs = true;
       };
       # }}}
-
-      # {{{ Git
-      git =
-      {
-        enable    = true;
-        userName  = "Andy3153";
-        userEmail = "andy3153@protonmail.com";
-      };
-      # }}}
     };
     # }}}
 
     # {{{ Services
-    services.flatpak.enable = lib.mkForce false;
+    services =
+    {
+      flatpak.enable = lib.mkForce false;
+
+      # {{{ OpenSSH
+      openssh =
+      {
+        enable   = true;
+        settings =
+        {
+        };
+      };
+      # }}}
+    };
     # }}}
 
     # {{{ Users
