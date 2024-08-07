@@ -63,7 +63,11 @@
       openssh =
       {
         enable         = true;
-        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJ1yAeBhLPqvKKsDqizlk+pBEFOsPYWEgfGJqN2LJ71 sparkle-ember" ];
+        authorizedKeys =
+        [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJ1yAeBhLPqvKKsDqizlk+pBEFOsPYWEgfGJqN2LJ71 sparkle-ember"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMfErijXq5GrzIrN6BP3AV2vAg2Y52+PB2JECYp/d5Q6 hope-ember"
+        ];
 
         settings =
         {
