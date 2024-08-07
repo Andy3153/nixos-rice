@@ -62,9 +62,13 @@
       # {{{ OpenSSH
       openssh =
       {
-        enable   = true;
+        enable         = true;
+        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJ1yAeBhLPqvKKsDqizlk+pBEFOsPYWEgfGJqN2LJ71 sparkle-ember" ];
+
         settings =
         {
+          PasswordAuthentication = false;
+          X11Forwarding          = true;
         };
       };
       # }}}
