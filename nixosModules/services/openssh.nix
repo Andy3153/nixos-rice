@@ -21,6 +21,7 @@ in
         AllowUsers      = [ mainUser ];
         PermitRootLogin = "no";
         PrintMotd       = true;
+        X11Forwarding   = false;
       };
     };
   };
