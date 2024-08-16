@@ -16,6 +16,12 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  networking.firewall =
+  {
+    allowedTCPPorts = [ 25565 ];
+    allowedUDPPorts = [ 25565 ];
+  };
+
   custom =
   {
     # {{{ Boot
