@@ -10,6 +10,7 @@
   [
     ./ananicy.nix
     ./flatpak.nix
+    ./hamachi.nix
     ./mpd.nix
     ./openssh.nix
     ./pipewire.nix

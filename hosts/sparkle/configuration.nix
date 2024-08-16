@@ -264,6 +264,7 @@
     services =
     {
       flatpak.enable = true;
+      hamachi.enable = true;
       mpd.enable     = true;
 
       openssh =
