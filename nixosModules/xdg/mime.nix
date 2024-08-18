@@ -3,7 +3,7 @@
 ## XDG MIME config
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom.xdg.mime;
@@ -15,7 +15,7 @@ in
 
     defaultApplications = lib.mkOption
     {
-      type        = with lib.types; attrsOf (coercedTo (either (listOf str) str) (x: lib.concatStringsSep ";" (lib.toList x)) str);
+      type        = options.xdg.mime.defaultApplications.type;
       default     = { };
       description = "sets the default applications for given mimetypes";
     };

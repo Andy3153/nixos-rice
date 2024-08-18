@@ -16,56 +16,56 @@ in
 
     desktop = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Desktop";
       description = "The Desktop directory.";
     };
 
     documents = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Documents";
       description = "The Documents directory.";
     };
 
     download = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Download";
       description = "The Download directory.";
     };
 
     music = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Music";
       description = "The Music directory.";
     };
 
     pictures = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Pictures";
       description = "The Pictures directory.";
     };
 
     publicShare = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Public";
       description = "The Public share directory.";
     };
 
     templates = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Templates";
       description = "The Templates directory.";
     };
 
     videos = lib.mkOption
     {
-      type        = lib.types.nullOr (lib.types.coercedTo lib.types.path builtins.toString lib.types.str);
+      type        = lib.types.anything;
       default     = "${homeDir}/Videos";
       description = "The Videos directory.";
     };

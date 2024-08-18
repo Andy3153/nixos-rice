@@ -3,7 +3,7 @@
 ## Kernel config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
 
 let
   cfg = config.custom.boot.kernel;
@@ -11,7 +11,7 @@ in
 {
   options.custom.boot.kernel = lib.mkOption
   {
-    type        = lib.types.raw;
+    type        = options.boot.kernelPackages.type;
     default     = pkgs.linuxPackages;
     example     = pkgs.linuxKernel.packages.linux_zen;
     description = "what Linux kernel to use";

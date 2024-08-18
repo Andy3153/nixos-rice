@@ -3,7 +3,7 @@
 ## Custom NixOS modules bundle
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom;
@@ -56,14 +56,14 @@ in
   {
     extraPackages = lib.mkOption
     {
-      type        = lib.types.listOf lib.types.package;
+      type        = options.environment.systemPackages.type;
       default     = [ ];
       description = "extra packages to add to the configuration";
     };
 
     extraFlatpakPackages = lib.mkOption
     {
-      type        = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
+      type        = options.services.flatpak.packages.type;
       default     = [ ];
       description = "extra flatpak packages to add to the configuration";
     };

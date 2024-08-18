@@ -3,7 +3,7 @@
 ## Flatpak config
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg      = config.custom.services.flatpak;
@@ -20,34 +20,6 @@ let
     "com.github.tchx84.Flatseal"         # Base-System
   ];
   # }}}
-
-  # {{{ Package options
-  packageOptions = _:
-  {
-    options =
-    {
-      appId = lib.mkOption
-      {
-        type        = lib.types.str;
-        description = "the app ID of the app to install";
-      };
-
-      commit = lib.mkOption
-      {
-        type        = lib.types.nullOr lib.types.str;
-        default     = null;
-        description = "hash of the app commit to install";
-      };
-
-      origin = lib.mkOption
-      {
-        type        = lib.types.str;
-        default     = "flathub";
-        description = "repository origin (default: flathub)";
-      };
-    };
-  };
-  # }}}
 in
 {
   options.custom.services.flatpak =
@@ -55,7 +27,7 @@ in
     enable   = lib.mkEnableOption "enables Flatpak";
     packages = lib.mkOption
     {
-      type        = with lib.types; listOf (coercedTo str (appId: { inherit appId; }) (submodule packageOptions));
+      type        = options.services.flatpak.packages.type;
       default     = [ ];
       description = "declares a list of applications to install";
     };

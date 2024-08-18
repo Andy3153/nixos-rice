@@ -3,7 +3,7 @@
 ## UPower config
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom.services.upower;
@@ -15,7 +15,7 @@ in
 
     criticalAction = lib.mkOption
     {
-      type        = lib.types.enum [ "PowerOff" "Hibernate" "HybridSleep" ];
+      type        = options.services.upower.criticalPowerAction.type;
       default     = "HybridSleep";
       example     = "PowerOff";
       description = "action to take when `percent.criticalAction` has been reached";
@@ -25,7 +25,7 @@ in
     {
       low = lib.mkOption
       {
-        type        = lib.types.int;
+        type        = options.services.upower.percentageLow.type;
         default     = 15;
         example     = 20;
         description = "battery percentage that's considered low";
@@ -33,7 +33,7 @@ in
 
       critical = lib.mkOption
       {
-        type        = lib.types.int;
+        type        = options.services.upower.percentageCritical.type;
         default     = 5;
         example     = 10;
         description = "battery percentage that's considered critical";
@@ -41,7 +41,7 @@ in
 
       criticalAction = lib.mkOption
       {
-        type        = lib.types.int;
+        type        = options.services.upower.percentageAction.type;
         default     = 5;
         example     = 10;
         description = "battery percentage at which UPower takes action (from `criticalAction`)";

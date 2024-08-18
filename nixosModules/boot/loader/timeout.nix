@@ -3,7 +3,7 @@
 ## Timeout config
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom.boot.loader.timeout;
@@ -11,7 +11,7 @@ in
 {
   options.custom.boot.loader.timeout = lib.mkOption
   {
-    type        = lib.types.int;
+    type        = options.boot.loader.timeout.type;
     default     = 0;
     example     = 5;
     description = "timeout until loader boots the default menu item";

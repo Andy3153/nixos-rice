@@ -3,7 +3,7 @@
 ## GPU drivers config
 ##
 
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom.hardware.gpuDrivers;
@@ -11,7 +11,7 @@ in
 {
   options.custom.hardware.gpuDrivers = lib.mkOption
   {
-    type        = lib.types.listOf lib.types.str;
+    type        = options.services.xserver.videoDrivers.type;
     default     = [ ];
     example =
     [

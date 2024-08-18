@@ -13,19 +13,19 @@ let
     {
       name = lib.mkOption
       {
-        type        = lib.types.str;
+        type        = lib.types.anything;
         description = "name of the cursor theme";
       };
 
       package = lib.mkOption
       {
-        type        = lib.types.package;
+        type        = lib.types.anything;
         description = "package that provides the cursor theme";
       };
 
       size = lib.mkOption
       {
-        type        = lib.types.int;
+        type        = lib.types.anything;
         description = "size of the cursor";
       };
     };

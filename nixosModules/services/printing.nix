@@ -3,7 +3,7 @@
 ## Printing config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
 
 let
   cfg = config.custom.services.printing;
@@ -14,7 +14,7 @@ in
     enable = lib.mkEnableOption "enables printing";
     drivers = lib.mkOption
     {
-      type        = lib.types.listOf lib.types.path;
+      type        = options.services.printing.drivers.type;
       default     = [ ];
       example     = [ pkgs.brlaser ];
       description = "CUPS drivers to use";
