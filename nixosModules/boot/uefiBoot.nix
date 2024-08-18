@@ -13,20 +13,12 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.boot.loader.systemd-boot.enable = lib.mkDefault true;
-    boot.loader =
+    boot.loader.efi =
     {
-      grub =
-      {
-        enable     = lib.mkForce false;
-        efiSupport = lib.mkDefault false;
-      };
-
-      efi =
-      {
-        canTouchEfiVariables = lib.mkDefault true;
-        efiSysMountPoint     = "/boot";
-      };
+      canTouchEfiVariables = true;
+      efiSysMountPoint     = "/boot";
     };
+
+    custom.boot.loader.systemd-boot.enable = true;
   };
 }
