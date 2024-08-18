@@ -83,16 +83,13 @@ in
   # {{{ Home-Manager
   home-manager.users.${config.custom.users.mainUser} =
   {
-    home =
+    # {{{ Config files
+    home.file = lib.mkIf cfg.enableCustomConfigs
     {
-      # {{{ Config files
-      file = lib.mkIf cfg.enableCustomConfigs
-      {
-        ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
-        ".config/nvim".recursive = true; # because package managers create some files in here
-      };
-      # }}}
+      ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
+      ".config/nvim".recursive = true; # because package managers create some files in here
     };
+    # }}}
 
     # {{{ Neovim program
     programs.neovim =
