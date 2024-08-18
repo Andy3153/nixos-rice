@@ -15,12 +15,12 @@ in
   {
     programs.steam =
     {
-      enable                       = lib.mkDefault true;
-      #gamescopeSession.enable      = lib.mkDefault true;
-      dedicatedServer.openFirewall = lib.mkDefault true;
-      remotePlay.openFirewall      = lib.mkDefault true;
+      enable                       = true;
+      #gamescopeSession.enable      = true;
+      dedicatedServer.openFirewall = true;
+      remotePlay.openFirewall      = true;
     };
 
-    custom.programs.java.enable = lib.mkDefault true;
+    custom.programs.java.enable = true;
   };
 }

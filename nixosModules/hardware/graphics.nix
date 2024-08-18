@@ -15,8 +15,8 @@ in
   {
     hardware.graphics =
     {
-      enable      = lib.mkDefault true;
-      enable32Bit = lib.mkDefault true;
+      enable      = true;
+      enable32Bit = true;
     };
   };
 }

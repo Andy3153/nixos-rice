@@ -14,7 +14,6 @@ in
   config = lib.mkIf cfg.enable
   {
     services.logmein-hamachi.enable = true;
-
     custom.extraPackages = with pkgs; [ haguichi ]; # Hamachi-GUI
   };
 }

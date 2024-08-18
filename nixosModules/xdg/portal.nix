@@ -15,7 +15,7 @@ in
   {
     xdg.portal =
     {
-      enable = lib.mkDefault true;
+      enable = true;
       config =
       {
         common =

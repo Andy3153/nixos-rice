@@ -36,14 +36,14 @@ in
 
   config = lib.mkIf (cfg != null)
   {
-    gtk.iconCache.enable = lib.mkDefault true;
+    gtk.iconCache.enable = true;
 
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =
     {
       gtk =
       {
-        enable = lib.mkDefault true;
+        enable = true;
         gtk2.configLocation = "${config.home-manager.users.${config.custom.users.mainUser}.xdg.configHome}/gtk-2.0/gtkrc";
 
         theme =

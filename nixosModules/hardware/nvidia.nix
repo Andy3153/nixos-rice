@@ -26,7 +26,7 @@ in
       hardware =
       {
         graphics.extraPackages    = [ pkgs.vaapiVdpau ];
-        nvidia.modesetting.enable = lib.mkDefault true;
+        nvidia.modesetting.enable = true;
       };
 
       services.xserver.videoDrivers            = [ "nvidia" ];
@@ -39,8 +39,8 @@ in
 
       hardware.nvidia.prime.offload =
       {
-        enable           = lib.mkDefault true;
-        enableOffloadCmd = lib.mkDefault true;
+        enable           = true;
+        enableOffloadCmd = true;
       };
     })
   ];

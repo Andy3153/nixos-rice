@@ -13,9 +13,9 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.gui.dm.sddm.enable = lib.mkDefault true;
-    custom.xdg.portal.enable  = lib.mkDefault true;
-    programs.hyprland.enable  = lib.mkDefault true;
+    custom.gui.dm.sddm.enable = true;
+    custom.xdg.portal.enable  = true;
+    programs.hyprland.enable  = true;
 
     nix.settings = # Enable Hyprland Cachix
     {
@@ -25,7 +25,7 @@ in
 
     services =
     {
-      displayManager.defaultSession = lib.mkDefault "hyprland";
+      displayManager.defaultSession = "hyprland";
 
       greetd.settings =
       {
@@ -47,8 +47,8 @@ in
     {
       wayland.windowManager.hyprland =
       {
-        enable          = lib.mkDefault true;
-        xwayland.enable = lib.mkDefault true;
+        enable          = true;
+        xwayland.enable = true;
         extraConfig     = " ";
       };
 

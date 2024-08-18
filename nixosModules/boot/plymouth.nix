@@ -17,7 +17,7 @@ in
 
     boot.plymouth =
     {
-      enable = lib.mkDefault true;
+      enable = true;
       theme  = "spinnerv2";
       themePackages =
       [

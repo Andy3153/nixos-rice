@@ -78,8 +78,8 @@ in
     {
       xdg.userDirs =
       {
-        enable            = lib.mkDefault true;
-        createDirectories = lib.mkDefault true;
+        enable            = true;
+        createDirectories = true;
 
         desktop           = cfg.desktop;
         documents         = cfg.documents;

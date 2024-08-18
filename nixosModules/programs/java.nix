@@ -10,9 +10,5 @@ let
 in
 {
   options.custom.programs.java.enable = lib.mkEnableOption "enables Java";
-
-  config = lib.mkIf cfg.enable
-  {
-    programs.java.enable = true;
-  };
+  config.programs.java.enable         = cfg.enable;
 }

@@ -15,8 +15,8 @@ in
   {
     services.ananicy =
     {
-      enable  = lib.mkDefault true;
-      package = lib.mkDefault pkgs.ananicy-cpp;
+      enable  = true;
+      package = pkgs.ananicy-cpp;
     };
   };
 }

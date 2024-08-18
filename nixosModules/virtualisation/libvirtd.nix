@@ -15,14 +15,14 @@ in
   {
     virtualisation.libvirtd =
     {
-      enable     = lib.mkDefault true;
-      onBoot     = lib.mkDefault "ignore";
-      onShutdown = lib.mkDefault "suspend";
+      enable     = true;
+      onBoot     = "ignore";
+      onShutdown = "suspend";
 
       qemu =
       {
-        runAsRoot    = lib.mkDefault false;
-        swtpm.enable = lib.mkDefault true;
+        runAsRoot    = false;
+        swtpm.enable = true;
       };
     };
 

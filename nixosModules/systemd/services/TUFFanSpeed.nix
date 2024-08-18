@@ -15,7 +15,7 @@ in
   {
     systemd.services.TUFFanSpeed =
     {
-      enable      = lib.mkDefault true;
+      enable      = true;
       description = "systemd service that changes an ASUS TUF's fan speed to 'Performance' at boot";
       wantedBy    = [ "multi-user.target" ];
 

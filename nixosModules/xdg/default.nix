@@ -23,7 +23,7 @@ in
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =
     {
-      xdg.enable = lib.mkDefault cfg.enable;
+      xdg.enable = true;
     };
     # }}}
   };

@@ -20,8 +20,8 @@ in
   {
     virtualisation.docker =
     {
-      enable           = lib.mkDefault true;
-      autoPrune.enable = lib.mkDefault true;
+      enable           = true;
+      autoPrune.enable = true;
       enableOnBoot     = cfg.enableOnBoot;
       rootless.enable  = cfg.rootless.enable;
     };

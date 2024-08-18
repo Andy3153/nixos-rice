@@ -115,8 +115,8 @@ in
   {
     fonts =
     {
-      enableDefaultPackages = lib.mkDefault true;
-      fontDir.enable        = lib.mkDefault true;
+      enableDefaultPackages = true;
+      fontDir.enable        = true;
       packages              =
         cfg.defaultFonts.monospace.packages ++
         cfg.defaultFonts.serif.packages     ++
@@ -126,7 +126,7 @@ in
 
       fontconfig =
       {
-        enable = lib.mkDefault true;
+        enable = true;
         defaultFonts =
         {
           monospace = cfg.defaultFonts.monospace.names;

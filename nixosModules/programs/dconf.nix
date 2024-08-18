@@ -10,9 +10,5 @@ let
 in
 {
   options.custom.programs.dconf.enable = lib.mkEnableOption "enables Dconf";
-
-  config = lib.mkIf cfg.enable
-  {
-    programs.dconf.enable = true;
-  };
+  config.programs.dconf.enable         = cfg.enable;
 }

@@ -270,7 +270,7 @@ in
   {
     qt =
     {
-      enable        = lib.mkDefault true;
+      enable        = true;
       platformTheme = lib.mkIf (cfg.platformTheme == "qtct") "qt5ct";
       style         = qtStyle;
     };
@@ -280,7 +280,7 @@ in
     {
       qt =
       {
-        enable             = lib.mkDefault true;
+        enable             = true;
         platformTheme.name = cfg.platformTheme;
         style.name         = qtStyle;
       };

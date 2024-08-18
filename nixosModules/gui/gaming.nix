@@ -45,17 +45,17 @@ in
         # }}}
 
         # Enable Xbox controller drivers
-        hardware.controllers.xbox.enable = lib.mkDefault true;
+        hardware.controllers.xbox.enable = true;
 
         # Enable renicing daemon
-        #services.ananicy.enable          = lib.mkDefault true;
+        #services.ananicy.enable          = true;
 
         # {{{ Programs
         programs =
         {
-          steam.enable    = lib.mkDefault true;
-          gamemode.enable = lib.mkDefault true;
-          mangohud.enable = lib.mkDefault true;
+          steam.enable    = true;
+          gamemode.enable = true;
+          mangohud.enable = true;
         };
         # }}}
       };

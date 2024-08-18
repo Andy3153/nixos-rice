@@ -14,13 +14,13 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    programs.regreet.enable = lib.mkDefault true;
+    programs.regreet.enable = true;
 
     services.greetd =
     {
-      enable  = lib.mkDefault true;
-      restart = lib.mkDefault true;
-      settings = lib.mkDefault rec
+      enable  = true;
+      restart = true;
+      settings = rec
       {
         initial_session =
         {

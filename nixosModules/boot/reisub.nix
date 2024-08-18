@@ -13,6 +13,6 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.boot.sysctl.kernel.sysrq = lib.mkDefault 244;
+    custom.boot.sysctl.kernel.sysrq = 244;
   };
 }

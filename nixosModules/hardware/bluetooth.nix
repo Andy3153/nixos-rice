@@ -21,26 +21,24 @@ in
     };
   };
 
-  config = lib.mkMerge
-  [
-    (lib.mkIf cfg.enable
+  config = lib.mkIf cfg.enable
+  {
+    hardware.bluetooth =
     {
-      hardware.bluetooth =
+      enable = true;
+
+      settings =
       {
-        enable = lib.mkDefault true;
-        settings =
+        General =
         {
-          General =
-          {
-            Enable       = "Source,Sink,Media,Socket";
-            Experimental = true;
-          };
+          Enable       = "Source,Sink,Media,Socket";
+          Experimental = true;
         };
       };
 
-      services.blueman.enable   = lib.mkDefault true;
-    })
+      powerOnBoot = cfg.powerOnBoot;
+    };
 
-    (lib.mkIf (!cfg.powerOnBoot) { hardware.bluetooth.powerOnBoot = lib.mkDefault false; })
-  ];
+    services.blueman.enable = true;
+  };
 }

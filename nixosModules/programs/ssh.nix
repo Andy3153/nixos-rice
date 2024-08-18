@@ -8,7 +8,6 @@
 let
   cfg      = config.custom.programs.ssh;
   mainUser = config.custom.users.mainUser;
-  HM       = config.home-manager.users.${mainUser};
 in
 {
   options.custom.programs.ssh =

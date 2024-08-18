@@ -15,8 +15,8 @@ in
   {
     hardware =
     {
-      xone.enable    = lib.mkDefault true;
-      xpadneo.enable = lib.mkDefault true;
+      xone.enable    = true;
+      xpadneo.enable = true;
     };
   };
 }

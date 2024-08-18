@@ -15,7 +15,6 @@ in
     drivers = lib.mkOption
     {
       type        = options.services.printing.drivers.type;
-      default     = [ ];
       example     = [ pkgs.brlaser ];
       description = "CUPS drivers to use";
     };
@@ -25,10 +24,10 @@ in
   {
     services.printing =
     {
-      enable          = lib.mkDefault true;
+      enable          = true;
       drivers         = cfg.drivers;
-      startWhenNeeded = lib.mkDefault true;
-      webInterface    = lib.mkDefault true;
+      startWhenNeeded = true;
+      webInterface    = true;
     };
   };
 }

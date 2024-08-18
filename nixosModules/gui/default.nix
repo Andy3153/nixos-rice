@@ -24,24 +24,18 @@ in
   {
     custom =
     {
-      boot.plymouth.enable = lib.mkDefault true;
-
-      gui =
-      {
-        gaming.enable               = lib.mkDefault false;
-        gaming.optimizations.enable = lib.mkDefault cfg.gaming.enable;
-      };
-
-      hardware.graphics.enable   = lib.mkDefault true;
-      programs.dconf.enable    = lib.mkDefault true;
-      services.udisks2.enable  = lib.mkDefault true;
-      services.pipewire.enable = lib.mkDefault true;
+      boot.plymouth.enable            = true;
+      gui.gaming.optimizations.enable = lib.mkDefault cfg.gaming.enable;
+      hardware.graphics.enable        = true;
+      programs.dconf.enable           = true;
+      services.udisks2.enable         = true;
+      services.pipewire.enable        = true;
 
       xdg =
       {
-        enable        = lib.mkDefault true;
-        portal.enable = lib.mkDefault true;
-        mime.enable = lib.mkDefault true;
+        enable        = true;
+        portal.enable = true;
+        mime.enable   = true;
       };
     };
   };

@@ -25,20 +25,20 @@ in
   {
     xdg.mime =
     {
-      enable              = lib.mkDefault cfg.enable;
-      addedAssociations   = lib.mkDefault cfg.defaultApplications;
-      defaultApplications = lib.mkDefault cfg.defaultApplications;
+      enable              = cfg.enable;
+      addedAssociations   = cfg.defaultApplications;
+      defaultApplications = cfg.defaultApplications;
     };
 
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =
     {
-      xdg.mime.enable = lib.mkDefault cfg.enable;
+      xdg.mime.enable = cfg.enable;
       xdg.mimeApps =
       {
-        enable              = lib.mkDefault cfg.enable;
-        associations.added  = lib.mkDefault cfg.defaultApplications;
-        defaultApplications = lib.mkDefault cfg.defaultApplications;
+        enable              = cfg.enable;
+        associations.added  = cfg.defaultApplications;
+        defaultApplications = cfg.defaultApplications;
       };
     };
     # }}}

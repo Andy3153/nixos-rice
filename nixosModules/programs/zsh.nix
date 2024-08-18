@@ -7,7 +7,6 @@
 
 let
   cfg           = config.custom.programs.zsh;
-  xdgConfigHome = config.home-manager.users.${config.custom.users.mainUser}.xdg.configHome;
 in
 {
   options.custom.programs.zsh =

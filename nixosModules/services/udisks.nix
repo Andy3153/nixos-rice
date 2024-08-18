@@ -10,9 +10,5 @@ let
 in
 {
   options.custom.services.udisks2.enable = lib.mkEnableOption "enables UDisks (get drives in Dolphin)";
-
-  config = lib.mkIf cfg.enable
-  {
-    services.udisks2.enable = lib.mkDefault true;
-  };
+  config.services.udisks2.enable         = cfg.enable;
 }

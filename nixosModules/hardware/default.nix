@@ -41,8 +41,8 @@ in
 
       services =
       {
-        tlp.enable    = lib.mkDefault true;
-        upower.enable = lib.mkDefault true;
+        tlp.enable    = true;
+        upower.enable = true;
       };
     })
   ];

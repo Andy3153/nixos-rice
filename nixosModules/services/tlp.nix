@@ -42,7 +42,7 @@ in
   {
     services.tlp =
     {
-      enable = lib.mkDefault true;
+      enable = true;
       settings =
       {
         START_CHARGE_THRESH_BAT0 = cfg.chargeThreshold.start;

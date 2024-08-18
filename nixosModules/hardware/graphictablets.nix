@@ -15,8 +15,8 @@ in
   {
     hardware.opentabletdriver =
     {
-      enable        = lib.mkDefault true;
-      daemon.enable = lib.mkDefault true;
+      enable        = true;
+      daemon.enable = true;
     };
   };
 }

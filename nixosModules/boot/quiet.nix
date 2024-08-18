@@ -15,7 +15,7 @@ in
   {
     boot =
     {
-      consoleLogLevel = lib.mkDefault 0;
+      consoleLogLevel = 0;
 
       kernelParams =
       [
@@ -23,7 +23,7 @@ in
         "udev.log_level=0"
       ];
 
-      initrd.verbose = lib.mkDefault false;
+      initrd.verbose = false;
     };
   };
 }

@@ -16,9 +16,9 @@ in
   {
     services.displayManager.sddm =
     {
-      enable         = lib.mkDefault true;
-      autoNumlock    = lib.mkDefault true;
-      wayland.enable = lib.mkDefault true;
+      enable         = true;
+      autoNumlock    = true;
+      wayland.enable = true;
 
       settings =
       {

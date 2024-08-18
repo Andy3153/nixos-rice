@@ -10,9 +10,5 @@ let
 in
 {
   options.custom.programs.gamemode.enable = lib.mkEnableOption "enables Feral GameMode";
-
-  config = lib.mkIf cfg.enable
-  {
-    programs.gamemode.enable = true;
-  };
+  config.programs.gamemode.enable         = cfg.enable;
 }

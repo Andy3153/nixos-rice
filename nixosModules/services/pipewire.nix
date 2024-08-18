@@ -13,14 +13,14 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    security.rtkit.enable = true; # pipewire wants it
+    security.rtkit.enable = lib.mkForce true; # pipewire wants it
 
     services.pipewire =
     {
-      enable            = lib.mkDefault true;
-      alsa.enable       = lib.mkDefault true;
-      alsa.support32Bit = lib.mkDefault true;
-      pulse.enable      = lib.mkDefault true;
+      enable            = true;
+      alsa.enable       = true;
+      alsa.support32Bit = true;
+      pulse.enable      = true;
     };
   };
 }

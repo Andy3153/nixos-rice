@@ -42,7 +42,7 @@ in
 
     services.hardware.openrgb =
     {
-      enable  = lib.mkDefault true;
+      enable  = true;
       package = openrgbPackage;
     };
   };
