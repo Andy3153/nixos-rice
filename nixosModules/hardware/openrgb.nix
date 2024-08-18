@@ -37,8 +37,8 @@ in
   {
     custom.hardware.i2c.enable = lib.mkForce true; # force enable custom i2c
 
-    #environment.systemPackages = [ pkgs.openrgb-plugin-effects ];
-    services.udev.packages     = [ openrgbPackage ];
+    #custom.extraPackages  = [ pkgs.openrgb-plugin-effects ];
+    services.udev.packages = [ openrgbPackage ];
 
     services.hardware.openrgb =
     {

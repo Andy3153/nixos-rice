@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Packages
-    environment.systemPackages = lib.mkMerge
+    custom.extraPackages = lib.mkMerge
     [
       (with pkgs;
       [
@@ -91,39 +91,6 @@ in
         ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
         ".config/nvim".recursive = true; # because package managers create some files in here
       };
-      # }}}
-
-      # {{{ Home packages
-      #packages = lib.mkMerge
-      #[
-      #  (lib.mkIf cfgGui.enable (with pkgs;
-      #  [
-      #    neovide
-      #  ]))
-      #
-      #  (lib.mkIf cfg.enableCustomConfigs lib.mkMerge
-      #  [
-      #    (with pkgs;
-      #    [
-      #      arduino-language-server
-      #      #nodePackages.bash-language-server
-      #      clang-tools
-      #      cmake-language-server
-      #      dockerfile-language-server-nodejs
-      #      lua-language-server
-      #      marksman
-      #      nil
-      #      python311Packages.python-lsp-server
-      #      texlab
-      #      nodePackages.vim-language-server
-      #    ])
-      #
-      #    (with pkgs-stable;
-      #    [
-      #      nodePackages.bash-language-server
-      #    ])
-      #  ])
-      #];
       # }}}
     };
 

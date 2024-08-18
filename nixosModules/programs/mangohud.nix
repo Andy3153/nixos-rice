@@ -13,7 +13,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    environment.systemPackages = with pkgs; [ mangohud ];
+    custom.extraPackages = with pkgs; [ mangohud ];
 
   # {{{ Home-Manager
   home-manager.users.${config.custom.users.mainUser} =

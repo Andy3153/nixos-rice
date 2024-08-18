@@ -13,8 +13,8 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    boot.kernelModules         = [ "i2c-dev" ];
-    environment.systemPackages = [ pkgs.i2c-tools ];
-    hardware.i2c.enable        = lib.mkDefault true;
+    boot.kernelModules   = [ "i2c-dev" ];
+    custom.extraPackages = [ pkgs.i2c-tools ];
+    hardware.i2c.enable  = lib.mkDefault true;
   };
 }

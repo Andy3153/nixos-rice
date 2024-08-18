@@ -21,16 +21,12 @@ in
     {
       boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-      environment.systemPackages = [ pkgs.nvtopPackages.full ];
+      custom.extraPackages     = [ pkgs.nvtopPackages.full ];
 
       hardware =
       {
-        graphics.extraPackages = [ pkgs.vaapiVdpau ];
-
-        nvidia =
-        {
-          modesetting.enable = lib.mkDefault true;
-        };
+        graphics.extraPackages    = [ pkgs.vaapiVdpau ];
+        nvidia.modesetting.enable = lib.mkDefault true;
       };
 
       services.xserver.videoDrivers            = [ "nvidia" ];

@@ -13,7 +13,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    environment.systemPackages = with pkgs-tilp; [ tilp2 ];
-    services.udev.packages     = with pkgs;      [ libticables2 ];
+    custom.extraPackages   = with pkgs-tilp; [ tilp2 ];
+    services.udev.packages = with pkgs;      [ libticables2 ];
   };
 }

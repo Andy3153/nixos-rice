@@ -23,27 +23,27 @@ in
     # {{{ Gaming sane defaults
     (lib.mkIf cfg.enable
     {
-      # {{{ Extra packages
-      environment.systemPackages = with pkgs;
-      [
-        depotdownloader                     # for-steam
-        extest                              # for-steam for-controllers
-        wineWowPackages.staging             # wine
-        protonup-qt                         # for-steam for-wine
-        protontricks                        # for-steam for-wine
-
-        bottles                             # for-wine
-        lutris                              # for-wine
-
-        prismlauncher                       # games
-        xonotic                             # games
-
-        mesa-demos                          # glxgears
-      ];
-      # }}}
-
       custom =
       {
+        # {{{ Extra packages
+        extraPackages = with pkgs;
+        [
+          depotdownloader                     # for-steam
+          extest                              # for-steam for-controllers
+          wineWowPackages.staging             # wine
+          protonup-qt                         # for-steam for-wine
+          protontricks                        # for-steam for-wine
+
+          bottles                             # for-wine
+          lutris                              # for-wine
+
+          prismlauncher                       # games
+          xonotic                             # games
+
+          mesa-demos                          # glxgears
+        ];
+        # }}}
+
         # Enable Xbox controller drivers
         hardware.controllers.xbox.enable = lib.mkDefault true;
 

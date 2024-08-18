@@ -3,7 +3,6 @@
 ## Common settings that every host shares
 ##
 
-#{ config, lib, pkgs, pkgs-andy3153, ... }:
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 # {{{ Variables
@@ -19,85 +18,82 @@ in
   # }}}
 
   # {{{ Environment
-  environment =
-  {
-    localBinInPath = true;
+  environment.localBinInPath = true;
+  # }}}
 
-    # {{{ System packages
-    systemPackages = lib.mkMerge
+  # {{{ Extra packages
+  custom.extraPackages = lib.mkMerge
+  [
+    # {{{ Default NixPkgs
+    (with pkgs;
     [
-      # {{{ Default NixPkgs
-      (with pkgs;
+      home-manager               # NixOS-Components
+
+      hunspell                   # for-nvim for-libreoffice
+      hunspellDicts.en_US        # for-nvim for-libreoffice
+      #hunspellDicts.ro_RO        # for-nvim for-libreoffice
+
+      efibootmgr                 # EFI
+      doas-sudo-shim             # for-doas
+
+      git                        # Programming
+
+      (python3.withPackages(     # Programming for-nvim
+      python-pkgs:
       [
-        home-manager               # NixOS-Components
+        python-pkgs.requests     # for-waybar
+      ])) # nix purists don't
+          # kill me for doing
+          # this pls
 
-        hunspell                   # for-nvim for-libreoffice
-        hunspellDicts.en_US        # for-nvim for-libreoffice
-        #hunspellDicts.ro_RO        # for-nvim for-libreoffice
+      gcc                        # Programming for-nvim
+      gnumake                    # Programming for-nvim
 
-        efibootmgr                 # EFI
-        doas-sudo-shim             # for-doas
+      file                       # Other-CLI
+      usbutils                   # Other-CLI
+      killall                    # Other-CLI
+      ripgrep                    # Other-CLI
+      fastfetch                  # Other-CLI fetch-system-info
+      lm_sensors                 # Other-CLI sensors
+      sshfs                      # for-ssh fs-support
+      wget                       # download
+      curl                       # download
+      rsync                      # cp
+      lsd                        # ls for-zsh
+      lolcat                     # for-zsh
+      colordiff                  # for-zsh
+      ranger                     # file-manager for-zsh for-nvim
+      tmux                       # terminal-multiplexer
+      htop                       # task-manager
+      btop                       # task-manager
+      kitty.terminfo             # terminfo
 
-        git                        # Programming
+      brightnessctl              # Other-CLI brightness hyprland-rice
 
-        (python3.withPackages(     # Programming for-nvim
-        python-pkgs:
-        [
-          python-pkgs.requests     # for-waybar
-        ])) # nix purists don't
-            # kill me for doing
-            # this pls
+      parted                     # Partition-Manager
 
-        gcc                        # Programming for-nvim
-        gnumake                    # Programming for-nvim
+      wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
 
-        file                       # Other-CLI
-        usbutils                   # Other-CLI
-        killall                    # Other-CLI
-        ripgrep                    # Other-CLI
-        fastfetch                  # Other-CLI fetch-system-info
-        lm_sensors                 # Other-CLI sensors
-        sshfs                      # for-ssh fs-support
-        wget                       # download
-        curl                       # download
-        rsync                      # cp
-        lsd                        # ls for-zsh
-        lolcat                     # for-zsh
-        colordiff                  # for-zsh
-        ranger                     # file-manager for-zsh for-nvim
-        tmux                       # terminal-multiplexer
-        htop                       # task-manager
-        btop                       # task-manager
-        kitty.terminfo             # terminfo
+      inotify-tools              # for-scripts
+      libnotify                  # for-scripts
 
-        brightnessctl              # Other-CLI brightness hyprland-rice
-
-        parted                     # Partition-Manager
-
-        wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
-
-        inotify-tools              # for-scripts
-        libnotify                  # for-scripts
-
-        unzip                      # archives
-      ])
-      # }}}
-
-      # {{{ NixPkgs Unstable
-      (with pkgs-unstable;
-      [
-        hunspellDicts.ro_RO        # for-nvim for-libreoffice
-      ])
-      # }}}
-
-      # {{{ NixPkgs Stable
-      (with pkgs-stable;
-      [
-      ])
-      # }}}
-    ];
+      unzip                      # archives
+    ])
     # }}}
-  };
+
+    # {{{ NixPkgs Unstable
+    (with pkgs-unstable;
+    [
+      hunspellDicts.ro_RO        # for-nvim for-libreoffice
+    ])
+    # }}}
+
+    # {{{ NixPkgs Stable
+    (with pkgs-stable;
+    [
+    ])
+    # }}}
+  ];
   # }}}
 
   # {{{ Hardware

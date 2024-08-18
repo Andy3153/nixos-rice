@@ -13,8 +13,10 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    environment.systemPackages = with pkgs; [ distrobox ];
-
-    custom.virtualisation.docker.enable = lib.mkForce true;
+    custom =
+    {
+      extraPackages                = with pkgs; [ distrobox ];
+      virtualisation.docker.enable = lib.mkForce true;
+    };
   };
 }
