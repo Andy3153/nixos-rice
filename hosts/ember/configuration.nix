@@ -19,8 +19,8 @@
     # {{{ Boot
     boot =
     {
-      loader.timeout    = 2; #extlinux is weird af
-      sysctl.swappiness = 40;
+      loader.timeout       = 2; #extlinux is weird af
+      sysctl.vm.swappiness = 40;
     };
     # }}}
 

@@ -21,18 +21,21 @@ in
       };
     };
 
-    swappiness = lib.mkOption
+    vm =
     {
-      type        = lib.types.int;
-      default     = 60;
-      example     = 30;
-      description = "what swappiness value should be used";
+      swappiness = lib.mkOption
+      {
+        type        = lib.types.int;
+        default     = 60;
+        example     = 30;
+        description = "what swappiness value should be used";
+      };
     };
   };
 
   config.boot.kernel.sysctl =
   {
     "kernel.sysrq"  = cfg.kernel.sysrq;
-    "vm.swappiness" = cfg.swappiness;
+    "vm.swappiness" = cfg.vm.swappiness;
   };
 }
