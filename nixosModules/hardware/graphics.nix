@@ -9,14 +9,13 @@ let
   cfg = config.custom.hardware.graphics;
 in
 {
-  options.custom.hardware.graphics.enable = lib.mkEnableOption "enables OpenGL";
+  options.custom.hardware.graphics.enable = lib.mkEnableOption "enables graphics stuff and OpenGL";
 
   config = lib.mkIf cfg.enable
   {
     hardware.graphics =
     {
-      enable          = lib.mkDefault true;
-      #driSupport      = lib.mkDefault true;
+      enable      = lib.mkDefault true;
       enable32Bit = lib.mkDefault true;
     };
   };
