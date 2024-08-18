@@ -28,18 +28,18 @@ in
 
     virtualisation.spiceUSBRedirection.enable = true;
 
-  # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
-  {
-    dconf.settings =
+    # {{{ Home-Manager
+    home-manager.users.${config.custom.users.mainUser} =
     {
-      "org/virt-manager/virt-manager/connections" =
+      dconf.settings =
       {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+        "org/virt-manager/virt-manager/connections" =
+        {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
+        };
       };
     };
-  };
-  # }}}
+    # }}}
   };
 }
