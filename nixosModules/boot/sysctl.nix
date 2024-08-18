@@ -9,16 +9,30 @@ let
   cfg = config.custom.boot.sysctl;
 in
 {
-  options.custom.boot.sysctl.swappiness = lib.mkOption
+  options.custom.boot.sysctl =
   {
-    type        = lib.types.int;
-    default     = 60;
-    example     = 30;
-    description = "what swappiness value should be used";
+    kernel =
+    {
+      sysrq = lib.mkOption
+      {
+        type        = lib.types.int;
+        example     = 244;
+        description = "bitmask to change behavior of Magic SysRq key (ex.: 244 enables the REISUB sequence)";
+      };
+    };
+
+    swappiness = lib.mkOption
+    {
+      type        = lib.types.int;
+      default     = 60;
+      example     = 30;
+      description = "what swappiness value should be used";
+    };
   };
 
   config.boot.kernel.sysctl =
   {
+    "kernel.sysrq"  = cfg.kernel.sysrq;
     "vm.swappiness" = cfg.swappiness;
   };
 }
