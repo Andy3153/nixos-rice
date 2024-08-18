@@ -6,7 +6,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.boot.loader.systemd-boot;
+  cfg           = config.custom.boot.loader.systemd-boot;
+  ESPMountPoint = config.boot.loader.efi.efiSysMountPoint;
 in
 {
   options.custom.boot.loader.systemd-boot =
@@ -26,7 +27,7 @@ in
       # Rename boot entries
       extraInstallCommands = # thx @m0tholith on discord
       ''
-        search_dir=/boot/loader/entries
+        search_dir=${ESPMountPoint}/loader/entries
         for file in "$search_dir"/*
         do
           ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
