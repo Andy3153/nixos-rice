@@ -36,8 +36,8 @@
     # }}}
 
     # {{{ NixOS Hardware
-    #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.url = "github:Andy3153/nixos-hardware/asus-fx506hm_nvidia-open";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    #nixos-hardware.url = "github:Andy3153/nixos-hardware/asus-fx506hm_nvidia-open";
     #nixos-hardware.url = "git+file:///home/andy3153/src/nixos/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
     # }}}
 
