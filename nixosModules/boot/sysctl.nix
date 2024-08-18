@@ -16,6 +16,7 @@ in
       sysrq = lib.mkOption
       {
         type        = lib.types.int;
+        default     = 0;
         example     = 244;
         description = "bitmask to change behavior of Magic SysRq key (ex.: 244 enables the REISUB sequence)";
       };
