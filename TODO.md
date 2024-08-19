@@ -1,3 +1,4 @@
+hosts/ember/hardware-configuration: /dev/disk/by-label/ember-* -> /dev/ember/*
 redo boot.efiBoot logic
 redo hardware.isLaptop logic
 
