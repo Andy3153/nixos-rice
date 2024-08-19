@@ -109,6 +109,11 @@
       options = [ "bind" ];
     };
 
+  fileSystems."/home/andy3153/.var/app/io.gitlab.librewolf-community/.librewolf" =
+    { device = "/.btrfs-root/home/andy3153/.librewolf";
+      options = [ "bind" ];
+    };
+
   swapDevices = [ { device = "/.swap/swapfile"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
