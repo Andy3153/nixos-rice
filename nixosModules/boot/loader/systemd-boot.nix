@@ -16,15 +16,15 @@ in
     memtest86.enable = lib.mkEnableOption "enables memtest86";
   };
 
-  config = lib.mkIf cfg.enable
+  config = # no lib.mkIf because Lanzaboote takes options from systemd-boot config
   {
     boot.loader =
     {
-      grub.enable = lib.mkForce false;
+      grub.enable = lib.mkIf cfg.enable false;
 
       systemd-boot =
       {
-        enable           = true;
+        enable           = cfg.enable;
         editor           = false;
         memtest86.enable = cfg.memtest86.enable;
 

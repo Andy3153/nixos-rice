@@ -41,6 +41,14 @@
     #nixos-hardware.url = "git+file:///home/andy3153/src/nixos/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
     # }}}
 
+    # {{{ Lanzaboote
+    lanzaboote =
+    {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # }}}
+
     # {{{ programs.sqlite for Nix Flakes
     flake-programs-sqlite =
     {
@@ -80,6 +88,7 @@
     #nixpkgs-andy3153,
     my-nixpkgs,
     nixos-hardware,
+    lanzaboote,
     flake-programs-sqlite,
     nix-flatpak,
     home-manager,
@@ -117,6 +126,7 @@
           }
 
           nixos-hardware.nixosModules.asus-fx506hm
+          lanzaboote.nixosModules.lanzaboote
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager

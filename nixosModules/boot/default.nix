@@ -14,6 +14,6 @@
     ./quiet.nix
     ./reisub.nix
     ./sysctl.nix
-    ./uefiBoot.nix
+    ./uefi.nix
   ];
 }

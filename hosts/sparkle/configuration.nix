@@ -32,7 +32,11 @@
       kernel               = pkgs.linuxPackages_zen;    # Zen
       reisub.enable        = true;
       sysctl.vm.swappiness = 30;
-      uefiBoot.enable      = true;
+      uefi =
+      {
+        enable = true;
+        secure-boot.enable = true;
+      };
     };
     # }}}
 
