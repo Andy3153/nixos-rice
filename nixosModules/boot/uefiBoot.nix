@@ -3,7 +3,7 @@
 ## EFI boot config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.boot.uefiBoot;
@@ -19,6 +19,14 @@ in
       efiSysMountPoint     = "/boot";
     };
 
-    custom.boot.loader.systemd-boot.enable = true;
+    custom =
+    {
+      boot.loader.systemd-boot.enable = true;
+      extraPackages = with pkgs;
+      [
+        efibootmgr # EFI
+        sbctl      # EFI key-manager
+      ];
+    };
   };
 }

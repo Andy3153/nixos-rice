@@ -33,7 +33,6 @@ in
       hunspellDicts.en_US        # for-nvim for-libreoffice
       #hunspellDicts.ro_RO        # for-nvim for-libreoffice
 
-      efibootmgr                 # EFI
       doas-sudo-shim             # for-doas
 
       git                        # Programming
