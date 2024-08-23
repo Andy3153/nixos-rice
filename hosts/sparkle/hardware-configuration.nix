@@ -36,10 +36,9 @@ in
 
     "/boot" =
     {
-      #device = "/dev/disk/by-uuid/BDD7-6A6D";
       device = "/dev/disk/by-partlabel/NixOS\\x20ESP";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" "nofail" ];
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
     "/.btrfs-root" =
