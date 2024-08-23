@@ -153,10 +153,27 @@
           )
           # }}}
 
+          # {{{ Dummy modules so I don't have to import inputs I don't need
+          (
+            { options, lib, ... }:
+            let
+              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
+            in
+            {
+              options =
+              {
+                boot.lanzaboote            = dummyOpt;
+                services.flatpak.overrides = dummyOpt;
+                services.flatpak.packages  = dummyOpt;
+                services.flatpak.update    = dummyOpt;
+              };
+            }
+          )
+          # }}}
+
           "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
           flake-programs-sqlite.nixosModules.programs-sqlite
-          nix-flatpak.nixosModules.nix-flatpak
           home-manager-stable.nixosModules.home-manager
 
           ./hosts/ember/configuration.nix
