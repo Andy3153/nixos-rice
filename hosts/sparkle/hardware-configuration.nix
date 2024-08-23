@@ -34,6 +34,14 @@ in
       options = [ "subvol=nixos/root" ];
     };
 
+    "/boot" =
+    {
+      #device = "/dev/disk/by-uuid/BDD7-6A6D";
+      device = "/dev/disk/by-partlabel/NixOS\\x20ESP";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" "nofail" ];
+    };
+
     "/.btrfs-root" =
     {
       device = mainDevice;
@@ -60,13 +68,6 @@ in
       device = mainDevice;
       fsType = "btrfs";
       options = [ "subvol=nixos/swap" ];
-    };
-
-    "/boot" =
-    {
-      device = "/dev/disk/by-uuid/BDD7-6A6D";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
     };
 
     "/nix" =
