@@ -105,6 +105,8 @@
       {
         modules =
         [
+          { networking.hostName = "sparkle"; } # Hostname
+
           # {{{ Add flake inputs to configuration
           (
             { config, ... }:
@@ -119,11 +121,6 @@
             }
           )
           # }}}
-
-          {
-            networking.hostName = "sparkle";
-            nixpkgs.hostPlatform.system = "x86_64-linux";
-          }
 
           nixos-hardware.nixosModules.asus-fx506hm
           lanzaboote.nixosModules.lanzaboote
@@ -141,6 +138,8 @@
       {
         modules =
         [
+          { networking.hostName = "ember"; } # Hostname
+
           # {{{ Add flake inputs to configuration
           (
             { config, ... }:
@@ -155,16 +154,6 @@
           # }}}
 
           "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-
-          {
-            networking.hostName           = "ember";
-            nixpkgs =
-            {
-              config.allowUnsupportedSystem = true;
-              hostPlatform.system           = "aarch64-linux";
-            };
-          }
-
           nixos-hardware.nixosModules.raspberry-pi-4
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
