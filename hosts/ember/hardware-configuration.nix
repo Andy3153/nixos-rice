@@ -18,7 +18,7 @@
   {
     "/" = lib.mkForce
     {
-      device = "/dev/disk/by-label/ember-root";
+      device = "/dev/ember/root";
       fsType = "ext4";
     };
 
@@ -31,13 +31,13 @@
 
     "/home" =
     {
-      device = "/dev/disk/by-label/ember-home";
+      device = "/dev/ember/home";
       fsType = "ext4";
     };
 
     "/var/lib/docker" =
     {
-      device = "/dev/disk/by-label/ember-docker";
+      device = "/dev/ember/docker";
       fsType = "ext4";
     };
   };
