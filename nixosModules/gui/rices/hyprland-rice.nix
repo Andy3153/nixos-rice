@@ -653,9 +653,6 @@ frame.right=0
           grim                                # hyprland-rice screenshot for-flameshot
           slurp                               # hyprland-rice screenshot for-flameshot
 
-          mpv                                 # hyprland-rice video-player
-          mpvScripts.mpris                    # hyprland-rice for-mpv
-
           zathura                             # hyprland-rice pdf-viewer
 
           kcalc                               # hyprland-rice KDE-Apps calculator
@@ -679,6 +676,10 @@ frame.right=0
         ])
         # }}}
       ];
+      # }}}
+
+      # {{{ Programs
+      programs.mpv.enable = true;              # hyprland-rice video-player
       # }}}
     };
 

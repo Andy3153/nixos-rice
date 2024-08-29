@@ -14,6 +14,7 @@
     ./git.nix
     ./java.nix
     ./mangohud.nix
+    ./mpv.nix
     ./neovim.nix
     ./obs.nix
     ./ssh.nix
