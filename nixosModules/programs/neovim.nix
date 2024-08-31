@@ -3,7 +3,7 @@
 ## Neovim config
 ##
 
-{ config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 let
   cfg    = config.custom.programs.neovim;
@@ -32,30 +32,30 @@ in
         hunspellDicts.en_US
         #hunspellDicts.ro_RO
 
+        wget
+
         python3
         gcc
         cargo
 
-        arduino-language-server
-        nodePackages.bash-language-server
-        clang-tools
-        cmake-language-server
-        dockerfile-language-server-nodejs
-        lua-language-server
-        marksman
-        nil
-        python311Packages.python-lsp-server
-        texlab
-        nodePackages.vim-language-server
+        arduino-language-server             # arduino-language-server (arduino_language_server)
+        nodePackages.bash-language-server   # bash-language-server (bashls)
+        clang-tools                         # clangd
+        cmake-language-server               # cmake-language-server (cmake)
+        dockerfile-language-server-nodejs   # dockerfile-language-server (dockerls)
+        #missing                            # html-lsp
+        jdt-language-server                 # jdtls
+        lua-language-server                 # lua-language-server (lua_ls)
+        marksman                            # marksman
+        nil                                 # nil_ls
+        python311Packages.python-lsp-server # python-lsp-server (pylsp)
+        texlab                              # texlab
+        nodePackages.vim-language-server    # vim-language-server (vimls)
       ]))
 
       (lib.mkIf cfg.enableCustomConfigs (with pkgs-unstable;
       [
         hunspellDicts.ro_RO
-      ]))
-
-      (lib.mkIf cfg.enableCustomConfigs (with pkgs-stable;
-      [
       ]))
 
       (lib.mkIf cfgGui.enable (with pkgs;
