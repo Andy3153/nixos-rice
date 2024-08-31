@@ -19,6 +19,7 @@ in
     ./i2c.nix
     ./nvidia.nix
     ./openrgb.nix
+    ./piper.nix
   ]
   ++
   lib.optionals (lib.versionOlder lib.version "24.11pre")
