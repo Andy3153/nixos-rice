@@ -194,11 +194,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725104846,
-        "narHash": "sha256-fMkjP85tKHkEtLTPGl30ijystZfijptrQ0za2aceUhc=",
+        "lastModified": 1725108361,
+        "narHash": "sha256-4NE+8JgtSDQU5Lgh0LA0SChEdpQsH7sy0MoXy5uAYK0=",
         "owner": "Andy3153",
         "repo": "my-nixpkgs",
-        "rev": "f594c31ca4ce15f36ea31381ec01397897168e5c",
+        "rev": "28ecd6a86fbb78562de51c171c46e4c1ee1d8df2",
         "type": "github"
       },
       "original": {
