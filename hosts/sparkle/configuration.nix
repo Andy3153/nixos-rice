@@ -134,6 +134,8 @@
     "io.github.trigg.discover_overlay"   # for-discord
     "org.ferdium.Ferdium"                # Social
 
+    "com.wps.Office"                     # Ofiice
+
     "com.spotify.Client"                 # Music-Players
 
     "sh.ppy.osu"                         # Games
