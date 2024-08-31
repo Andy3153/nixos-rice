@@ -36,7 +36,7 @@ let
       hash  = "sha256-a+HBxFYzRfcLPR7Ut+sFEh9Aj8b+Xbqhp6TGGCVbCb8=";
     };
 
-    mesonFlags = [ ];
+    mesonFlags = [ "-Druntime-dependency-checks=false" ];
   });
   # }}}
 in
