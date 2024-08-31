@@ -639,6 +639,7 @@ frame.right=0
           hyprlock                            # hyprland-rice lock-screen
           hyprpicker                          # hyprland-rice color-picker
           swayosd                             # hyprland-rice osd
+          wl-clipboard                        # hyprland-rice for-zsh for-nvim clipboard
           polkit-kde-agent                    # hyprland-rice polkit-agent
           xwaylandvideobridge                 # hyprland-rice xwayland-screenshare
           wev                                 # hyprland-rice event-viewer

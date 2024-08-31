@@ -34,6 +34,7 @@ in
 
         python3
         gcc
+        cargo
 
         arduino-language-server
         nodePackages.bash-language-server

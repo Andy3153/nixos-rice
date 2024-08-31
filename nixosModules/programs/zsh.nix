@@ -3,10 +3,11 @@
 ## Neovim config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  cfg           = config.custom.programs.zsh;
+  cfg    = config.custom.programs.zsh;
+  cfgGui = config.custom.gui;
 in
 {
   options.custom.programs.zsh =
@@ -17,6 +18,25 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    # {{{ Packages
+    custom.extraPackages = lib.mkMerge
+    [
+      (lib.mkIf cfg.enableCustomConfigs (with pkgs;
+      [
+        git
+        lsd
+        clolcat
+        colordiff
+        nvimpager
+      ]))
+
+      (lib.mkIf cfgGui.enable (with pkgs;
+      [
+        wl-clipboard
+      ]))
+    ];
+    # }}}
+
     # {{{ Zsh program
     programs.zsh =
     {

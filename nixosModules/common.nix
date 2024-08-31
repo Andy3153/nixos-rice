@@ -58,9 +58,6 @@ in
       wget                       # download
       curl                       # download
       rsync                      # cp
-      lsd                        # ls for-zsh
-      lolcat                     # for-zsh
-      colordiff                  # for-zsh
       ranger                     # file-manager for-zsh for-nvim
       tmux                       # terminal-multiplexer
       htop                       # task-manager
@@ -70,8 +67,6 @@ in
       brightnessctl              # Other-CLI brightness hyprland-rice
 
       parted                     # Partition-Manager
-
-      wl-clipboard               # hyprland-rice for-zsh for-nvim clipboard
 
       inotify-tools              # for-scripts
       libnotify                  # for-scripts
