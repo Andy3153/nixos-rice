@@ -3,11 +3,8 @@
 ## Hardware bundle
 ##
 
-{ config, lib, ... }:
+{ lib, ... }:
 
-let
-  cfg = config.custom.hardware;
-in
 {
   imports =
   [
@@ -17,6 +14,7 @@ in
     ./graphictablets.nix
     ./gpuDrivers.nix
     ./i2c.nix
+    ./isLaptop.nix
     ./nvidia.nix
     ./openrgb.nix
     ./piper.nix
@@ -31,21 +29,4 @@ in
     (lib.mkAliasOptionModule [ "hardware" "graphics" "package" ] [ "hardware" "opengl" "package" ])
     (lib.mkAliasOptionModule [ "hardware" "graphics" "package32" ] [ "hardware" "opengl" "package32" ])
   ];
-
-  options.custom.hardware.isLaptop = lib.mkEnableOption "enable this if host is a laptop";
-
-  config = lib.mkMerge
-  [
-    (lib.mkIf cfg.isLaptop # Laptop sane defaults
-    {
-      hardware.bluetooth.enable = true;
-
-      services =
-      {
-        tlp.enable    = true;
-        upower.enable = true;
-      };
-    })
-  ];
-
 }
