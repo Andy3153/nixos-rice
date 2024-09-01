@@ -50,7 +50,7 @@
     # }}}
 
   # {{{ Extra packages
-  extraPackages = lib.mkMerge
+  extraPackages = lib.lists.flatten
   [
     # {{{ Default NixPkgs
     (with pkgs;

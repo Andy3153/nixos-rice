@@ -628,7 +628,7 @@ frame.right=0
       };
 
       # {{{ Extra packages
-      extraPackages = lib.mkMerge
+      extraPackages = lib.lists.flatten
       [
         # {{{ Default NixPkgs
         (with pkgs;

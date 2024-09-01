@@ -22,7 +22,7 @@ in
   # }}}
 
   # {{{ Extra packages
-  custom.extraPackages = lib.mkMerge
+  custom.extraPackages = lib.lists.flatten
   [
     # {{{ Default NixPkgs
     (with pkgs;

@@ -19,21 +19,21 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Packages
-    custom.extraPackages = lib.mkMerge
+    custom.extraPackages = lib.lists.flatten
     [
-      (lib.mkIf cfg.enableCustomConfigs (with pkgs;
+      (if cfg.enableCustomConfigs then with pkgs;
       [
         git
         lsd
         clolcat
         colordiff
         nvimpager
-      ]))
+      ] else [])
 
-      (lib.mkIf cfgGui.enable (with pkgs;
+      (if cfgGui.enable then with pkgs;
       [
         wl-clipboard
-      ]))
+      ] else [])
     ];
     # }}}
 

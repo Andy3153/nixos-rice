@@ -19,14 +19,14 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Packages
-    custom.extraPackages = lib.mkMerge
+    custom.extraPackages = lib.lists.flatten
     [
       (with pkgs;
       [
         nvimpager
       ])
 
-      (lib.mkIf cfg.enableCustomConfigs (with pkgs;
+      (if cfg.enableCustomConfigs then with pkgs;
       [
         hunspell
         hunspellDicts.en_US
@@ -51,18 +51,18 @@ in
         python311Packages.python-lsp-server # python-lsp-server (pylsp)
         texlab                              # texlab
         nodePackages.vim-language-server    # vim-language-server (vimls)
-      ]))
+      ] else [])
 
-      (lib.mkIf cfg.enableCustomConfigs (with pkgs-unstable;
+      (if cfg.enableCustomConfigs then with pkgs-unstable;
       [
         hunspellDicts.ro_RO
-      ]))
+      ] else [])
 
-      (lib.mkIf cfgGui.enable (with pkgs;
+      (if cfgGui.enable then with pkgs;
       [
         wl-clipboard
         neovide
-      ]))
+      ] else [])
     ];
     # }}}
 
