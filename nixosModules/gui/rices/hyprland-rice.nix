@@ -80,7 +80,7 @@ in
           cursor =
           {
             package = pkgs.apple-cursor;
-            name    = "macOS-Monterey";
+            name    = "macOS";
             #package = pkgs.catppuccin-cursors.mochaBlue;
             #name    = "Catppuccin-Mocha-Blue";
             size    = 24;
