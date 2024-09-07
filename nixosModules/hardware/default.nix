@@ -9,7 +9,7 @@
   imports =
   [
     ./bluetooth.nix
-    ./controllers.xbox.nix
+    ./controllers.nix
     ./graphics.nix
     ./graphictablets.nix
     ./gpuDrivers.nix
