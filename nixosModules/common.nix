@@ -175,10 +175,6 @@ in
   };
 # }}}
 
-  # {{{ Nix packages
-  nixpkgs.config.allowUnfree = true;
-  # }}}
-
   # {{{ Programs
   programs =
   {
