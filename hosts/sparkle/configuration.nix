@@ -129,7 +129,7 @@
     "com.brave.Browser"                  # Browsers
     "org.torproject.torbrowser-launcher" # Browsers Tor
 
-    "com.discordapp.Discord"             # Social
+    "dev.vencord.Vesktop"                # Social
     "org.ferdium.Ferdium"                # Social
 
     "com.wps.Office"                     # Office
