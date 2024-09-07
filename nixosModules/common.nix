@@ -90,10 +90,6 @@ in
   ];
   # }}}
 
-  # {{{ Hardware
-  hardware.enableAllFirmware         = true;
-  # }}}
-
   # {{{ I18n
   i18n =
   {
