@@ -682,6 +682,15 @@ frame.right=0
       # {{{ Programs
       programs.mpv.enable = true;              # hyprland-rice video-player
       # }}}
+
+      # {{{ Unfree package whitelist
+      nix.unfreeWhitelist =
+      [
+        "apple_cursor"
+        "corefonts"
+        "vista-fonts"
+      ];
+      # }}}
     };
 
   # {{{ Home-Manager

@@ -21,8 +21,6 @@ in
     {
       boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-      custom.extraPackages     = [ pkgs.nvtopPackages.full ];
-
       hardware =
       {
         graphics.extraPackages    = [ pkgs.vaapiVdpau ];
@@ -31,6 +29,41 @@ in
 
       services.xserver.videoDrivers            = [ "nvidia" ];
       hardware.nvidia-container-toolkit.enable = lib.mkIf config.virtualisation.docker.enable true;
+
+      custom =
+      {
+        extraPackages = [ pkgs.nvtopPackages.full ];
+
+        # {{{ Unfree package whitelist
+        nix.unfreeWhitelist =
+        [
+          "cuda-merged"
+          "cuda_cccl"
+          "cuda_cudart"
+          "cuda_cuobjdump"
+          "cuda_cupti"
+          "cuda_cuxxfilt"
+          "cuda_gdb"
+          "cuda_nvcc"
+          "cuda_nvdisasm"
+          "cuda_nvml_dev"
+          "cuda_nvprune"
+          "cuda_nvrtc"
+          "cuda_nvtx"
+          "cuda_profiler_api"
+          "cuda_sanitizer_api"
+          "libcublas"
+          "libcufft"
+          "libcurand"
+          "libcusolver"
+          "libcusparse"
+          "libnpp"
+          "libnvjitlink"
+          "nvidia-settings"
+          "nvidia-x11"
+        ];
+        # }}}
+      };
     })
 
     (lib.mkIf cfg.prime.enable

@@ -18,5 +18,7 @@ in
       xone.enable    = true;
       xpadneo.enable = true;
     };
+
+    custom.nix.unfreeWhitelist = [ "xow_dongle-firmware" ];
   };
 }

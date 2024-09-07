@@ -21,6 +21,18 @@ in
       remotePlay.openFirewall      = true;
     };
 
-    custom.programs.java.enable = true;
+    custom =
+    {
+      programs.java.enable = true;
+
+      # {{{ Unfree package whitelist
+      nix.unfreeWhitelist =
+      [
+        "steam"
+        "steam-original"
+        "steam-run"
+      ];
+      # }}}
+    };
   };
 }

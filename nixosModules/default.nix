@@ -44,6 +44,7 @@ in
     ./gui
     ./hardware
     ./networking
+    ./nix
     ./programs
     ./services
     ./systemd
