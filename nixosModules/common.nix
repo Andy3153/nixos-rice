@@ -129,17 +129,8 @@ in
 # {{{ Nix
   nix =
   {
-    package = pkgs.nixFlakes;
     channel.enable = false;
-
-    # {{{ Nix Path
-    nixPath =
-    [
-      "nixos-config=${nixConfigurationPath}"
-      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-      "/nix/var/nix/profiles/per-user/root/channels"
-    ];
-    # }}}
+    nixPath        = [ "nixpkgs=flake:nixpkgs" ];
 
     # {{{ Settings
     settings =
@@ -160,9 +151,7 @@ in
       [
         "https://nix-community.cachix.org"
       ];
-      # }}}
 
-      # {{{ Trusted substituter public keys
       trusted-public-keys =
       [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
