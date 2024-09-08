@@ -128,7 +128,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
 
-          ./hosts/sparkle/configuration.nix
+          ./hosts/sparkle
         ];
       };
       # }}}
@@ -176,7 +176,7 @@
           flake-programs-sqlite.nixosModules.programs-sqlite
           home-manager-stable.nixosModules.home-manager
 
-          ./hosts/ember/configuration.nix
+          ./hosts/ember
         ];
       };
 

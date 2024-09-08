@@ -8,12 +8,6 @@
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
-  imports =
-  [
-    ./hardware-configuration.nix
-    ../../nixosModules
-  ];
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking.firewall =

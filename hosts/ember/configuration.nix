@@ -8,12 +8,6 @@
 { lib, ... }:
 
 {
-  imports =
-  [
-    ./hardware-configuration.nix
-    ../../nixosModules
-  ];
-
   custom =
   {
     # {{{ Boot
