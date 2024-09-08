@@ -130,6 +130,7 @@ in
   nix =
   {
     package = pkgs.nixFlakes;
+    channel.enable = false;
 
     # {{{ Nix Path
     nixPath =
