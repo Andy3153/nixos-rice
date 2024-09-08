@@ -37,14 +37,7 @@ in
 
       git                        # Programming
 
-      (python3.withPackages(     # Programming for-nvim
-      python-pkgs:
-      [
-        python-pkgs.requests     # for-waybar
-      ])) # nix purists don't
-          # kill me for doing
-          # this pls
-
+      python3                    # Programming for-nvim
       gcc                        # Programming for-nvim
       gnumake                    # Programming for-nvim
 
