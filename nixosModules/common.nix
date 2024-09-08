@@ -149,8 +149,9 @@ in
       # {{{ Experimental features
       experimental-features =
       [
-        "nix-command"
         "flakes"
+        "nix-command"
+        "repl-flake"
       ];
       # }}}
 
