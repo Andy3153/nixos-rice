@@ -11,4 +11,6 @@
     ./extraHosts.nix
     ./stevenblack.nix
   ];
+
+  networking.networkmanager.enable = true;
 }

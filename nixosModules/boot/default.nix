@@ -16,4 +16,6 @@
     ./sysctl.nix
     ./uefi.nix
   ];
+
+  boot.initrd.systemd.enable = true;
 }

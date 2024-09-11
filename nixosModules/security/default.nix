@@ -10,4 +10,6 @@
   [
     ./doas.nix
   ];
+
+  security.polkit.enable = true;
 }
