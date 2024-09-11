@@ -8,8 +8,6 @@
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
   networking.firewall =
   {
     allowedTCPPorts = [ 25565 ];
@@ -304,6 +302,8 @@
     # {{{ Virtualisation
     virtualisation =
     {
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+
       docker =
       {
         #enable          = true;

@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./binfmt.nix
     ./distrobox.nix
     ./docker.nix
     ./libvirtd.nix
