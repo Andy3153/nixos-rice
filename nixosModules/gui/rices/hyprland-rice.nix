@@ -673,7 +673,7 @@ frame.right=0
         # {{{ My Nix packages
         (with my-pkgs;
         [
-          waybar-weather                      # hyprland-rice for-waybar my-scripts
+          weather4bar                         # hyprland-rice my-scripts for-waybar
           batnotifsd                          # hyprland-rice my-scripts
         ])
         # }}}
