@@ -8,12 +8,6 @@
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
-  networking.firewall =
-  {
-    allowedTCPPorts = [ 25565 ];
-    allowedUDPPorts = [ 25565 ];
-  };
-
   custom =
   {
     # {{{ Boot
@@ -269,7 +263,7 @@
     services =
     {
       flatpak.enable = true;
-      hamachi.enable = true;
+      #hamachi.enable = true;
       mpd.enable     = true;
 
       openssh =
