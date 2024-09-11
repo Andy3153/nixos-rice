@@ -99,6 +99,8 @@
       ventoy-full
 
       gpt4all                             # AI
+
+      d-spy                               # D-Bus
     ])
     # }}}
 
