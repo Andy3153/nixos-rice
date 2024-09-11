@@ -674,6 +674,7 @@ frame.right=0
         (with my-pkgs;
         [
           waybar-weather                      # hyprland-rice for-waybar my-scripts
+          batnotifsd                          # hyprland-rice my-scripts
         ])
         # }}}
       ];
