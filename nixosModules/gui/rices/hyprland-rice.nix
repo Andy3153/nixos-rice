@@ -633,40 +633,45 @@ frame.right=0
         # {{{ Default NixPkgs
         (with pkgs;
         [
-          libcanberra-gtk3                    # hyprland-rice play-system-sounds
-          hyprpaper                           # hyprland-rice wallpaper
-          hypridle                            # hyprland-rice idle-manager
-          hyprlock                            # hyprland-rice lock-screen
-          hyprpicker                          # hyprland-rice color-picker
-          swayosd                             # hyprland-rice osd
-          wl-clipboard                        # hyprland-rice for-zsh for-nvim clipboard
-          polkit-kde-agent                    # hyprland-rice polkit-agent
-          xwaylandvideobridge                 # hyprland-rice xwayland-screenshare
-          wev                                 # hyprland-rice event-viewer
-          rofi-wayland                        # hyprland-rice appmenu
-          kitty                               # hyprland-rice terminal
-          waybar                              # hyprland-rice status-bar
-          blueman                             # hyprland-rice bluetooth-control
-          networkmanager_dmenu                # hyprland-rice network-control
-          lxqt.pavucontrol-qt                 # hyprland-rice Sound sound-control
-          nwg-bar                             # hyprland-rice logout-menu
-          flameshot                           # hyprland-rice screenshot
-          grim                                # hyprland-rice screenshot for-flameshot
-          slurp                               # hyprland-rice screenshot for-flameshot
+          libcanberra-gtk3                     # hyprland-rice play-system-sounds
+          hyprpaper                            # hyprland-rice wallpaper
+          hypridle                             # hyprland-rice idle-manager
+          hyprlock                             # hyprland-rice lock-screen
+          hyprpicker                           # hyprland-rice color-picker
+          swayosd                              # hyprland-rice osd
+          wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
+          polkit-kde-agent                     # hyprland-rice polkit-agent
+          xwaylandvideobridge                  # hyprland-rice xwayland-screenshare
+          wev                                  # hyprland-rice event-viewer
+          rofi-wayland                         # hyprland-rice appmenu
+          kitty                                # hyprland-rice terminal
+          waybar                               # hyprland-rice status-bar
+          blueman                              # hyprland-rice bluetooth-control
+          networkmanager_dmenu                 # hyprland-rice network-control
+          lxqt.pavucontrol-qt                  # hyprland-rice Sound sound-control
+          nwg-bar                              # hyprland-rice logout-menu
+          flameshot                            # hyprland-rice screenshot
+          grim                                 # hyprland-rice screenshot for-flameshot
+          slurp                                # hyprland-rice screenshot for-flameshot
 
-          zathura                             # hyprland-rice pdf-viewer
+          zathura                              # hyprland-rice pdf-viewer
 
-          kcalc                               # hyprland-rice KDE-Apps calculator
-          kdePackages.kdeconnect-kde          # hyprland-rice KDE-Apps
-          #kdePackages.dolphin                 # hyprland-rice KDE-Apps file-manager
-          dolphin                             # hyprland-rice KDE-Apps file-manager
-          ark                                 # hyprland-rice KDE-Apps archive-manager
-          gwenview                            # hyprland-rice KDE-Apps image-viewer
-          okular                              # hyprland-rice KDE-Apps pdf-viewer
-          kcharselect                         # hyprland-rice KDE-Apps character-select
-          filelight                           # hyprland-rice KDE-Apps disk-usage-analyzer
-          kdePackages.kruler                  # hyprland-rice KDE-Apps on-screen-ruler
-          merkuro                             # hyprland-rice KDE-Apps calendar contacts
+          kdePackages.dolphin                  # hyprland-rice KDE-Apps file-manager
+          kdePackages.kio                      # for-dolphin
+          kdePackages.kio-extras               # for-dolphin
+          kdePackages.kimageformats            # for-dolphin
+          kdePackages.kdegraphics-thumbnailers # for-dolphin
+
+          kdePackages.kcalc                    # hyprland-rice KDE-Apps calculator
+          kdePackages.kdeconnect-kde           # hyprland-rice KDE-Apps
+          #kdePackages.dolphin                  # hyprland-rice KDE-Apps file-manager
+          ark                                  # hyprland-rice KDE-Apps archive-manager
+          gwenview                             # hyprland-rice KDE-Apps image-viewer
+          okular                               # hyprland-rice KDE-Apps pdf-viewer
+          kcharselect                          # hyprland-rice KDE-Apps character-select
+          filelight                            # hyprland-rice KDE-Apps disk-usage-analyzer
+          kdePackages.kruler                   # hyprland-rice KDE-Apps on-screen-ruler
+          merkuro                              # hyprland-rice KDE-Apps calendar contacts
         ])
         # }}}
 

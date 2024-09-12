@@ -3,7 +3,7 @@
 ## Qt theming config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg              = config.custom.gui.theme.qt;
   cfgFont          = config.custom.gui.theme.font;
@@ -268,6 +268,8 @@ in
 
   config = lib.mkIf (cfg != null)
   {
+    custom.extraPackages = [ pkgs.kdePackages.qtsvg ];
+
     qt =
     {
       enable        = true;
