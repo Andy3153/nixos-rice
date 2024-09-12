@@ -68,6 +68,13 @@ in
       brightnessctl              # Other-CLI brightness hyprland-rice
 
       parted                     # Partition-Manager
+      e2fsprogs                  # Filesystem-Support ext*
+      btrfs-progs                # Filesystem-Support btrfs
+      exfatprogs                 # Filesystem-Support exfat
+      dosfstools                 # Filesystem-Support fat*
+      mtools                     # Filesystem-Support fat*
+      fatresize                  # Filesystem-Support fat*
+      ntfs3g                     # Filesystem-Support ntfs
 
       inotify-tools              # for-scripts
       libnotify                  # for-scripts
