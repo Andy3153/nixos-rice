@@ -57,6 +57,14 @@
     };
     # }}}
 
+    # {{{ in-nix (add envvar when in `nix shell`)
+    in-nix =
+    {
+      url = "github:viperML/in-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # }}}
+
     # {{{ Nix-Flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.3.0";
     # }}}
@@ -90,6 +98,7 @@
     nixos-hardware,
     lanzaboote,
     flake-programs-sqlite,
+    in-nix,
     nix-flatpak,
     home-manager,
     home-manager-stable,
