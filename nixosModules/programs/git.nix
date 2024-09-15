@@ -91,6 +91,7 @@ in
           "**/*.fdb_latexmk"
           "**/*.fls"
           "**/*.xdv"
+          "/.direnv/"
         ];
         # }}}
       };
