@@ -103,6 +103,7 @@
       # {{{ sparkle | ASUS TUF F15 FX506HM
       sparkle = nixpkgs.lib.nixosSystem
       {
+        specialArgs = { inherit inputs; }; # access inputs in config
         modules =
         [
           { networking.hostName = "sparkle"; } # Hostname
@@ -136,6 +137,7 @@
       # {{{ ember | Raspberry Pi 4
       ember = nixpkgs-stable.lib.nixosSystem
       {
+        specialArgs = { inherit inputs; }; # access inputs in config
         modules =
         [
           { networking.hostName = "ember"; } # Hostname
