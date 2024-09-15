@@ -19,3 +19,7 @@ This is my server. The config for it is basically a comfy bootloader for Docker.
 ### Images
 #### `ember`
 This generates a Raspberry Pi SD card image with everything in `ember`'s NixOS configuration on it. I usually use it to boot from a flash drive/SD card, partition my external hard drive the way I want, and then run `nixos-install` from the flash drive/SD card on the external hard drive. It works. Surprisingly well.
+
+### Templates
+- Empty development environment
+- Python development environment

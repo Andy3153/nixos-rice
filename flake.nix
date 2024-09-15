@@ -212,6 +212,32 @@
       ember = nixosConfigurations.ember-image.config.system.build.sdImage;
     };
     # }}}
+
+    # {{{ Templates
+    templates = rec
+    {
+      default = devenv-empty;
+
+      # {{{ Development environments
+      # {{{ Empty
+      devenv-empty =
+      {
+        path = ./templates/devenv/empty;
+        description = "Empty development environment";
+      };
+      # }}}
+
+      # {{{ Python
+      devenv-python =
+      {
+        path = ./templates/devenv/python;
+        description = "Python development environment";
+      };
+      devenv-py = devenv-python;
+      # }}}
+      # }}}
+    };
+    # }}}
   };
   # }}}
 }
