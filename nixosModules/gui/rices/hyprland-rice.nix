@@ -655,23 +655,25 @@ frame.right=0
           slurp                                # hyprland-rice screenshot for-flameshot
 
           zathura                              # hyprland-rice pdf-viewer
+        ])
 
-          kdePackages.dolphin                  # hyprland-rice KDE-Apps file-manager
-          kdePackages.kio                      # for-dolphin
-          kdePackages.kio-extras               # for-dolphin
-          kdePackages.kimageformats            # for-dolphin
-          kdePackages.kdegraphics-thumbnailers # for-dolphin
+        (with pkgs.kdePackages;
+        [
+          dolphin                  # hyprland-rice KDE-Apps file-manager
+          kio                      # for-dolphin
+          kio-extras               # for-dolphin
+          kimageformats            # for-dolphin
+          kdegraphics-thumbnailers # for-dolphin
 
-          kdePackages.kcalc                    # hyprland-rice KDE-Apps calculator
-          kdePackages.kdeconnect-kde           # hyprland-rice KDE-Apps
-          #kdePackages.dolphin                  # hyprland-rice KDE-Apps file-manager
-          ark                                  # hyprland-rice KDE-Apps archive-manager
-          gwenview                             # hyprland-rice KDE-Apps image-viewer
-          okular                               # hyprland-rice KDE-Apps pdf-viewer
-          kcharselect                          # hyprland-rice KDE-Apps character-select
-          filelight                            # hyprland-rice KDE-Apps disk-usage-analyzer
-          kdePackages.kruler                   # hyprland-rice KDE-Apps on-screen-ruler
-          merkuro                              # hyprland-rice KDE-Apps calendar contacts
+          kcalc                    # hyprland-rice KDE-Apps calculator
+          kdeconnect-kde           # hyprland-rice KDE-Apps
+          ark                      # hyprland-rice KDE-Apps archive-manager
+          gwenview                 # hyprland-rice KDE-Apps image-viewer
+          okular                   # hyprland-rice KDE-Apps pdf-viewer
+          kcharselect              # hyprland-rice KDE-Apps character-select
+          filelight                # hyprland-rice KDE-Apps disk-usage-analyzer
+          kruler                   # hyprland-rice KDE-Apps on-screen-ruler
+          merkuro                  # hyprland-rice KDE-Apps calendar contacts
         ])
         # }}}
 

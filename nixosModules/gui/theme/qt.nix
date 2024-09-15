@@ -268,7 +268,12 @@ in
 
   config = lib.mkIf (cfg != null)
   {
-    custom.extraPackages = [ pkgs.kdePackages.qtsvg ];
+    custom.extraPackages = with pkgs.kdePackages;
+    [
+      qtsvg
+      wayqt
+      qtwayland
+    ];
 
     qt =
     {
