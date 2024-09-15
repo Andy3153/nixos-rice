@@ -10,6 +10,7 @@
   [
     ./adb.nix
     ./dconf.nix
+    ./direnv.nix
     ./gamemode.nix
     ./git.nix
     ./java.nix
