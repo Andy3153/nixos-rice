@@ -661,6 +661,7 @@ frame.right=0
         (with pkgs.libsForQt5;
         [
           dolphin                  # hyprland-rice KDE-Apps file-manager
+          konsole                  # for-dolphin
           kio                      # for-dolphin
           kio-extras               # for-dolphin
           kimageformats            # for-dolphin
