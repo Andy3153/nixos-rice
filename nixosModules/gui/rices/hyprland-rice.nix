@@ -657,7 +657,8 @@ frame.right=0
           zathura                              # hyprland-rice pdf-viewer
         ])
 
-        (with pkgs.kdePackages;
+        # {{{ KDE packages
+        (with pkgs.libsForQt5;
         [
           dolphin                  # hyprland-rice KDE-Apps file-manager
           kio                      # for-dolphin
@@ -675,6 +676,7 @@ frame.right=0
           kruler                   # hyprland-rice KDE-Apps on-screen-ruler
           merkuro                  # hyprland-rice KDE-Apps calendar contacts
         ])
+        # }}}
         # }}}
 
         # {{{ My Nix packages
