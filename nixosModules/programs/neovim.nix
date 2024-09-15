@@ -32,11 +32,14 @@ in
         hunspellDicts.en_US
         #hunspellDicts.ro_RO
 
+        ripgrep
         wget
 
         python3
         gcc
         cargo
+
+        tree-sitter
 
         arduino-language-server             # arduino-language-server (arduino_language_server)
         nodePackages.bash-language-server   # bash-language-server (bashls)
