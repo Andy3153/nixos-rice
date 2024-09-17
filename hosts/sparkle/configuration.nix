@@ -93,6 +93,8 @@
       gpt4all                             # AI
 
       d-spy                               # D-Bus
+
+      ciscoPacketTracer8
     ])
     # }}}
 
@@ -164,6 +166,13 @@
       '';
       # }}}
     };
+    # }}}
+
+    # {{{ Nix
+    nix.unfreeWhitelist =
+    [
+      "ciscoPacketTracer8"
+    ];
     # }}}
 
     # {{{ Programs
