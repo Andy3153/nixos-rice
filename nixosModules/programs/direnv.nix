@@ -16,12 +16,17 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Direnv program
-    programs.direnv =
-    {
-      enable               = true;
-      enableZshIntegration = cfgZsh.enable;
-      nix-direnv.enable    = true;
-    };
+    programs.direnv = lib.mkMerge
+    [
+      {
+        enable               = true;
+        nix-direnv.enable    = true;
+      }
+
+      (if (lib.versionAtLeast lib.version "24.11pre")
+      then { enableZshIntegration = cfgZsh.enable; }
+      else {})
+    ];
     # }}}
 
     # {{{ Home-Manager
