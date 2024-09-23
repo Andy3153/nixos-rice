@@ -151,6 +151,12 @@ in
       device = "/.btrfs-root/home/andy3153/.librewolf";
       options = [ "bind" ];
     };
+
+    "${homeDir}/.var/app/com.valvesoftware.Steam/.local/share/Terraria" =
+    {
+      device = "/.btrfs-root/home/andy3153/.local/share/Terraria/";
+      options = [ "bind" ];
+    };
     # }}}
   };
 
