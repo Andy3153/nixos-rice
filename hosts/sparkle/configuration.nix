@@ -126,6 +126,7 @@
 
     "com.spotify.Client"                 # Music-Players
 
+    "com.valvesoftware.Steam"            # Games
     "sh.ppy.osu"                         # Games
   ];
   # }}}
