@@ -15,7 +15,7 @@
     ./gpuDrivers.nix
     ./i2c.nix
     ./isLaptop.nix
-    ./nvidia.nix
+    ./nvidia
     ./openrgb.nix
     ./piper.nix
   ]
