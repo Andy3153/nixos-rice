@@ -13,8 +13,6 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.hardware.nvidia.enable = true; # force enable custom nvidia
-
     hardware.nvidia.prime.offload =
     {
       enable           = true;

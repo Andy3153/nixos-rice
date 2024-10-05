@@ -145,9 +145,14 @@
         "fbdev"
       ];
 
+      nvidia =
+      {
+        enable       = true;
+        prime.enable = true;
+      };
+
       graphictablets.enable   = true;
       openrgb.enable          = true;
-      nvidia.prime.enable     = true;
       piper.enable            = true;
     };
     # }}}
