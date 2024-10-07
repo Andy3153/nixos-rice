@@ -523,7 +523,8 @@
     # {{{ GPU passthrough to VM
     gpuPassthrough.configuration =
     {
-      system.nixos.tags = [ "gpu-passthrough" ];
+      system.nixos.tags                     = [ "gpu-passthrough" ];
+      environment.etc."specialisation".text = "gpu-passthrough"; # for nh
 
       custom =
       {
