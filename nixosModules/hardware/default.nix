@@ -13,6 +13,7 @@
     ./graphics.nix
     ./graphictablets.nix
     ./gpuDrivers.nix
+    ./gpuPassthrough.nix
     ./i2c.nix
     ./isLaptop.nix
     ./nvidia

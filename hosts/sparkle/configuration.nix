@@ -517,5 +517,37 @@
     # }}}
   };
 
+  # {{{ Specialisations
+  specialisation =
+  {
+    # {{{ GPU passthrough to VM
+    gpuPassthrough.configuration =
+    {
+      system.nixos.tags = [ "gpu-passthrough" ];
+
+      custom =
+      {
+        hardware =
+        {
+          gpuPassthrough =
+          {
+            enable = true;
+            cpu    = "intel";
+            gpu    = "nvidia";
+            gpuIDs = [ "10de:2520" "10de:228e" ]; # 3060 mobile
+          };
+
+          nvidia =
+          {
+            enable       = lib.mkForce false;
+            prime.enable = lib.mkForce false;
+          };
+        };
+      };
+    };
+    # }}}
+  };
+  # }}}
+
   system.stateVersion = "23.11";
 }
