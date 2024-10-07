@@ -3,7 +3,7 @@
 ## GPU passthrough config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.hardware.gpuPassthrough;
@@ -66,7 +66,8 @@ in
 
     custom =
     {
-      hardware.graphics.enable = true;
+      hardware.graphics.enable      = true;
+      programs.looking-glass.enable = true;
 
       # {{{ Unfree package whitelist
       nix.unfreeWhitelist =
