@@ -19,7 +19,7 @@ in
     {
       mode  = "0660";
       user  = mainUser;
-      group = "kvm";
+      group = "qemu-libvirtd";
     };
   };
 }
