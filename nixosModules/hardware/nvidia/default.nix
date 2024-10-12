@@ -18,7 +18,11 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+    boot =
+    {
+      extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+      kernelModules = [ "nvidia_uvm" ];
+    };
 
     hardware =
     {
