@@ -63,7 +63,7 @@
       # }}}
 
       # {{{ Media
-      cantata                             # music-player for-mpd
+      #cantata                             # music-player for-mpd
       youtube-music                       # music-player
       flac                                # music
       opusTools                           # music
@@ -107,6 +107,7 @@
     # {{{ NixPkgs Stable
     (with pkgs-stable;
     [
+      cantata                             # music-player for-mpd
     ])
     # }}}
   ];
