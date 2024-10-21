@@ -169,7 +169,6 @@ in
       [
         "flakes"
         "nix-command"
-        "repl-flake"
       ];
       # }}}
 
