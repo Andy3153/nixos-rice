@@ -90,7 +90,7 @@
 
       ventoy-full
 
-      gpt4all                             # AI
+      #gpt4all                             # AI
 
       d-spy                               # D-Bus
 
@@ -108,6 +108,7 @@
     (with pkgs-stable;
     [
       cantata                             # music-player for-mpd
+      gpt4all                             # AI
     ])
     # }}}
   ];
