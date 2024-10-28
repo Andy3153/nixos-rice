@@ -88,7 +88,8 @@
       virtiofsd                           # for-libvirt
       qbittorrent                         # torrents
 
-      ventoy-full
+      ventoy-full                         # flash-usbs
+      woeusb                              # flash-usbs windows
 
       #gpt4all                             # AI
 
