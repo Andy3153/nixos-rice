@@ -527,7 +527,7 @@
     gpuPassthrough.configuration =
     {
       system.nixos.tags                     = [ "gpu-passthrough" ];
-      environment.etc."specialisation".text = "gpu-passthrough"; # for nh
+      environment.etc."specialisation".text = "gpuPassthrough"; # for nh
 
       custom =
       {
