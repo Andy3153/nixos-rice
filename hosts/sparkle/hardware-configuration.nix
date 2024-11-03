@@ -56,20 +56,6 @@ in
       options = [ "subvol=/" ];
     };
 
-    "/.snapshots" =
-    {
-      device = mainDevice;
-      fsType = "btrfs";
-      options = [ "subvol=nixos/snapshots" ];
-    };
-
-    "/.snapshots.externalhdd" =
-    {
-      device = mainDevice;
-      fsType = "btrfs";
-      options = [ "subvol=nixos/snapshots.externalhdd" ];
-    };
-
     "/.swap" =
     {
       device = mainDevice;
