@@ -39,12 +39,12 @@ in
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/root" ];
+      options = [ "subvol=root" ];
     };
 
     "/boot" =
     {
-      device = "/dev/disk/by-partlabel/NixOS\\x20ESP";
+      device = "/dev/disk/by-partlabel/EFI\\x20System\\x20Partition";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -60,35 +60,35 @@ in
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/swap" ];
+      options = [ "subvol=swap" ];
     };
 
     "/nix" =
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/nix" ];
+      options = [ "subvol=nix" ];
     };
 
     "/var/cache" =
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/var-cache" ];
+      options = [ "subvol=var-cache" ];
     };
 
     "/var/log" =
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/var-log" ];
+      options = [ "subvol=var-log" ];
     };
 
     "/var/tmp" =
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/var-tmp" ];
+      options = [ "subvol=var-tmp" ];
     };
 
     "/var/lib/libvirt/images" =
@@ -102,7 +102,7 @@ in
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nixos/home" ];
+      options = [ "subvol=home" ];
     };
 
     "${homeDir}/games" =
@@ -118,32 +118,6 @@ in
       fsType = "btrfs";
       options = [ "subvol=torrents" ];
     };
-
-    # {{{ Bind mounts
-    "${homeDir}/music" =
-    {
-      device = "/.btrfs-root/home/andy3153/music";
-      options = [ "bind" ];
-    };
-
-    "${homeDir}/.local/share/Steam" =
-    {
-      device = "/.btrfs-root/home/andy3153/.local/share/Steam";
-      options = [ "bind" ];
-    };
-
-    "${homeDir}/.var/app/io.gitlab.librewolf-community/.librewolf" =
-    {
-      device = "/.btrfs-root/home/andy3153/.librewolf";
-      options = [ "bind" ];
-    };
-
-    "${homeDir}/.var/app/com.valvesoftware.Steam/.local/share/Terraria" =
-    {
-      device = "/.btrfs-root/home/andy3153/.local/share/Terraria/";
-      options = [ "bind" ];
-    };
-    # }}}
   };
 
   swapDevices = [ { device = "/.swap/swapfile"; } ];
