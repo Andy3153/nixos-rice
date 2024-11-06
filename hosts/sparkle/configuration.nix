@@ -91,7 +91,7 @@
       ventoy-full                         # flash-usbs
       woeusb                              # flash-usbs windows
 
-      #gpt4all                             # AI
+      gpt4all                             # AI
 
       d-spy                               # D-Bus
 
@@ -109,7 +109,6 @@
     (with pkgs-stable;
     [
       cantata                             # music-player for-mpd
-      gpt4all                             # AI
       blender                             # 3D
     ])
     # }}}
