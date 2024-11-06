@@ -520,6 +520,38 @@
     # }}}
   };
 
+  # {{{ Btrbk instances
+  services.btrbk.instances =
+  {
+    # {{{ Daily local snapshot
+    ##
+    ## Contains subvolumes that get backed up daily, and kept locally as snapshots
+    ##
+
+    daily-local =
+    {
+      onCalendar = "daily";
+      settings =
+      {
+        timestamp_format = "long";
+
+        snapshot_preserve     = "5d";
+        snapshot_preserve_min = "2d";
+
+        volume."/.btrfs-root" =
+        {
+          snapshot_dir = "snapshots";
+
+          subvolume."root".snapshot_create = "onchange";
+          subvolume."nix".snapshot_create  = "onchange";
+          subvolume."home".snapshot_create = "onchange";
+        };
+      };
+    };
+    # }}}
+  };
+  # }}}
+
   # {{{ Specialisations
   specialisation =
   {
