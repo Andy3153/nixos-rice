@@ -76,7 +76,7 @@
       # }}}
 
       # {{{ 3D
-      blender                             # 3D
+      #blender                             # 3D
       # }}}
 
       linux-wifi-hotspot                  # Internet hotspot
@@ -110,6 +110,7 @@
     [
       cantata                             # music-player for-mpd
       gpt4all                             # AI
+      blender                             # 3D
     ])
     # }}}
   ];
