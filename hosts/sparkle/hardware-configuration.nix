@@ -56,6 +56,13 @@ in
       options = [ "subvol=/" ];
     };
 
+    "/nix" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
+    };
+
     "/.swap" =
     {
       device = mainDevice;
@@ -63,11 +70,11 @@ in
       options = [ "subvol=swap" ];
     };
 
-    "/nix" =
+    "/.snapshots" =
     {
       device = mainDevice;
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=snapshots" ];
     };
 
     "/var/cache" =
@@ -91,13 +98,6 @@ in
       options = [ "subvol=var-tmp" ];
     };
 
-    "/var/lib/libvirt/images" =
-    {
-      device = mainDevice;
-      fsType = "btrfs";
-      options = [ "subvol=vms" ];
-    };
-
     "/home" =
     {
       device = mainDevice;
@@ -111,6 +111,14 @@ in
       fsType = "btrfs";
       options = [ "subvol=games" ];
     };
+
+    "/var/lib/libvirt/images" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = [ "subvol=vms" ];
+    };
+
 
     "${homeDir}/torrents" =
     {
