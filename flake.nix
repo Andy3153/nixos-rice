@@ -15,8 +15,8 @@
     # NixPkgs Unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # NixPkgs 24.05
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    # NixPkgs 24.11
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # NixPkgs for TiLP
     nixpkgs-tilp.url = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
@@ -78,7 +78,7 @@
 
     home-manager-stable =
     {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     # }}}
