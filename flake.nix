@@ -203,6 +203,55 @@
       };
       # }}}
       # }}}
+
+      # {{{ livecd | Live CD
+      livecd = nixpkgs.lib.nixosSystem
+      {
+        specialArgs = { inherit inputs; }; # access inputs in config
+        system      = "x86_64-linux";
+
+        modules =
+        [
+          { networking.hostName = "nixos-live"; } # Hostname
+
+          # {{{ Add flake inputs to configuration
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
+              };
+            }
+          )
+          # }}}
+
+          # {{{ Dummy modules so I don't have to import inputs I don't need
+          (
+            { options, lib, ... }:
+            let
+              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
+            in
+            {
+              options =
+              {
+                boot.lanzaboote = dummyOpt;
+              };
+            }
+          )
+          # }}}
+
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          flake-programs-sqlite.nixosModules.programs-sqlite
+          nix-flatpak.nixosModules.nix-flatpak
+          home-manager.nixosModules.home-manager
+
+          ./hosts/livecd
+        ];
+      };
+      # }}}
     };
     # }}}
 
