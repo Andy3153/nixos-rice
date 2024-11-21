@@ -48,7 +48,7 @@
       # }}}
 
       # {{{ Office
-      libreoffice-fresh                   # Office
+      libreoffice-qt6                     # Office
       gimp                                # Office photo-editing
       inkscape                            # Office photo-editing
       krita                               # Office photo-editing
