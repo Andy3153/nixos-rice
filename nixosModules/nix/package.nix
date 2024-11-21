@@ -13,7 +13,8 @@ in
   options.custom.nix.package = lib.mkOption
   {
     type        = options.nix.package.type;
-    default     = inputs.in-nix.packages.${sys}.default.patchNix pkgs.nix;
+    #default     = inputs.in-nix.packages.${sys}.default.patchNix pkgs.nix;
+    default     = options.nix.package.default;
     description = "Nix package";
   };
 
