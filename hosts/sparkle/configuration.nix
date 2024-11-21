@@ -43,7 +43,7 @@
     [
       # {{{ Sound
       qpwgraph                            # Sound PipeWire Patchbay
-      #easyeffects                         # Sound PipeWire
+      easyeffects                         # Sound PipeWire
       pulsemixer                          # Sound sound-control
       # }}}
 
