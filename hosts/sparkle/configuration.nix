@@ -76,7 +76,7 @@
       # }}}
 
       # {{{ 3D
-      #blender                             # 3D
+      blender                             # 3D
       # }}}
 
       linux-wifi-hotspot                  # Internet hotspot
@@ -109,7 +109,6 @@
     (with pkgs-stable;
     [
       cantata                             # music-player for-mpd
-      blender                             # 3D
     ])
     # }}}
   ];
