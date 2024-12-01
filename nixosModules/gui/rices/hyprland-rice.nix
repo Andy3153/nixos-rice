@@ -40,7 +40,8 @@ in
               monospace =
               {
                 names    = [ "IosevkaTerm Nerd Font Mono" ];
-                packages = with pkgs; [ (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; }) ];
+                #packages = with pkgs; [ (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; }) ];
+                packages = with pkgs.nerd-fonts; [ iosevka iosevka-term ];
               };
 
               serif =
