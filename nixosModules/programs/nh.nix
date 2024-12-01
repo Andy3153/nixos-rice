@@ -8,8 +8,9 @@
 let
   cfg = config.custom.programs.nh;
 
-  mainUser            = config.custom.users.mainUser;
-  homeDir             = config.home-manager.users.${mainUser}.home.homeDirectory;
+  mainUser = config.custom.users.mainUser;
+  HM       = config.home-manager.users.${mainUser};
+  homeDir  = HM.home.homeDirectory;
 in
 {
   options.custom.programs.nh.enable = lib.mkOption

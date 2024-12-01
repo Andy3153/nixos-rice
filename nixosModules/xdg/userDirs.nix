@@ -7,7 +7,9 @@
 
 let
   cfg     = config.custom.xdg.userDirs;
-  homeDir = config.home-manager.users.${config.custom.users.mainUser}.home.homeDirectory;
+  mainUser = config.custom.users.mainUser;
+  HM       = config.home-manager.users.${mainUser};
+  homeDir  = HM.home.homeDirectory;
 in
 {
   options.custom.xdg.userDirs =
