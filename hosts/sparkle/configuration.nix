@@ -8,7 +8,6 @@
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
-
   custom =
   {
     # {{{ Boot
@@ -579,6 +578,16 @@
           };
         };
       };
+    };
+    # }}}
+
+    # {{{ No firewall
+    noFirewall.configuration =
+    {
+      system.nixos.tags                     = [ "no-firewall" ];
+      environment.etc."specialisation".text = "noFirewall"; # for nh
+
+      networking.firewall.enable = lib.mkForce false;
     };
     # }}}
   };
