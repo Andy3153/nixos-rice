@@ -36,7 +36,7 @@ in
       [
         hunspell
         hunspellDicts.en_US
-        #hunspellDicts.ro_RO
+        hunspellDicts.ro_RO
 
         ripgrep
         wget
@@ -60,11 +60,6 @@ in
         python311Packages.python-lsp-server # python-lsp-server (pylsp)
         texlab                              # texlab
         nodePackages.vim-language-server    # vim-language-server (vimls)
-      ] else [])
-
-      (if cfg.enableCustomConfigs then with pkgs-unstable;
-      [
-        hunspellDicts.ro_RO
       ] else [])
 
       (if cfgGui.enable then with pkgs;

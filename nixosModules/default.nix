@@ -39,7 +39,7 @@ in
 
       hunspell                   # for-nvim for-libreoffice
       hunspellDicts.en_US        # for-nvim for-libreoffice
-      #hunspellDicts.ro_RO        # for-nvim for-libreoffice
+      hunspellDicts.ro_RO        # for-nvim for-libreoffice
 
       doas-sudo-shim             # for-doas
 
@@ -86,7 +86,6 @@ in
     # {{{ NixPkgs Unstable
     (with pkgs-unstable;
     [
-      hunspellDicts.ro_RO        # for-nvim for-libreoffice
     ])
     # }}}
 
