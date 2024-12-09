@@ -7,7 +7,17 @@
 { config, lib, pkgs, my-pkgs, ... }:
 
 let
-  cfg = config.custom.gui.rices.hyprland-rice;
+  cfg                   = config.custom.gui.rices.hyprland-rice;
+
+  mainUser              = config.custom.users.mainUser;
+  HM                    = config.home-manager.users.${mainUser};
+  mkOutOfStoreSymlink   = HM.lib.file.mkOutOfStoreSymlink;
+
+  homeDir               = HM.home.homeDirectory;
+  dataHome              = HM.xdg.dataHome;
+  hyprlandRiceConfigDir = "${homeDir}/src/hyprland/hyprland-rice/dotconfig";
+  hyprlandRiceDataDir   = "${homeDir}/src/hyprland/hyprland-rice/dotlocal/share";
+  otherScriptsDir       = "${homeDir}/src/sh/other-shell-scripts";
 in
 {
   options.custom.gui.rices.hyprland-rice.enable = lib.mkEnableOption "enables my Hyprland rice";
@@ -639,6 +649,7 @@ frame.right=0
           hypridle                             # hyprland-rice idle-manager
           hyprlock                             # hyprland-rice lock-screen
           hyprpicker                           # hyprland-rice color-picker
+          dunst                                # hyprland-rice notification-daemon
           swayosd                              # hyprland-rice osd
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
           polkit-kde-agent                     # hyprland-rice polkit-agent
@@ -706,56 +717,62 @@ frame.right=0
     };
 
   # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
+  home-manager.users.${mainUser} =
   {
     # {{{ Config files
-    home.file =
+    xdg.configFile=
     {
-      ".config/btop".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/btop;
-      #".config/cava".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/cava;
-      ".config/css-common".source                               = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/css-common;
-      ".config/dunst".source                                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/dunst;
-      ".config/fastfetch".source                                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fastfetch;
-      ".config/flameshot".source                                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/flameshot;
-      ##".config/fontconfig".source                               = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fontconfig;
-      #".config/fuzzel".source                                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/fuzzel;
-      ##".config/gtk-2.0".source                                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-2.0;
-      ##".config/gtk-3.0".source                                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/gtk-3.0;
-      ".config/htop".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/htop;
-      ".config/hypr".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr;
-      ".config/kitty".source                                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/kitty;
-      #".config/lf".source                                       = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/lf;
-      ".config/mpv".source                                      = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/mpv;
-      ".config/networkmanager-dmenu".source                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/networkmanager-dmenu;
-      ".config/nwg-bar".source                                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-bar;
-      #".config/nwg-dock-hyprland".source                        = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-dock-hyprland;
-      #".config/nwg-drawer".source                               = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/nwg-drawer;
-      ##".config/qt5ct".source                                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ##".config/qt6ct".source                                    = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/qt5ct;
-      ".config/rofi".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/rofi;
-      #".config/swayidle".source                                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swayidle;
-      #".config/swaylock".source                                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaylock;
-      #".config/swaync".source                                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/swaync;
-      ".config/waybar".source                                   = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/waybar;
-      #".config/xava".source                                     = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/xava;
-      ".config/xdg-desktop-portal/hyprland-portals.conf".source = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/xdg-desktop-portal;
-      ".config/zathura".source                                  = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/zathura;
-
-      ".local/share/sounds".source                              = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/sounds;
-      ".local/share/wallpapers".source                          = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers;
-
-      ".local/share/wallpaper.png".source                       = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png; # these basically set your wallpaper
-      ".local/share/wallpaper-lock.png".source                  = /home/andy3153/src/hyprland/hyprland-rice/dotlocal/share/wallpapers/wallpaper5.png;
-
-      ".local/bin/checkFan.sh".source                           = /home/andy3153/src/sh/other-shell-scripts/checkFan.sh;
-      ".local/bin/suspend_compositing.sh".source                = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr/scripts/suspend_compositing.sh;
-      ".local/bin/launch-waybar".source                         = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/waybar/launch-waybar;
-      ".local/bin/launch-kdepolkitagent".source                 = /home/andy3153/src/hyprland/hyprland-rice/dotconfig/hypr/scripts/launch-kdepolkitagent;
+      "btop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
+      #"cava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
+      "css-common".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/css-common";
+      "dunst".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
+      "fastfetch".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fastfetch";
+      "flameshot".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/flameshot";
+      ##"fontconfig".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fontconfig";
+      #"fuzzel".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fuzzel";
+      ##"gtk-2.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-2.0";
+      ##"gtk-3.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-3.0";
+      "htop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
+      "hypr".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr";
+      "kitty".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
+      #"lf".source                                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/lf";
+      "mpv".source                                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
+      "networkmanager-dmenu".source                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
+      "nwg-bar".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-bar";
+      #"nwg-dock-hyprland".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-dock-hyprland";
+      #"nwg-drawer".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-drawer";
+      ##"qt5ct".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/qt5ct";
+      ##"qt6ct".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/qt5ct";
+      "rofi".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
+      #"swayidle".source                                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swayidle";
+      #"swaylock".source                                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaylock";
+      #"swaync".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaync";
+      "waybar".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
+      #"xava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xava";
+      "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
+      "zathura".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
     };
     # }}}
 
-    # {{{ Services
-    services.dunst.enable = true;  # hyprland-rice notification-daemon
+    # {{{ Data files
+    xdg.dataFile =
+    {
+      "sounds".source             = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/sounds";
+      "wallpapers".source         = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers";
+
+      "wallpaper.png".source      = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers/wallpaper5.png"; # these basically set your wallpaper
+      "wallpaper-lock.png".source = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers/wallpaper5.png";
+    };
+    # }}}
+
+    # {{{ Scripts
+    home.file =
+    {
+      "${dataHome}/../bin/checkFan.sh".source            = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
+      "${dataHome}/../bin/suspend_compositing.sh".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/suspend_compositing.sh";
+      "${dataHome}/../bin/launch-waybar".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar/launch-waybar";
+      "${dataHome}/../bin/launch-kdepolkitagent".source  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/launch-kdepolkitagent";
+    };
     # }}}
   };
   # }}}

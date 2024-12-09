@@ -6,8 +6,15 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg    = config.custom.programs.zsh;
-  cfgGui = config.custom.gui;
+  cfg                 = config.custom.programs.zsh;
+  cfgGui              = config.custom.gui;
+
+  mainUser            = config.custom.users.mainUser;
+  HM                  = config.home-manager.users.${mainUser};
+  mkOutOfStoreSymlink = HM.lib.file.mkOutOfStoreSymlink;
+
+  homeDir             = HM.home.homeDirectory;
+  configHome          = HM.xdg.configHome;
 in
 {
   options.custom.programs.zsh =
@@ -18,6 +25,8 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    environment.variables = { ZDOTDIR = "${configHome}/zsh"; };
+
     # {{{ Packages
     custom.extraPackages = lib.lists.flatten
     [
@@ -47,20 +56,12 @@ in
     # }}}
 
   # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
+  home-manager.users.${mainUser} =
   {
     # {{{ Config files
-    home.file = lib.mkIf cfg.enableCustomConfigs
+    xdg.configFile = lib.mkIf cfg.enableCustomConfigs
     {
-      ".config/zsh".source = /home/andy3153/src/sh/andy3153-zshrc;
-    };
-    # }}}
-
-    # {{{ Zsh program
-    programs.zsh =
-    {
-      enable = true;
-      dotDir = ".config/zsh";
+      "zsh".source = mkOutOfStoreSymlink "${homeDir}/src/sh/andy3153-zshrc";
     };
     # }}}
   };

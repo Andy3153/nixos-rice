@@ -6,8 +6,14 @@
 { config, lib, pkgs, pkgs-unstable, ... }:
 
 let
-  cfg    = config.custom.programs.neovim;
-  cfgGui = config.custom.gui;
+  cfg                 = config.custom.programs.neovim;
+  cfgGui              = config.custom.gui;
+
+  mainUser            = config.custom.users.mainUser;
+  HM                  = config.home-manager.users.${mainUser};
+  mkOutOfStoreSymlink = HM.lib.file.mkOutOfStoreSymlink;
+
+  homeDir             = HM.home.homeDirectory;
 in
 {
   options.custom.programs.neovim =
@@ -85,13 +91,12 @@ in
     # }}}
 
   # {{{ Home-Manager
-  home-manager.users.${config.custom.users.mainUser} =
+  home-manager.users.${mainUser} =
   {
     # {{{ Config files
-    home.file = lib.mkIf cfg.enableCustomConfigs
+    xdg.configFile = lib.mkIf cfg.enableCustomConfigs
     {
-      ".config/nvim".source    = /home/andy3153/src/nvim/andy3153-init.lua;
-      ".config/nvim".recursive = true; # because package managers create some files in here
+      "nvim".source = mkOutOfStoreSymlink "${homeDir}/src/nvim/andy3153-init.lua";
     };
     # }}}
 

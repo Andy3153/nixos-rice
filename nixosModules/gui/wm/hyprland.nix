@@ -6,7 +6,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.gui.wm.hyprland;
+  cfg      = config.custom.gui.wm.hyprland;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.gui.wm.hyprland.enable = lib.mkEnableOption "enables Hyprland";
@@ -43,15 +44,8 @@ in
     ];
 
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
-      wayland.windowManager.hyprland =
-      {
-        enable          = true;
-        xwayland.enable = true;
-        extraConfig     = " ";
-      };
-
       xdg.portal =
       {
         extraPortals = config.xdg.portal.extraPortals;

@@ -55,7 +55,12 @@ in
         {
           steam.enable    = true;
           gamemode.enable = true;
-          mangohud.enable = true;
+
+          mangohud =
+          {
+            enable              = true;
+            enableCustomConfigs = true;
+          };
         };
         # }}}
       };
