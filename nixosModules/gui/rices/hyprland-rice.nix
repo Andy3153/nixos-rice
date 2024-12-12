@@ -680,7 +680,6 @@ frame.right=0
           kdegraphics-thumbnailers # for-dolphin
 
           kcalc                    # hyprland-rice KDE-Apps calculator
-          kdeconnect-kde           # hyprland-rice KDE-Apps
           ark                      # hyprland-rice KDE-Apps archive-manager
           gwenview                 # hyprland-rice KDE-Apps image-viewer
           okular                   # hyprland-rice KDE-Apps pdf-viewer
@@ -703,7 +702,11 @@ frame.right=0
       # }}}
 
       # {{{ Programs
-      programs.mpv.enable = true;              # hyprland-rice video-player
+      programs =
+      {
+        mpv.enable        = true;  # hyprland-rice video-player
+        kdeconnect.enable = true;  # hyprland-rice KDE-Apps
+      };
       # }}}
 
       # {{{ Unfree package whitelist

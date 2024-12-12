@@ -14,6 +14,7 @@
     ./gamemode.nix
     ./git.nix
     ./java.nix
+    ./kdeconnect.nix
     ./looking-glass.nix
     ./mangohud.nix
     ./mpv.nix
