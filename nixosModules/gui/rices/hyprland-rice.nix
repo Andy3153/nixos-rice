@@ -652,7 +652,7 @@ frame.right=0
           dunst                                # hyprland-rice notification-daemon
           swayosd                              # hyprland-rice osd
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
-          polkit-kde-agent                     # hyprland-rice polkit-agent
+          hyprpolkitagent                      # hyprland-rice polkit-agent
           xwaylandvideobridge                  # hyprland-rice xwayland-screenshare
           wev                                  # hyprland-rice event-viewer
           rofi-wayland                         # hyprland-rice appmenu
