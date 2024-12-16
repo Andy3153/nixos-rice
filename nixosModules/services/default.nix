@@ -18,5 +18,6 @@
     ./tlp.nix
     ./udisks.nix
     ./upower.nix
+    ./zerotierone.nix
   ];
 }
