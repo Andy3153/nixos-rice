@@ -587,7 +587,8 @@
       system.nixos.tags                     = [ "no-firewall" ];
       environment.etc."specialisation".text = "noFirewall"; # for nh
 
-      networking.firewall.enable = lib.mkForce false;
+      networking.firewall.enable         = lib.mkForce false;
+      custom.services.zerotierone.enable = true;
     };
     # }}}
   };
