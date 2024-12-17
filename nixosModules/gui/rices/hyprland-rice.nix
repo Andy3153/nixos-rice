@@ -738,6 +738,7 @@ frame.right=0
 
       plugins = with pkgs.hyprlandPlugins;
       [
+        hyprsplit
       ];
     };
     # }}}
