@@ -14,6 +14,7 @@ let
   mkOutOfStoreSymlink   = HM.lib.file.mkOutOfStoreSymlink;
 
   homeDir               = HM.home.homeDirectory;
+  configHome            = HM.xdg.configHome;
   dataHome              = HM.xdg.dataHome;
   hyprlandRiceConfigDir = "${homeDir}/src/hyprland/hyprland-rice/dotconfig";
   hyprlandRiceDataDir   = "${homeDir}/src/hyprland/hyprland-rice/dotlocal/share";
@@ -722,8 +723,26 @@ frame.right=0
   # {{{ Home-Manager
   home-manager.users.${mainUser} =
   {
+    # {{{ Hyprland
+    wayland.windowManager.hyprland =
+    {
+      enable      = true;
+
+      ##
+      ## I do this so that I can have the plugins correctly generated in the
+      ## config by Home-Manager, while still maintaining my own hyprland.conf,
+      ## because I don't want to write my config files using Home-Manager.
+      ##
+      extraConfig = "source = ${configHome}/hypr/actual-hyprland.conf";
+
+      plugins = with pkgs.hyprlandPlugins;
+      [
+      ];
+    };
+    # }}}
+
     # {{{ Config files
-    xdg.configFile=
+    xdg.configFile =
     {
       "btop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
       #"cava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
@@ -736,7 +755,14 @@ frame.right=0
       ##"gtk-2.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-2.0";
       ##"gtk-3.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-3.0";
       "htop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
-      "hypr".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr";
+
+      "hypr/colorschemes".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
+      "hypr/scripts".source                             = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts";
+      "hypr/hypridle.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
+      "hypr/actual-hyprland.conf".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.conf";
+      "hypr/hyprlock.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
+      "hypr/hyprpaper.conf".source                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
+
       "kitty".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
       #"lf".source                                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/lf";
       "mpv".source                                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
