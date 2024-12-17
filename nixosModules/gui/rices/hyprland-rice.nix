@@ -666,6 +666,7 @@ frame.right=0
           flameshot                            # hyprland-rice screenshot
           grim                                 # hyprland-rice screenshot for-flameshot
           slurp                                # hyprland-rice screenshot for-flameshot
+          cava                                 # hyprland-rice visualizer
 
           zathura                              # hyprland-rice pdf-viewer
         ])
@@ -745,7 +746,7 @@ frame.right=0
     xdg.configFile =
     {
       "btop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
-      #"cava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
+      "cava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
       "css-common".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/css-common";
       "dunst".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
       "fastfetch".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fastfetch";
