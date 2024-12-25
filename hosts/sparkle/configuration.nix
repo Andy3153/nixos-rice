@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, pkgs-unstable, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
 
 {
   custom =
@@ -111,6 +111,15 @@
     # {{{ NixPkgs Stable
     (with pkgs-stable;
     [
+    ])
+    # }}}
+
+    # {{{ My Nix packages
+    (with my-pkgs;
+    [
+      # {{{ Media
+      syrics                              # music get-lyrics
+      # }}}
     ])
     # }}}
   ];
