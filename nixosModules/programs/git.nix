@@ -35,20 +35,21 @@ in
 {
   options.custom.programs.git =
   {
-    enable = lib.mkEnableOption "enables git";
+    enable     = lib.mkEnableOption "enables Git";
+    lfs.enable = lib.mkEnableOption "enables Git LFS";
 
     userName = lib.mkOption
     {
       type        = lib.types.nullOr lib.types.str;
       default     = lib.types.null;
-      description = "default git user name";
+      description = "default Git user name";
     };
 
     userEmail = lib.mkOption
     {
       type        = lib.types.nullOr lib.types.str;
       default     = lib.types.null;
-      description = "default git user email";
+      description = "default Git user email";
     };
   };
 
@@ -57,8 +58,9 @@ in
     # {{{ Git program
     programs.git =
     {
-      enable = true;
-      config = gitExtraConfig;
+      enable     = true;
+      config     = gitExtraConfig;
+      lfs.enable = cfg.lfs.enable;
     };
     # }}}
 
@@ -70,6 +72,7 @@ in
       {
         enable      = true;
         extraConfig = gitExtraConfig;
+        lfs.enable  = cfg.lfs.enable;
 
         # {{{ Files to ignore
         ignores =

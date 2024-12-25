@@ -200,9 +200,10 @@
       # {{{ Git
       git =
       {
-        enable    = true;
-        userName  = "Andy3153";
-        userEmail = "andy3153@protonmail.com";
+        enable     = true;
+        lfs.enable = true;
+        userName   = "Andy3153";
+        userEmail  = "andy3153@protonmail.com";
       };
       # }}}
 
