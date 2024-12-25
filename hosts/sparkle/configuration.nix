@@ -65,12 +65,15 @@
       # {{{ Media
       cantata                             # music-player for-mpd
       youtube-music                       # music-player
+
       flac                                # music
       opusTools                           # music
+      mousai                              # music find-music
+      picard                              # music tag-music
+
       ffmpeg                              # media-convert
       yt-dlp                              # media-download
       converseen                          # media-convert
-      mousai                              # find music
 
       audacity                            # audio-editor
       # }}}
