@@ -71,6 +71,7 @@
       mousai                              # music find-music
       picard                              # music tag-music
       lrcget                              # music get-lyrics
+      shntool                             # music split-cue
 
       ffmpeg                              # media-convert
       yt-dlp                              # media-download
