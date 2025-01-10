@@ -60,6 +60,8 @@
       pdftk                               # pdf-tools
       pdfarranger                         # pdf-tools
       poppler_utils                       # pdf-tools
+
+      pomodoro-gtk                        # pomodoro-timer
       # }}}
 
       # {{{ Media
