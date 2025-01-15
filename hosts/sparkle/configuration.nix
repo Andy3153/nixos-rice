@@ -571,6 +571,27 @@
   # {{{ Specialisations
   specialisation =
   {
+    # {{{ Start in Steam Deck UI
+    deckUI.configuration =
+    {
+      system.nixos.tags                     = [ "deck-ui" ];
+      environment.etc."specialisation".text = "deck-ui"; # for nh
+
+      services.displayManager.defaultSession = lib.mkForce "steam";
+    };
+    # }}}
+
+    # {{{ No firewall
+    noFirewall.configuration =
+    {
+      system.nixos.tags                     = [ "no-firewall" ];
+      environment.etc."specialisation".text = "noFirewall"; # for nh
+
+      networking.firewall.enable         = lib.mkForce false;
+      custom.services.zerotierone.enable = true;
+    };
+    # }}}
+
     # {{{ GPU passthrough to VM
     gpuPassthrough.configuration =
     {
@@ -596,17 +617,6 @@
           };
         };
       };
-    };
-    # }}}
-
-    # {{{ No firewall
-    noFirewall.configuration =
-    {
-      system.nixos.tags                     = [ "no-firewall" ];
-      environment.etc."specialisation".text = "noFirewall"; # for nh
-
-      networking.firewall.enable         = lib.mkForce false;
-      custom.services.zerotierone.enable = true;
     };
     # }}}
   };
