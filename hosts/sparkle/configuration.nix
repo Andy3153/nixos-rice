@@ -286,10 +286,11 @@
       };
       # }}}
 
-      adb.enable    = true;
-      direnv.enable = true;
-      obs.enable    = true;
-      tilp2.enable  = true;
+      adb.enable       = true;
+      direnv.enable    = true;
+      gamescope.enable = true;
+      obs.enable       = true;
+      tilp2.enable     = true;
     };
     # }}}
 

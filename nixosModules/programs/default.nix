@@ -12,6 +12,7 @@
     ./dconf.nix
     ./direnv.nix
     ./gamemode.nix
+    ./gamescope.nix
     ./git.nix
     ./java.nix
     ./kdeconnect.nix
