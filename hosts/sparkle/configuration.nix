@@ -572,12 +572,17 @@
   specialisation =
   {
     # {{{ Start in Steam Deck UI
-    deckUI.configuration =
+    deckUi.configuration =
     {
       system.nixos.tags                     = [ "deck-ui" ];
       environment.etc."specialisation".text = "deck-ui"; # for nh
 
-      custom.hardware.bluetooth.powerOnBoot  = lib.mkForce true;
+      custom =
+      {
+        hardware.bluetooth.powerOnBoot          = lib.mkForce true;
+        systemd.services.turnOnBluetooth.enable = lib.mkForce true;
+      };
+
       services.displayManager.defaultSession = lib.mkForce "steam";
     };
     # }}}

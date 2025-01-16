@@ -9,5 +9,6 @@
   imports =
   [
     ./tufFanSpeed.nix
+    ./turnOnBluetooth.nix
   ];
 }
