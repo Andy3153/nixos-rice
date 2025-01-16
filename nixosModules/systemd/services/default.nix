@@ -8,6 +8,6 @@
 {
   imports =
   [
-    ./TUFFanSpeed.nix
+    ./tufFanSpeed.nix
   ];
 }

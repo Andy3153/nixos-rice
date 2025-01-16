@@ -321,7 +321,7 @@
     # }}}
 
     # {{{ Systemd
-    systemd.services.TUFFanSpeed.enable = true;
+    systemd.services.tufFanSpeed.enable = true;
     # }}}
 
     # {{{ Users
