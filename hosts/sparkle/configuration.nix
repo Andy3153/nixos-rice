@@ -577,6 +577,7 @@
       system.nixos.tags                     = [ "deck-ui" ];
       environment.etc."specialisation".text = "deck-ui"; # for nh
 
+      custom.hardware.bluetooth.powerOnBoot  = lib.mkForce true;
       services.displayManager.defaultSession = lib.mkForce "steam";
     };
     # }}}
