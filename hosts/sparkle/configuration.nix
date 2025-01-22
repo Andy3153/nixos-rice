@@ -579,11 +579,9 @@
 
       custom =
       {
-        hardware.bluetooth.powerOnBoot          = lib.mkForce true;
-        systemd.services.turnOnBluetooth.enable = lib.mkForce true;
+        gui.de.deckUi.enable = true;
+        programs.gamescope.enable = lib.mkForce false; # Jovian's module conflicts with `programs.gamescope.capSysNice` for some reason
       };
-
-      services.displayManager.defaultSession = lib.mkForce "steam";
     };
     # }}}
 

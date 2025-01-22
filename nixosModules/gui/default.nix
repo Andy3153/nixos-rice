@@ -11,6 +11,7 @@ in
 {
   imports =
   [
+    ./de
     ./dm
     ./rices
     ./theme

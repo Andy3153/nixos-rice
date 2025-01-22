@@ -82,6 +82,15 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     # }}}
+
+    # {{{ Jovian NixOS (Steam Deck UI)
+    jovian =
+    {
+      #url = "github:Jovian-Experiments/Jovian-NixOS";
+      url = "github:Andy3153/Jovian-NixOS/guard-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # }}}
   };
   # }}}
 
@@ -102,6 +111,7 @@
     nix-flatpak,
     home-manager,
     home-manager-stable,
+    jovian,
     ...
   }: rec
   # }}}
@@ -137,6 +147,7 @@
           flake-programs-sqlite.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
+          jovian.nixosModules.jovian
 
           ./hosts/sparkle
         ];
@@ -174,6 +185,7 @@
               options =
               {
                 boot.lanzaboote            = dummyOpt;
+                jovian                     = dummyOpt;
                 services.flatpak.overrides = dummyOpt;
                 services.flatpak.packages  = dummyOpt;
                 services.flatpak.update    = dummyOpt;
@@ -238,6 +250,7 @@
               options =
               {
                 boot.lanzaboote = dummyOpt;
+                jovian          = dummyOpt;
               };
             }
           )
