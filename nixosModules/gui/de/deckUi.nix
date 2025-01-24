@@ -11,7 +11,17 @@ let
   mainUser  = config.custom.users.mainUser;
 in
 {
-  options.custom.gui.de.deckUi.enable = lib.mkEnableOption "enables Steam Deck UI";
+  options.custom.gui.de.deckUi =
+  {
+    enable    = lib.mkEnableOption "enables Steam Deck UI";
+    autoStart = lib.mkOption
+    {
+      type        = lib.types.bool;
+      default     = false;
+      example     = true;
+      description = "enables Steam Deck UI";
+    };
+  };
 
   config = lib.mkIf cfg.enable
   {
@@ -20,7 +30,7 @@ in
       steam =
       {
         enable         = true;
-        autoStart      = true;
+        autoStart      = cfg.autoStart;
         desktopSession = dmSession;
         updater.splash = "bgrt";
         user           = mainUser;
