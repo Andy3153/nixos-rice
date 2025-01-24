@@ -791,8 +791,8 @@ frame.right=0
       "sounds".source             = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/sounds";
       "wallpapers".source         = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers";
 
-      "wallpaper.png".source      = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers/wallpaper5.png"; # these basically set your wallpaper
-      "wallpaper-lock.png".source = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers/wallpaper5.png";
+      "wallpaper.png".source      = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpaper.png";      # these basically set your wallpaper
+      "wallpaper-lock.png".source = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpaper-lock.png";
     };
     # }}}
 
