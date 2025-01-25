@@ -799,10 +799,11 @@ frame.right=0
     # {{{ Scripts
     home.file =
     {
-      "${dataHome}/../bin/checkFan.sh".source            = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
-      "${dataHome}/../bin/suspend_compositing.sh".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/suspend_compositing.sh";
-      "${dataHome}/../bin/launch-waybar".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar/launch-waybar";
-      "${dataHome}/../bin/launch-kdepolkitagent".source  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/launch-kdepolkitagent";
+      "${dataHome}/../bin/checkFan.sh".source           = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
+      "${dataHome}/../bin/launch-waybar".source         = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar/launch-waybar";
+      "${dataHome}/../bin/launch-kdepolkitagent".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/launch-kdepolkitagent";
+      "${dataHome}/../bin/run_game".source              = mkOutOfStoreSymlink "${otherScriptsDir}/run_game";
+      "${dataHome}/../bin/suspend_compositing".source   = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
     };
     # }}}
   };
