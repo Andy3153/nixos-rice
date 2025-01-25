@@ -31,6 +31,7 @@
     {
       enable                     = true;
       gaming.enable              = true;
+      de.deckUi.enable           = true;
       rices.hyprland-rice.enable = true;
     };
     # }}}
@@ -288,7 +289,6 @@
 
       adb.enable       = true;
       direnv.enable    = true;
-      gamescope.enable = true;
       obs.enable       = true;
       tilp2.enable     = true;
     };
@@ -579,9 +579,11 @@
 
       custom =
       {
-        gui.de.deckUi.enable = true;
-        programs.gamescope.enable = lib.mkForce false; # Jovian's module conflicts with `programs.gamescope.capSysNice` for some reason
+        gui.de.deckUi.autoStart                 = true;
+        systemd.services.turnOnBluetooth.enable = true;
       };
+
+      #services.displayManager.defaultSession = lib.mkForce "gamescope-wayland";
     };
     # }}}
 
