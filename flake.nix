@@ -216,6 +216,55 @@
       # }}}
       # }}}
 
+      # {{{ naegl | Lenovo Ideapad 320
+      naegl = nixpkgs-stable.lib.nixosSystem
+      {
+        specialArgs = { inherit inputs; }; # access inputs in config
+        modules =
+        [
+          { networking.hostName = "naegl"; } # Hostname
+
+          # {{{ Add flake inputs to configuration
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+              };
+            }
+          )
+          # }}}
+
+          # {{{ Dummy modules so I don't have to import inputs I don't need
+          (
+            { options, lib, ... }:
+            let
+              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
+            in
+            {
+              options =
+              {
+                jovian                     = dummyOpt;
+                services.flatpak.overrides = dummyOpt;
+                services.flatpak.packages  = dummyOpt;
+                services.flatpak.update    = dummyOpt;
+              };
+            }
+          )
+          # }}}
+
+          nixos-hardware.nixosModules.raspberry-pi-4
+          lanzaboote.nixosModules.lanzaboote
+          flake-programs-sqlite.nixosModules.programs-sqlite
+          home-manager-stable.nixosModules.home-manager
+
+          ./hosts/naegl
+        ];
+      };
+      # }}}
+
       # {{{ livecd | Live CD
       livecd = nixpkgs.lib.nixosSystem
       {

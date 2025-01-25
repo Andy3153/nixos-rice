@@ -13,8 +13,11 @@ I wrote custom modules for everything my system needs to do, I barely need to us
 #### `sparkle` | ASUS TUF F15 FX506HM
 This is my main machine. I have lots of configs for [Hyprland](https://github.com/Andy3153/hyprland-rice), [Zsh](https://github.com/Andy3153/andy3153-zshrc), [Neovim](https://github.com/Andy3153/andy3153-init.lua), gaming, virtual machines, Secure Boot, RGB control and many others. Also do check out the [NixOS Hardware](https://github.com/NixOS/nixos-hardware/tree/master/asus/fx506hm) entry on this laptop.
 
+#### `naegl` | Lenovo Ideapad 320
+This is my new server. It's meant to replace `ember`. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
+
 #### `ember` | Raspberry Pi 4
-This is my server. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
+This is my old server. It has been replaced by `naegl`. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
 
 ### Images
 #### `ember`
