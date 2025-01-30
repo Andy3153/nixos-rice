@@ -6,7 +6,7 @@
 ##
 
 {
-  description = "Andy3153's Nix flake";
+  description = "Andy3153's NixOS flake";
 
   # {{{ Inputs
   inputs =
@@ -18,7 +18,7 @@
     # NixPkgs 24.11
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    # NixPkgs for TiLP
+    # NixPkgs where TiLP still existed
     nixpkgs-tilp.url = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
 
     # NixPkgs (my fork for when I'm working on something)
