@@ -363,6 +363,14 @@
     };
     # }}}
 
+    # {{{ NixOS modules
+    nixosModules = rec
+    {
+      default    = nixos-rice;
+      nixos-rice = ./nixosModules;
+    };
+    # }}}
+
     # {{{ Images
     images =
     {
