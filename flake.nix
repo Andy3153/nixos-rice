@@ -13,25 +13,32 @@
   {
     # {{{ NixPkgs
     # NixPkgs Unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NixPkgs 24.11
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs_stable.url   = "github:nixos/nixpkgs/nixos-24.11";
 
     # NixPkgs where TiLP still existed
-    nixpkgs-tilp.url = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
+    nixpkgs_tilp.url     = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
 
     # NixPkgs (my fork for when I'm working on something)
-    #nixpkgs-andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
-    #nixpkgs-andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
+    #nixpkgs_andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
+    #nixpkgs_andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
     # }}}
 
     # {{{ My Nix packages
-    my-nixpkgs =
+    my-nixpkgs_unstable =
     {
       url = "github:Andy3153/my-nixpkgs";
       #url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    my-nixpkgs_stable =
+    {
+      url = "github:Andy3153/my-nixpkgs";
+      #url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
 
@@ -42,26 +49,44 @@
     # }}}
 
     # {{{ Lanzaboote
-    lanzaboote =
+    lanzaboote_unstable =
     {
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    lanzaboote_stable =
+    {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
 
     # {{{ programs.sqlite for Nix Flakes
-    flake-programs-sqlite =
+    flake-programs-sqlite_unstable =
     {
       url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    flake-programs-sqlite_stable =
+    {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
 
     # {{{ in-nix (add envvar when in `nix shell`)
-    in-nix =
+    in-nix_unstable =
     {
       url = "github:viperML/in-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    in-nix_stable =
+    {
+      url = "github:viperML/in-nix";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
 
@@ -70,25 +95,32 @@
     # }}}
 
     # {{{ Home-Manager
-    home-manager =
+    home-manager_unstable =
     {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
-    home-manager-stable =
+    home-manager_stable =
     {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
 
     # {{{ Jovian NixOS (Steam Deck UI)
-    jovian =
+    jovian_unstable =
     {
       #url = "github:Jovian-Experiments/Jovian-NixOS";
       url = "github:Andy3153/Jovian-NixOS/guard-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    jovian_stable =
+    {
+      #url = "github:Jovian-Experiments/Jovian-NixOS";
+      url = "github:Andy3153/Jovian-NixOS/guard-overlay";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
   };
@@ -99,19 +131,33 @@
   # {{{ Inputs
   {
     self,
-    nixpkgs,
-    nixpkgs-stable,
-    nixpkgs-tilp,
-    #nixpkgs-andy3153,
-    my-nixpkgs,
+
+    nixpkgs_unstable,
+    nixpkgs_stable,
+    nixpkgs_tilp,
+    #nixpkgs_andy3153,
+
+    my-nixpkgs_unstable,
+    my-nixpkgs_stable,
+
     nixos-hardware,
-    lanzaboote,
-    flake-programs-sqlite,
-    in-nix,
+
+    lanzaboote_unstable,
+    lanzaboote_stable,
+
+    flake-programs-sqlite_unstable,
+    flake-programs-sqlite_stable,
+
+    in-nix_unstable,
+    in-nix_stable,
+
     nix-flatpak,
-    home-manager,
-    home-manager-stable,
-    jovian,
+
+    home-manager_unstable,
+    home-manager_stable,
+
+    jovian_unstable,
+    jovian_stable,
     ...
   }: rec
   # }}}
@@ -120,7 +166,7 @@
     nixosConfigurations =
     {
       # {{{ sparkle | ASUS TUF F15 FX506HM
-      sparkle = nixpkgs.lib.nixosSystem
+      sparkle = nixpkgs_unstable.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
@@ -133,21 +179,21 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
-                pkgs-tilp     = import nixpkgs-tilp   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
+                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
+                pkgs-tilp     = import nixpkgs_tilp     { config = config.nixpkgs.config; };
+                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
               };
             }
           )
           # }}}
 
           nixos-hardware.nixosModules.asus-fx506hm
-          lanzaboote.nixosModules.lanzaboote
-          flake-programs-sqlite.nixosModules.programs-sqlite
+          lanzaboote_unstable.nixosModules.lanzaboote
+          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
-          home-manager.nixosModules.home-manager
-          jovian.nixosModules.jovian
+          home-manager_unstable.nixosModules.home-manager
+          jovian_unstable.nixosModules.jovian
 
           ./hosts/sparkle
         ];
@@ -155,7 +201,7 @@
       # }}}
 
       # {{{ ember | Raspberry Pi 4
-      ember = nixpkgs-stable.lib.nixosSystem
+      ember = nixpkgs_stable.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
@@ -168,8 +214,8 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
               };
             }
           )
@@ -194,10 +240,10 @@
           )
           # }}}
 
-          "${nixpkgs-stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          "${nixpkgs_stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           nixos-hardware.nixosModules.raspberry-pi-4
-          flake-programs-sqlite.nixosModules.programs-sqlite
-          home-manager-stable.nixosModules.home-manager
+          flake-programs-sqlite_stable.nixosModules.programs-sqlite
+          home-manager_stable.nixosModules.home-manager
 
           ./hosts/ember
         ];
@@ -217,7 +263,7 @@
       # }}}
 
       # {{{ naegl | Lenovo Ideapad 320
-      naegl = nixpkgs-stable.lib.nixosSystem
+      naegl = nixpkgs_stable.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
@@ -230,8 +276,8 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
+                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
               };
             }
           )
@@ -256,9 +302,9 @@
           # }}}
 
           nixos-hardware.nixosModules.raspberry-pi-4
-          lanzaboote.nixosModules.lanzaboote
-          flake-programs-sqlite.nixosModules.programs-sqlite
-          home-manager-stable.nixosModules.home-manager
+          lanzaboote_stable.nixosModules.lanzaboote
+          flake-programs-sqlite_stable.nixosModules.programs-sqlite
+          home-manager_stable.nixosModules.home-manager
 
           ./hosts/naegl
         ];
@@ -266,7 +312,7 @@
       # }}}
 
       # {{{ livecd | Live CD
-      livecd = nixpkgs.lib.nixosSystem
+      livecd = nixpkgs_unstable.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         system      = "x86_64-linux";
@@ -281,9 +327,9 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs        { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs-stable { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
+                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
+                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
               };
             }
           )
@@ -305,10 +351,10 @@
           )
           # }}}
 
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          flake-programs-sqlite.nixosModules.programs-sqlite
+          "${nixpkgs_unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
-          home-manager.nixosModules.home-manager
+          home-manager_unstable.nixosModules.home-manager
 
           ./hosts/livecd
         ];
