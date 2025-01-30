@@ -99,8 +99,6 @@
       ventoy-full                         # flash-usbs
       woeusb                              # flash-usbs windows
 
-      gpt4all                             # AI
-
       d-spy                               # D-Bus
 
       ciscoPacketTracer8
