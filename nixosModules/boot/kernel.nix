@@ -14,7 +14,7 @@ in
     type        = options.boot.kernelPackages.type;
     default     = pkgs.linuxPackages;
     example     = pkgs.linuxKernel.packages.linux_zen;
-    description = "what Linux kernel to use";
+    description = "package of the kernel to use";
   };
 
   config.boot.kernelPackages = cfg;

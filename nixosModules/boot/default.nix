@@ -8,14 +8,12 @@
 {
   imports =
   [
-    ./loader
+    ./initrd.nix
     ./kernel.nix
+    ./loader
     ./plymouth.nix
     ./quiet.nix
-    ./reisub.nix
     ./sysctl.nix
     ./uefi.nix
   ];
-
-  boot.initrd.systemd.enable = true;
 }

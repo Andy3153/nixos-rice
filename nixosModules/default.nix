@@ -142,7 +142,7 @@ in
         stateVersion  = config.system.stateVersion;
 
         username      = mainUser;
-        homeDirectory = "/home/${mainUser}";
+        homeDirectory = config.users.users.${mainUser}.home;
       };
 
       news.display = "notify";                # Show news

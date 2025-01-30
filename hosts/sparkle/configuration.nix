@@ -16,8 +16,13 @@
       #kernel               = pkgs.linuxPackages;        # LTS
       #kernel               = pkgs.linuxPackages_latest; # Stable
       kernel               = pkgs.linuxPackages_zen;    # Zen
-      reisub.enable        = true;
-      sysctl.vm.swappiness = 30;
+
+      sysctl =
+      {
+        kernel.sysrq  = 244; # enable REISUB
+        vm.swappiness = 30;
+      };
+
       uefi =
       {
         enable = true;

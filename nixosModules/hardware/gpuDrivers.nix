@@ -12,7 +12,7 @@ in
   options.custom.hardware.gpuDrivers = lib.mkOption
   {
     type        = options.services.xserver.videoDrivers.type;
-    default     = [ ];
+    default     = options.services.xserver.videoDrivers.default;
     example =
     [
       "modesetting"

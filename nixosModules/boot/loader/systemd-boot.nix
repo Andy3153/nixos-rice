@@ -3,11 +3,10 @@
 ## systemd-boot config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
-  cfg           = config.custom.boot.loader.systemd-boot;
-  ESPMountPoint = config.boot.loader.efi.efiSysMountPoint;
+  cfg = config.custom.boot.loader.systemd-boot;
 in
 {
   options.custom.boot.loader.systemd-boot =
@@ -27,16 +26,6 @@ in
         enable           = cfg.enable;
         editor           = false;
         memtest86.enable = cfg.memtest86.enable;
-
-        # Rename boot entries
-        extraInstallCommands = # thx @m0tholith on discord
-        ''
-          search_dir=${ESPMountPoint}/loader/entries
-          for file in "$search_dir"/*
-          do
-            ${lib.getExe pkgs.gnused} -i -E "s/version Generation ([0-9]+).*/version Gen \1/" $file
-          done
-        '';
       };
     };
   };

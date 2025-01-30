@@ -6,12 +6,12 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.hardware.controllers.xbox;
+  cfg = config.custom.hardware.controllers;
 in
 {
   options.custom.hardware.controllers.xbox.enable = lib.mkEnableOption "enables Xbox controllers";
 
-  config = lib.mkIf cfg.enable
+  config = lib.mkIf cfg.xbox.enable
   {
     hardware =
     {

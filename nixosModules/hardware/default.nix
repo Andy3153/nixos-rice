@@ -10,10 +10,10 @@
   [
     ./bluetooth.nix
     ./controllers.nix
-    ./graphics.nix
-    ./graphictablets.nix
     ./gpuDrivers.nix
     ./gpuPassthrough.nix
+    ./graphics.nix
+    ./graphictablets.nix
     ./i2c.nix
     ./isLaptop.nix
     ./nvidia

@@ -14,13 +14,7 @@ in
   options.custom.gui.de.deckUi =
   {
     enable    = lib.mkEnableOption "enables Steam Deck UI";
-    autoStart = lib.mkOption
-    {
-      type        = lib.types.bool;
-      default     = false;
-      example     = true;
-      description = "enables Steam Deck UI";
-    };
+    autoStart = lib.mkEnableOption "whether to autostart the Steam Deck UI";
   };
 
   config = lib.mkIf cfg.enable

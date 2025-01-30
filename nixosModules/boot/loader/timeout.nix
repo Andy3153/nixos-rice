@@ -14,7 +14,7 @@ in
     type        = options.boot.loader.timeout.type;
     default     = 0;
     example     = 5;
-    description = "timeout until loader boots the default menu item";
+    description = "timeout until loader boots the default menu item, `0` boots the first entry instantly";
   };
 
   config.boot.loader.timeout = cfg;
