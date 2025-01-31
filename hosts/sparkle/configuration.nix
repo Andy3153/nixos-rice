@@ -585,8 +585,6 @@
         gui.de.deckUi.autoStart                 = true;
         systemd.services.turnOnBluetooth.enable = true;
       };
-
-      #services.displayManager.defaultSession = lib.mkForce "gamescope-wayland";
     };
     # }}}
 

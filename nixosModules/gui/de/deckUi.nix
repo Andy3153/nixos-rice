@@ -6,9 +6,8 @@
 { config, lib, ... }:
 
 let
-  cfg       = config.custom.gui.de.deckUi;
-  dmSession = config.services.displayManager.defaultSession;
-  mainUser  = config.custom.users.mainUser;
+  cfg      = config.custom.gui.de.deckUi;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.gui.de.deckUi =
@@ -24,8 +23,6 @@ in
       steam =
       {
         enable         = true;
-        autoStart      = cfg.autoStart;
-        desktopSession = dmSession;
         updater.splash = "bgrt";
         user           = mainUser;
       };
@@ -41,17 +38,14 @@ in
       };
     };
 
-    custom =
-    {
-      gui.dm.sddm.enable = lib.mkForce (!config.jovian.steam.autoStart);
+    services.displayManager.sddm.settings.Autologin.Session = lib.mkIf cfg.autoStart (lib.mkForce "gamescope-wayland.desktop");
 
-      # {{{ Unfree package whitelist
-      nix.unfreeWhitelist =
-      [
-        "steam-jupiter-unwrapped"
-        "steamdeck-hw-theme"
-      ];
-      # }}}
-    };
+    # {{{ Unfree package whitelist
+    custom.nix.unfreeWhitelist =
+    [
+      "steam-jupiter-unwrapped"
+      "steamdeck-hw-theme"
+    ];
+    # }}}
   };
 }
