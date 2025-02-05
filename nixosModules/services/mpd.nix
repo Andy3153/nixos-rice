@@ -14,7 +14,26 @@ let
   dataDir     = "${musicDir}/.mpd";
 in
 {
-  options.custom.services.mpd.enable = lib.mkEnableOption "enables MPD";
+  options.custom.services.mpd =
+  {
+    enable = lib.mkEnableOption "enables MPD";
+
+    discord-rpc.enable = lib.mkOption
+    {
+      type        = lib.types.bool;
+      default     = true;
+      example     = false;
+      description = "enables MPD Discord RPC";
+    };
+
+    listenbrainz.enable = lib.mkOption
+    {
+      type        = lib.types.bool;
+      default     = true;
+      example     = false;
+      description = "enables ListenBrainz MPD client";
+    };
+  };
 
   config = lib.mkIf cfg.enable
   {
@@ -48,7 +67,11 @@ in
   # {{{ Home-Manager
   home-manager.users.${config.custom.users.mainUser} =
   {
-    services.mpd-discord-rpc.enable = true; # for-discord for-mpd
+    services =
+    {
+      mpd-discord-rpc.enable  = cfg.discord-rpc.enable;  # for-discord for-mpd
+      listenbrainz-mpd.enable = cfg.listenbrainz.enable; # for-mpd
+    };
   };
   # }}}
   };
