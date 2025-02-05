@@ -12,6 +12,7 @@
     ./flatpak.nix
     ./hamachi.nix
     ./mpd.nix
+    ./ollama.nix
     ./openssh.nix
     ./pipewire.nix
     ./printing.nix
