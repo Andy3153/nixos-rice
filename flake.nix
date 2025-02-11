@@ -112,14 +112,14 @@
     jovian_unstable =
     {
       #url = "github:Jovian-Experiments/Jovian-NixOS";
-      url = "github:Andy3153/Jovian-NixOS/guard-overlay";
+      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
     jovian_stable =
     {
       #url = "github:Jovian-Experiments/Jovian-NixOS";
-      url = "github:Andy3153/Jovian-NixOS/guard-overlay";
+      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
