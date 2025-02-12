@@ -6,7 +6,8 @@
 { config, lib, my-pkgs, ... }:
 
 let
-  cfg = config.custom.hardware.openrgb;
+  cfg            = config.custom.hardware.openrgb;
+  openrgbPackage = my-pkgs.openrgb-with-all-plugins-git;
 in
 {
   options.custom.hardware.openrgb.enable = lib.mkEnableOption "enables OpenRGB";
@@ -15,13 +16,10 @@ in
   {
     custom.hardware.i2c.enable = lib.mkForce true; # force enable custom i2c
 
-    #custom.extraPackages  = [ pkgs.openrgb-plugin-effects ];
-    services.udev.packages = [ my-pkgs.openrgb-git ];
-
     services.hardware.openrgb =
     {
       enable  = true;
-      package = my-pkgs.openrgb-git;
+      package = openrgbPackage;
     };
   };
 }
