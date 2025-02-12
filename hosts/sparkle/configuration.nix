@@ -106,7 +106,7 @@
 
       d-spy                               # D-Bus
 
-      ciscoPacketTracer8
+      #ciscoPacketTracer8
     ])
     # }}}
 
