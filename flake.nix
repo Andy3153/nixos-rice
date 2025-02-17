@@ -262,13 +262,13 @@
       # }}}
       # }}}
 
-      # {{{ naegl | Lenovo Ideapad 320
-      naegl = nixpkgs_stable.lib.nixosSystem
+      # {{{ helix | Lenovo Ideapad 320
+      helix = nixpkgs_stable.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
         [
-          { networking.hostName = "naegl"; } # Hostname
+          { networking.hostName = "helix"; } # Hostname
 
           # {{{ Add flake inputs to configuration
           (
@@ -306,7 +306,7 @@
           flake-programs-sqlite_stable.nixosModules.programs-sqlite
           home-manager_stable.nixosModules.home-manager
 
-          ./hosts/naegl
+          ./hosts/helix
         ];
       };
       # }}}

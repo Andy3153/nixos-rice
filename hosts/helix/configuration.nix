@@ -1,6 +1,6 @@
 ## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
 ##
-## Config for hostname `naegl`
+## Config for hostname `helix`
 ##
 ## Lenovo Ideapad 320
 ##
@@ -64,7 +64,7 @@
         enable         = true;
         authorizedKeys =
         [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhwsDe32pk/LJ9ndeOM4tM8OH/erSrkza3PHTu053GV sparkle-naegl"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhwsDe32pk/LJ9ndeOM4tM8OH/erSrkza3PHTu053GV sparkle-helix"
         ];
 
         settings =
