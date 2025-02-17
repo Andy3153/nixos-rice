@@ -64,7 +64,7 @@
         enable         = true;
         authorizedKeys =
         [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhwsDe32pk/LJ9ndeOM4tM8OH/erSrkza3PHTu053GV sparkle-helix"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPr4Tm7o9ZOI6ywso8Cp0uLXuIIcB1i9KBlWTAVVHwef sparkle-helix"
         ];
 
         settings =
