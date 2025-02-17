@@ -124,52 +124,52 @@
         };
       };
       # }}}
-
-      # {{{ Data drive (external HDD)
-      "data" =
-      {
-        device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
-        type   = "disk";
-
-        content =
-        {
-          type = "lvm_pv";
-          vg   = "helix";
-        };
-      };
-      # }}}
+      #
+      ## {{{ Data drive (external HDD)
+      #"data" =
+      #{
+      #  device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
+      #  type   = "disk";
+      #
+      #  content =
+      #  {
+      #    type = "lvm_pv";
+      #    vg   = "helix";
+      #  };
+      #};
+      ## }}}
     };
     # }}}
-
-    # {{{ LVM volume groups
-    lvm_vg =
-    {
-      # {{{ `helix`
-      "helix" =
-      {
-        type = "lvm_vg";
-
-        # {{{ Logical volumes
-        lvs =
-        {
-          # {{{ Docker
-          docker =
-          {
-            size = "5G";
-
-            content =
-            {
-              type       = "filesystem";
-              format     = "ext4";
-              mountpoint = "/var/lib/docker";
-            };
-          };
-          # }}}
-        };
-        # }}}
-      };
-      # }}}
-    };
-    # }}}
+    #
+    ## {{{ LVM volume groups
+    #lvm_vg =
+    #{
+    #  # {{{ `helix`
+    #  "helix" =
+    #  {
+    #    type = "lvm_vg";
+    #
+    #    # {{{ Logical volumes
+    #    lvs =
+    #    {
+    #      # {{{ Docker
+    #      docker =
+    #      {
+    #        size = "5G";
+    #
+    #        content =
+    #        {
+    #          type       = "filesystem";
+    #          format     = "ext4";
+    #          mountpoint = "/var/lib/docker";
+    #        };
+    #      };
+    #      # }}}
+    #    };
+    #    # }}}
+    #  };
+    #  # }}}
+    #};
+    ## }}}
   };
 }
