@@ -27,8 +27,9 @@
           partitions =
           {
             # {{{ ESP
-            "EFI System Partition" =
+            esp =
             {
+              name = "EFI System Partition";
               size = "2G";
               type = "EF00";
 
@@ -46,20 +47,94 @@
             };
             # }}}
 
-            # {{{ `helix` (LVM PV)
-            "helix" =
+            # {{{ Main
+            main =
             {
+              name = "helix";
               size = "100%";
 
               content =
               {
-                type = "lvm_pv";
-                vg   = "helix";
+                type         = "btrfs";
+                extraArgs    = [ "-f" ];
+                mountpoint   = "/.btrfs-root";
+                mountOptions = [ "compress=zstd" ];
+
+                # {{{ Btrfs subvolumes
+                subvolumes =
+                {
+                  "/root" =
+                  {
+                    mountpoint   = "/";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/nix" =
+                  {
+                    mountpoint   = "/nix";
+                    mountOptions =
+                    [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+
+                  "/home" =
+                  {
+                    mountpoint   = "/home";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/swap" =
+                  {
+                    mountpoint = "/.swap";
+                    swap.swapfile.size = "10G";
+                  };
+
+                  "/snapshots" =
+                  {
+                    mountpoint   = "/.snapshots";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/var-cache" =
+                  {
+                    mountpoint   = "/var/cache";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/var-log" =
+                  {
+                    mountpoint   = "/var/log";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/var-tmp" =
+                  {
+                    mountpoint   = "/var/tmp";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+                };
+                # }}}
               };
             };
             # }}}
           };
           # }}}
+        };
+      };
+      # }}}
+
+      # {{{ Data drive (external HDD)
+      "data" =
+      {
+        device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
+        type   = "disk";
+
+        content =
+        {
+          type = "lvm_pv";
+          vg   = "helix";
         };
       };
       # }}}
@@ -77,62 +152,16 @@
         # {{{ Logical volumes
         lvs =
         {
-          # {{{ `root`
-          "root" =
+          # {{{ Docker
+          docker =
           {
-            size = "50G";
+            size = "5G";
 
             content =
             {
-              type       = "btrfs";
-              extraArgs  = [ "-f" ];
-              mountpoint = "/.btrfs-root";
-
-              # {{{ Btrfs subvolumes
-              subvolumes =
-              {
-                "/root" =
-                {
-                  mountpoint = "/";
-                };
-
-                "/nix" =
-                {
-                  mountpoint = "/nix";
-                };
-
-                "/home" =
-                {
-                  mountpoint = "/home";
-                };
-
-                "/swap" =
-                {
-                  mountpoint = "/.swap";
-                  swap.swapfile.size = "10G";
-                };
-
-                "/snapshots" =
-                {
-                  mountpoint = "/.snapshots";
-                };
-
-                "/var-cache" =
-                {
-                  mountpoint = "/var/cache";
-                };
-
-                "/var-log" =
-                {
-                  mountpoint = "/var/log";
-                };
-
-                "/var-tmp" =
-                {
-                  mountpoint = "/var/tmp";
-                };
-              };
-              # }}}
+              type       = "filesystem";
+              format     = "ext4";
+              mountpoint = "/var/lib/docker";
             };
           };
           # }}}
