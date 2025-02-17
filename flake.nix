@@ -319,7 +319,6 @@
           )
           # }}}
 
-          nixos-hardware.nixosModules.raspberry-pi-4
           lanzaboote_stable.nixosModules.lanzaboote
           flake-programs-sqlite_stable.nixosModules.programs-sqlite
           home-manager_stable.nixosModules.home-manager
