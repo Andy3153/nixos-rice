@@ -123,6 +123,20 @@
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
+
+    # {{{ Disko
+    disko_unstable =
+    {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    disko_stable =
+    {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+    # }}}
   };
   # }}}
 
@@ -158,6 +172,10 @@
 
     jovian_unstable,
     jovian_stable,
+
+    disko_unstable,
+    disko_stable,
+
     ...
   }: rec
   # }}}
@@ -305,6 +323,7 @@
           lanzaboote_stable.nixosModules.lanzaboote
           flake-programs-sqlite_stable.nixosModules.programs-sqlite
           home-manager_stable.nixosModules.home-manager
+          disko_stable.nixosModules.disko
 
           ./hosts/helix
         ];
