@@ -1,17 +1,24 @@
-{ lib, modulesPath, ... }:
+{ config, lib, modulesPath, ... }:
 
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  # {{{ Boot
-  boot.initrd =
+  # {{{ Detected kernel modules
+  boot =
   {
-    services.lvm.enable    = true;
+    initrd.availableKernelModules =
+      [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
+    kernelModules = [ "kvm-intel" ];
   };
   # }}}
 
-  # {{{ Filesystems
+  # {{{ Firmware and microcode
+  hardware =
+  {
+    enableRedistributableFirmware = lib.mkDefault true;
+    cpu.intel.updateMicrocode     = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
   # }}}
 
   networking.useDHCP   = lib.mkDefault true;
