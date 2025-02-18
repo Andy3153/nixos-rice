@@ -23,6 +23,10 @@
     };
     # }}}
 
+    # {{{ Hardware
+    hardware.laptop.ignoreLid = true;
+    # }}}
+
     # {{{ Programs
     programs =
     {

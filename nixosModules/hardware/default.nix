@@ -15,6 +15,7 @@
     ./graphics.nix
     ./graphictablets.nix
     ./i2c.nix
+    ./laptop
     ./nvidia
     ./openrgb.nix
     ./piper.nix
