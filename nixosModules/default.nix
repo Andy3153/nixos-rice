@@ -147,7 +147,6 @@ in
 
       news.display = "notify";                # Show news
       programs.home-manager.enable = true;    # let HM manage itself
-      nixpkgs.config = config.nixpkgs.config;
     };
   };
   # }}}
