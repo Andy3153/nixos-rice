@@ -574,7 +574,6 @@
           snapshot_dir = "snapshots";
 
           subvolume."root".snapshot_create = "onchange";
-          subvolume."nix".snapshot_create  = "onchange";
           subvolume."home".snapshot_create = "onchange";
         };
       };
