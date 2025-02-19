@@ -6,8 +6,7 @@
 { config, lib, my-pkgs, ... }:
 
 let
-  cfg            = config.custom.hardware.openrgb;
-  openrgbPackage = my-pkgs.openrgb-with-all-plugins-git;
+  cfg = config.custom.hardware.openrgb;
 in
 {
   options.custom.hardware.openrgb.enable = lib.mkEnableOption "enables OpenRGB";
@@ -19,7 +18,7 @@ in
     services.hardware.openrgb =
     {
       enable  = true;
-      package = openrgbPackage;
+      package = my-pkgs.openrgb-with-all-plugins-git;
     };
   };
 }
