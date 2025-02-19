@@ -182,20 +182,7 @@
     # }}}
 
     # {{{ Networking
-    networking =
-    {
-      stevenblack.enable = true;
-
-      # {{{ Extra hosts
-      extraHosts =
-      ''
-        ember ember
-        ember ember.lan
-        ember andy3153.duckdns.org
-        ember andy3153.go.ro
-      '';
-      # }}}
-    };
+    networking.stevenblack.enable = true;
     # }}}
 
     # {{{ Nix
@@ -251,12 +238,28 @@
           };
           # }}}
 
-          # {{{ `ember`
-          "ember" =
+          # {{{ `helix`
+          "helix" =
           {
-            hostname       = "ember"; # look at custom.networking.extraHosts
+            hostname       = "helix";
             user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-ember"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-ember -C "sparkle-ember"
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.duckdns.org" =
+          {
+            hostname       = "andy3153.duckdns.org";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.go.ro" =
+          {
+            hostname       = "andy3153.go.ro";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
             identitiesOnly = true;
           };
           # }}}
