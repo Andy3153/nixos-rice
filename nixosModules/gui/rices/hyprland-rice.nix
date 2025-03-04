@@ -654,7 +654,6 @@ frame.right=0
           swayosd                              # hyprland-rice osd
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
           hyprpolkitagent                      # hyprland-rice polkit-agent
-          xwaylandvideobridge                  # hyprland-rice xwayland-screenshare
           wev                                  # hyprland-rice event-viewer
           rofi-wayland                         # hyprland-rice appmenu
           kitty                                # hyprland-rice terminal
@@ -674,6 +673,7 @@ frame.right=0
         # {{{ KDE packages
         (with pkgs.libsForQt5;
         [
+          xwaylandvideobridge      # hyprland-rice xwayland-screenshare
           dolphin                  # hyprland-rice KDE-Apps file-manager
           konsole                  # for-dolphin
           kio                      # for-dolphin
