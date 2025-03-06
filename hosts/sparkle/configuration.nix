@@ -350,9 +350,9 @@
 
       docker =
       {
-        #enable          = true;
+        enable          = true;
         enableOnBoot    = false;
-        rootless.enable = true;
+        #rootless.enable = true;
       };
 
       #distrobox.enable = true;
