@@ -69,6 +69,7 @@
         authorizedKeys =
         [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPr4Tm7o9ZOI6ywso8Cp0uLXuIIcB1i9KBlWTAVVHwef sparkle-helix"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICKtrj7n4JHufi1aQ3LvGpSrHLEH973bQepAYE9jwQYj brisk-helix"
         ];
 
         settings =
