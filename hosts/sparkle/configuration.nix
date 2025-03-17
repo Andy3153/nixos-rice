@@ -96,7 +96,6 @@
       gparted                             # Partition-Manager
       okteta                              # KDE-Apps hex-editor
       mousai                              # GNOME-Apps song-identifier
-      betterdiscordctl                    # for-discord
       virt-manager                        # for-libvirt
       virtiofsd                           # for-libvirt
       qbittorrent                         # torrents
@@ -106,7 +105,14 @@
 
       d-spy                               # D-Bus
 
-      #ciscoPacketTracer8
+      ciscoPacketTracer8
+
+      (testdisk.override
+      {
+        enableQt = true;
+        enableNtfs = true;
+        enableExtFs = true;
+      })
     ])
     # }}}
 
