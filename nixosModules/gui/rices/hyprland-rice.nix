@@ -660,7 +660,7 @@ frame.right=0
           grim                                 # hyprland-rice screenshot for-flameshot
           slurp                                # hyprland-rice screenshot for-flameshot
           cava                                 # hyprland-rice visualizer
-
+          wlr-layout-ui                        # hyprland-rice screen-layout
           zathura                              # hyprland-rice pdf-viewer
         ])
 
