@@ -20,7 +20,7 @@
       sysctl =
       {
         kernel.sysrq  = 244; # enable REISUB
-        vm.swappiness = 30;
+        vm.swappiness = 10;
       };
 
       uefi =
