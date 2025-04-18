@@ -18,7 +18,7 @@ in
     services.hardware.openrgb =
     {
       enable  = true;
-      package = my-pkgs.openrgb;
+      #package = my-pkgs.openrgb;
     };
   };
 }
