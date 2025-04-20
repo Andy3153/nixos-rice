@@ -12,6 +12,7 @@
     ./distrobox.nix
     ./docker.nix
     ./libvirtd.nix
+    ./podman.nix
     ./virtualbox.nix
     ./waydroid.nix
   ];

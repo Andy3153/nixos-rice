@@ -31,7 +31,7 @@ in
     };
 
     services.xserver.videoDrivers            = [ "nvidia" ];
-    hardware.nvidia-container-toolkit.enable = lib.mkIf config.virtualisation.docker.enable true;
+    hardware.nvidia-container-toolkit.enable = lib.mkIf (config.custom.virtualisation.docker.enable || config.custom.virtualisation.podman.enable) true;
 
     custom =
     {
