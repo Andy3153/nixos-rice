@@ -13,10 +13,14 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom =
-    {
-      extraPackages                = with pkgs; [ distrobox ];
-      virtualisation.docker.enable = lib.mkForce true;
-    };
+    custom.extraPackages = with pkgs; [ distrobox ];
+
+    assertions =
+    [
+      {
+        assertion = cfg.enable -> (config.custom.virtualisation.docker.enable || config.custom.virtualisation.podman.enable);
+        message = "Distrobox requires `custom.virtualisation.docker.enable` or `custom.virtualisation.podman.enable`";
+      }
+    ];
   };
 }
