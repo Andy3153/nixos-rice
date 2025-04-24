@@ -29,73 +29,88 @@ in
   environment.localBinInPath = true;
   time.timeZone = "Europe/Bucharest";
 
-  # {{{ Extra packages
-  custom.extraPackages = lib.lists.flatten
-  [
-    # {{{ Default NixPkgs
-    (with pkgs;
+  custom =
+  {
+    # {{{ Extra packages
+    extraPackages = lib.lists.flatten
     [
-      home-manager               # NixOS-Components
+      # {{{ Default NixPkgs
+      (with pkgs;
+      [
+        home-manager               # NixOS-Components
 
-      hunspell                   # for-nvim for-libreoffice
-      hunspellDicts.en_US        # for-nvim for-libreoffice
-      hunspellDicts.ro_RO        # for-nvim for-libreoffice
+        hunspell                   # for-nvim for-libreoffice
+        hunspellDicts.en_US        # for-nvim for-libreoffice
+        hunspellDicts.ro_RO        # for-nvim for-libreoffice
 
-      doas-sudo-shim             # for-doas
+        doas-sudo-shim             # for-doas
 
-      git                        # Programming
+        git                        # Programming
 
-      python3                    # Programming for-nvim
-      gcc                        # Programming for-nvim
-      gnumake                    # Programming for-nvim
+        python3                    # Programming for-nvim
+        gcc                        # Programming for-nvim
+        gnumake                    # Programming for-nvim
 
-      file                       # Other-CLI
-      usbutils                   # Other-CLI
-      killall                    # Other-CLI
-      ripgrep                    # Other-CLI
-      fastfetch                  # Other-CLI fetch-system-info
-      lm_sensors                 # Other-CLI sensors
-      sshfs                      # for-ssh fs-support
-      wget                       # download
-      curl                       # download
-      rsync                      # cp
-      ranger                     # file-manager for-zsh for-nvim
-      tmux                       # terminal-multiplexer
-      htop                       # task-manager
-      btop                       # task-manager
-      kitty.terminfo             # terminfo
+        file                       # Other-CLI
+        usbutils                   # Other-CLI
+        killall                    # Other-CLI
+        ripgrep                    # Other-CLI
+        fastfetch                  # Other-CLI fetch-system-info
+        lm_sensors                 # Other-CLI sensors
+        sshfs                      # for-ssh fs-support
+        wget                       # download
+        curl                       # download
+        rsync                      # cp
+        ranger                     # file-manager for-zsh for-nvim
+        tmux                       # terminal-multiplexer
+        htop                       # task-manager
+        btop                       # task-manager
+        kitty.terminfo             # terminfo
 
-      brightnessctl              # Other-CLI brightness hyprland-rice
+        brightnessctl              # Other-CLI brightness hyprland-rice
 
-      parted                     # Partition-Manager
-      e2fsprogs                  # Filesystem-Support ext*
-      btrfs-progs                # Filesystem-Support btrfs
-      exfatprogs                 # Filesystem-Support exfat
-      dosfstools                 # Filesystem-Support fat*
-      mtools                     # Filesystem-Support fat*
-      fatresize                  # Filesystem-Support fat*
-      ntfs3g                     # Filesystem-Support ntfs
+        parted                     # Partition-Manager
+        e2fsprogs                  # Filesystem-Support ext*
+        btrfs-progs                # Filesystem-Support btrfs
+        exfatprogs                 # Filesystem-Support exfat
+        dosfstools                 # Filesystem-Support fat*
+        mtools                     # Filesystem-Support fat*
+        fatresize                  # Filesystem-Support fat*
+        ntfs3g                     # Filesystem-Support ntfs
 
-      inotify-tools              # for-scripts
-      libnotify                  # for-scripts
+        inotify-tools              # for-scripts
+        libnotify                  # for-scripts
 
-      unzip                      # archives
-    ])
+        unzip                      # archives
+        unrar                      # archives
+        p7zip                      # archives
+
+        traceroute                 # networking
+        whois                      # networking
+      ])
+      # }}}
+
+      # {{{ NixPkgs Unstable
+      (with pkgs-unstable;
+      [
+      ])
+      # }}}
+
+      # {{{ NixPkgs Stable
+      (with pkgs-stable;
+      [
+      ])
+      # }}}
+    ];
     # }}}
 
-    # {{{ NixPkgs Unstable
-    (with pkgs-unstable;
+    # {{{ Unfree whitelist
+    nix.unfreeWhitelist =
     [
-    ])
+      "unrar"
+    ];
     # }}}
-
-    # {{{ NixPkgs Stable
-    (with pkgs-stable;
-    [
-    ])
-    # }}}
-  ];
-  # }}}
+  };
 
   # {{{ I18n
   i18n =

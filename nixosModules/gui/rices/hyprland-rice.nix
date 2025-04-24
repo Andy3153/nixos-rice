@@ -655,12 +655,12 @@ frame.right=0
           blueman                              # hyprland-rice bluetooth-control
           networkmanager_dmenu                 # hyprland-rice network-control
           lxqt.pavucontrol-qt                  # hyprland-rice Sound sound-control
+          wlr-layout-ui                        # hyprland-rice screen-layout
           nwg-bar                              # hyprland-rice logout-menu
           flameshot                            # hyprland-rice screenshot
           grim                                 # hyprland-rice screenshot for-flameshot
           slurp                                # hyprland-rice screenshot for-flameshot
           cava                                 # hyprland-rice visualizer
-          wlr-layout-ui                        # hyprland-rice screen-layout
           zathura                              # hyprland-rice pdf-viewer
         ])
 
