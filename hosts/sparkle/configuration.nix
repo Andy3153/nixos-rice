@@ -354,14 +354,16 @@
     {
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-      docker =
-      {
-        enable          = true;
-        enableOnBoot    = false;
-        #rootless.enable = true;
-      };
+      #docker =
+      #{
+      #  enable          = true;
+      #  enableOnBoot    = false;
+      #  #rootless.enable = true;
+      #};
 
-      #distrobox.enable = true;
+      podman.enable    = true;
+
+      distrobox.enable = true;
       libvirtd.enable  = true;
       waydroid.enable  = false;
     };
