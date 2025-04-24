@@ -24,19 +24,12 @@ in
       users.andy3153 =
       {
         description     = "Andy3153";
+        extraGroups     = [ "wheel" ];
+        group           = "andy3153";
         initialPassword = "sdfsdf";
         isNormalUser    = true;
-        group           = "andy3153";
         shell           = pkgs.zsh;
         uid             = 3153;
-
-        extraGroups =
-        [
-          "adbusers"
-          "docker"
-          "libvirtd"
-          "wheel"
-        ];
       };
     };
   };

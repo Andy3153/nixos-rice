@@ -6,7 +6,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.virtualisation.podman;
+  cfg      = config.custom.virtualisation.podman;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.virtualisation.podman.enable = lib.mkEnableOption "enables Podman";
@@ -20,6 +21,8 @@ in
       dockerCompat        = !config.custom.virtualisation.docker.enable;
       dockerSocket.enable = !config.custom.virtualisation.docker.enable;
     };
+
+    users.users.${mainUser}.extraGroups = [ "podman" ];
 
     custom.extraPackages = with pkgs; [ podman-compose ];
   };

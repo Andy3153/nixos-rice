@@ -6,7 +6,8 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.virtualisation.libvirtd;
+  cfg      = config.custom.virtualisation.libvirtd;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.virtualisation.libvirtd.enable = lib.mkEnableOption "enables Libvirtd";
@@ -27,6 +28,8 @@ in
     };
 
     virtualisation.spiceUSBRedirection.enable = true;
+
+    users.users.${mainUser}.extraGroups = [ "libvirtd" ];
 
     # {{{ Home-Manager
     home-manager.users.${config.custom.users.mainUser} =

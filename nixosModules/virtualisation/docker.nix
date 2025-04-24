@@ -6,7 +6,8 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.virtualisation.docker;
+  cfg      = config.custom.virtualisation.docker;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.virtualisation.docker =
@@ -25,5 +26,7 @@ in
       enableOnBoot     = cfg.enableOnBoot;
       rootless.enable  = cfg.rootless.enable;
     };
+
+    users.users.${mainUser}.extraGroups = [ "docker" ];
   };
 }

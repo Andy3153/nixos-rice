@@ -6,9 +6,14 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.programs.adb;
+  cfg      = config.custom.programs.adb;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.programs.adb.enable = lib.mkEnableOption "enables ADB";
-  config.programs.adb.enable         = cfg.enable;
+  config = lib.mkIf cfg.enable
+  {
+    programs.adb.enable = true;
+    users.users.${mainUser}.extraGroups = [ "adbusers" ];
+  };
 }
