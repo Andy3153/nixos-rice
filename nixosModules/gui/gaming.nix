@@ -34,8 +34,9 @@ in
           protonup-qt                         # for-steam for-wine
           protontricks                        # for-steam for-wine
 
-          bottles                             # for-wine
-          lutris                              # for-wine
+          bottles                             # launchers for-wine
+          lutris                              # launchers for-wine
+          heroic                              # launchers games
 
           prismlauncher                       # games
           xonotic                             # games
