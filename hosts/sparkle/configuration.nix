@@ -55,7 +55,7 @@
 
       # {{{ Office
       libreoffice-qt6                     # Office
-      gimp                                # Office photo-editing
+      gimp3-with-plugins                  # Office photo-editing
       inkscape                            # Office photo-editing
       krita                               # Office photo-editing
 
