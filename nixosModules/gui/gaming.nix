@@ -3,7 +3,7 @@
 ## Gaming config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, my-pkgs, ... }:
 
 let
   cfg     = config.custom.gui.gaming;
@@ -26,22 +26,34 @@ in
       custom =
       {
         # {{{ Extra packages
-        extraPackages = with pkgs;
+        extraPackages = lib.lists.flatten
         [
-          depotdownloader                     # for-steam
-          extest                              # for-steam for-controllers
-          wineWowPackages.staging             # wine
-          protonup-qt                         # for-steam for-wine
-          protontricks                        # for-steam for-wine
+          # {{{ Default NixPkgs
+          (with pkgs;
+          [
+            mesa-demos              # glxgears
 
-          bottles                             # launchers for-wine
-          lutris                              # launchers for-wine
-          heroic                              # launchers games
+            wineWowPackages.staging # wine
+            protonup-qt             # for-steam for-wine
+            protontricks            # for-steam for-wine
+            depotdownloader         # for-steam
+            extest                  # for-steam for-controllers
 
-          prismlauncher                       # games
-          xonotic                             # games
+            bottles                 # launchers for-wine
+            lutris                  # launchers for-wine
+            heroic                  # launchers games
 
-          mesa-demos                          # glxgears
+            prismlauncher           # games
+            xonotic                 # games
+          ])
+          # }}}
+
+          # {{{ My Nix packages
+          (with my-pkgs;
+          [
+            beammp-launcher         # for-beamng
+          ])
+          # }}}
         ];
         # }}}
 
