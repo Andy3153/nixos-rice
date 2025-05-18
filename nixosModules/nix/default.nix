@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./insecureWhitelist.nix
     ./package.nix
     ./unfreeWhitelist.nix
   ];
