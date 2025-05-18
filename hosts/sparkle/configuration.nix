@@ -192,10 +192,19 @@
     # }}}
 
     # {{{ Nix
-    nix.unfreeWhitelist =
-    [
-      "ciscoPacketTracer8"
-    ];
+    nix =
+    {
+      unfreeWhitelist =
+      [
+        "ciscoPacketTracer8"
+        "ventoy"
+      ];
+
+      insecureWhitelist =
+      [
+        "ventoy-1.1.05"
+      ];
+    };
     # }}}
 
     # {{{ Programs
