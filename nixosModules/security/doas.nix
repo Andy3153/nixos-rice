@@ -3,7 +3,7 @@
 ## Doas config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.security.doas;
@@ -36,5 +36,7 @@ in
         ];
       };
     };
+
+    custom.extraPackages = [ pkgs.doas-sudo-shim ];
   };
 }

@@ -37,20 +37,6 @@ in
       # {{{ Default NixPkgs
       (with pkgs;
       [
-        home-manager               # NixOS-Components
-
-        hunspell                   # for-nvim for-libreoffice
-        hunspellDicts.en_US        # for-nvim for-libreoffice
-        hunspellDicts.ro_RO        # for-nvim for-libreoffice
-
-        doas-sudo-shim             # for-doas
-
-        git                        # Programming
-
-        python3                    # Programming for-nvim
-        gcc                        # Programming for-nvim
-        gnumake                    # Programming for-nvim
-
         file                       # Other-CLI
         usbutils                   # Other-CLI
         killall                    # Other-CLI
