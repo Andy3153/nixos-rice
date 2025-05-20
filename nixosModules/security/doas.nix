@@ -25,8 +25,15 @@ in
       sudo.enable = lib.mkForce false;
       doas =
       {
-        enable      = true;
-        extraConfig = "permit persist setenv { WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY LANG LC_ALL } ${mainUser}";
+        enable = true;
+        extraRules =
+        [
+          {
+            users   = [ mainUser ];
+            persist = true;
+            setEnv  = [ "WAYLAND_DISPLAY" "XDG_RUNTIME_DIR" "XAUTHORITY" "LANG" "LC_ALL" ];
+          }
+        ];
       };
     };
   };
