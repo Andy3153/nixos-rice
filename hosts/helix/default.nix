@@ -8,7 +8,7 @@
 {
   imports =
   [
-    ../../nixosModules
+    ../../modules
     ./configuration.nix
     ./disko-configuration.nix
     ./hardware-configuration.nix

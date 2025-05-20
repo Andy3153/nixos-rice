@@ -385,7 +385,7 @@
     nixosModules = rec
     {
       default    = nixos-rice;
-      nixos-rice = ./nixosModules;
+      nixos-rice = ./modules;
     };
     # }}}
 
