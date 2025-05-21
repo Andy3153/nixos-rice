@@ -1,55 +1,124 @@
 <!-- vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}: -->
 # nixos-rice
-These are all the NixOS configurations and custom modules that I use on a daily basis.
+This repository contains a Nix flake with various flake outputs:
 
-<!-- {{{ A warning -->
-## A warning
-Feel free to try and use this, but at this point it isn't really meant for other people to use for reasons like the fact that I directly point to impure files on my filesystem for crucial program configuration files that you'd manually have to git clone into your filesystem. You can still use my stuff as examples though.
-<!-- }}} -->
+<!-- {{{ NixOS Configurations -->
+## NixOS Configurations
+These are configurations for all the hardware I own:
 
-<!-- {{{ My custom modules -->
-## My custom modules
-I wrote custom modules for everything my system needs to do, I barely need to use normal Nix configuration options. Feel free to check them out.
-<!-- }}} -->
-
-<!-- {{{ Flake outputs -->
-## Flake outputs
-<!-- {{{ NixOS configurations -->
-### NixOS configurations
 <!-- {{{ sparkle -->
-#### `sparkle` | ASUS TUF F15 FX506HM
-This is my main machine. I have lots of configs for [Hyprland](https://github.com/Andy3153/hyprland-rice), [Zsh](https://github.com/Andy3153/andy3153-zshrc), [Neovim](https://github.com/Andy3153/andy3153-init.lua), gaming, virtual machines, Secure Boot, RGB control and many others. Also do check out the [NixOS Hardware](https://github.com/NixOS/nixos-hardware/tree/master/asus/fx506hm) entry on this laptop.
+- `sparkle`
+-- my main machine. I have lots of configurations for [Hyprland](https://github.com/Andy3153/hyprland-rice), [Zsh](https://github.com/Andy3153/andy3153-zshrc), [Neovim](https://github.com/Andy3153/andy3153-init.lua), gaming, virtual machines, Secure Boot, RGB control and many others. Also do check out the [NixOS Hardware](https://github.com/NixOS/nixos-hardware/tree/master/asus/fx506hm) entry on this laptop.
 <!-- }}} -->
 
 <!-- {{{ helix -->
-#### `helix` | Lenovo Ideapad 320
-This is my new server. It's meant to replace `ember`. The config for it is basically a comfy bootloader for Docker.
+- `helix`
+-- my new server. It's meant to replace `ember`. The config for it is basically a comfy bootloader for Docker.
 <!-- }}} -->
 
 <!-- {{{ ember -->
-#### `ember` | Raspberry Pi 4
-This is my old server. It has been replaced by `helix`. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
+- `ember`
+-- my old server. It has been replaced by `helix`. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
+<!-- }}} -->
+
+<!-- {{{ Usage -->
+### Usage
+You can use these configurations by pointing to this flake when rebuilding, for example:
+
+```console
+$ git clone https://github.com/Andy3153/nixos-rice
+$ cd nixos-rice/
+$ nixos-rebuild switch --impure --use-remote-sudo --flake .#sparkle
+```
 <!-- }}} -->
 <!-- }}} -->
 
-<!-- {{{ NixOS modules -->
-### NixOS modules
-<!-- {{{ nixos-rice -->
-#### `default` | `nixos-rice`
-If you really want to use the custom modules I wrote for my configuration, I made this a flake output too.
+<!-- {{{ NixOS Modules -->
+## NixOS Modules
+<!-- {{{ default -->
+- `default`
+
+All NixOS configurations specified previously make use of these modules. I wrote them wanting to make individual NixOS configuration files for separate hosts smaller in size and easier to write.
+
+They mostly follow the structure the NixOS modules they are based on follow, but I deviated where I thought I could make things better/shorter, or where I added completely custom options.
+
+This entire module is very opinionated, since I made it for myself to fit my use cases. Firstly, the modules do things just by being imported, which is bad practice, and secondly, some options include accessing files not inside the flake, and so, the configurations written with these modules can become impure. All my NixOS configurations are impure, because I access non-Nix configuration files I didn't want to convert to Nix modules. And so, they might not fit your use case at all, but I believe they'll come in handy to someone else as examples to make your own custom modules like I did too.
+
+As it's mostly for myself, I didn't write/auto-generate any documentation, but every single option has a `description` filled with an explanation, and the names of the options are as self-explanatory as I could think to make them.
+<!-- }}} -->
+
+<!-- {{{ Usage -->
+### Usage
+You can use these modules by adding this flake into your flake's inputs, and then adding its path to `outputs.nixosConfigurations.<name>.modules`, for example:
+
+```nix
+{
+  inputs =
+  {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-rice.url = "github:Andy3153/nixos-rice";
+  };
+
+  outputs = inputs@
+  {
+    self,
+    nixpkgs,
+    nixos-rice,
+    ...
+  }: rec
+  {
+    nixosConfigurations.<name> = nixpkgs.lib.nixosSystem
+    {
+      modules =
+      [
+        nixos-rice.nixosModules.default
+
+        ./path/to/your/configuration.nix
+      ];
+    };
+  };
+}
+```
 <!-- }}} -->
 <!-- }}} -->
 
 <!-- {{{ Images -->
 ### Images
 <!-- {{{ ember -->
-#### `ember`
-This generates a Raspberry Pi SD card image with everything in `ember`'s NixOS configuration on it. I usually use it to boot from a flash drive/SD card, partition my external hard drive the way I want, and then run `nixos-install` from the flash drive/SD card on the external hard drive. It works. Surprisingly well.
+- `ember`
+-- generates an image file with everything in `ember`'s NixOS configuration that can be flashed to a flash drive or an SD card that a Raspberry Pi can boot from.
+<!-- }}} -->
+
+<!-- {{{ Usage -->
+### Usage
+You can generate these images by using `nix build` on the flake, for example:
+
+```console
+$ git clone https://github.com/Andy3153/nixos-rice
+$ cd nixos-rice/
+$ nix build .#images.ember
+```
 <!-- }}} -->
 <!-- }}} -->
 
 <!-- {{{ Templates -->
 ### Templates
-- Empty development environment
-- Python development environment
+<!-- {{{ devenv-empty -->
+- `devenv-empty`
+-- written to be more of a template for future templates.
+<!-- }}} -->
+
+<!-- {{{ devenv-python -->
+- `devenv-python`
+-- a template for a Python development environment.
+<!-- }}} -->
+
+<!-- {{{ Usage -->
+### Usage
+You can use these templates by using `nix init`, for example:
+
+```console
+nix flake init --template github:Andy3153/nixos-rice#devenv-py
+```
+<!-- }}} -->
 <!-- }}} -->
