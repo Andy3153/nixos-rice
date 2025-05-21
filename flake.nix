@@ -23,21 +23,21 @@
 
     # NixPkgs (my fork for when I'm working on something)
     #nixpkgs_andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
-    #nixpkgs_andy3153.url = "git+file:////home/andy3153/src/nixos/nixpkgs/?ref=hunspell-ro_RO";
+    #nixpkgs_andy3153.url = "git+file:////home/andy3153/src/nix/nixpkgs/?ref=hunspell-ro_RO";
     # }}}
 
     # {{{ My Nix packages
     my-nixpkgs_unstable =
     {
       url = "github:Andy3153/my-nixpkgs";
-      #url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
+      #url = "git+file:///home/andy3153/src/nix/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
     my-nixpkgs_stable =
     {
       url = "github:Andy3153/my-nixpkgs";
-      #url = "git+file:///home/andy3153/src/nixos/my-nixpkgs";
+      #url = "git+file:///home/andy3153/src/nix/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
@@ -45,7 +45,7 @@
     # {{{ NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     #nixos-hardware.url = "github:Andy3153/nixos-hardware/asus-fx506hm_nvidia-open";
-    #nixos-hardware.url = "git+file:///home/andy3153/src/nixos/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
+    #nixos-hardware.url = "git+file:///home/andy3153/src/nix/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
     # }}}
 
     # {{{ Lanzaboote

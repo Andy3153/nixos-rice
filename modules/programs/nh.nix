@@ -26,7 +26,7 @@ in
     programs.nh =
     {
       enable = true;
-      flake = "${homeDir}/src/nixos/nixos-rice";
+      flake = "${homeDir}/src/nix/nixos-rice";
       clean =
       {
         enable    = true;
