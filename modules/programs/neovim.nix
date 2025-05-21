@@ -44,6 +44,8 @@ in
         python3
         gcc
         cargo
+        gnumake
+        yarn
 
         tree-sitter
 
