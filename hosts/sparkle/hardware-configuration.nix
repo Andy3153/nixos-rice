@@ -2,10 +2,12 @@
 
 let
   # {{{ Variables
-  mainDeviceName   = "sparkle-crypt";
-  mainDevice       = "/dev/mapper/${mainDeviceName}";
-  mainUser         = config.custom.users.mainUser;
-  homeDir          = "/home/${mainUser}";
+  mainDeviceName = "sparkle-crypt";
+  mainDevice     = "/dev/mapper/${mainDeviceName}";
+
+  mainUser     = config.custom.users.mainUser;
+  homeDir      = "/home/${mainUser}"; # ANYTHING ELSE that tries to be more elegant, like `config.users.users.${mainUser}.home` produces an **infinite recursion**. why?
+  xdgDownloads = "${homeDir}/downs";  # so I have to make do with this for now...
   # }}}
 in
 {
@@ -120,7 +122,7 @@ in
     };
 
 
-    "${homeDir}/torrents" =
+    "${xdgDownloads}/torrents" =
     {
       device = mainDevice;
       fsType = "btrfs";
