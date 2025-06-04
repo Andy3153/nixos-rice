@@ -634,7 +634,11 @@ frame.right=0
       };
 
       # {{{ Extra packages
-      extraPackages = lib.lists.flatten
+      extraPackages =
+      let
+        rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi-wayland} -dmenu "$@"'');
+      in
+      lib.lists.flatten
       [
         # {{{ Default NixPkgs
         (with pkgs;
@@ -650,6 +654,7 @@ frame.right=0
           hyprpolkitagent                      # hyprland-rice polkit-agent
           wev                                  # hyprland-rice event-viewer
           rofi-wayland                         # hyprland-rice appmenu
+          rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
           kitty                                # hyprland-rice terminal
           waybar                               # hyprland-rice status-bar
           blueman                              # hyprland-rice bluetooth-control
