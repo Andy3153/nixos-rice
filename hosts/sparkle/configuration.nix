@@ -99,6 +99,8 @@
       virt-manager                        # for-libvirt
       virtiofsd                           # for-libvirt
       qbittorrent                         # torrents
+      scrcpy                              # adb-tools
+      wimlib                              # .wim
 
       ventoy-full                         # flash-usbs
       woeusb                              # flash-usbs windows
