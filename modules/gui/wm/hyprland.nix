@@ -40,6 +40,7 @@ in
     xdg.portal.extraPortals = with pkgs;
     [
       xdg-desktop-portal-hyprland
+      libsForQt5.xdg-desktop-portal-kde
       xdg-desktop-portal-gtk
     ];
 
@@ -53,6 +54,7 @@ in
         config.common.default =
         [
           "hyprland"
+          "kde"
           "gtk"
         ];
       };
