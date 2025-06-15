@@ -46,6 +46,7 @@ in
         cargo
         gnumake
         yarn
+        go
 
         tree-sitter
 
@@ -55,6 +56,7 @@ in
         cmake-language-server               # cmake-language-server (cmake)
         dockerfile-language-server-nodejs   # dockerfile-language-server (dockerls)
         #missing                            # html-lsp
+        hyprls                              # hyprls
         jdt-language-server                 # jdtls
         lua-language-server                 # lua-language-server (lua_ls)
         marksman                            # marksman
