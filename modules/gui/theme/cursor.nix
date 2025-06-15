@@ -46,10 +46,12 @@ in
     {
       home.pointerCursor =
       {
-        gtk.enable = true; #config.custom.gui.theme.gtk.enable;
-        package    = cfg.package;
-        name       = cfg.name;
-        size       = cfg.size;
+        gtk.enable        = true;
+        hyprcursor.enable = config.custom.gui.wm.hyprland.enable;
+
+        package = cfg.package;
+        name    = cfg.name;
+        size    = cfg.size;
       };
     };
     # }}}
