@@ -637,6 +637,7 @@ frame.right=0
       extraPackages =
       let
         rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi-wayland} -dmenu "$@"'');
+        flameshot = (pkgs.flameshot.override { enableWlrSupport = true; });
       in
       lib.lists.flatten
       [
@@ -644,27 +645,21 @@ frame.right=0
         (with pkgs;
         [
           libcanberra-gtk3                     # hyprland-rice play-system-sounds
-          hyprpaper                            # hyprland-rice wallpaper
-          hypridle                             # hyprland-rice idle-manager
           hyprlock                             # hyprland-rice lock-screen
           hyprpicker                           # hyprland-rice color-picker
+          hyprsysteminfo                       # hyprland-rice system-info
           dunst                                # hyprland-rice notification-daemon
-          swayosd                              # hyprland-rice osd
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
-          hyprpolkitagent                      # hyprland-rice polkit-agent
           wev                                  # hyprland-rice event-viewer
           rofi-wayland                         # hyprland-rice appmenu
           rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
           kitty                                # hyprland-rice terminal
-          waybar                               # hyprland-rice status-bar
           blueman                              # hyprland-rice bluetooth-control
           networkmanager_dmenu                 # hyprland-rice network-control
           lxqt.pavucontrol-qt                  # hyprland-rice Sound sound-control
           wlr-layout-ui                        # hyprland-rice screen-layout
           nwg-bar                              # hyprland-rice logout-menu
           flameshot                            # hyprland-rice screenshot
-          grim                                 # hyprland-rice screenshot for-flameshot
-          slurp                                # hyprland-rice screenshot for-flameshot
           cava                                 # hyprland-rice visualizer
           zathura                              # hyprland-rice pdf-viewer
         ])
@@ -738,7 +733,26 @@ frame.right=0
       plugins = with pkgs.hyprlandPlugins;
       [
         hyprsplit
+        hypr-dynamic-cursors
       ];
+    };
+    # }}}
+
+    # {{{ Programs
+    programs =
+    {
+      waybar.enable = true; # hyprland-rice desktop-bar
+    };
+    # }}}
+
+    # {{{ Services
+    services =
+    {
+      hypridle.enable        = true; # hyprland-rice idle-manager
+      hyprpaper.enable       = true; # hyprland-rice wallpaper
+      hyprpolkitagent.enable = true; # hyprland-rice polkit-agent
+      hyprsunset.enable      = true; # hyprland-rice bluelight-filter
+      swayosd.enable         = true; # hyprland-rice osd
     };
     # }}}
 
@@ -758,11 +772,11 @@ frame.right=0
       "htop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
 
       "hypr/colorschemes".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
-      "hypr/scripts".source                             = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts";
       "hypr/hypridle.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
       "hypr/actual-hyprland.conf".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.conf";
       "hypr/hyprlock.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
       "hypr/hyprpaper.conf".source                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
+      "hypr/xdph.conf".source                           = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
 
       "kitty".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
       #"lf".source                                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/lf";
@@ -780,6 +794,8 @@ frame.right=0
       "waybar".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
       #"xava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xava";
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
+      "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
+      "xdg-desktop-portal/portals.conf".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "zathura".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
     };
     # }}}
@@ -799,10 +815,10 @@ frame.right=0
     home.file =
     {
       "${dataHome}/../bin/checkFan.sh".source           = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
-      "${dataHome}/../bin/launch-waybar".source         = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar/launch-waybar";
-      "${dataHome}/../bin/launch-kdepolkitagent".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/scripts/launch-kdepolkitagent";
+      "${dataHome}/../bin/launch-waybar".source         = mkOutOfStoreSymlink "${otherScriptsDir}/launch-waybar";
       "${dataHome}/../bin/run_game".source              = mkOutOfStoreSymlink "${otherScriptsDir}/run_game";
       "${dataHome}/../bin/suspend_compositing".source   = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
+      "${dataHome}/../bin/dunst-dnd-toggle".source      = mkOutOfStoreSymlink "${otherScriptsDir}/dunst-dnd-toggle";
     };
     # }}}
   };
