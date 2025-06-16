@@ -87,8 +87,6 @@ in
           {
             package = pkgs.apple-cursor;
             name    = "macOS";
-            #package = pkgs.catppuccin-cursors.mochaBlue;
-            #name    = "Catppuccin-Mocha-Blue";
             size    = 24;
           };
           # }}}
@@ -732,8 +730,9 @@ frame.right=0
 
       plugins = with pkgs.hyprlandPlugins;
       [
-        hyprsplit
         hypr-dynamic-cursors
+        hyprspace
+        hyprsplit
       ];
     };
     # }}}
