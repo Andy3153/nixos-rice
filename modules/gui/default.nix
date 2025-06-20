@@ -23,6 +23,8 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    services.playerctld.enable = true;
+
     custom =
     {
       boot.plymouth.enable            = true;
