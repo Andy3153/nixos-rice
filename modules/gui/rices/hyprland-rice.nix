@@ -651,6 +651,7 @@ frame.right=0
           wev                                  # hyprland-rice event-viewer
           rofi-wayland                         # hyprland-rice appmenu
           rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
+          waycorner                            # hyprland-rice hot-corners
           kitty                                # hyprland-rice terminal
           blueman                              # hyprland-rice bluetooth-control
           networkmanager_dmenu                 # hyprland-rice network-control
@@ -791,6 +792,7 @@ frame.right=0
       #"swaylock".source                                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaylock";
       #"swaync".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaync";
       "waybar".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
+      "waycorner".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
       #"xava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xava";
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
