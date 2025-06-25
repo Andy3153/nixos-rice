@@ -186,4 +186,8 @@ in
     # }}}
   };
 # }}}
+
+  # {{{ Programs
+  programs.command-not-found.enable = true;
+  # }}}
 }
