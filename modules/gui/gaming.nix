@@ -45,6 +45,8 @@ in
 
             prismlauncher           # games
             xonotic                 # games
+
+            dolphin-emu             # emulators games
           ])
           # }}}
 
