@@ -212,6 +212,13 @@
     # {{{ Programs
     programs =
     {
+      # {{{ NixPak programs
+      nixpak =
+      {
+        floorp.enable = true;
+      };
+      # }}}
+
       # {{{ Git
       git =
       {

@@ -179,4 +179,9 @@ in
     };
     # }}}
   };
+
+  imports =
+  [
+    ./floorp.nix
+  ];
 }
