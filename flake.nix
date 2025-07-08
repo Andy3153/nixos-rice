@@ -94,6 +94,20 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     # }}}
 
+    # {{{ NixPak
+    nixpak_unstable =
+    {
+      url = "github:nixpak/nixpak";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    nixpak_stable =
+    {
+      url = "github:nixpak/nixpak";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+    # }}}
+
     # {{{ Home-Manager
     home-manager_unstable =
     {
@@ -166,6 +180,9 @@
     in-nix_stable,
 
     nix-flatpak,
+
+    nixpak_unstable,
+    nixpak_stable,
 
     home-manager_unstable,
     home-manager_stable,

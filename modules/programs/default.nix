@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./nixpak
     ./adb.nix
     ./dconf.nix
     ./direnv.nix
