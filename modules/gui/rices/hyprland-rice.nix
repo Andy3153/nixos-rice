@@ -748,11 +748,12 @@ frame.right=0
     # {{{ Services
     services =
     {
-      hypridle.enable        = true; # hyprland-rice idle-manager
-      hyprpaper.enable       = true; # hyprland-rice wallpaper
-      hyprpolkitagent.enable = true; # hyprland-rice polkit-agent
-      hyprsunset.enable      = true; # hyprland-rice bluelight-filter
-      swayosd.enable         = true; # hyprland-rice osd
+      hypridle.enable         = true; # hyprland-rice idle-manager
+      hyprpaper.enable        = true; # hyprland-rice wallpaper
+      hyprpolkitagent.enable  = true; # hyprland-rice polkit-agent
+      hyprsunset.enable       = true; # hyprland-rice bluelight-filter
+      swayosd.enable          = true; # hyprland-rice osd
+      xembed-sni-proxy.enable = true; # hyprland-rice wine-systemtray
     };
     # }}}
 
