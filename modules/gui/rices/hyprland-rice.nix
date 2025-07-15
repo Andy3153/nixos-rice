@@ -816,11 +816,10 @@ frame.right=0
     # {{{ Scripts
     home.file =
     {
-      "${dataHome}/../bin/checkFan.sh".source           = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
-      "${dataHome}/../bin/launch-waybar".source         = mkOutOfStoreSymlink "${otherScriptsDir}/launch-waybar";
-      "${dataHome}/../bin/run_game".source              = mkOutOfStoreSymlink "${otherScriptsDir}/run_game";
-      "${dataHome}/../bin/suspend_compositing".source   = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
-      "${dataHome}/../bin/dunst-dnd-toggle".source      = mkOutOfStoreSymlink "${otherScriptsDir}/dunst-dnd-toggle";
+      "${dataHome}/../bin/checkFan.sh".source         = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
+      "${dataHome}/../bin/launch-waybar".source       = mkOutOfStoreSymlink "${otherScriptsDir}/launch-waybar";
+      "${dataHome}/../bin/suspend_compositing".source = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
+      "${dataHome}/../bin/dunst-dnd-toggle".source    = mkOutOfStoreSymlink "${otherScriptsDir}/dunst-dnd-toggle";
     };
     # }}}
   };
