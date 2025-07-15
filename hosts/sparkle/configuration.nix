@@ -113,6 +113,8 @@
 
       openbox                             # for-xwayland-rootless-script
 
+      jq                                  # Other-CLI json
+
       (testdisk.override
       {
         enableQt = true;
