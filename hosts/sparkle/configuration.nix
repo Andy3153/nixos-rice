@@ -86,6 +86,8 @@
       converseen                          # media-convert
 
       audacity                            # audio-editor
+
+      exiftool                            # image-data
       # }}}
 
       # {{{ 3D
