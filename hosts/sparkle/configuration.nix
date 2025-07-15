@@ -109,12 +109,15 @@
 
       ciscoPacketTracer8
 
+      openbox                             # for-xwayland-rootless-script
+
       (testdisk.override
       {
         enableQt = true;
         enableNtfs = true;
         enableExtFs = true;
       })
+
     ])
     # }}}
 
