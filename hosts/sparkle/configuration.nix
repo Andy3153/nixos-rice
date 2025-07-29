@@ -191,9 +191,10 @@
         prime.enable = true;
       };
 
-      graphictablets.enable   = true;
-      openrgb.enable          = true;
-      piper.enable            = true;
+      graphictablets.enable = true;
+      openrgb.enable        = true;
+      piper.enable          = true;
+      thunderbolt.enable    = true;
     };
     # }}}
 

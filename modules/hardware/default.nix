@@ -19,6 +19,7 @@
     ./nvidia
     ./openrgb.nix
     ./piper.nix
+    ./thunderbolt.nix
   ]
   ++
   lib.optionals (lib.versionOlder lib.version "24.11pre")
