@@ -31,22 +31,22 @@ in
           # {{{ Default NixPkgs
           (with pkgs;
           [
-            mesa-demos              # glxgears
+            mesa-demos                                        # glxgears
 
-            wineWowPackages.staging # wine
-            protonup-qt             # for-steam for-wine
-            protontricks            # for-steam for-wine
-            depotdownloader         # for-steam
-            extest                  # for-steam for-controllers
+            wineWowPackages.staging                           # wine
+            protonup-qt                                       # for-steam for-wine
+            protontricks                                      # for-steam for-wine
+            depotdownloader                                   # for-steam
+            extest                                            # for-steam for-controllers
 
-            bottles                 # launchers for-wine
-            lutris                  # launchers for-wine
-            heroic                  # launchers games
+            (bottles.override { removeWarningPopup = true; }) # launchers for-wine
+            lutris                                            # launchers for-wine
+            heroic                                            # launchers games
 
-            prismlauncher           # games
-            xonotic                 # games
+            prismlauncher                                     # games
+            xonotic                                           # games
 
-            dolphin-emu             # emulators games
+            dolphin-emu                                       # emulators games
           ])
           # }}}
 
