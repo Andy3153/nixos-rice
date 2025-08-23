@@ -667,7 +667,6 @@ frame.right=0
         (with pkgs.kdePackages;
         [
           xwaylandvideobridge      # hyprland-rice xwayland-screenshare
-          dolphin                  # hyprland-rice KDE-Apps file-manager
           konsole                  # for-dolphin
           kio                      # for-dolphin
           kio-extras               # for-dolphin
@@ -699,8 +698,9 @@ frame.right=0
       # {{{ Programs
       programs =
       {
-        mpv.enable        = true;  # hyprland-rice video-player
-        kdeconnect.enable = true;  # hyprland-rice KDE-Apps
+        dolphin.enable    = true; # hyprland-rice KDE-Apps file-manager
+        kdeconnect.enable = true; # hyprland-rice KDE-Apps
+        mpv.enable        = true; # hyprland-rice video-player
       };
       # }}}
 
