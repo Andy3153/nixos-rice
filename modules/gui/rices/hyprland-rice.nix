@@ -664,7 +664,7 @@ frame.right=0
         ])
 
         # {{{ KDE packages
-        (with pkgs.libsForQt5;
+        (with pkgs.kdePackages;
         [
           xwaylandvideobridge      # hyprland-rice xwayland-screenshare
           dolphin                  # hyprland-rice KDE-Apps file-manager

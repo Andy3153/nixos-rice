@@ -3,21 +3,12 @@
 ## KDE Connect config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg = config.custom.programs.kdeconnect;
 in
 {
   options.custom.programs.kdeconnect.enable = lib.mkEnableOption "enables KDE Connect";
-  #config.programs.kdeconnect.enable         = cfg.enable;
-
-  config = lib.mkIf cfg.enable
-  {
-    programs.kdeconnect =
-    {
-      enable = true;
-      package = pkgs.kdePackages.kdeconnect-kde;
-    };
-  };
+  config.programs.kdeconnect.enable         = cfg.enable;
 }
