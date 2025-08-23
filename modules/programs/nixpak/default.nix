@@ -100,7 +100,7 @@ in
             env =
             {
               QT_QPA_PLATFORMTHEME = systemEnv.QT_QPA_PLATFORMTHEME;
-              QT_STYLE_OVERRIDE    = systemEnv.QT_STYLE_OVERRIDE;
+              #QT_STYLE_OVERRIDE    = systemEnv.QT_STYLE_OVERRIDE;
 
               XDG_DATA_DIRS = lib.makeSearchPath "share"
               [

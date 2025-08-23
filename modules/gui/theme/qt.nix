@@ -20,82 +20,59 @@ let
   fixedFont        = builtins.head     cfgFont.defaultFonts.monospace.names;
   fixedFontSize    = builtins.toString cfgFont.fixedFontSize;
 
-  # {{{ Qt5CT config
-  qt5ctConf =
-  ''
-    [Appearance]
-    icon_theme=${iconTheme}
-    standard_dialogs=xdgdesktopportal
-    style=${qtStyleString}
-
-    [Fonts]
-    fixed="${fixedFont},${fixedFontSize},-1,5,50,0,0,0,0,0"
-    general="${generalFont},${generalFontSize},-1,5,50,0,0,0,0,0"
-
-    [Interface]
-    activate_item_on_single_click=1
-    buttonbox_layout=2
-    cursor_flash_time=1000
-    dialog_buttons_have_icons=1
-    double_click_interval=400
-    gui_effects=General, AnimateMenu, AnimateCombo, AnimateTooltip, AnimateToolBox
-    keyboard_scheme=3
-    menus_have_icons=true
-    show_shortcuts_in_context_menus=true
-    stylesheets=@Invalid()
-    toolbutton_style=4
-    underline_shortcut=1
-    wheel_scroll_lines=3
-
-    [SettingsWindow]
-    geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\x3\xa6\0\0\x3\xfb\0\0\0\0\0\0\0\0\0\0\x3\xbf\0\0\x2\x44\0\0\0\0\x2\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\x3\xa6\0\0\x3\xfb)
-
-    [Troubleshooting]
-    force_raster_widgets=1
-    ignored_applications=@Invalid()
-  '';
-  # }}}
-  # {{{ Qt6CT config
+  # {{{ QtCT config
+  # {{{ Qt6CT
   qt6ctConf =
-  ''
-    [Appearance]
-    icon_theme=${iconTheme}
-    standard_dialogs=xdgdesktopportal
-    style=${qtStyleString}
+  {
+    # {{{ Appearance
+    Appearance =
+    {
+      icon_theme = iconTheme;
+      style      = qtStyleString;
 
-    [Fonts]
-    fixed="${fixedFont},${fixedFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-    general="${generalFont},${generalFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
+      #standard_dialogs = "xdgdesktopportal";
+    };
+    # }}}
 
-    [Interface]
-    activate_item_on_single_click=1
-    buttonbox_layout=2
-    cursor_flash_time=1000
-    dialog_buttons_have_icons=1
-    double_click_interval=400
-    gui_effects=General, AnimateMenu, AnimateCombo, AnimateTooltip, AnimateToolBox
-    keyboard_scheme=3
-    menus_have_icons=true
-    show_shortcuts_in_context_menus=true
-    stylesheets=@Invalid()
-    toolbutton_style=4
-    underline_shortcut=1
-    wheel_scroll_lines=3
+    # {{{ Fonts
+    Fonts =
+    {
+      fixed   = "\"${fixedFont},${fixedFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"";
+      general = "\"${generalFont},${generalFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"";
+    };
+    # }}}
 
-    [SettingsWindow]
-    geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\a_\0\0\x3\xfb\0\0\0\0\0\0\0\0\0\0\x3\xbf\0\0\x4\x1b\0\0\0\0\x2\0\0\0\a\x80\0\0\0\0\0\0\0\0\0\0\a_\0\0\x3\xfb)
-
-    [Troubleshooting]
-    force_raster_widgets=1
-    ignored_applications=@Invalid()
-  '';
+    # {{{ Interface
+    Interface =
+    {
+      buttonbox_layout          = 2; # 0=Windows 1=Mac OS X 2=KDE 3=GNOME
+      dialog_buttons_have_icons = 2;
+      gui_effects               = "General, AnimateMenu, AnimateCombo, AnimateTooltip, AnimateToolBox";
+      keyboard_scheme           = 3; # 0=Windows 1=Mac OS X 2=X11 3=KDE 4=GNOME 5=CDE
+    };
+    # }}}
+  };
   # }}}
+
+  # {{{ Qt5CT
+  ##
+  ## Same format as Qt6CT's except for the font, so we replace the format there
+  ##
+
+  qt5ctFontReplace = lib.strings.replaceStrings
+    [ "-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular" ]
+    [ "-1,5,50,0,0,0,0,0" ];
+
+  qt5ctConf = lib.attrsets.updateManyAttrsByPath
+  [
+    { path = [ "Fonts" "fixed" ];   update = qt5ctFontReplace; }
+    { path = [ "Fonts" "general" ]; update = qt5ctFontReplace; }
+  ] qt6ctConf;
+  # }}}
+  # }}}
+
   # {{{ Kvantum config
-  kvantumConf =
-  ''
-    [General]
-    theme=${kvantumThemeName}
-  '';
+  kvantumConf = { General.theme = kvantumThemeName; };
   # }}}
 
   # {{{ Kvantum module
@@ -129,6 +106,7 @@ let
     };
   };
   # }}}
+
   # {{{ Qt module
   qtModule = lib.types.submodule
   {
@@ -279,7 +257,7 @@ in
     {
       enable        = true;
       platformTheme = lib.mkIf (cfg.platformTheme == "qtct") "qt5ct";
-      style         = qtStyle;
+      #style         = qtStyle;
     };
 
     # {{{ Home-Manager
@@ -290,16 +268,25 @@ in
         enable             = true;
         platformTheme.name = cfg.platformTheme;
         style.name         = qtStyle;
+
+        kde.settings =
+        {
+          kdeglobals =
+          {
+            Icons.Theme = iconTheme;
+            KDE.widgetStyle = qtStyle;
+          };
+        };
       };
 
       xdg.configFile =
       {
         # Configure QtCT
-        "qt5ct/qt5ct.conf".text = qt5ctConf;
-        "qt6ct/qt6ct.conf".text = qt6ctConf;
+        "qt5ct/qt5ct.conf".text = lib.generators.toINI { } qt5ctConf;
+        "qt6ct/qt6ct.conf".text = lib.generators.toINI { } qt6ctConf;
 
         # Configure Kvantum
-        "Kvantum/kvantum.kvconfig".text = kvantumConf;
+        "Kvantum/kvantum.kvconfig".text = lib.generators.toINI { } kvantumConf;
 
         # Kvantum theme files
         "Kvantum/${kvantumThemeName}/${kvantumThemeName}.kvconfig".source = lib.mkIf (kvconfigFile != null) kvconfigFile;
