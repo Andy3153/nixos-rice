@@ -7,6 +7,11 @@
 
 let
   cfg = config.custom.gui.theme.gtk;
+
+  mainUser   = config.custom.users.mainUser;
+  HM         = config.home-manager.users.${mainUser};
+  configHome = HM.xdg.configHome;
+
   gtkModule = lib.types.submodule
   {
     options =
@@ -39,12 +44,12 @@ in
     gtk.iconCache.enable = true;
 
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
       gtk =
       {
         enable = true;
-        gtk2.configLocation = "${config.home-manager.users.${config.custom.users.mainUser}.xdg.configHome}/gtk-2.0/gtkrc";
+        gtk2.configLocation = "${configHome}/gtk-2.0/gtkrc";
 
         theme =
         {
