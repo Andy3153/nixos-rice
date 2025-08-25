@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./darkly.nix
     ./kvantum.nix
   ];
 }

@@ -24,13 +24,14 @@ in
     {
       name = lib.mkOption
       {
-        type        = lib.types.str;
+        type        = lib.types.nullOr lib.types.str;
+        default     = null;
         description = "name of the Kvantum theme";
       };
 
       package = lib.mkOption
       {
-        type        = lib.types.package;
+        type        = lib.types.nullOr lib.types.package;
         default     = null;
         description = "package that provides the Kvantum theme";
       };

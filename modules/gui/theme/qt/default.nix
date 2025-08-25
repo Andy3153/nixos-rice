@@ -32,7 +32,6 @@ in
     {
       type        = lib.types.str;
       internal    = true;
-      readOnly    = true;
       visible     = false;
       description = "name of the Qt style. internal. value is only written to by modules defined in `modules/gui/theme/qt/styles` and only read by modules defined in `modules/gui/theme/qt/platformThemes`.";
     };
