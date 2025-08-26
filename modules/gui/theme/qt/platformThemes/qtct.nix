@@ -10,7 +10,9 @@ let
   cfgQt   = config.custom.gui.theme.qt;
   cfgFont = config.custom.gui.theme.font;
 
-  mainUser = config.custom.users.mainUser;
+  mainUser   = config.custom.users.mainUser;
+  HM         = config.home-manager.users.${mainUser};
+  configHome = HM.xdg.configHome;
 
   qtStyleName = cfgQt.style.name;
 
@@ -27,8 +29,10 @@ let
     # {{{ Appearance
     Appearance =
     {
-      icon_theme = iconTheme;
-      style      = qtStyleName;
+      color_scheme_path = "${configHome}/qt6ct/colors/${cfg.theme.name}.conf";
+      custom_palette    = true;
+      icon_theme        = iconTheme;
+      style             = qtStyleName;
     };
     # }}}
 
@@ -61,16 +65,41 @@ let
     [ "-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular" ]
     [ "-1,5,50,0,0,0,0,0" ];
 
+  qt5ctPathReplace = lib.strings.replaceStrings
+    [ "qt6ct" ]
+    [ "qt5ct" ];
+
   qt5ctConf = lib.attrsets.updateManyAttrsByPath
   [
-    { path = [ "Fonts" "fixed" ];   update = qt5ctFontReplace; }
-    { path = [ "Fonts" "general" ]; update = qt5ctFontReplace; }
+    { path = [ "Appearance" "color_scheme_path" ]; update = qt5ctPathReplace; }
+    { path = [ "Fonts" "fixed" ];                  update = qt5ctFontReplace; }
+    { path = [ "Fonts" "general" ];                update = qt5ctFontReplace; }
   ] qt6ctConf;
   # }}}
   # }}}
 in
 {
-  options.custom.gui.theme.qt.platformTheme.qtct.enable = lib.mkEnableOption "enables the QtCT Qt platform theme";
+  options.custom.gui.theme.qt.platformTheme.qtct=
+  {
+    enable = lib.mkEnableOption "enables the QtCT Qt platform theme";
+
+    theme =
+    {
+      name = lib.mkOption
+      {
+        type        = lib.types.nullOr lib.types.str;
+        default     = null;
+        description = "name of the QtCT theme";
+      };
+
+      package = lib.mkOption
+      {
+        type        = lib.types.nullOr lib.types.package;
+        default     = null;
+        description = "package that provides the QtCT theme";
+      };
+    };
+  };
 
   config = lib.mkIf cfg.enable
   {
@@ -85,8 +114,15 @@ in
 
       xdg.configFile =
       {
+        # QtCT config
         "qt5ct/qt5ct.conf".text = lib.generators.toINI { } qt5ctConf;
         "qt6ct/qt6ct.conf".text = lib.generators.toINI { } qt6ctConf;
+
+        # QtCT config
+        "qt5ct/colors".source = "${cfg.theme.package}/share/qt5ct/colors";
+        "qt5ct/colors".recursive = true;
+        "qt6ct/colors".source = "${cfg.theme.package}/share/qt6ct/colors";
+        "qt6ct/colors".recursive = true;
       };
     };
     # }}}
