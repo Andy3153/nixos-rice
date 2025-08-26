@@ -9,6 +9,10 @@ let
   systemFonts = config.fonts.packages;
   systemTheme = config.custom.gui.theme;
   systemEnv   = config.environment.variables;
+
+  mainUser = config.custom.users.mainUser;
+  HM       = config.home-manager.users.${mainUser};
+  userEnv  = HM.home.sessionVariables;
 in
 {
   _module.args.nixpakCustom =
@@ -99,8 +103,21 @@ in
             # {{{ Environment variables
             env =
             {
-              QT_QPA_PLATFORMTHEME = systemEnv.QT_QPA_PLATFORMTHEME;
-              #QT_STYLE_OVERRIDE    = systemEnv.QT_STYLE_OVERRIDE;
+              QT_QPA_PLATFORMTHEME =
+                if (userEnv ? QT_QPA_PLATFORMTHEME) && (userEnv.QT_QPA_PLATFORMTHEME != null)
+                then userEnv.QT_QPA_PLATFORMTHEME
+                else
+                if (systemEnv ? QT_QPA_PLATFORMTHEME) && (systemEnv.QT_QPA_PLATFORMTHEME != null)
+                then systemEnv.QT_QPA_PLATFORMTHEME
+                else null;
+
+              QT_STYLE_OVERRIDE =
+                if (userEnv ? QT_STYLE_OVERRIDE) && (userEnv.QT_STYLE_OVERRIDE != null)
+                then userEnv.QT_STYLE_OVERRIDE
+                else
+                if (systemEnv ? QT_STYLE_OVERRIDE) && (systemEnv.QT_STYLE_OVERRIDE != null)
+                then systemEnv.QT_STYLE_OVERRIDE
+                else null;
 
               XDG_DATA_DIRS = lib.makeSearchPath "share"
               [
