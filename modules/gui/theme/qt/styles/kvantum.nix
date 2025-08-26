@@ -43,14 +43,14 @@ in
     custom.gui.theme.qt.enable     = true;      # internal
     custom.gui.theme.qt.style.name = "kvantum"; # internal
 
-    qt.style = cfgQt.style.name;
+    qt.style = "kvantum";
 
     # {{{ Home-Manager
     home-manager.users.${mainUser} =
     {
       qt.style =
       {
-        name    = cfgQt.style.name;
+        name    = "kvantum";
         package = pkgs.kdePackages.qtstyleplugin-kvantum;
       };
 

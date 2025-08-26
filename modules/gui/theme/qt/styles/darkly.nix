@@ -39,7 +39,7 @@ in
     custom.gui.theme.qt.style.name = "Darkly"; # internal
 
     # No option for Darkly is implemented in the NixOS modules
-    #qt.style = cfgQt.style.name;
+    #qt.style = "Darkly";
     environment.systemPackages = with pkgs; [ darkly darkly-qt5 ];
 
     # {{{ Home-Manager
@@ -48,7 +48,7 @@ in
       qt.style =
       {
         # No option for Darkly is implemented in the Home-Manager modules
-        #name    = cfgQt.style.name;
+        #name    = "Darkly";
         package = with pkgs; [ darkly darkly-qt5 ];
       };
 
