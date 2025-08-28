@@ -29,8 +29,8 @@ let
     # {{{ Appearance
     Appearance =
     {
-      color_scheme_path = "${configHome}/qt6ct/colors/${cfg.theme.name}.conf";
-      custom_palette    = true;
+      color_scheme_path = if (cfg.theme.name != null) then "${configHome}/qt6ct/colors/${cfg.theme.name}.conf" else "";
+      custom_palette    = if (cfg.theme.name != null) then true else "";
       icon_theme        = iconTheme;
       style             = qtStyleName;
     };
@@ -71,9 +71,9 @@ let
 
   qt5ctConf = lib.attrsets.updateManyAttrsByPath
   [
-    { path = [ "Appearance" "color_scheme_path" ]; update = qt5ctPathReplace; }
-    { path = [ "Fonts" "fixed" ];                  update = qt5ctFontReplace; }
-    { path = [ "Fonts" "general" ];                update = qt5ctFontReplace; }
+    (if (qt6ctConf.Appearance.color_scheme_path != null) then { path = [ "Appearance" "color_scheme_path" ]; update = qt5ctPathReplace; } else null)
+    { path = [ "Fonts" "fixed" ];   update = qt5ctFontReplace; }
+    { path = [ "Fonts" "general" ]; update = qt5ctFontReplace; }
   ] qt6ctConf;
   # }}}
   # }}}
@@ -117,12 +117,19 @@ in
         # QtCT config
         "qt5ct/qt5ct.conf".text = lib.generators.toINI { } qt5ctConf;
         "qt6ct/qt6ct.conf".text = lib.generators.toINI { } qt6ctConf;
+      };
 
-        # QtCT config
-        "qt5ct/colors".source = "${cfg.theme.package}/share/qt5ct/colors";
-        "qt5ct/colors".recursive = true;
-        "qt6ct/colors".source = "${cfg.theme.package}/share/qt6ct/colors";
-        "qt6ct/colors".recursive = true;
+      # QtCT theme
+      xdg.configFile."qt5ct/colors" = lib.mkIf (cfg.theme.package != null)
+      {
+        source    = "${cfg.theme.package}/share/qt5ct/colors";
+        recursive = true;
+      };
+
+      xdg.configFile."qt6ct/colors" = lib.mkIf (cfg.theme.package != null)
+      {
+        source    = "${cfg.theme.package}/share/qt6ct/colors";
+        recursive = true;
       };
     };
     # }}}
