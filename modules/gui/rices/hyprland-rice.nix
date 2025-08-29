@@ -109,11 +109,11 @@ in
             platformTheme.qtct =
             {
               enable = true;
-              theme =
-              {
-                name = "catppuccin-mocha-blue";
-                package = pkgs.catppuccin-qt5ct;
-              };
+              #theme =
+              #{
+              #  name = "catppuccin-mocha-blue";
+              #  package = pkgs.catppuccin-qt5ct;
+              #};
             };
 
             style.kvantum =
