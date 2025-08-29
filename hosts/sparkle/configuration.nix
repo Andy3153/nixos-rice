@@ -47,73 +47,56 @@
     (with pkgs;
     [
       # {{{ Sound
-      qpwgraph                            # Sound PipeWire Patchbay
-      easyeffects                         # Sound PipeWire
-      pulsemixer                          # Sound sound-control
+      qpwgraph    # Sound PipeWire Patchbay
+      easyeffects # Sound PipeWire
+      pulsemixer  # Sound sound-control
       # }}}
 
       # {{{ Office
-      libreoffice-qt6                     # Office
-      onlyoffice-desktopeditors           # Office
-      gimp3-with-plugins                  # Office photo-editing
-      inkscape                            # Office photo-editing
-      krita                               # Office photo-editing
+      libreoffice-qt6           # Office
+      onlyoffice-desktopeditors # Office
+      gimp3-with-plugins        # Office photo-editing
+      inkscape                  # Office photo-editing
+      krita                     # Office photo-editing
 
-      texliveFull                         # LaTeX
-      python312Packages.pygments          # for-latex
-      pandoc                              # for-latex
+      texliveFull                # LaTeX
+      python312Packages.pygments # for-latex
+      pandoc                     # for-latex
 
-      pdftk                               # pdf-tools
-      pdfarranger                         # pdf-tools
-      poppler_utils                       # pdf-tools
+      pdftk         # pdf-tools
+      pdfarranger   # pdf-tools
+      poppler_utils # pdf-tools
 
-      pomodoro-gtk                        # pomodoro-timer
+      pomodoro-gtk # pomodoro-timer
       # }}}
 
       # {{{ Media
-      cantata                             # music-player for-mpd
-      youtube-music                       # music-player
+      cantata       # music-player for-mpd
+      youtube-music # music-player
 
-      flac                                # music
-      opusTools                           # music
-      mousai                              # music find-music
-      picard                              # music tag-music
-      lrcget                              # music get-lyrics
-      shntool                             # music split-cue
+      flac      # music
+      opusTools # music
+      mousai    # music find-music
+      picard    # music tag-music
+      lrcget    # music get-lyrics
+      shntool   # music split-cue
 
-      ffmpeg                              # media-convert
-      yt-dlp                              # media-download
-      converseen                          # media-convert
+      ffmpeg     # media-convert
+      yt-dlp     # media-download
+      converseen # media-convert
 
-      audacity                            # audio-editor
+      audacity # audio-editor
 
-      exiftool                            # image-data
+      exiftool # image-data
       # }}}
 
       # {{{ 3D
-      blender                             # 3D
+      blender # 3D
       # }}}
 
-      linux-wifi-hotspot                  # Internet hotspot
-      gparted                             # Partition-Manager
-      okteta                              # KDE-Apps hex-editor
-      mousai                              # GNOME-Apps song-identifier
-      virt-manager                        # for-libvirt
-      virtiofsd                           # for-libvirt
-      qbittorrent                         # torrents
-      scrcpy                              # adb-tools
-      wimlib                              # .wim
-
-      ventoy-full                         # flash-usbs
-      woeusb                              # flash-usbs windows
-
-      d-spy                               # D-Bus
-
-      ciscoPacketTracer8
-
-      openbox                             # for-xwayland-rootless-script
-
-      jq                                  # Other-CLI json
+      # {{{ Partitioning/Filesystems
+      gparted # Partition-Manager
+      fatsort # Filesystems sort-fat-fs
 
       (testdisk.override
       {
@@ -121,6 +104,20 @@
         enableNtfs = true;
         enableExtFs = true;
       })
+      # }}}
+
+      linux-wifi-hotspot # Internet hotspot
+      okteta             # KDE-Apps hex-editor
+      mousai             # GNOME-Apps song-identifier
+      qbittorrent        # torrents
+      scrcpy             # adb-tools
+      wimlib             # .wim
+      ventoy-full        # flash-usbs
+      woeusb             # flash-usbs windows
+      d-spy              # D-Bus
+      ciscoPacketTracer8 # Networking
+      openbox            # for-xwayland-rootless-script
+      jq                 # Other-CLI json
 
     ])
     # }}}
