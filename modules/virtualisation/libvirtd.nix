@@ -3,7 +3,7 @@
 ## Libvirtd config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg      = config.custom.virtualisation.libvirtd;
@@ -14,6 +14,12 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    custom.extraPackages = with pkgs;
+    [
+      virt-manager
+      virtiofsd
+    ];
+
     virtualisation.libvirtd =
     {
       enable     = true;
@@ -32,7 +38,7 @@ in
     users.users.${mainUser}.extraGroups = [ "libvirtd" ];
 
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
       dconf.settings =
       {
