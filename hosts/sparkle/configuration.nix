@@ -36,7 +36,6 @@
     {
       enable                     = true;
       gaming.enable              = true;
-      de.deckUi.enable           = true;
       rices.hyprland-rice.enable = true;
     };
     # }}}
@@ -620,20 +619,6 @@
   # {{{ Specialisations
   specialisation =
   {
-    # {{{ Start in Steam Deck UI
-    deckUi.configuration =
-    {
-      system.nixos.tags                     = [ "deck-ui" ];
-      environment.etc."specialisation".text = "deck-ui"; # for nh
-
-      custom =
-      {
-        gui.de.deckUi.autoStart                 = true;
-        systemd.services.turnOnBluetooth.enable = true;
-      };
-    };
-    # }}}
-
     # {{{ No firewall
     noFirewall.configuration =
     {
