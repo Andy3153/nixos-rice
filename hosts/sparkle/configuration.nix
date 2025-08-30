@@ -8,6 +8,17 @@
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
 
 {
+  # {{{ BeamMP certificate problem
+  security.pki.certificateFiles =
+  [(pkgs.stdenvNoCC.mkDerivation
+  {
+    name = "beammp-cert";
+    nativeBuildInputs = [ pkgs.curl ];
+    builder = (pkgs.writeScript "beammp-cert-builder" "curl -w %{certs} https://auth.beammp.com/userlogin -k > $out");
+    outputHash = "sha256-tM8bPFcTP8L1SyqCEz0Y0UvQKiNK6ieptnQRA+k4cV4=";
+  })];
+  # }}}
+
   custom =
   {
     # {{{ Boot
