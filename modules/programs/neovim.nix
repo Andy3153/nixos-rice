@@ -50,20 +50,29 @@ in
 
         tree-sitter
 
-        arduino-language-server             # arduino-language-server (arduino_language_server)
-        nodePackages.bash-language-server   # bash-language-server (bashls)
-        clang-tools                         # clangd
-        cmake-language-server               # cmake-language-server (cmake)
-        dockerfile-language-server-nodejs   # dockerfile-language-server (dockerls)
-        #missing                            # html-lsp
-        hyprls                              # hyprls
-        jdt-language-server                 # jdtls
-        lua-language-server                 # lua-language-server (lua_ls)
-        marksman                            # marksman
-        nil                                 # nil_ls
-        python311Packages.python-lsp-server # python-lsp-server (pylsp)
-        texlab                              # texlab
-        nodePackages.vim-language-server    # vim-language-server (vimls)
+        # {{{ LSPs
+        # Package                           # Language       # Name in Mason
+        arduino-language-server             # arduino        # arduino_language_server
+        clang-tools                         # c/c++          # clangd
+        cmake-language-server               # cmake          # cmake
+        docker-compose-language-service     # docker compose # docker_compose_language_service
+        docker-language-server              # docker         # docker_language_server
+        dockerfile-language-server-nodejs   # dockerfile     # dockerls
+        #missing                            # html           # html
+        hyprls                              # hyprlang       # hyprls
+        jdt-language-server                 # java           # jdtls
+        lua-language-server                 # lua            # lua_ls
+        marksman                            # markdown       # marksman
+        nginx-language-server               # nginx          # nginx_language_server
+        nil                                 # nix            # nil_ls
+        nodePackages.bash-language-server   # bash/sh        # bashls
+        nodePackages.vim-language-server    # vimscript      # vimls
+        python311Packages.python-lsp-server # python         # pylsp
+        taplo                               # toml           # taplo
+        texlab                              # tex            # texlab
+        vscode-css-languageserver           # css            # cssls
+        yaml-language-server                # yaml           # yamlls
+        # }}}
       ] else [])
 
       (if cfgGui.enable then with pkgs;
