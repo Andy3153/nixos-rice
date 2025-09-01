@@ -47,7 +47,6 @@ in
         wget                       # download
         curl                       # download
         rsync                      # cp
-        ranger                     # file-manager for-zsh for-nvim
         tmux                       # terminal-multiplexer
         htop                       # task-manager
         btop                       # task-manager
@@ -95,6 +94,19 @@ in
     [
       "unrar"
     ];
+    # }}}
+
+    # {{{ Programs
+    programs.yazi =
+    {
+      enable              = true; # file-manager for-zsh for-nvim
+      enableCustomConfigs = true;
+      flavors = { pkgs.yaziPlugins.yatline-catppuccin };
+      plugins =
+      {
+
+      };
+    };
     # }}}
   };
 

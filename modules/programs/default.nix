@@ -27,6 +27,7 @@
     ./ssh.nix
     ./steam.nix
     ./tilp2.nix
+    ./yazi.nix
     ./zsh.nix
   ];
 }
