@@ -76,6 +76,20 @@
     };
     # }}}
 
+    # {{{ Determinate Systems' Nix
+    detsys-nix_unstable =
+    {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    detsys-nix_stable =
+    {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+    # }}}
+
     # {{{ in-nix (add envvar when in `nix shell`)
     in-nix_unstable =
     {
@@ -176,6 +190,9 @@
     flake-programs-sqlite_unstable,
     flake-programs-sqlite_stable,
 
+    detsys-nix_stable,
+    detsys-nix_unstable,
+
     in-nix_unstable,
     in-nix_stable,
 
@@ -226,6 +243,7 @@
           nixos-hardware.nixosModules.asus-fx506hm
           lanzaboote_unstable.nixosModules.lanzaboote
           flake-programs-sqlite_unstable.nixosModules.programs-sqlite
+          detsys-nix_unstable.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           home-manager_unstable.nixosModules.home-manager
           jovian_unstable.nixosModules.jovian
@@ -266,6 +284,7 @@
               options =
               {
                 boot.lanzaboote            = dummyOpt;
+                determinate.enable         = dummyOpt;
                 jovian                     = dummyOpt;
                 services.flatpak.overrides = dummyOpt;
                 services.flatpak.packages  = dummyOpt;
@@ -338,6 +357,7 @@
 
           lanzaboote_stable.nixosModules.lanzaboote
           flake-programs-sqlite_stable.nixosModules.programs-sqlite
+          detsys-nix_unstable.nixosModules.default
           home-manager_stable.nixosModules.home-manager
           disko_stable.nixosModules.disko
 

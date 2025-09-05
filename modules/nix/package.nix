@@ -12,11 +12,46 @@ in
 {
   options.custom.nix.package = lib.mkOption
   {
-    type        = options.nix.package.type;
+    type        = lib.types.enum [ "nix" "detsys-nix" "lix" ];
+    #default     = options.nix.package.default;
     #default     = inputs.in-nix.packages.${sys}.default.patchNix pkgs.nix;
-    default     = options.nix.package.default;
+    default     = "detsys-nix";
+    example     = "nix";
     description = "Nix package";
   };
 
-  config.nix.package = cfg;
+  config =
+  {
+    determinate.enable = if cfg == "detsys-nix" then true else false;
+    nix.settings = lib.mkIf (cfg == "detsys-nix")
+    {
+      always-allow-substitutes = false;
+      #eval-cores = 0;
+      lazy-trees = true;
+    };
+
+    nix.package =
+      if builtins.isString cfg then
+        if      cfg == "nix" then options.nix.package.default
+        else if cfg == "lix" then pkgs.lixPackageSets.stable.lix
+        else lib.mkDefault options.nix.package.default
+      else lib.mkDefault cfg;
+
+    nixpkgs.overlays =
+      if builtins.isString cfg then
+        if cfg == "lix" then
+          [
+            (final: prev:
+            {
+              inherit (final.lixPackageSets.stable)
+                nixpkgs-review
+                #nix-direnv
+                nix-eval-jobs
+                nix-fast-build
+                colmena;
+            })
+          ]
+        else []
+      else [];
+  };
 }
