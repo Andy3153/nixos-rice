@@ -35,9 +35,7 @@ in
 
             wineWowPackages.staging                           # wine
             protonup-qt                                       # for-steam for-wine
-            protontricks                                      # for-steam for-wine
             depotdownloader                                   # for-steam
-            extest                                            # for-steam for-controllers
 
             (bottles.override { removeWarningPopup = true; }) # launchers for-wine
             lutris                                            # launchers for-wine
