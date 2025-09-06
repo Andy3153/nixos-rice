@@ -66,7 +66,15 @@ in
         # {{{ Programs
         programs =
         {
-          steam.enable    = true;
+          steam =
+          {
+            enable = true;
+            extraPackages = with pkgs;
+            [
+              nss # for-beamng
+            ];
+          };
+
           gamemode.enable = true;
 
           mangohud =
