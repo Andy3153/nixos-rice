@@ -138,7 +138,7 @@ in
       # {{{ Extra packages
       extraPackages =
       let
-        rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi-wayland} -dmenu "$@"'');
+        rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi} -dmenu "$@"'');
         flameshot = (pkgs.flameshot.override { enableWlrSupport = true; });
       in
       lib.lists.flatten
@@ -153,7 +153,7 @@ in
           dunst                                # hyprland-rice notification-daemon
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
           wev                                  # hyprland-rice event-viewer
-          rofi-wayland                         # hyprland-rice appmenu
+          rofi                                 # hyprland-rice appmenu
           rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
           waycorner                            # hyprland-rice hot-corners
           kitty                                # hyprland-rice terminal
