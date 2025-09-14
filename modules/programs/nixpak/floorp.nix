@@ -17,7 +17,7 @@ let
     {
       imports = [ nixpakCustom.opts ];
 
-      app.package = pkgs.floorp;
+      app.package = pkgs.floorp-bin;
 
       custom =
       {
