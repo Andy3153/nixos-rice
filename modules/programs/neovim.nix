@@ -57,7 +57,7 @@ in
         cmake-language-server               # cmake          # cmake
         docker-compose-language-service     # docker compose # docker_compose_language_service
         docker-language-server              # docker         # docker_language_server
-        dockerfile-language-server-nodejs   # dockerfile     # dockerls
+        dockerfile-language-server          # dockerfile     # dockerls
         #missing                            # html           # html
         hyprls                              # hyprlang       # hyprls
         jdt-language-server                 # java           # jdtls
