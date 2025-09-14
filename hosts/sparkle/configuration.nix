@@ -220,7 +220,7 @@
 
       insecureWhitelist =
       [
-        "ventoy-1.1.05"
+        "ventoy-1.1.07"
       ];
     };
     # }}}
