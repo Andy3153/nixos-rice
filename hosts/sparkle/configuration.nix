@@ -129,6 +129,7 @@
       ciscoPacketTracer8 # Networking
       openbox            # for-xwayland-rootless-script
       jq                 # Other-CLI json
+      hjson              # Other-CLI json
     ])
     # }}}
 
