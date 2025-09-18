@@ -129,7 +129,6 @@
       ciscoPacketTracer8 # Networking
       openbox            # for-xwayland-rootless-script
       jq                 # Other-CLI json
-
     ])
     # }}}
 
@@ -231,7 +230,7 @@
       # {{{ NixPak programs
       nixpak =
       {
-        floorp.enable = true;
+        #floorp.enable = true;
       };
       # }}}
 
