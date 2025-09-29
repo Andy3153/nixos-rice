@@ -73,6 +73,7 @@
       texliveFull                # LaTeX
       python312Packages.pygments # for-latex
       pandoc                     # for-latex
+      ghostscript                # for-latex pdf-tools
 
       pdftk         # pdf-tools
       pdfarranger   # pdf-tools
