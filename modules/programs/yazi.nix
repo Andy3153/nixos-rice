@@ -27,7 +27,7 @@ in
       type        = options.programs.yazi.flavors.type;
       default     = options.programs.yazi.flavors.default;
       example     = options.programs.yazi.flavors.example;
-      description = "yazu flavors (themes) to install";
+      description = "Yazi flavors (themes) to install";
     };
 
     plugins = lib.mkOption
@@ -35,7 +35,7 @@ in
       type        = options.programs.yazi.plugins.type;
       default     = options.programs.yazi.plugins.default;
       example     = options.programs.yazi.plugins.example;
-      description = "yazu plugins to install";
+      description = "Yazi plugins to install";
     };
   };
 
@@ -73,7 +73,7 @@ in
     {
       enable  = true;
       flavors = cfg.flavors;
-      plugins = cfg.flavors;
+      plugins = cfg.plugins;
     };
     # }}}
 
@@ -86,7 +86,7 @@ in
         enable               = true;
         enableZshIntegration = config.custom.programs.zsh.enable;
         flavors              = cfg.flavors;
-        plugins              = cfg.flavors;
+        plugins              = cfg.plugins;
       };
       # }}}
 
@@ -94,6 +94,7 @@ in
       xdg.configFile = lib.mkIf cfg.enableCustomConfigs
       {
         "yazi".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/yazi";
+        "yazi".recursive = true;
       };
       # }}}
     };

@@ -101,11 +101,12 @@ in
     {
       enable              = true; # file-manager for-zsh for-nvim
       enableCustomConfigs = true;
-      flavors = { pkgs.yaziPlugins.yatline-catppuccin };
-      plugins =
-      {
-
-      };
+      #plugins = with pkgs.yaziPlugins;
+      #{
+      #  yatline            = yatline;
+      #  yatline-catppuccin = yatline-catppuccin;
+      #  wl-clipboard       = wl-clipboard;
+      #};
     };
     # }}}
   };
