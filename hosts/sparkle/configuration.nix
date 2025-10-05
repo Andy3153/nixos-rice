@@ -86,6 +86,8 @@
       cantata       # music-player for-mpd
       youtube-music # music-player
 
+      grayjay # youtube
+
       flac      # music
       opusTools # music
       mousai    # music find-music
@@ -220,6 +222,7 @@
       unfreeWhitelist =
       [
         "ciscoPacketTracer8"
+        "grayjay"
         "ventoy"
       ];
 
