@@ -118,6 +118,10 @@
       })
       # }}}
 
+      # {{{ Programming
+      gh # github for-git
+      # }}}
+
       linux-wifi-hotspot # Internet hotspot
       okteta             # KDE-Apps hex-editor
       mousai             # GNOME-Apps song-identifier
