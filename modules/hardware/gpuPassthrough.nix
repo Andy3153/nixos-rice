@@ -42,24 +42,25 @@ in
       initrd.kernelModules = lib.mkMerge
       [
         [
-          "vfio_pci"
           "vfio"
           "vfio_iommu_type1"
+          "vfio_pci"
+          "vfio_virqfd"
         ]
 
         (lib.mkIf (cfg.gpu == "nvidia")
         [
           "nvidia"
+          "nvidia_drm"
           "nvidia_modeset"
           "nvidia_uvm"
-          "nvidia_drm"
         ])
       ];
 
       kernelParams = lib.mkMerge
       [
-        (lib.mkIf (cfg.cpu == "intel") [ "intel_iommu=on" ])
-        (lib.mkIf (cfg.cpu == "amd")   [ "amd_iommu=on" ])
+        (lib.mkIf (cfg.cpu == "intel") [ "intel_iommu=on" "iommu=pt" ])
+        (lib.mkIf (cfg.cpu == "amd")   [ "amd_iommu=on"   "iommu=pt" ])
         [ ("vfio-pci.ids=" + lib.concatStringsSep "," cfg.gpuIDs) ]
       ];
     };
