@@ -11,12 +11,12 @@ in
 {
   options.custom.hardware.nvidia.prime.enable = lib.mkEnableOption "enables Nvidia PRIME render offloading";
 
-  config = lib.mkIf cfg.enable
+  config =
   {
     hardware.nvidia.prime.offload =
     {
-      enable           = true;
-      enableOffloadCmd = true;
+      enable           = cfg.enable;
+      enableOffloadCmd = cfg.enable;
     };
   };
 }

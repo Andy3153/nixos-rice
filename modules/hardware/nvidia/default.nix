@@ -16,56 +16,64 @@ in
 
   options.custom.hardware.nvidia.enable = lib.mkEnableOption "enables Nvidia";
 
-  config = lib.mkIf cfg.enable
-  {
-    boot =
+  config = lib.mkMerge
+  [
+    (lib.mkIf (!cfg.enable)
     {
-      extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-      kernelModules = [ "nvidia_uvm" ];
-    };
+      hardware.nvidia =
+      {
+        modesetting.enable = lib.mkForce false;
+        open               = lib.mkForce false;
+      };
+    })
 
-    hardware =
+    (lib.mkIf cfg.enable
     {
-      graphics.extraPackages    = [ pkgs.vaapiVdpau ];
-      nvidia.modesetting.enable = true;
-    };
+      boot =
+      {
+        extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+        kernelModules       = [ "nvidia_uvm" ];
+      };
 
-    services.xserver.videoDrivers            = [ "nvidia" ];
-    hardware.nvidia-container-toolkit.enable = lib.mkIf (config.custom.virtualisation.docker.enable || config.custom.virtualisation.podman.enable) true;
+      hardware.graphics.extraPackages = [ pkgs.vaapiVdpau ];
 
-    custom =
-    {
-      extraPackages = [ pkgs.nvtopPackages.full ];
+      services.xserver.videoDrivers            = [ "nvidia" ];
+      hardware.nvidia-container-toolkit.enable = lib.mkIf (config.custom.virtualisation.docker.enable || config.custom.virtualisation.podman.enable) true;
 
-      # {{{ Unfree package whitelist
-      nix.unfreeWhitelist =
-      [
-        "cuda-merged"
-        "cuda_cccl"
-        "cuda_cudart"
-        "cuda_cuobjdump"
-        "cuda_cupti"
-        "cuda_cuxxfilt"
-        "cuda_gdb"
-        "cuda_nvcc"
-        "cuda_nvdisasm"
-        "cuda_nvml_dev"
-        "cuda_nvprune"
-        "cuda_nvrtc"
-        "cuda_nvtx"
-        "cuda_profiler_api"
-        "cuda_sanitizer_api"
-        "libcublas"
-        "libcufft"
-        "libcurand"
-        "libcusolver"
-        "libcusparse"
-        "libnpp"
-        "libnvjitlink"
-        "nvidia-settings"
-        "nvidia-x11"
-      ];
-      # }}}
-    };
-  };
+      custom =
+      {
+        extraPackages = [ pkgs.nvtopPackages.full ];
+
+        # {{{ Unfree package whitelist
+        nix.unfreeWhitelist =
+        [
+          "cuda-merged"
+          "cuda_cccl"
+          "cuda_cudart"
+          "cuda_cuobjdump"
+          "cuda_cupti"
+          "cuda_cuxxfilt"
+          "cuda_gdb"
+          "cuda_nvcc"
+          "cuda_nvdisasm"
+          "cuda_nvml_dev"
+          "cuda_nvprune"
+          "cuda_nvrtc"
+          "cuda_nvtx"
+          "cuda_profiler_api"
+          "cuda_sanitizer_api"
+          "libcublas"
+          "libcufft"
+          "libcurand"
+          "libcusolver"
+          "libcusparse"
+          "libnpp"
+          "libnvjitlink"
+          "nvidia-settings"
+          "nvidia-x11"
+        ];
+        # }}}
+      };
+    })
+  ];
 }
