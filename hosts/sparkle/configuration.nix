@@ -295,9 +295,9 @@
             identitiesOnly = true;
           };
 
-          "andy3153.duckdns.org" =
+          "andy3153.am-furnici.ro" =
           {
-            hostname       = "andy3153.duckdns.org";
+            hostname       = "andy3153.am-furnici.ro";
             user           = mainUser;
             identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
             identitiesOnly = true;
@@ -306,6 +306,14 @@
           "andy3153.go.ro" =
           {
             hostname       = "andy3153.go.ro";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.duckdns.org" =
+          {
+            hostname       = "andy3153.duckdns.org";
             user           = mainUser;
             identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
             identitiesOnly = true;
