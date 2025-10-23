@@ -152,6 +152,20 @@
     };
     # }}}
 
+    # {{{ NixOS-VFIO
+    nixos-vfio_unstable =
+    {
+      url = "github:j-brn/nixos-vfio";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    nixos-vfio_stable =
+    {
+      url = "github:j-brn/nixos-vfio";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+    # }}}
+
     # {{{ Disko
     disko_unstable =
     {
@@ -207,6 +221,9 @@
     jovian_unstable,
     jovian_stable,
 
+    nixos-vfio_unstable,
+    nixos-vfio_stable,
+
     disko_unstable,
     disko_stable,
 
@@ -247,6 +264,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           home-manager_unstable.nixosModules.home-manager
           jovian_unstable.nixosModules.jovian
+          nixos-vfio_unstable.nixosModules.default
 
           ./hosts/sparkle
         ];
