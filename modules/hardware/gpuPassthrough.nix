@@ -6,7 +6,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.hardware.gpuPassthrough;
+  cfg      = config.custom.hardware.gpuPassthrough;
+  mainUser = config.custom.users.mainUser;
 in
 {
   options.custom.hardware.gpuPassthrough =
@@ -62,6 +63,27 @@ in
         (lib.mkIf (cfg.cpu == "intel") [ "intel_iommu=on" "iommu=pt" ])
         (lib.mkIf (cfg.cpu == "amd")   [ "amd_iommu=on"   "iommu=pt" ])
         [ ("vfio-pci.ids=" + lib.concatStringsSep "," cfg.gpuIDs) ]
+      ];
+    };
+
+    virtualisation.kvmfr =
+    {
+      enable = true;
+      devices =
+      [
+        {
+          resolution =
+          {
+            width  = 1920;
+            height = 1080;
+          };
+
+          permissions = rec
+          {
+            user  = mainUser;
+            group = user;
+          };
+        }
       ];
     };
 
