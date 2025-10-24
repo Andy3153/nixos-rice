@@ -170,7 +170,6 @@ in
         # {{{ KDE packages
         (with pkgs.kdePackages;
         [
-          xwaylandvideobridge      # hyprland-rice xwayland-screenshare
           konsole                  # for-dolphin
           kio                      # for-dolphin
           kio-extras               # for-dolphin
