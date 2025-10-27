@@ -10,6 +10,7 @@
   [
     ./nixpak
     ./adb.nix
+    ./appimage.nix
     ./dconf.nix
     ./direnv.nix
     ./dolphin.nix
