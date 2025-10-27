@@ -353,6 +353,7 @@
       # }}}
 
       adb.enable       = true;
+      appimage.enable  = true;
       direnv.enable    = true;
       obs.enable       = true;
       tilp2.enable     = true;
