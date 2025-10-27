@@ -235,13 +235,6 @@
     # {{{ Programs
     programs =
     {
-      # {{{ NixPak programs
-      nixpak =
-      {
-        #floorp.enable = true;
-      };
-      # }}}
-
       # {{{ Git
       git =
       {
@@ -363,16 +356,12 @@
     services =
     {
       flatpak.enable = true;
-      #hamachi.enable = true;
       mpd.enable     = true;
 
       openssh =
       {
-        enable = true;
-        settings =
-        {
-          X11Forwarding = true;
-        };
+        enable   = true;
+        settings = { X11Forwarding = true; };
       };
 
       printing =
