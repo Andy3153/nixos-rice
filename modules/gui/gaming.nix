@@ -45,13 +45,14 @@ in
             xonotic                                           # games
 
             dolphin-emu                                       # emulators games
+
+            beammp-launcher         # for-beamng
           ])
           # }}}
 
           # {{{ My Nix packages
           (with my-pkgs;
           [
-            beammp-launcher         # for-beamng
           ])
           # }}}
         ];
