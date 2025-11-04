@@ -35,7 +35,7 @@ in
         kernelModules       = [ "nvidia_uvm" ];
       };
 
-      hardware.graphics.extraPackages = [ pkgs.vaapiVdpau ];
+      hardware.graphics.extraPackages = [ pkgs.libva-vdpau-driver ];
 
       services.xserver.videoDrivers            = [ "nvidia" ];
       hardware.nvidia-container-toolkit.enable = lib.mkIf (config.custom.virtualisation.docker.enable || config.custom.virtualisation.podman.enable) true;
