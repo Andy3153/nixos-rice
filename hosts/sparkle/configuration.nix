@@ -112,6 +112,8 @@
       gparted # Partition-Manager
       fatsort # Filesystems sort-fat-fs
 
+      adbfs-rootless # Filesystems FUSE ADB
+
       (testdisk.override
       {
         enableQt = true;
