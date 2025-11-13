@@ -25,6 +25,7 @@
     ./neovim.nix
     ./nh.nix
     ./obs.nix
+    ./retroarch.nix
     ./ssh.nix
     ./steam.nix
     ./tilp2.nix
