@@ -44,9 +44,10 @@ in
             prismlauncher                                     # games
             xonotic                                           # games
 
-            dolphin-emu                                       # emulators games
+            dolphin-emu                                       # emulators games gc wii
+            mesen                                             # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
 
-            beammp-launcher         # for-beamng
+            beammp-launcher                                   # for-beamng
           ])
           # }}}
 
