@@ -131,6 +131,7 @@
       mousai             # GNOME-Apps song-identifier
       qbittorrent        # torrents
       scrcpy             # adb-tools
+      adb-sync           # adb-tools
       wimlib             # .wim
       ventoy-full        # flash-usbs
       woeusb             # flash-usbs windows
@@ -222,8 +223,10 @@
     {
       unfreeWhitelist =
       [
+        "android-sdk-platform-tools"
         "ciscoPacketTracer8"
         "grayjay"
+        "platform-tools"
         "ventoy"
       ];
 
