@@ -79,7 +79,8 @@
       pdfarranger   # pdf-tools
       poppler-utils # pdf-tools
 
-      pomodoro-gtk # pomodoro-timer
+      pomodoro-gtk # timer pomodoro-timer
+      timewarrior  # timer time-tracker
       # }}}
 
       # {{{ Media
