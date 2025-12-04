@@ -307,6 +307,7 @@
                 services.flatpak.overrides = dummyOpt;
                 services.flatpak.packages  = dummyOpt;
                 services.flatpak.update    = dummyOpt;
+                virtualisation.kvmfr       = dummyOpt;
               };
             }
           )
@@ -368,6 +369,7 @@
                 services.flatpak.overrides = dummyOpt;
                 services.flatpak.packages  = dummyOpt;
                 services.flatpak.update    = dummyOpt;
+                virtualisation.kvmfr       = dummyOpt;
               };
             }
           )
@@ -417,8 +419,9 @@
             {
               options =
               {
-                boot.lanzaboote = dummyOpt;
-                jovian          = dummyOpt;
+                boot.lanzaboote      = dummyOpt;
+                jovian               = dummyOpt;
+                virtualisation.kvmfr = dummyOpt;
               };
             }
           )
