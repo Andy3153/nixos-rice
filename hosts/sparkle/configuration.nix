@@ -234,6 +234,7 @@
       insecureWhitelist =
       [
         "ventoy-1.1.07"
+        "ciscoPacketTracer8-8.2.2"
       ];
     };
     # }}}
