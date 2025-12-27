@@ -45,18 +45,22 @@ in
       startWhenNeeded = true;
       user            = mainUser;
 
-      musicDirectory    = musicDir;
       dataDir           = dataDir;
-      playlistDirectory = "${dataDir}/playlists";
-      dbFile            = "${dataDir}/tag_cache";
 
-      extraConfig =
-      ''
-        audio_output {
-          type "pipewire"
-          name "PipeWire Output"
-        }
-      '';
+      settings =
+      {
+        db_file            = "${dataDir}/tag_cache";
+        music_directory    = musicDir;
+        playlist_directory = "${dataDir}/playlists";
+
+        audio_output =
+        [
+          {
+            type = "pipewire";
+            name = "PipeWire Output";
+          }
+        ];
+      };
     };
 
     # MPD PipeWire fix
