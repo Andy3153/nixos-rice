@@ -71,6 +71,7 @@
       krita                     # Office photo-editing
 
       texliveFull                # LaTeX
+      texpresso                  # for-latex
       python312Packages.pygments # for-latex
       pandoc                     # for-latex
       ghostscript                # for-latex pdf-tools
