@@ -85,8 +85,8 @@
       # }}}
 
       # {{{ Media
-      cantata       # music-player for-mpd
-      youtube-music # music-player
+      cantata      # music-player for-mpd
+      pear-desktop # music-player youtube-music
 
       grayjay # youtube
 
