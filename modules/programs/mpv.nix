@@ -23,7 +23,7 @@ in
 
         # {{{ MPV package
         package =
-        (pkgs.mpv-unwrapped.wrapper
+        (pkgs.mpv.override
         {
           # {{{ MPV scripts
           scripts = with pkgs.mpvScripts;
@@ -35,12 +35,7 @@ in
           ];
           # }}}
 
-          # {{{ Use `ffmpeg-full`
-          mpv = pkgs.mpv-unwrapped.override
-          {
-            ffmpeg = pkgs.ffmpeg-full;
-          };
-          # }}}
+          mpv-unwrapped = pkgs.mpv-unwrapped.override { ffmpeg = pkgs.ffmpeg-full; };
         });
         # }}}
       };
