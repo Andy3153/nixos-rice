@@ -3,7 +3,7 @@
 ## ADB config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg      = config.custom.programs.adb;
@@ -13,7 +13,7 @@ in
   options.custom.programs.adb.enable = lib.mkEnableOption "enables ADB";
   config = lib.mkIf cfg.enable
   {
-    programs.adb.enable = true;
+    custom.extraPackages                = [ pkgs.android-tools ];
     users.users.${mainUser}.extraGroups = [ "adbusers" ];
   };
 }
