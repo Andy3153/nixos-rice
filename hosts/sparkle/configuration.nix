@@ -122,6 +122,8 @@
         enableNtfs = true;
         enableExtFs = true;
       })
+
+      f3 # flash-drive-tester
       # }}}
 
       # {{{ Programming
