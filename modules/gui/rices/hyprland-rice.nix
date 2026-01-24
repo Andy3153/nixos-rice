@@ -155,7 +155,6 @@ in
           wev                                  # hyprland-rice event-viewer
           rofi                                 # hyprland-rice appmenu
           rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
-          waycorner                            # hyprland-rice hot-corners
           kitty                                # hyprland-rice terminal
           blueman                              # hyprland-rice bluetooth-control
           networkmanager_dmenu                 # hyprland-rice network-control
