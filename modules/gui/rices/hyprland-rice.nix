@@ -151,6 +151,7 @@ in
           hyprpicker                           # hyprland-rice color-picker
           hyprsysteminfo                       # hyprland-rice system-info
           dunst                                # hyprland-rice notification-daemon
+          cliphist                             # hyprland-rice clipboard-manager
           wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
           wev                                  # hyprland-rice event-viewer
           rofi                                 # hyprland-rice appmenu
