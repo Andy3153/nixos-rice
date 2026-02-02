@@ -14,7 +14,7 @@
     disk =
     {
       # {{{ Main drive (internal SSD)
-      "main" =
+      main =
       {
         device = "/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B7380F9A543";
         type   = "disk";
@@ -31,7 +31,7 @@
             {
               name = "EFI System Partition";
               size = "2G";
-              type = "EF00";
+              type = "EF00"; # ESP
 
               content =
               {
@@ -126,7 +126,7 @@
       # }}}
 
       # {{{ Data drive (external HDD)
-      "data" =
+      data =
       {
         device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
         type   = "disk";
@@ -145,7 +145,7 @@
     lvm_vg =
     {
       # {{{ `helix`
-      "helix" =
+      helix =
       {
         type = "lvm_vg";
 
