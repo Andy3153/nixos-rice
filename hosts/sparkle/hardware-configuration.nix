@@ -114,6 +114,20 @@ in
       options = [ "subvol=games" ];
     };
 
+    "${homeDir}/games/steam/steamapps/common" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = [ "subvol=games/steam/steamapps/common" ];
+    };
+
+    "${homeDir}/games/steam/steamapps/shadercache" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = [ "subvol=games/steam/steamapps/shadercache" ];
+    };
+
     "/var/lib/libvirt/images" =
     {
       device = mainDevice;
