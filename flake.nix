@@ -265,6 +265,7 @@
           home-manager_unstable.nixosModules.home-manager
           jovian_unstable.nixosModules.jovian
           nixos-vfio_unstable.nixosModules.default
+          disko_unstable.nixosModules.disko
 
           ./hosts/sparkle
         ];
