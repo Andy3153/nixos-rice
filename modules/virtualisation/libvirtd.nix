@@ -28,8 +28,9 @@ in
 
       qemu =
       {
-        runAsRoot    = false;
-        swtpm.enable = true;
+        runAsRoot         = false;
+        swtpm.enable      = true;
+        vhostUserPackages = [ pkgs.virtiofsd ];
       };
     };
 
