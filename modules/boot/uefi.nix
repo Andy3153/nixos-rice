@@ -75,7 +75,9 @@ in
     {
       boot.lanzaboote =
       {
-        enable    = true;
+        enable                  = true;
+        autoGenerateKeys.enable = true;
+
         pkiBundle = if (lib.versionAtLeast lib.version "25.05pre")
         then "/var/lib/sbctl"
         else "/etc/secureboot";
