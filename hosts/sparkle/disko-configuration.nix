@@ -8,9 +8,11 @@
 { config, ... }:
 
 let
+  # {{{ Variables
   mainUser     = config.custom.users.mainUser;
   homeDir      = "/home/${mainUser}"; # ANYTHING ELSE that tries to be more elegant, like `config.users.users.${mainUser}.home` produces an **infinite recursion**. why?
   xdgDownloads = "${homeDir}/downs";  # so I have to make do with this for now...
+  # }}}
 in
 {
   disko.devices =
@@ -32,17 +34,19 @@ in
           partitions =
           {
             # {{{ ESP
-            esp =
+            esp = rec
             {
-              name = "EFI System Partition";
-              size = "1G";
-              type = "EF00"; # ESP
+              name  = "EFI System Partition";
+              label = name;
+              size  = "1G";
+              type  = "EF00"; # ESP
 
               content =
               {
-                type         = "filesystem";
-                format       = "vfat";
-                mountpoint   = "/boot";
+                type       = "filesystem";
+                format     = "vfat";
+                mountpoint = "/boot";
+
                 mountOptions =
                 [
                   "fmask=0022"
@@ -52,105 +56,120 @@ in
             };
             # }}}
 
-            # {{{ Main
-            main =
+            # {{{ Main encrypted container
+            main-crypt = rec
             {
-              name = "sparkle";
-              size = "100%";
+              name  = "sparkle-crypt";
+              label = name;
+              size  = "100%";
 
               content =
               {
-                type         = "btrfs";
-                extraArgs    = [ "-f" ];
-                mountpoint   = "/.btrfs-root";
-                mountOptions = [ "compress=zstd" ];
+                name = "sparkle";
+                type = "luks";
 
-                # {{{ Btrfs subvolumes
-                subvolumes =
+                settings.allowDiscards = true;
+
+                content =
                 {
-                  "/root" =
-                  {
-                    mountpoint   = "/";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                  type         = "btrfs";
+                  extraArgs    = [ "-f" ];
+                  mountpoint   = "/.btrfs-root";
+                  mountOptions = [ "compress=zstd" ];
 
-                  "/nix" =
+                  # {{{ Btrfs subvolumes
+                  subvolumes =
                   {
-                    mountpoint   = "/nix";
-                    mountOptions =
-                    [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
+                    "/root" =
+                    {
+                      mountpoint   = "/";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/swap" =
-                  {
-                    mountpoint = "/.swap";
-                    swap.swapfile.size = "18G";
-                  };
+                    "/nix" =
+                    {
+                      mountpoint   = "/nix";
+                      mountOptions =
+                      [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
 
-                  "/snapshots" =
-                  {
-                    mountpoint   = "/.snapshots";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/swap" =
+                    {
+                      mountpoint = "/.swap";
+                      swap.swapfile.size = "18G";
+                    };
 
-                  "/var-cache" =
-                  {
-                    mountpoint   = "/var/cache";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/snapshots" =
+                    {
+                      mountpoint   = "/.snapshots";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/var-log" =
-                  {
-                    mountpoint   = "/var/log";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/var-cache" =
+                    {
+                      mountpoint   = "/var/cache";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/var-tmp" =
-                  {
-                    mountpoint   = "/var/tmp";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/var-log" =
+                    {
+                      mountpoint   = "/var/log";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/vms" =
-                  {
-                    mountpoint   = "/var/lib/libvirt/images";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/var-tmp" =
+                    {
+                      mountpoint   = "/var/tmp";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/home" =
-                  {
-                    mountpoint   = "/home";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/vms" =
+                    {
+                      mountpoint   = "/var/lib/libvirt";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/games" =
-                  {
-                    mountpoint   = "${homeDir}/games";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/vms/images" =
+                    {
+                      mountpoint   = "/var/lib/libvirt/images";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/games/steam/steamapps/common" =
-                  {
-                    mountpoint   = "${homeDir}/games/steam/steamapps/common";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/home" =
+                    {
+                      mountpoint   = "/home";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/games/steam/steamapps/shadercache" =
-                  {
-                    mountpoint   = "${homeDir}/games/steam/steamapps/shadercache";
-                    mountOptions = [ "compress=zstd" ];
-                  };
+                    "/games" =
+                    {
+                      mountpoint   = "${homeDir}/games";
+                      mountOptions = [ "compress=zstd" ];
+                    };
 
-                  "/torrents" =
-                  {
-                    mountpoint   = "${xdgDownloads}/torrents";
-                    mountOptions = [ "compress=zstd" ];
+                    "/games/steam/steamapps/common" =
+                    {
+                      mountpoint   = "${homeDir}/games/steam/steamapps/common";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/games/steam/steamapps/shadercache" =
+                    {
+                      mountpoint   = "${homeDir}/games/steam/steamapps/shadercache";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/torrents" =
+                    {
+                      mountpoint   = "${xdgDownloads}/torrents";
+                      mountOptions = [ "compress=zstd" ];
+                    };
                   };
+                  # }}}
                 };
-                # }}}
               };
             };
             # }}}
