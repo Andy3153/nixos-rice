@@ -51,13 +51,13 @@
     # {{{ Lanzaboote
     lanzaboote_unstable =
     {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
     lanzaboote_stable =
     {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
