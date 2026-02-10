@@ -173,7 +173,6 @@
   # {{{ Extra Flatpak packages
   extraFlatpakPackages =
   [
-    "io.gitlab.librewolf-community"      # Browsers
     "com.brave.Browser"                  # Browsers
     "org.torproject.torbrowser-launcher" # Browsers Tor
 
@@ -357,6 +356,7 @@
       adb.enable       = true;
       appimage.enable  = true;
       direnv.enable    = true;
+      librewolf.enable = true;
       obs.enable       = true;
       tilp2.enable     = true;
     };
@@ -429,7 +429,7 @@
         ## All .desktop files live inside folders from $XDG_DATA_DIRS
         ##
 
-        browser                        = "io.gitlab.librewolf-community.desktop";
+        browser                        = "librewolf.desktop";
         fileManager                    = "org.kde.dolphin.desktop";
         textEditor                     = "neovide.desktop";
         docViewer                      = "org.pwmt.zathura.desktop";

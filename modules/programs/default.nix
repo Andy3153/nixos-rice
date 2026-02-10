@@ -19,6 +19,7 @@
     ./git.nix
     ./java.nix
     ./kdeconnect.nix
+    ./librewolf.nix
     ./looking-glass.nix
     ./mangohud.nix
     ./mpv.nix
