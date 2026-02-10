@@ -140,7 +140,7 @@
       ventoy-full        # flash-usbs
       woeusb             # flash-usbs windows
       d-spy              # D-Bus
-      ciscoPacketTracer8 # Networking
+      ciscoPacketTracer9 # Networking
       openbox            # for-xwayland-rootless-script
       jq                 # Other-CLI json
       hjson              # Other-CLI json
@@ -227,7 +227,7 @@
       unfreeWhitelist =
       [
         "android-sdk-platform-tools"
-        "ciscoPacketTracer8"
+        "ciscoPacketTracer9"
         "grayjay"
         "platform-tools"
         "ventoy"
@@ -236,7 +236,6 @@
       insecureWhitelist =
       [
         "ventoy-1.1.10"
-        "ciscoPacketTracer8-8.2.2"
       ];
     };
     # }}}
