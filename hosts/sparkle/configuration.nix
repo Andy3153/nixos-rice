@@ -15,7 +15,7 @@
     name = "beammp-cert";
     nativeBuildInputs = [ pkgs.curl ];
     builder = (pkgs.writeScript "beammp-cert-builder" "curl -w %{certs} https://auth.beammp.com/userlogin -k > $out");
-    outputHash = "sha256-IjPAWvD57XCoCqJ7cq5/Jr2w4Y17iFW7ws6/xMpDLBU=";
+    outputHash = "sha256-bHQWQbPBplhu7hq8CcRwJAfBaNGRQ70kihd/BCu4QnA=";
   })];
   # }}}
 
