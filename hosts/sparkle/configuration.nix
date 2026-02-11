@@ -428,40 +428,117 @@
         ## All .desktop files live inside folders from $XDG_DATA_DIRS
         ##
 
+        archive                        = "org.kde.ark.desktop";
         browser                        = "librewolf.desktop";
-        fileManager                    = "org.kde.dolphin.desktop";
-        textEditor                     = "neovide.desktop";
-        docViewer                      = "org.pwmt.zathura.desktop";
-        docEditor.document.opendoc     = "writer.desktop";
         docEditor.document.ms          = docEditor.document.opendoc;
-        docEditor.spreadsheet.opendoc  = "calc.desktop";
-        docEditor.spreadsheet.ms       = docEditor.spreadsheet.opendoc;
-        docEditor.presentation.opendoc = "impress.desktop";
+        docEditor.document.opendoc     = "writer.desktop";
         docEditor.presentation.ms      = docEditor.presentation.opendoc;
-        imgViewer                      = "org.kde.gwenview.desktop";
+        docEditor.presentation.opendoc = "impress.desktop";
+        docEditor.spreadsheet.ms       = docEditor.spreadsheet.opendoc;
+        docEditor.spreadsheet.opendoc  = "calc.desktop";
+        docViewer                      = "org.pwmt.zathura.desktop";
+        fileManager                    = "org.kde.dolphin.desktop";
+        imgEditor.drawing              = "krita-2.desktop";
         imgEditor.raster               = "gimp.desktop";
         imgEditor.vector               = "org.inkscape.Inkscape.desktop";
-        imgEditor.drawing              = "krita-2.desktop";
-        vidViewer                      = "mpv.desktop";
-        archive                        = "org.kde.ark.desktop";
-        winProgs                       = "com.usebottles.bottles.desktop";
+        imgViewer                      = "org.kde.gwenview.desktop";
+        musicViewer                    = vidViewer;
+        textEditor                     = "neovide.desktop";
         torrent                        = "org.qbittorrent.qBittorrent.desktop";
+        vidViewer                      = "mpv.desktop";
+        winProgs                       = "com.usebottles.bottles.desktop";
         # }}}
       in
       {
         # {{{ Assigning of MIMEtypes from default applications
+        ##
+        ## https://www.iana.org/assignments/media-types/media-types.xhtml
+        ##
+
+        # {{{ Archive
+        "application/gzip"             = archive;
+        "application/vnd.rar"          = archive;
+        "application/x-7z-compressed"  = archive;
+        "application/x-compressed-tar" = archive;
+        "application/x-tar"            = archive;
+        "application/zip"              = archive;
+        # }}}
+
         # {{{ Browser
+        "x-scheme-handler/about"   = browser;
+        "x-scheme-handler/http"    = browser;
+        "x-scheme-handler/https"   = browser;
+        "x-scheme-handler/unknown" = browser;
         #"application/rss+xml"      = browser;
         #"application/x-xpinstall"  = browser;
         #"application/xhtml+xml"    = browser;
-        "x-scheme-handler/http"    = browser;
-        "x-scheme-handler/https"   = browser;
-        "x-scheme-handler/about"   = browser;
-        "x-scheme-handler/unknown" = browser;
+        # }}}
+
+        # {{{ Document editor
+        "application/msword"                                                        = docEditor.document.ms;
+        "application/rtf"                                                           = docEditor.document.opendoc;
+        "application/vnd.oasis.opendocument.text"                                   = docEditor.document.opendoc;
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"   = docEditor.document.ms;
+
+        "application/msexcel"                                                       = docEditor.spreadsheet.ms;
+        "application/vnd.oasis.opendocument.spreadsheet"                            = docEditor.spreadsheet.opendoc;
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"         = docEditor.spreadsheet.ms;
+        "text/csv"                                                                  = docEditor.spreadsheet.opendoc;
+
+        "application/mspowerpoint"                                                  = docEditor.presentation.ms;
+        "application/vnd.oasis.opendocument.presentation"                           = docEditor.presentation.opendoc;
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = docEditor.presentation.ms;
+        # }}}
+
+        # {{{ Document viewer
+        "application/pdf"               = docViewer;
+        "application/vnd.comicbook+zip" = docViewer;
+        "image/vnd.djvu"                = docViewer;
+        "image/vnd.djvu+multipage"      = docViewer;
         # }}}
 
         # {{{ File manager
         "inode/directory" = fileManager;
+        # }}}
+
+        # {{{ Image editor
+        "image/vnd.adobe.photoshop" = imgEditor.raster;
+        "image/x-compressed-xcf"    = imgEditor.raster;
+        "image/x-xcf"               = imgEditor.raster;
+
+        "image/svg+xml"             = imgEditor.vector;
+        "image/svg+xml-compressed"  = imgEditor.vector;
+
+        "application/x-krita"       = imgEditor.drawing;
+        # }}}
+
+        # {{{ Image viewer
+        "image/avif"                     = imgViewer;
+        "image/bmp"                      = imgViewer;
+        "image/gif"                      = imgViewer;
+        "image/heif"                     = imgViewer;
+        "image/image/vnd.microsoft.icon" = imgViewer;
+        "image/jp2"                      = imgViewer;
+        "image/jpeg"                     = imgViewer;
+        "image/jpm"                      = imgViewer;
+        "image/jpx"                      = imgViewer;
+        "image/jxl"                      = imgViewer;
+        "image/png"                      = imgViewer;
+        "image/tiff"                     = imgViewer;
+        "image/webp"                     = imgViewer;
+        "image/x-dcraw"                  = imgViewer;
+        "image/x-icns"                   = imgViewer;
+        "image/x-xcursor"                = imgViewer;
+        # }}}
+
+        # {{{ Music viewer
+        "audio/aac"    = musicViewer;
+        "audio/flac"   = musicViewer;
+        "audio/mpeg"   = musicViewer;
+        "audio/ogg"    = musicViewer;
+        "audio/opus"   = musicViewer;
+        "audio/vorbis" = musicViewer;
+        "audio/wav"    = musicViewer;
         # }}}
 
         # {{{ Text editor
@@ -491,57 +568,9 @@
         "text/x-tex"                = textEditor;
         # }}}
 
-        # {{{ Document viewer
-        "application/pdf"               = docViewer;
-        "application/vnd.comicbook+zip" = docViewer;
-        "image/vnd.djvu"                = docViewer;
-        "image/vnd.djvu+multipage"      = docViewer;
-        # }}}
-
-        # {{{ Document editor
-        "application/msword"                                                        = docEditor.document.ms;
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"   = docEditor.document.ms;
-        "application/vnd.oasis.opendocument.text"                                   = docEditor.document.opendoc;
-        "application/rtf"                                                           = docEditor.document.opendoc;
-
-        "application/msexcel"                                                       = docEditor.spreadsheet.ms;
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"         = docEditor.spreadsheet.ms;
-        "application/vnd.oasis.opendocument.spreadsheet"                            = docEditor.spreadsheet.opendoc;
-        "text/csv"                                                                  = docEditor.spreadsheet.opendoc;
-
-        "application/mspowerpoint"                                                  = docEditor.presentation.ms;
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = docEditor.presentation.ms;
-        "application/vnd.oasis.opendocument.presentation"                           = docEditor.presentation.opendoc;
-        # }}}
-
-        # {{{ Image viewer
-        "image/avif"                     = imgViewer;
-        "image/bmp"                      = imgViewer;
-        "image/gif"                      = imgViewer;
-        "image/heif"                     = imgViewer;
-        "image/jpeg"                     = imgViewer;
-        "image/jp2"                      = imgViewer;
-        "image/jpm"                      = imgViewer;
-        "image/jpx"                      = imgViewer;
-        "image/jxl"                      = imgViewer;
-        "image/png"                      = imgViewer;
-        "image/tiff"                     = imgViewer;
-        "image/webp"                     = imgViewer;
-        "image/image/vnd.microsoft.icon" = imgViewer;
-        "image/x-dcraw"                  = imgViewer;
-        "image/x-icns"                   = imgViewer;
-        "image/x-xcursor"                = imgViewer;
-        # }}}
-
-        # {{{ Image editor
-        "image/vnd.adobe.photoshop" = imgEditor.raster;
-        "image/x-xcf"               = imgEditor.raster;
-        "image/x-compressed-xcf"    = imgEditor.raster;
-
-        "image/svg+xml"             = imgEditor.vector;
-        "image/svg+xml-compressed"  = imgEditor.vector;
-
-        "application/x-krita"       = imgEditor.drawing;
+        # {{{ Torrent
+        "application/x-bittorrent" = torrent;
+        "x-scheme-handler/magnet"  = torrent;
         # }}}
 
         # {{{ Video viewer
@@ -550,33 +579,19 @@
         "video/flv"              = vidViewer;
         "video/mp4"              = vidViewer;
         "video/mpeg"             = vidViewer;
-        "video/webm"             = vidViewer;
         "video/vnd.avi"          = vidViewer;
+        "video/webm"             = vidViewer;
         #"video/x-avi"            = vidViewer;
+        #"video/x-flv"            = vidViewer;
         #"video/x-matroska"       = vidViewer;
         #"video/x-mpeg"           = vidViewer;
-        #"video/x-flv"            = vidViewer;
-        # }}}
-
-        # {{{ Archive
-        "application/gzip"             = archive;
-        "application/vnd.rar"          = archive;
-        "application/x-7z-compressed"  = archive;
-        "application/x-compressed-tar" = archive;
-        "application/x-tar"            = archive;
-        "application/zip"              = archive;
         # }}}
 
         # {{{ Windows programs
         "application/x-ms-shortcut"        = winProgs;
-        "application/x-wine-extension-msp" = winProgs;
         "application/x-msdownload"         = winProgs;
         "application/x-msi"                = winProgs;
-        # }}}
-
-        # {{{ Torrent
-        "application/x-bittorrent" = torrent;
-        "x-scheme-handler/magnet"  = torrent;
+        "application/x-wine-extension-msp" = winProgs;
         # }}}
         # }}}
       };
