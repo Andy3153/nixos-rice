@@ -3,7 +3,7 @@
 ## OpenRGB config
 ##
 
-{ config, lib, my-pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.hardware.openrgb;
@@ -18,7 +18,7 @@ in
     services.hardware.openrgb =
     {
       enable  = true;
-      #package = my-pkgs.openrgb;
+      package = pkgs.openrgb-with-all-plugins;
     };
   };
 }
