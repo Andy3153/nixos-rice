@@ -227,7 +227,7 @@
       unfreeWhitelist =
       [
         "android-sdk-platform-tools"
-        "ciscoPacketTracer9"
+        "cisco-packet-tracer"
         "grayjay"
         "platform-tools"
         "ventoy"
