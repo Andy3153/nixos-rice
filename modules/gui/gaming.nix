@@ -33,7 +33,7 @@ in
           [
             mesa-demos                                        # glxgears
 
-            wineWowPackages.staging                           # wine
+            wineWow64Packages.staging                         # wine
             protonup-qt                                       # for-steam for-wine
             depotdownloader                                   # for-steam
 
