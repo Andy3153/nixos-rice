@@ -6,7 +6,8 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.programs.git;
+  cfg      = config.custom.programs.git;
+  mainUser = config.custom.users.mainUser;
 
   # {{{ Git extra config
   gitExtraConfig =
@@ -65,14 +66,14 @@ in
     # }}}
 
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
       # {{{ Git program
       programs.git =
       {
-        enable      = true;
-        extraConfig = gitExtraConfig;
-        lfs.enable  = cfg.lfs.enable;
+        enable     = true;
+        settings   = gitExtraConfig;
+        lfs.enable = cfg.lfs.enable;
 
         # {{{ Files to ignore
         ignores =
