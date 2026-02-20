@@ -26,8 +26,9 @@ in
     {
       programs.ssh =
       {
-        enable      = true;
-        matchBlocks = cfg.matchBlocks;
+        enable              = true;
+        enableDefaultConfig = lib.mkForce false;
+        matchBlocks         = cfg.matchBlocks;
       };
     };
     # }}}
