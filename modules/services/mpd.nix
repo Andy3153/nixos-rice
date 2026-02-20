@@ -44,9 +44,9 @@ in
       enable          = true;
       startWhenNeeded = true;
       user            = mainUser;
-
-      dataDir           = dataDir;
-
+      dataDir         = dataDir;
+    } // lib.optionalAttrs (lib.versionAtLeast lib.version "26.05pre")
+    {
       settings =
       {
         db_file            = "${dataDir}/tag_cache";
