@@ -3,8 +3,11 @@
 ## Networking bundle
 ##
 
-{ ... }:
+{ config, lib, ... }:
 
+let
+  persistPath = config.custom.filesystems.disk.main.partitions.main.subvolumes."/persist".mountpoint;
+in
 {
   imports =
   [
@@ -12,5 +15,12 @@
     ./stevenblack.nix
   ];
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager =
+  {
+    enable = true;
+
+    settings.keyfile.path =
+      lib.mkIf (!(builtins.stringLength "${persistPath}" == 0) && ("${persistPath}" != null))
+      "${persistPath}/etc/NetworkManager/system-connections";
+  };
 }
