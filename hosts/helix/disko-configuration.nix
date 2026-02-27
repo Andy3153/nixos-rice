@@ -88,9 +88,9 @@
                     ];
                   };
 
-                  "/home" =
+                  "/persist" =
                   {
-                    mountpoint   = "/home";
+                    mountpoint   = "/.persist";
                     mountOptions = [ "compress=zstd" ];
                   };
 
@@ -121,6 +121,12 @@
                   "/var-tmp" =
                   {
                     mountpoint   = "/var/tmp";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/home" =
+                  {
+                    mountpoint   = "/home";
                     mountOptions = [ "compress=zstd" ];
                   };
                 };

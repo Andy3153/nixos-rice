@@ -105,6 +105,12 @@ in
                       ];
                     };
 
+                    "/persist" =
+                    {
+                      mountpoint   = "/.persist";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
                     "/swap" =
                     {
                       mountpoint = "/.swap";
