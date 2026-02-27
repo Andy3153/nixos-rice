@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, ... }:
+{ config, lib, ... }:
 
 let
   # {{{ Variables
@@ -15,6 +15,15 @@ let
   # }}}
 in
 {
+  imports =
+  [
+    (
+      lib.mkAliasOptionModule
+        [ "custom" "filesystems" "disk" "main" "partitions" "main" "subvolumes" ]
+        [ "disko" "devices" "disk" "main" "content" "partitions" "main-crypt" "content" "content" "subvolumes" ]
+    )
+  ];
+
   disko.devices =
   {
     # {{{ Disks

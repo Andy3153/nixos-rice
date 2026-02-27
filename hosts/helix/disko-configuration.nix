@@ -5,9 +5,18 @@
 ## Lenovo Ideapad 320
 ##
 
-{ ... }:
+{ lib, ... }:
 
 {
+  imports =
+  [
+    (
+      lib.mkAliasOptionModule
+        [ "custom" "filesystems" "disk" "main" "partitions" "main" "subvolumes" ]
+        [ "disko" "devices" "disk" "main" "content" "partitions" "main" "content" "subvolumes" ]
+    )
+  ];
+
   disko.devices =
   {
     # {{{ Disks
