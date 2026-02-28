@@ -3,13 +3,14 @@
 ## GPU passthrough config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   cfg      = config.custom.hardware.gpuPassthrough;
   mainUser = config.custom.users.mainUser;
 in
 {
+  # {{{ Options
   options.custom.hardware.gpuPassthrough =
   {
     enable = lib.mkEnableOption "enables GPU passthrough";
@@ -35,6 +36,7 @@ in
       description = "the PCI bus IDs of the GPU components (GPU itself and audio board) to be passed through";
     };
   };
+  # }}}
 
   config = lib.mkIf cfg.enable
   {
@@ -42,12 +44,7 @@ in
     {
       initrd.kernelModules = lib.mkMerge
       [
-        [
-          "vfio"
-          "vfio_iommu_type1"
-          "vfio_pci"
-          "vfio_virqfd"
-        ]
+        [ "vfio_virqfd" ]
 
         (lib.mkIf (cfg.gpu == "nvidia")
         [
@@ -58,33 +55,42 @@ in
         ])
       ];
 
-      kernelParams = lib.mkMerge
-      [
-        (lib.mkIf (cfg.cpu == "intel") [ "intel_iommu=on" "iommu=pt" ])
-        (lib.mkIf (cfg.cpu == "amd")   [ "amd_iommu=on"   "iommu=pt" ])
-        [ ("vfio-pci.ids=" + lib.concatStringsSep "," cfg.gpuIDs) ]
-      ];
+      kernelParams = [ "iommu=pt" ];
     };
 
-    virtualisation.kvmfr =
+    virtualisation =
     {
-      enable = true;
-      devices =
-      [
-        {
-          resolution =
-          {
-            width  = 1920;
-            height = 1080;
-          };
+      # {{{ VFIO
+      vfio =
+      {
+        enable    = true;
+        IOMMUType = cfg.cpu;
+        devices   = cfg.gpuIDs;
+      };
+      # }}}
 
-          permissions = rec
+      # {{{ KVMFR
+      kvmfr =
+      {
+        enable = true;
+        devices =
+        [
           {
-            user  = mainUser;
-            group = user;
-          };
-        }
-      ];
+            resolution =
+            {
+              width  = 1920;
+              height = 1080;
+            };
+
+            permissions = rec
+            {
+              user  = mainUser;
+              group = user;
+            };
+          }
+        ];
+      };
+      # }}}
     };
 
     custom =
