@@ -141,13 +141,13 @@ in
                       mountOptions = [ "compress=zstd" ];
                     };
 
-                    "/vms" =
+                    "/vm" =
                     {
                       mountpoint   = "/var/lib/libvirt";
                       mountOptions = [ "compress=zstd" ];
                     };
 
-                    "/vms/images" =
+                    "/vm-images" =
                     {
                       mountpoint   = "/var/lib/libvirt/images";
                       mountOptions = [ "compress=zstd" ];
@@ -165,13 +165,13 @@ in
                       mountOptions = [ "compress=zstd" ];
                     };
 
-                    "/games/steam/steamapps/common" =
+                    "/steam-gamefiles" =
                     {
                       mountpoint   = "${homeDir}/games/steam/steamapps/common";
                       mountOptions = [ "compress=zstd" ];
                     };
 
-                    "/games/steam/steamapps/shadercache" =
+                    "/steam-shadercache" =
                     {
                       mountpoint   = "${homeDir}/games/steam/steamapps/shadercache";
                       mountOptions = [ "compress=zstd" ];
