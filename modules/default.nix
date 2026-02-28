@@ -40,41 +40,41 @@ in
       # {{{ Default NixPkgs
       (with pkgs;
       [
-        file                       # Other-CLI
-        usbutils                   # Other-CLI
-        killall                    # Other-CLI
-        ripgrep                    # Other-CLI
-        fastfetch                  # Other-CLI fetch-system-info
-        lm_sensors                 # Other-CLI sensors
-        sshfs                      # for-ssh fs-support
-        wget                       # download
-        curl                       # download
-        rsync                      # cp
-        tmux                       # terminal-multiplexer
-        htop                       # task-manager
-        btop                       # task-manager
-        kitty.terminfo             # terminfo
+        file           # Other-CLI
+        usbutils       # Other-CLI
+        killall        # Other-CLI
+        ripgrep        # Other-CLI
+        fastfetch      # Other-CLI fetch-system-info
+        lm_sensors     # Other-CLI sensors
+        sshfs          # for-ssh fs-support
+        wget           # download
+        curl           # download
+        rsync          # cp
+        tmux           # terminal-multiplexer
+        htop           # task-manager
+        btop           # task-manager
+        kitty.terminfo # terminfo
 
-        brightnessctl              # Other-CLI brightness hyprland-rice
+        brightnessctl # Other-CLI brightness hyprland-rice
 
-        parted                     # Partition-Manager
-        e2fsprogs                  # Filesystem-Support ext*
-        btrfs-progs                # Filesystem-Support btrfs
-        exfatprogs                 # Filesystem-Support exfat
-        dosfstools                 # Filesystem-Support fat*
-        mtools                     # Filesystem-Support fat*
-        fatresize                  # Filesystem-Support fat*
-        ntfs3g                     # Filesystem-Support ntfs
+        parted      # Partition-Manager
+        e2fsprogs   # Filesystem-Support ext*
+        btrfs-progs # Filesystem-Support btrfs
+        exfatprogs  # Filesystem-Support exfat
+        dosfstools  # Filesystem-Support fat*
+        mtools      # Filesystem-Support fat*
+        fatresize   # Filesystem-Support fat*
+        ntfs3g      # Filesystem-Support ntfs
 
-        inotify-tools              # for-scripts
-        libnotify                  # for-scripts
+        inotify-tools # for-scripts
+        libnotify     # for-scripts
 
-        unzip                      # archives
-        unrar                      # archives
-        p7zip                      # archives
+        unzip # archives
+        unrar # archives
+        p7zip # archives
 
-        traceroute                 # networking
-        whois                      # networking
+        traceroute # networking
+        whois      # networking
       ])
       # }}}
 
@@ -104,12 +104,6 @@ in
     {
       enable              = true; # file-manager for-zsh for-nvim
       enableCustomConfigs = true;
-      #plugins = with pkgs.yaziPlugins;
-      #{
-      #  yatline            = yatline;
-      #  yatline-catppuccin = yatline-catppuccin;
-      #  wl-clipboard       = wl-clipboard;
-      #};
     };
     # }}}
   };
