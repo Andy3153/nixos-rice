@@ -486,20 +486,14 @@
     # {{{ Virtualisation
     virtualisation =
     {
-      binfmt.emulatedSystems = [ "aarch64-linux" ];
-
       docker =
       {
-        enable          = true;
-        enableOnBoot    = false;
-        #rootless.enable = true;
+        enable       = true;
+        enableOnBoot = false;
       };
 
-      podman.enable    = true;
-
-      distrobox.enable = true;
       libvirtd.enable  = true;
-      waydroid.enable  = false;
+      podman.enable    = true;
     };
     # }}}
 
