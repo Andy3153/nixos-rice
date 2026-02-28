@@ -279,70 +279,6 @@
       };
       # }}}
 
-      # {{{ ember | Raspberry Pi 4
-      ember = nixpkgs_stable.lib.nixosSystem
-      {
-        specialArgs = { inherit inputs; }; # access inputs in config
-        modules =
-        [
-          { networking.hostName = "ember"; } # Hostname
-
-          # {{{ Add flake inputs to configuration
-          (
-            { config, ... }:
-            {
-              _module.args =
-              {
-                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-              };
-            }
-          )
-          # }}}
-
-          # {{{ Dummy modules so I don't have to import inputs I don't need
-          (
-            { options, lib, ... }:
-            let
-              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
-            in
-            {
-              options =
-              {
-                boot.lanzaboote            = dummyOpt;
-                determinate.enable         = dummyOpt;
-                jovian                     = dummyOpt;
-                services.flatpak.overrides = dummyOpt;
-                services.flatpak.packages  = dummyOpt;
-                services.flatpak.update    = dummyOpt;
-                virtualisation.kvmfr       = dummyOpt;
-              };
-            }
-          )
-          # }}}
-
-          "${nixpkgs_stable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          nixos-hardware.nixosModules.raspberry-pi-4
-          flake-programs-sqlite_stable.nixosModules.programs-sqlite
-          home-manager_stable.nixosModules.home-manager
-
-          ./hosts/ember
-        ];
-      };
-
-      # {{{ Configuration for `ember` host when made into an SD card image
-      ember-image = self.nixosConfigurations.ember.extendModules
-      {
-        modules = [ { disabledModules =
-        [
-          # These apply to the already-installed system and its custom
-          # partitioning, we need to disable this for the image creation
-          ./hosts/ember/hardware-configuration.nix
-        ]; } ];
-      };
-      # }}}
-      # }}}
-
       # {{{ helix | Lenovo Ideapad 320
       helix = nixpkgs_stable.lib.nixosSystem
       {
@@ -452,13 +388,6 @@
     {
       default    = nixos-rice;
       nixos-rice = ./modules;
-    };
-    # }}}
-
-    # {{{ Images
-    images =
-    {
-      ember = nixosConfigurations.ember-image.config.system.build.sdImage;
     };
     # }}}
 
