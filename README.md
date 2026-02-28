@@ -16,11 +16,6 @@ These are configurations for all the hardware I own:
 -- my new server. It's meant to replace `ember`. The config for it is basically a comfy bootloader for Docker.
 <!-- }}} -->
 
-<!-- {{{ ember -->
-- `ember`
--- my old server. It has been replaced by `helix`. The config for it is basically a comfy bootloader for Docker. It's full of Docker containers. You can see various repos on my profile with Docker Compose files and custom images. Be sure they all ran at least once on this server.
-<!-- }}} -->
-
 <!-- {{{ Usage -->
 ### Usage
 You can use these configurations by pointing to this flake when rebuilding, for example:
@@ -78,25 +73,6 @@ You can use these modules by adding this flake into your flake's inputs, and the
     };
   };
 }
-```
-<!-- }}} -->
-<!-- }}} -->
-
-<!-- {{{ Images -->
-### Images
-<!-- {{{ ember -->
-- `ember`
--- generates an image file with everything in `ember`'s NixOS configuration that can be flashed to a flash drive or an SD card that a Raspberry Pi can boot from.
-<!-- }}} -->
-
-<!-- {{{ Usage -->
-### Usage
-You can generate these images by using `nix build` on the flake, for example:
-
-```console
-$ git clone https://github.com/Andy3153/nixos-rice
-$ cd nixos-rice/
-$ nix build .#images.ember
 ```
 <!-- }}} -->
 <!-- }}} -->
