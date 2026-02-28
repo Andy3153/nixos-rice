@@ -14,7 +14,6 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.gui.dm.sddm.enable = true;
     custom.xdg.portal.enable  = true;
     programs.hyprland.enable  = true;
 

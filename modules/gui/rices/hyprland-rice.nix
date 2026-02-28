@@ -29,7 +29,8 @@ in
     {
       gui =
       {
-        wm.hyprland.enable = true; # Enable Hyprland
+        dm.sddm.enable     = true;
+        wm.hyprland.enable = true;
 
         # {{{ Theming
         theme =
