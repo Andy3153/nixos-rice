@@ -45,7 +45,6 @@ in
               monospace =
               {
                 names    = [ "IosevkaTerm Nerd Font Mono" ];
-                #packages = with pkgs; [ (nerdfonts.override{ fonts = [ "IosevkaTerm" "Iosevka" ]; }) ];
                 packages = with pkgs.nerd-fonts; [ iosevka iosevka-term ];
               };
 
@@ -106,15 +105,7 @@ in
           # {{{ Qt
           qt =
           {
-            platformTheme.qtct =
-            {
-              enable = true;
-              #theme =
-              #{
-              #  name = "catppuccin-mocha-blue";
-              #  package = pkgs.catppuccin-qt5ct;
-              #};
-            };
+            platformTheme.qtct.enable = true;
 
             style.kvantum =
             {
@@ -146,25 +137,25 @@ in
         # {{{ Default NixPkgs
         (with pkgs;
         [
-          libcanberra-gtk3                     # hyprland-rice play-system-sounds
-          hyprlock                             # hyprland-rice lock-screen
-          hyprpicker                           # hyprland-rice color-picker
-          hyprsysteminfo                       # hyprland-rice system-info
-          dunst                                # hyprland-rice notification-daemon
-          cliphist                             # hyprland-rice clipboard-manager
-          wl-clipboard                         # hyprland-rice for-zsh for-nvim clipboard
-          wev                                  # hyprland-rice event-viewer
-          rofi                                 # hyprland-rice appmenu
-          rofi-dmenu-shim                      # hyprland-rice appmenu dmenu-compat
-          kitty                                # hyprland-rice terminal
-          blueman                              # hyprland-rice bluetooth-control
-          networkmanager_dmenu                 # hyprland-rice network-control
-          lxqt.pavucontrol-qt                  # hyprland-rice Sound sound-control
-          wlr-layout-ui                        # hyprland-rice screen-layout
-          nwg-bar                              # hyprland-rice logout-menu
-          flameshot                            # hyprland-rice screenshot
-          cava                                 # hyprland-rice visualizer
-          zathura                              # hyprland-rice pdf-viewer
+          libcanberra-gtk3     # hyprland-rice play-system-sounds
+          hyprlock             # hyprland-rice lock-screen
+          hyprpicker           # hyprland-rice color-picker
+          hyprsysteminfo       # hyprland-rice system-info
+          dunst                # hyprland-rice notification-daemon
+          cliphist             # hyprland-rice clipboard-manager
+          wl-clipboard         # hyprland-rice for-zsh for-nvim clipboard
+          wev                  # hyprland-rice event-viewer
+          rofi                 # hyprland-rice appmenu
+          rofi-dmenu-shim      # hyprland-rice appmenu dmenu-compat
+          kitty                # hyprland-rice terminal
+          blueman              # hyprland-rice bluetooth-control
+          networkmanager_dmenu # hyprland-rice network-control
+          lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
+          wlr-layout-ui        # hyprland-rice screen-layout
+          nwg-bar              # hyprland-rice logout-menu
+          flameshot            # hyprland-rice screenshot
+          cava                 # hyprland-rice visualizer
+          zathura              # hyprland-rice pdf-viewer
         ])
 
         # {{{ KDE packages
@@ -191,8 +182,8 @@ in
         # {{{ My Nix packages
         (with my-pkgs;
         [
-          weather4bar                         # hyprland-rice my-scripts for-waybar
-          batnotifsd                          # hyprland-rice my-scripts
+          weather4bar # hyprland-rice my-scripts for-waybar
+          batnotifsd  # hyprland-rice my-scripts
         ])
         # }}}
       ];
@@ -268,10 +259,6 @@ in
       "dunst".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
       "fastfetch".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fastfetch";
       "flameshot".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/flameshot";
-      ##"fontconfig".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fontconfig";
-      #"fuzzel".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fuzzel";
-      ##"gtk-2.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-2.0";
-      ##"gtk-3.0".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/gtk-3.0";
       "htop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
 
       "hypr/colorschemes".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
@@ -282,21 +269,12 @@ in
       "hypr/xdph.conf".source                           = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
 
       "kitty".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
-      #"lf".source                                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/lf";
       "mpv".source                                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
       "networkmanager-dmenu".source                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
       "nwg-bar".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-bar";
-      #"nwg-dock-hyprland".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-dock-hyprland";
-      #"nwg-drawer".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-drawer";
-      ##"qt5ct".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/qt5ct";
-      ##"qt6ct".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/qt5ct";
       "rofi".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
-      #"swayidle".source                                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swayidle";
-      #"swaylock".source                                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaylock";
-      #"swaync".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/swaync";
       "waybar".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
       "waycorner".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
-      #"xava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xava";
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/portals.conf".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";

@@ -30,25 +30,28 @@ in
         [
           # {{{ Default NixPkgs
           (with pkgs;
+          let
+            bottles = pkgs.bottles.override { removeWarningPopup = true; };
+          in
           [
-            mesa-demos                                        # glxgears
+            mesa-demos # glxgears
 
-            wineWow64Packages.staging                         # wine
-            protonup-qt                                       # for-steam for-wine
-            depotdownloader                                   # for-steam
+            wineWow64Packages.staging # wine
+            protonup-qt               # for-steam for-wine
+            depotdownloader           # for-steam
 
-            (bottles.override { removeWarningPopup = true; }) # launchers for-wine
-            lutris                                            # launchers for-wine
-            heroic                                            # launchers games
+            bottles # launchers for-wine
+            lutris  # launchers for-wine
+            heroic  # launchers games
 
-            prismlauncher                                     # games
-            xonotic                                           # games
-            osu-lazer-bin                                     # games
+            prismlauncher # games
+            xonotic       # games
+            osu-lazer-bin # games
 
-            dolphin-emu                                       # emulators games gc wii
-            mesen                                             # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
+            dolphin-emu # emulators games gc wii
+            mesen       # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
 
-            beammp-launcher                                   # for-beamng
+            beammp-launcher # for-beamng
           ])
           # }}}
 
@@ -60,11 +63,7 @@ in
         ];
         # }}}
 
-        # Enable Xbox controller drivers
         hardware.controllers.xbox.enable = true;
-
-        # Enable renicing daemon
-        #services.ananicy.enable          = true;
 
         # {{{ Programs
         programs =
@@ -72,10 +71,7 @@ in
           steam =
           {
             enable = true;
-            extraPackages = with pkgs;
-            [
-              nss # for-beamng
-            ];
+            extraPackages = [ pkgs.nss ]; # for-beamng
           };
 
           gamemode.enable = true;

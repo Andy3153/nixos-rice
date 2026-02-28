@@ -18,23 +18,16 @@ in
     custom.xdg.portal.enable  = true;
     programs.hyprland.enable  = true;
 
-    nix.settings = # Enable Hyprland Cachix
+    nix.settings =
     {
-      substituters = ["https://hyprland.cachix.org"];
+      substituters        = ["https://hyprland.cachix.org"];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
 
     services =
     {
-      displayManager.defaultSession = "hyprland";
-
-      greetd.settings =
-      {
-        initial_session =
-        {
-          command = lib.getExe pkgs.hyprland;
-        };
-      };
+      displayManager.defaultSession           = "hyprland";
+      greetd.settings.initial_session.command = lib.getExe pkgs.hyprland;
     };
 
     xdg.portal.extraPortals = with pkgs;
