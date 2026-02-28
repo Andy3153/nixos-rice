@@ -179,6 +179,10 @@
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
     # }}}
+
+    # {{{ Spicetify
+    spicetify.url = "github:Gerg-L/spicetify-nix";
+    # }}}
   };
   # }}}
 
@@ -227,6 +231,8 @@
     disko_unstable,
     disko_stable,
 
+    spicetify,
+
     ...
   }: rec
   # }}}
@@ -266,6 +272,7 @@
           jovian_unstable.nixosModules.jovian
           nixos-vfio_unstable.nixosModules.default
           disko_unstable.nixosModules.disko
+          spicetify.nixosModules.spicetify
 
           ./hosts/sparkle
         ];

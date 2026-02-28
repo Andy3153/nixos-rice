@@ -27,6 +27,7 @@
     ./nh.nix
     ./obs.nix
     ./retroarch.nix
+    ./spicetify.nix
     ./ssh.nix
     ./steam.nix
     ./tilp2.nix

@@ -184,7 +184,6 @@
   # {{{ Extra Flatpak packages
   extraFlatpakPackages =
   [
-    "com.spotify.Client"                 # Music-Players
   ];
   # }}}
 
@@ -246,6 +245,10 @@
     # {{{ Programs
     programs =
     {
+      adb.enable      = true;
+      appimage.enable = true;
+      direnv.enable   = true;
+
       # {{{ Git
       git =
       {
@@ -256,6 +259,8 @@
       };
       # }}}
 
+      librewolf.enable = true;
+
       # {{{ Neovim
       neovim =
       {
@@ -263,6 +268,9 @@
         enableCustomConfigs = true;
       };
       # }}}
+
+      obs.enable = true;
+      spicetify.enable = true;
 
       # {{{ SSH
       ssh =
@@ -347,6 +355,9 @@
       };
       # }}}
 
+      tilp2.enable     = true;
+      vesktop.enable   = true;
+
       # {{{ Zsh
       zsh =
       {
@@ -354,14 +365,6 @@
         enableCustomConfigs = true;
       };
       # }}}
-
-      adb.enable       = true;
-      appimage.enable  = true;
-      direnv.enable    = true;
-      librewolf.enable = true;
-      obs.enable       = true;
-      tilp2.enable     = true;
-      vesktop.enable   = true;
     };
     # }}}
 
