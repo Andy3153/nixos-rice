@@ -6,7 +6,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.custom.boot.uefi;
+  cfg         = config.custom.boot.uefi;
+  persistPath = config.custom.filesystems.disk.main.partitions.main.subvolumes."/persist".mountpoint;
 in
 {
   options.custom.boot.uefi =
@@ -41,11 +42,18 @@ in
       boot.lanzaboote =
       {
         enable                  = true;
+        allowUnsigned           = true;
         autoGenerateKeys.enable = true;
-        autoEnrollKeys.enable   = true;
+
+        autoEnrollKeys =
+        {
+          enable     = true;
+          autoReboot = true;
+        };
 
         pkiBundle = if (lib.versionAtLeast lib.version "25.05pre")
-        then "/var/lib/sbctl"
+        then lib.mkIf (!(builtins.stringLength "${persistPath}" == 0) && ("${persistPath}" != null))
+              "${persistPath}/etc/keys/secureboot"
         else "/etc/secureboot";
       };
 
