@@ -65,17 +65,19 @@ in
               "wikipedia"
               "dexonline"
 
-              "nixos-wiki"
               "nixos-search_packages"
               "nixos-search_options"
               "mynixos"
               "mynixos_options"
               "nix-user-repository"
               "nixpkgs-github-issues"
+              "nixos-wiki"
 
-              "arch-linux-wiki"
+              "flathub"
+
               "arch-linux-packages"
               "arch-user-repository"
+              "arch-linux-wiki"
 
               "ctan"
 
@@ -245,12 +247,12 @@ in
               };
               # }}}
 
-              # {{{ Arch Linux Wiki
-              arch-linux-wiki =
+              # {{{ Flathub
+              flathub =
               {
-                name           = "Arch Linux Wiki​";
-                definedAliases = [ "@archw" ];
-                urls           = [{ template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; }];
+                name           = "Flathub​";
+                definedAliases = [ "@fh" ];
+                urls           = [{ template = "https://flathub.org/en/apps/search?q={searchTerms}"; }];
               };
               # }}}
 
@@ -269,6 +271,15 @@ in
                 name           = "Arch User Repository​";
                 definedAliases = [ "@aur" ];
                 urls           = [{ template = "https://aur.archlinux.org/packages?K={searchTerms}"; }];
+              };
+              # }}}
+
+              # {{{ Arch Linux Wiki
+              arch-linux-wiki =
+              {
+                name           = "Arch Linux Wiki​";
+                definedAliases = [ "@archw" ];
+                urls           = [{ template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; }];
               };
               # }}}
 
