@@ -176,7 +176,6 @@
     "com.brave.Browser"                  # Browsers
     "org.torproject.torbrowser-launcher" # Browsers Tor
 
-    "dev.vencord.Vesktop"                # Social
     "org.ferdium.Ferdium"                # Social
 
     "com.wps.Office"                     # Office
@@ -358,6 +357,7 @@
       librewolf.enable = true;
       obs.enable       = true;
       tilp2.enable     = true;
+      vesktop.enable   = true;
     };
     # }}}
 

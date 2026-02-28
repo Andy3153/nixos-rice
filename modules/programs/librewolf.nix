@@ -3,10 +3,10 @@
 ## Librewolf config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
-  cfg = config.custom.programs.adb;
+  cfg = config.custom.programs.librewolf;
 
   mainUser = config.custom.users.mainUser;
   userName = config.users.users.${mainUser}.description;
