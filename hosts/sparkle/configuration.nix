@@ -24,9 +24,7 @@
     # {{{ Boot
     boot =
     {
-      #kernel               = pkgs.linuxPackages;        # LTS
-      #kernel               = pkgs.linuxPackages_latest; # Stable
-      kernel               = pkgs.linuxPackages_zen;    # Zen
+      kernel = pkgs.linuxPackages_zen;
 
       sysctl =
       {
