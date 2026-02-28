@@ -43,6 +43,7 @@ in
 
             prismlauncher                                     # games
             xonotic                                           # games
+            osu-lazer-bin                                     # games
 
             dolphin-emu                                       # emulators games gc wii
             mesen                                             # emulators games nes snes gb gbc gba pcengine gamegear wonderswan

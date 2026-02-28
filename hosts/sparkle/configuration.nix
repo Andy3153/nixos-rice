@@ -57,31 +57,14 @@
     # {{{ Default NixPkgs
     (with pkgs;
     [
-      # {{{ Sound
-      qpwgraph    # Sound PipeWire Patchbay
-      easyeffects # Sound PipeWire
-      pulsemixer  # Sound sound-control
+
+      # {{{ 3D
+      blender # 3D
       # }}}
 
-      # {{{ Office
-      libreoffice-qt6           # Office
-      onlyoffice-desktopeditors # Office
-      gimp3-with-plugins        # Office photo-editing
-      inkscape                  # Office photo-editing
-      krita                     # Office photo-editing
-
-      texliveFull                # LaTeX
-      texpresso                  # for-latex
-      python312Packages.pygments # for-latex
-      pandoc                     # for-latex
-      ghostscript                # for-latex pdf-tools
-
-      pdftk         # pdf-tools
-      pdfarranger   # pdf-tools
-      poppler-utils # pdf-tools
-
-      pomodoro-gtk # timer pomodoro-timer
-      timewarrior  # timer time-tracker
+      # {{{ Browsers
+      brave
+      tor-browser # Tor
       # }}}
 
       # {{{ Media
@@ -106,8 +89,26 @@
       exiftool # image-data
       # }}}
 
-      # {{{ 3D
-      blender # 3D
+      # {{{ Office
+      libreoffice-qt6           # Office
+      onlyoffice-desktopeditors # Office
+      wpsoffice                 # Office
+      gimp3-with-plugins        # Office photo-editing
+      inkscape                  # Office photo-editing
+      krita                     # Office photo-editing
+
+      texliveFull                # LaTeX
+      texpresso                  # for-latex
+      python312Packages.pygments # for-latex
+      pandoc                     # for-latex
+      ghostscript                # for-latex pdf-tools
+
+      pdftk         # pdf-tools
+      pdfarranger   # pdf-tools
+      poppler-utils # pdf-tools
+
+      pomodoro-gtk # timer pomodoro-timer
+      timewarrior  # timer time-tracker
       # }}}
 
       # {{{ Partitioning/Filesystems
@@ -128,6 +129,16 @@
 
       # {{{ Programming
       gh # github for-git
+      # }}}
+
+      # {{{ Social
+      ferdium # Social
+      # }}}
+
+      # {{{ Sound
+      qpwgraph    # Sound PipeWire Patchbay
+      easyeffects # Sound PipeWire
+      pulsemixer  # Sound sound-control
       # }}}
 
       linux-wifi-hotspot # Internet hotspot
@@ -173,16 +184,7 @@
   # {{{ Extra Flatpak packages
   extraFlatpakPackages =
   [
-    "com.brave.Browser"                  # Browsers
-    "org.torproject.torbrowser-launcher" # Browsers Tor
-
-    "org.ferdium.Ferdium"                # Social
-
-    "com.wps.Office"                     # Office
-
     "com.spotify.Client"                 # Music-Players
-
-    "sh.ppy.osu"                         # Games
   ];
   # }}}
 
@@ -228,8 +230,10 @@
         "android-sdk-platform-tools"
         "cisco-packet-tracer"
         "grayjay"
+        "osu-lazer-bin"
         "platform-tools"
         "ventoy"
+        "wpsoffice"
       ];
 
       insecureWhitelist =
