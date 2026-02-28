@@ -25,7 +25,8 @@ in
     ./virtualisation
     ./xdg
 
-    (lib.mkAliasOptionModule [ "custom" "specialisation" ] [ "specialisation" ])
+    (lib.mkAliasOptionModule [ "custom" "specialisation" ]        [ "specialisation" ])
+    (lib.mkAliasOptionModule [ "custom" "system" "stateVersion" ] [ "system" "stateVersion" ])
   ];
 
   environment.localBinInPath = true;
