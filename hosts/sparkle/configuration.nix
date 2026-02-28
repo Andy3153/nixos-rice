@@ -424,6 +424,50 @@
     };
     # }}}
 
+  # {{{ Specialisations
+  specialisation =
+  {
+    # {{{ No firewall
+    noFirewall.configuration =
+    {
+      system.nixos.tags                     = [ "no-firewall" ];
+      environment.etc."specialisation".text = "noFirewall"; # for nh
+
+      networking.firewall.enable         = lib.mkForce false;
+      custom.services.zerotierone.enable = true;
+    };
+    # }}}
+
+    # {{{ GPU passthrough to VM
+    gpuPassthrough.configuration =
+    {
+      system.nixos.tags                     = [ "gpu-passthrough" ];
+      environment.etc."specialisation".text = "gpuPassthrough"; # for nh
+
+      custom =
+      {
+        hardware =
+        {
+          gpuPassthrough =
+          {
+            enable = true;
+            cpu    = "intel";
+            gpu    = "nvidia";
+            gpuIDs = [ "10de:2520" "10de:228e" ]; # 3060 mobile
+          };
+
+          nvidia =
+          {
+            enable       = lib.mkForce false;
+            prime.enable = lib.mkForce false;
+          };
+        };
+      };
+    };
+    # }}}
+  };
+  # }}}
+
     # {{{ Systemd
     systemd.services.tufFanSpeed.enable = true;
     # }}}
@@ -656,50 +700,6 @@
     };
     # }}}
   };
-
-  # {{{ Specialisations
-  specialisation =
-  {
-    # {{{ No firewall
-    noFirewall.configuration =
-    {
-      system.nixos.tags                     = [ "no-firewall" ];
-      environment.etc."specialisation".text = "noFirewall"; # for nh
-
-      networking.firewall.enable         = lib.mkForce false;
-      custom.services.zerotierone.enable = true;
-    };
-    # }}}
-
-    # {{{ GPU passthrough to VM
-    gpuPassthrough.configuration =
-    {
-      system.nixos.tags                     = [ "gpu-passthrough" ];
-      environment.etc."specialisation".text = "gpuPassthrough"; # for nh
-
-      custom =
-      {
-        hardware =
-        {
-          gpuPassthrough =
-          {
-            enable = true;
-            cpu    = "intel";
-            gpu    = "nvidia";
-            gpuIDs = [ "10de:2520" "10de:228e" ]; # 3060 mobile
-          };
-
-          nvidia =
-          {
-            enable       = lib.mkForce false;
-            prime.enable = lib.mkForce false;
-          };
-        };
-      };
-    };
-    # }}}
-  };
-  # }}}
 
   system.stateVersion = "25.11";
 }
