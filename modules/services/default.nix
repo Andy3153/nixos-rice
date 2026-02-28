@@ -3,7 +3,7 @@
 ## Services bundle
 ##
 
-{ ... }:
+{ lib, ... }:
 
 {
   imports =
@@ -20,5 +20,7 @@
     ./udisks.nix
     ./upower.nix
     ./zerotierone.nix
+
+    (lib.mkAliasOptionModule [ "custom" "services" "btrbk" ] [ "services" "btrbk" ])
   ];
 }
