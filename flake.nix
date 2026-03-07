@@ -310,6 +310,7 @@
               options =
               {
                 jovian                     = dummyOpt;
+                programs.spicetify         = dummyOpt;
                 services.flatpak.overrides = dummyOpt;
                 services.flatpak.packages  = dummyOpt;
                 services.flatpak.update    = dummyOpt;
