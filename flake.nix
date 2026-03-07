@@ -315,6 +315,7 @@
                 services.flatpak.packages  = dummyOpt;
                 services.flatpak.update    = dummyOpt;
                 virtualisation.kvmfr       = dummyOpt;
+                virtualisation.vfio        = dummyOpt;
               };
             }
           )
