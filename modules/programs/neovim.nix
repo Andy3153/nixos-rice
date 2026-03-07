@@ -67,7 +67,7 @@ in
         nil                                 # nix            # nil_ls
         nodePackages.bash-language-server   # bash/sh        # bashls
         nodePackages.vim-language-server    # vimscript      # vimls
-        python311Packages.python-lsp-server # python         # pylsp
+        python314Packages.python-lsp-server # python         # pylsp
         taplo                               # toml           # taplo
         texlab                              # tex            # texlab
         vscode-css-languageserver           # css            # cssls
