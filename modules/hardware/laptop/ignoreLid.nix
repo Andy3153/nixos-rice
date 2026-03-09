@@ -13,11 +13,11 @@ in
 
   config = lib.mkIf cfg
   {
-    services.logind =
+    services.logind.settings.Login =
     {
-      lidSwitch              = "ignore";
-      lidSwitchDocked        = "ignore";
-      lidSwitchExternalPower = "ignore";
+      HandleLidSwitch              = "ignore";
+      HandleLidSwitchDocked        = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
     };
   };
 }
