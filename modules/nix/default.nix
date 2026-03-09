@@ -18,6 +18,29 @@
     channel.enable = false;
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
 
+    # {{{ Registry
+    registry =
+    {
+      # {{{ My Nix packages
+      my-nixpkgs =
+      {
+        from =
+        {
+          id   = "my-nixpkgs";
+          type = "indirect";
+        };
+
+        to =
+        {
+          owner = "Andy3153";
+          repo  = "my-nixpkgs";
+          type  = "github";
+        };
+      };
+      # }}}
+    };
+    # }}}
+
     # {{{ Settings
     settings =
     {
