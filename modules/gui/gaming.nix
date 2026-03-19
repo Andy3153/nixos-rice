@@ -44,9 +44,10 @@ in
             lutris  # launchers for-wine
             heroic  # launchers games
 
-            prismlauncher # games
-            xonotic       # games
-            osu-lazer-bin # games
+            prismlauncher       # games
+            xonotic             # games
+            osu-lazer-bin       # games
+            space-cadet-pinball # games
 
             dolphin-emu # emulators games gc wii
             mesen       # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
@@ -64,6 +65,16 @@ in
         # }}}
 
         hardware.controllers.xbox.enable = true;
+
+    # {{{ Nix
+    nix =
+    {
+      unfreeWhitelist =
+      [
+        "SpaceCadetPinball"
+      ];
+    };
+    # }}}
 
         # {{{ Programs
         programs =
