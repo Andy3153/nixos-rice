@@ -49,7 +49,9 @@ in
       gtk =
       {
         enable = true;
+
         gtk2.configLocation = "${configHome}/gtk-2.0/gtkrc";
+        gtk4.theme          = HM.gtk.theme;
 
         theme =
         {
