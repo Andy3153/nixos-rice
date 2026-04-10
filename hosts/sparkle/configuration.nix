@@ -675,27 +675,7 @@
       };
       # }}}
 
-      # {{{ User directories
-      userDirs =
-      let
-        mainUser      = config.custom.users.mainUser;
-        HM            = config.home-manager.users.${mainUser};
-        homeDir       = HM.home.homeDirectory;
-        xdg.cacheHome = HM.xdg.cacheHome;
-        xdg.dataHome  = HM.xdg.dataHome;
-      in
-      {
-        enable = lib.mkDefault true;
-        desktop           = "${xdg.cacheHome}/xdg_desktop_folder"; # I don't need it
-        documents         = "${homeDir}/docs";
-        download          = "${homeDir}/downs";
-        music             = "${homeDir}/music";
-        pictures          = "${homeDir}/pics";
-        publicShare       = "${xdg.dataHome}/xdg_public_folder";
-        templates         = "${xdg.dataHome}/xdg_templates_folder";
-        videos            = "${homeDir}/vids";
-      };
-      # }}}
+      userDirs.enable = true;
     };
     # }}}
 

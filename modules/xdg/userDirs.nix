@@ -6,10 +6,12 @@
 { config, lib, ... }:
 
 let
-  cfg     = config.custom.xdg.userDirs;
-  mainUser = config.custom.users.mainUser;
-  HM       = config.home-manager.users.${mainUser};
-  homeDir  = HM.home.homeDirectory;
+  cfg       = config.custom.xdg.userDirs;
+  mainUser  = config.custom.users.mainUser;
+  HM        = config.home-manager.users.${mainUser};
+  homeDir   = HM.home.homeDirectory;
+  cacheHome = HM.xdg.cacheHome;
+  dataHome  = HM.xdg.dataHome;
 in
 {
   options.custom.xdg.userDirs =
@@ -19,56 +21,56 @@ in
     desktop = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Desktop";
+      default     = "${cacheHome}/xdg_desktop_folder";
       description = "The Desktop directory.";
     };
 
     documents = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Documents";
+      default     = "${homeDir}/docs";
       description = "The Documents directory.";
     };
 
     download = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Download";
+      default     = "${homeDir}/downs";
       description = "The Download directory.";
     };
 
     music = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Music";
+      default     = "${homeDir}/music";
       description = "The Music directory.";
     };
 
     pictures = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Pictures";
+      default     = "${homeDir}/pics";
       description = "The Pictures directory.";
     };
 
     publicShare = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Public";
+      default     = "${dataHome}/xdg_public_folder";
       description = "The Public share directory.";
     };
 
     templates = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Templates";
+      default     = "${dataHome}/xdg_templates_folder";
       description = "The Templates directory.";
     };
 
     videos = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${homeDir}/Videos";
+      default     = "${homeDir}/vids";
       description = "The Videos directory.";
     };
   };
@@ -80,8 +82,9 @@ in
     {
       xdg.userDirs =
       {
-        enable            = true;
-        createDirectories = true;
+        enable              = true;
+        createDirectories   = true;
+        setSessionVariables = true;
 
         desktop           = cfg.desktop;
         documents         = cfg.documents;
