@@ -32,6 +32,7 @@ in
         extraPackages = with pkgs;
         [
           efibootmgr # EFI
+          efitools   # EFI
           sbctl      # EFI key-manager
         ];
       };
