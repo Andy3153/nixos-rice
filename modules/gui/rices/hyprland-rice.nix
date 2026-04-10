@@ -254,32 +254,35 @@ in
     # {{{ Config files
     xdg.configFile =
     {
-      "btop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
-      "cava".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
-      "css-common".source                               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/css-common";
-      "dunst".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
-      "fastfetch".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fastfetch";
-      "flameshot".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/flameshot";
-      "htop".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
+      "btop".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
+      "cava".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
+      "css-common".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/css-common";
+      "dunst".source      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
+      "fastfetch".source  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/fastfetch";
+      "flameshot".source  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/flameshot";
+      "htop".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
 
-      "hypr/colorschemes".source                        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
-      "hypr/hypridle.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
-      "hypr/actual-hyprland.conf".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.conf";
-      "hypr/hyprlock.conf".source                       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
-      "hypr/hyprpaper.conf".source                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
-      "hypr/xdph.conf".source                           = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
+      "hypr/colorschemes".source         = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
+      "hypr/hypridle.conf".source        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
+      "hypr/actual-hyprland.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.conf";
+      "hypr/hyprlock.conf".source        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
+      "hypr/hyprpaper.conf".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
+      "hypr/hyprtoolkit.conf".source     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprtoolkit.conf";
+      "hypr/xdph.conf".source            = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
 
-      "kitty".source                                    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
-      "mpv".source                                      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
-      "networkmanager-dmenu".source                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
-      "nwg-bar".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-bar";
-      "rofi".source                                     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
-      "waybar".source                                   = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
-      "waycorner".source                                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
+      "kitty".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
+      "mpv".source                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
+      "networkmanager-dmenu".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
+      "nwg-bar".source              = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-bar";
+      "rofi".source                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
+      "waybar".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
+      "waycorner".source            = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
+
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/portals.conf".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
-      "zathura".source                                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
+
+      "zathura".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
     };
     # }}}
 
