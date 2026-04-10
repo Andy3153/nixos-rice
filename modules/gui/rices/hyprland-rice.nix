@@ -145,6 +145,7 @@ in
           flameshot            # hyprland-rice screenshot
           hyprlock             # hyprland-rice lock-screen
           hyprpicker           # hyprland-rice color-picker
+          hyprshutdown         # hyprland-rice shutdown
           hyprsysteminfo       # hyprland-rice system-info
           kitty                # hyprland-rice terminal
           libcanberra-gtk3     # hyprland-rice play-system-sounds
