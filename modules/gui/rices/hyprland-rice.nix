@@ -138,24 +138,24 @@ in
         # {{{ Default NixPkgs
         (with pkgs;
         [
-          libcanberra-gtk3     # hyprland-rice play-system-sounds
+          blueman              # hyprland-rice bluetooth-control
+          cava                 # hyprland-rice visualizer
+          cliphist             # hyprland-rice clipboard-manager
+          dunst                # hyprland-rice notification-daemon
+          flameshot            # hyprland-rice screenshot
           hyprlock             # hyprland-rice lock-screen
           hyprpicker           # hyprland-rice color-picker
           hyprsysteminfo       # hyprland-rice system-info
-          dunst                # hyprland-rice notification-daemon
-          cliphist             # hyprland-rice clipboard-manager
-          wl-clipboard         # hyprland-rice for-zsh for-nvim clipboard
-          wev                  # hyprland-rice event-viewer
+          kitty                # hyprland-rice terminal
+          libcanberra-gtk3     # hyprland-rice play-system-sounds
+          lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
+          networkmanager_dmenu # hyprland-rice network-control
           rofi                 # hyprland-rice appmenu
           rofi-dmenu-shim      # hyprland-rice appmenu dmenu-compat
-          kitty                # hyprland-rice terminal
-          blueman              # hyprland-rice bluetooth-control
-          networkmanager_dmenu # hyprland-rice network-control
-          lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
+          wev                  # hyprland-rice event-viewer
+          wl-clipboard         # hyprland-rice for-zsh for-nvim clipboard
+          wleave               # hyprland-rice logout-menu
           wlr-layout-ui        # hyprland-rice screen-layout
-          nwg-bar              # hyprland-rice logout-menu
-          flameshot            # hyprland-rice screenshot
-          cava                 # hyprland-rice visualizer
           zathura              # hyprland-rice pdf-viewer
         ])
 
@@ -273,10 +273,10 @@ in
       "kitty".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
       "mpv".source                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
       "networkmanager-dmenu".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
-      "nwg-bar".source              = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/nwg-bar";
       "rofi".source                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
       "waybar".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
       "waycorner".source            = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
+      "wleave".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/wleave";
 
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
       "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
