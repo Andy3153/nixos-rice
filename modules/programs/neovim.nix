@@ -65,8 +65,8 @@ in
         marksman                            # markdown       # marksman
         nginx-language-server               # nginx          # nginx_language_server
         nil                                 # nix            # nil_ls
-        nodePackages.bash-language-server   # bash/sh        # bashls
-        nodePackages.vim-language-server    # vimscript      # vimls
+        bash-language-server                # bash/sh        # bashls
+        vim-language-server                 # vimscript      # vimls
         python314Packages.python-lsp-server # python         # pylsp
         taplo                               # toml           # taplo
         texlab                              # tex            # texlab
