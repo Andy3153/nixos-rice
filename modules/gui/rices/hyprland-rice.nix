@@ -276,7 +276,6 @@ in
       "networkmanager-dmenu".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/networkmanager-dmenu";
       "rofi".source                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
       "waybar".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
-      "waycorner".source            = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waycorner";
       "wleave".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/wleave";
 
       "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
