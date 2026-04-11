@@ -76,6 +76,20 @@
     };
     # }}}
 
+    # {{{ Nix Index Database
+    nix-index-database_unstable =
+    {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+
+    nix-index-database_stable =
+    {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+    # }}}
+
     # {{{ Determinate Systems' Nix
     detsys-nix_unstable =
     {
@@ -208,6 +222,9 @@
     flake-programs-sqlite_unstable,
     flake-programs-sqlite_stable,
 
+    nix-index-database_unstable,
+    nix-index-database_stable,
+
     detsys-nix_stable,
     detsys-nix_unstable,
 
@@ -266,6 +283,7 @@
           nixos-hardware.nixosModules.asus-fx506hm
           lanzaboote_unstable.nixosModules.lanzaboote
           flake-programs-sqlite_unstable.nixosModules.programs-sqlite
+          nix-index-database_unstable.nixosModules.default
           detsys-nix_unstable.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           home-manager_unstable.nixosModules.home-manager
