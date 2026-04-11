@@ -854,6 +854,46 @@
         "type": "github"
       }
     },
+    "nix-index-database_stable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs_stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775365369,
+        "narHash": "sha256-DgH5mveLoau20CuTnaU5RXZWgFQWn56onQ4Du2CqYoI=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "cef5cf82671e749ac87d69aadecbb75967e6f6c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
+    "nix-index-database_unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs_unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775365369,
+        "narHash": "sha256-DgH5mveLoau20CuTnaU5RXZWgFQWn56onQ4Du2CqYoI=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "cef5cf82671e749ac87d69aadecbb75967e6f6c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-std": {
       "locked": {
         "lastModified": 1710870712,
@@ -1257,6 +1297,8 @@
         "my-nixpkgs_stable": "my-nixpkgs_stable",
         "my-nixpkgs_unstable": "my-nixpkgs_unstable",
         "nix-flatpak": "nix-flatpak",
+        "nix-index-database_stable": "nix-index-database_stable",
+        "nix-index-database_unstable": "nix-index-database_unstable",
         "nixos-hardware": "nixos-hardware",
         "nixos-vfio_stable": "nixos-vfio_stable",
         "nixos-vfio_unstable": "nixos-vfio_unstable",

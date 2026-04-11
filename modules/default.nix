@@ -163,6 +163,17 @@ in
   # }}}
 
   # {{{ Programs
-  programs.command-not-found.enable = true;
+  programs =
+  {
+    command-not-found.enable        = true;
+    nix-index-database.comma.enable = true;
+
+    nix-index =
+    {
+      enable                = true;
+      enableBashIntegration = false;
+      enableZshIntegration  = false;
+    };
+  };
   # }}}
 }
