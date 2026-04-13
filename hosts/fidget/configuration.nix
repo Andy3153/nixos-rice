@@ -1,0 +1,230 @@
+## vim: set fenc=utf-8 ts=2 sw=0 sts=0 sr et si tw=0 fdm=marker fmr={{{,}}}:
+##
+## Config for hostname `fidget`
+##
+## Lenovo ThinkPad X280
+##
+
+{ config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
+
+{
+  custom =
+  {
+    # {{{ Boot
+    boot =
+    {
+      kernel = pkgs.linuxPackages_zen;
+
+      sysctl =
+      {
+        kernel.sysrq  = 244; # enable REISUB
+        vm.swappiness = 10;
+      };
+
+      uefi =
+      {
+        enable = true;
+        secure-boot.enable = true;
+      };
+    };
+    # }}}
+
+    # {{{ GUI
+    gui =
+    {
+      enable                     = true;
+      #gaming.enable              = true;
+      rices.hyprland-rice.enable = true;
+    };
+    # }}}
+
+    # {{{ Hardware
+    hardware =
+    {
+      bluetooth =
+      {
+        enable = true;
+        powerOnBoot = false;
+      };
+
+      #graphictablets.enable = true;
+      #openrgb.enable        = true;
+      #piper.enable          = true;
+      thunderbolt.enable    = true;
+    };
+    # }}}
+
+    # {{{ Networking
+    networking.stevenblack.enable = true;
+    # }}}
+
+    # {{{ Programs
+    programs =
+    {
+      adb.enable      = true;
+      appimage.enable = true;
+      direnv.enable   = true;
+
+      # {{{ Git
+      git =
+      {
+        enable     = true;
+        lfs.enable = true;
+        userName   = "Andy3153";
+        userEmail  = "andy3153@protonmail.com";
+      };
+      # }}}
+
+      librewolf.enable = true;
+
+      # {{{ Neovim
+      neovim =
+      {
+        enable              = true;
+        enableCustomConfigs = true;
+      };
+      # }}}
+
+      obs.enable = true;
+      #spicetify.enable = true;
+
+      # {{{ SSH
+      ssh =
+      {
+        enable = true;
+
+        # {{{ Settings to use with different hosts
+        matchBlocks =
+        # {{{ Variables
+        let
+          mainUser = config.custom.users.mainUser;
+          HM       = config.home-manager.users.${mainUser};
+          homeDir  = HM.home.homeDirectory;
+        in
+        # }}}
+        {
+        };
+        # }}}
+      };
+      # }}}
+
+      #tilp2.enable     = true;
+      vesktop.enable   = true;
+
+      # {{{ Zsh
+      zsh =
+      {
+        enable              = true;
+        enableCustomConfigs = true;
+      };
+      # }}}
+    };
+    # }}}
+
+    # {{{ Services
+    services =
+    {
+      # {{{ Btrbk
+      btrbk.instances =
+      {
+        # {{{ Daily local snapshot
+        ##
+        ## Contains subvolumes that get backed up daily, and kept locally as snapshots
+        ##
+
+        daily-local =
+        {
+          onCalendar = "daily";
+          settings =
+          {
+            timestamp_format = "long";
+
+            snapshot_preserve     = "5d";
+            snapshot_preserve_min = "2d";
+
+            volume."/.btrfs-root" =
+            {
+              snapshot_dir = "snapshots";
+
+              subvolume."root".snapshot_create    = "onchange";
+              subvolume."nix".snapshot_create     = "onchange";
+              subvolume."persist".snapshot_create = "onchange";
+              subvolume."vm".snapshot_create      = "onchange";
+              subvolume."home".snapshot_create    = "onchange";
+              subvolume."games".snapshot_create   = "onchange";
+            };
+          };
+        };
+        # }}}
+      };
+      # }}}
+
+      flatpak.enable = true;
+      mpd.enable     = true;
+
+      openssh =
+      {
+        enable   = true;
+        settings = { X11Forwarding = true; };
+      };
+
+      printing =
+      {
+        enable  = true;
+        drivers = [ pkgs.brlaser ];
+      };
+
+      tlp =
+      {
+        enable = true;
+        chargeThreshold.stop = 80;
+      };
+
+      upower.enable = true;
+    };
+    # }}}
+
+  # {{{ Specialisations
+  specialisation =
+  {
+    # {{{ No firewall
+    noFirewall.configuration =
+    {
+      system.nixos.tags                     = [ "no-firewall" ];
+      environment.etc."specialisation".text = "noFirewall"; # for nh
+
+      networking.firewall.enable         = lib.mkForce false;
+      custom.services.zerotierone.enable = true;
+    };
+    # }}}
+  };
+  # }}}
+
+    # {{{ Users
+    users.mainUser = "andy3153";
+    # }}}
+
+    # {{{ Virtualisation
+    virtualisation =
+    {
+      docker =
+      {
+        enable       = true;
+        enableOnBoot = false;
+      };
+
+      #libvirtd.enable  = true;
+      podman.enable    = true;
+    };
+    # }}}
+
+    # {{{ XDG
+    xdg =
+    {
+      userDirs.enable = true;
+    };
+    # }}}
+
+    system.stateVersion = "24.11";
+  };
+}

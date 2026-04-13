@@ -11,6 +11,11 @@ These are configurations for all the hardware I own:
 -- my main machine. I have lots of configurations for [Hyprland](https://github.com/Andy3153/hyprland-rice), [Zsh](https://github.com/Andy3153/andy3153-zshrc), [Neovim](https://github.com/Andy3153/andy3153-init.lua), gaming, virtual machines, Secure Boot, RGB control and many others. Also do check out the [NixOS Hardware](https://github.com/NixOS/nixos-hardware/tree/master/asus/fx506hm) entry on this laptop.
 <!-- }}} -->
 
+<!-- {{{ fidget -->
+- `fidget`
+-- my secondary machine. Basically `sparkle` but more slimmed down.
+<!-- }}} -->
+
 <!-- {{{ helix -->
 - `helix`
 -- my new server. It's meant to replace `ember`. The config for it is basically a comfy bootloader for Docker.

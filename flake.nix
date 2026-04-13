@@ -297,6 +297,62 @@
       };
       # }}}
 
+      # {{{ fidget | Lenovo ThinkPad X280
+      fidget = nixpkgs_unstable.lib.nixosSystem
+      {
+        specialArgs = { inherit inputs; }; # access inputs in config
+        modules =
+        [
+          { networking.hostName = "fidget"; } # Hostname
+
+          # {{{ Add flake inputs to configuration
+          (
+            { config, ... }:
+            {
+              _module.args =
+              {
+                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
+                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
+                pkgs-tilp     = import nixpkgs_tilp     { config = config.nixpkgs.config; };
+                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
+              };
+            }
+          )
+          # }}}
+
+          # {{{ Dummy modules so I don't have to import inputs I don't need
+          (
+            { options, lib, ... }:
+            let
+              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
+            in
+            {
+              options =
+              {
+                virtualisation.kvmfr       = dummyOpt;
+                virtualisation.vfio        = dummyOpt;
+              };
+            }
+          )
+          # }}}
+
+          nixos-hardware.nixosModules.lenovo-thinkpad-x280
+          lanzaboote_unstable.nixosModules.lanzaboote
+          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
+          nix-index-database_unstable.nixosModules.default
+          detsys-nix_unstable.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
+          home-manager_unstable.nixosModules.home-manager
+          jovian_unstable.nixosModules.jovian
+          #nixos-vfio_unstable.nixosModules.default
+          disko_unstable.nixosModules.disko
+          spicetify.nixosModules.spicetify
+
+          ./hosts/fidget
+        ];
+      };
+      # }}}
+
       # {{{ helix | Lenovo Ideapad 320
       helix = nixpkgs_stable.lib.nixosSystem
       {
