@@ -42,7 +42,7 @@ in
     custom.extraPackages = with pkgs.kdePackages;
     [
       qtsvg
-      wayqt
+      #wayqt
       qtwayland
     ];
 
