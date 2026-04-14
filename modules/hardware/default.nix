@@ -10,6 +10,7 @@
   [
     ./bluetooth.nix
     ./controllers.nix
+    ./fingerprint.nix
     ./gpuDrivers.nix
     ./gpuPassthrough.nix
     ./graphics.nix

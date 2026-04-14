@@ -58,6 +58,19 @@
     networking.stevenblack.enable = true;
     # }}}
 
+    # {{{ Nix
+    nix =
+    {
+      unfreeWhitelist =
+      [
+      ];
+
+      insecureWhitelist =
+      [
+      ];
+    };
+    # }}}
+
     # {{{ Programs
     programs =
     {
