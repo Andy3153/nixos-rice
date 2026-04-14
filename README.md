@@ -103,3 +103,8 @@ nix flake init --template github:Andy3153/nixos-rice#devenv-py
 ```
 <!-- }}} -->
 <!-- }}} -->
+
+<!-- {{{ Install script -->
+### Install script
+`install.sh` shows all the steps I follow to install from a live environment. The script can also be ran.
+<!-- }}} -->
