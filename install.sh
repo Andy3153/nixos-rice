@@ -16,11 +16,11 @@ sudo chown -R 1000:1000 src
 cd src
 mkdir hyprland nix nvim sh
 
-git clone https://github.com/Andy3153/hyprland-rice       hyprland/hyprland-rice
-git clone https://github.com/Andy3153/andy3153-init.lua   nvim/andy3153-init.lua
-cp -r ~/nixos-rice nix
-git clone https://github.com/Andy3153/andy3153-zshrc      sh/andy3153-zshrc
-git clone https://github.com/Andy3153/other-shell-scripts sh/other-shell-scripts
+git clone --recursive https://github.com/Andy3153/hyprland-rice       hyprland/hyprland-rice
+git clone             https://github.com/Andy3153/andy3153-init.lua   nvim/andy3153-init.lua
+cp -r                 ~/nixos-rice                                    nix
+git clone             https://github.com/Andy3153/andy3153-zshrc      sh/andy3153-zshrc
+git clone             https://github.com/Andy3153/other-shell-scripts sh/other-shell-scripts
 
 sudo chown -R 3153:3153 /mnt/home/andy3153
 
