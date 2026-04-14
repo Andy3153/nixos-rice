@@ -407,11 +407,21 @@
       flatpak.enable = true;
       mpd.enable     = true;
 
+      # {{{ OpenSSH
       openssh =
       {
         enable   = true;
+
+        authorizedKeys =
+        [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTx7a/6tDwUl3W5QALJ1rUWQbViapPoZU9EOhCdYW9e fidget-sparkle"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODo31jXxNZXr0giOaIIklFu0qyDmWZqNYoAaQKpAE5u helix-sparkle"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBC1astmlTT1tjhrfPXqFPly1GxauR4S7qU3CCzwIFK petridish-sparkle"
+        ];
+
         settings = { X11Forwarding = true; };
       };
+      # }}}
 
       printing =
       {
