@@ -285,12 +285,12 @@
         in
         # }}}
         {
-          # {{{ AUR
-          "aur.archlinux.org" =
+          # {{{ `fidget`
+          "fidget" =
           {
-            hostname       = "aur.archlinux.org";
-            user           = "git";
-            identityFile   = "${homeDir}/.ssh/id_ed25519-aur"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-aur -C "sparkle-aur"
+            hostname       = "fidget";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-fidget"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-fidget -C "sparkle-fidget"
             identitiesOnly = true;
           };
           # }}}
@@ -325,6 +325,16 @@
             hostname       = "andy3153.duckdns.org";
             user           = mainUser;
             identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ `petridish`
+          "petridish" =
+          {
+            hostname       = "petridish";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-petridish"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-petridish -C "sparkle-petridish"
             identitiesOnly = true;
           };
           # }}}

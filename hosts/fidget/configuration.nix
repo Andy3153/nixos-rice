@@ -103,6 +103,79 @@
         in
         # }}}
         {
+          # {{{ `helix`
+          "helix" =
+          {
+            hostname       = "helix";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "fidget-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.am-furnici.ro" =
+          {
+            hostname       = "andy3153.am-furnici.ro";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "fidget-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.go.ro" =
+          {
+            hostname       = "andy3153.go.ro";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "fidget-helix"
+            identitiesOnly = true;
+          };
+
+          "andy3153.duckdns.org" =
+          {
+            hostname       = "andy3153.duckdns.org";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "fidget-helix"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ `petridish`
+          "petridish" =
+          {
+            hostname       = "petridish";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-petridish"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-petridish -C "fidget-petridish"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ `sparkle`
+          "sparkle" =
+          {
+            hostname       = "sparkle";
+            user           = mainUser;
+            identityFile   = "${homeDir}/.ssh/id_ed25519-sparkle"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-sparkle -C "fidget-sparkle"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ GitHub
+          "github.com" =
+          {
+            hostname       = "github.com";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-github"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-github -C "fidget-github"
+            identitiesOnly = true;
+          };
+          # }}}
+
+          # {{{ GitLab
+          "gitlab.com" =
+          {
+            hostname       = "gitlab.com";
+            user           = "git";
+            identityFile   = "${homeDir}/.ssh/id_ed25519-gitlab"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-gitlab -C "fidget-gitlab"
+            identitiesOnly = true;
+          };
+          # }}}
         };
         # }}}
       };
