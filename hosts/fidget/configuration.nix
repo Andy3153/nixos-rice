@@ -61,6 +61,8 @@
     # {{{ Nix
     nix =
     {
+      allowUnfree = lib.mkForce false; # tryna keep this device free of non-source available programs
+
       unfreeWhitelist =
       [
       ];
