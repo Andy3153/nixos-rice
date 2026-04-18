@@ -55,7 +55,6 @@
     # {{{ Default NixPkgs
     (with pkgs;
     [
-
       # {{{ 3D
       blender # 3D
       # }}}
@@ -113,8 +112,6 @@
       gparted # Partition-Manager
       fatsort # Filesystems sort-fat-fs
 
-      adbfs-rootless # Filesystems FUSE ADB
-
       (testdisk.override
       {
         enableQt = true;
@@ -139,12 +136,15 @@
       pulsemixer  # Sound sound-control
       # }}}
 
+      # {{{ Android
+      adb-sync       # adb-tools
+      adbfs-rootless # adb-tools Filesystems FUSE
+      scrcpy         # adb-tools
+      # }}}
+
       linux-wifi-hotspot # Internet hotspot
       okteta             # KDE-Apps hex-editor
-      mousai             # GNOME-Apps song-identifier
       qbittorrent        # torrents
-      scrcpy             # adb-tools
-      adb-sync           # adb-tools
       wimlib             # .wim
       ventoy-full        # flash-usbs
       woeusb             # flash-usbs windows

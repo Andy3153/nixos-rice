@@ -38,6 +38,118 @@
     };
     # }}}
 
+  # {{{ Extra packages
+  extraPackages = lib.lists.flatten
+  [
+    # {{{ Default NixPkgs
+    (with pkgs;
+    [
+      # {{{ Browsers
+      brave
+      tor-browser # Tor
+      # }}}
+
+      # {{{ Media
+      cantata      # music-player for-mpd
+      pear-desktop # music-player youtube-music
+
+      flac       # music
+      opus-tools # music
+      mousai     # music find-music
+
+      ffmpeg     # media-convert
+      yt-dlp     # media-download
+      converseen # media-convert
+
+      exiftool # image-data
+      # }}}
+
+      # {{{ Office
+      libreoffice-qt6           # Office
+      onlyoffice-desktopeditors # Office
+      gimp3-with-plugins        # Office photo-editing
+      inkscape                  # Office photo-editing
+      krita                     # Office photo-editing
+
+      texliveFull                # LaTeX
+      texpresso                  # for-latex
+      python314Packages.pygments # for-latex
+      pandoc                     # for-latex
+      ghostscript                # for-latex pdf-tools
+
+      pdftk         # pdf-tools
+      pdfarranger   # pdf-tools
+      poppler-utils # pdf-tools
+
+      pomodoro-gtk # timer pomodoro-timer
+      timewarrior  # timer time-tracker
+      # }}}
+
+      # {{{ Partitioning/Filesystems
+      gparted # Partition-Manager
+      fatsort # Filesystems sort-fat-fs
+
+      (testdisk.override
+      {
+        enableQt = true;
+        enableNtfs = true;
+        enableExtFs = true;
+      })
+
+      f3 # flash-drive-tester
+      # }}}
+
+      # {{{ Programming
+      gh # github for-git
+      # }}}
+
+      # {{{ Social
+      ferdium # Social
+      # }}}
+
+      # {{{ Sound
+      qpwgraph    # Sound PipeWire Patchbay
+      easyeffects # Sound PipeWire
+      pulsemixer  # Sound sound-control
+      # }}}
+
+      # {{{ Android
+      adb-sync       # adb-tools
+      adbfs-rootless # adb-tools Filesystems FUSE
+      scrcpy         # adb-tools
+      # }}}
+
+      linux-wifi-hotspot # Internet hotspot
+      okteta             # KDE-Apps hex-editor
+      qbittorrent        # torrents
+      wimlib             # .wim
+      woeusb             # flash-usbs windows
+      d-spy              # D-Bus
+      jq                 # Other-CLI json
+      hjson              # Other-CLI json
+    ])
+    # }}}
+
+    # {{{ NixPkgs Unstable
+    (with pkgs-unstable;
+    [
+    ])
+    # }}}
+
+    # {{{ NixPkgs Stable
+    (with pkgs-stable;
+    [
+    ])
+    # }}}
+
+    # {{{ My Nix packages
+    (with my-pkgs;
+    [
+    ])
+    # }}}
+  ];
+  # }}}
+
     # {{{ Hardware
     hardware =
     {
@@ -271,6 +383,23 @@
         enable  = true;
         drivers = [ pkgs.brlaser ];
       };
+
+      #syncthing =
+      #{
+      #  enable = true;
+      #
+      #  settings =
+      #  {
+      #    devices =
+      #    {
+      #    };
+      #
+      #    folders =
+      #    {
+      #      "/home/an"
+      #    };
+      #  };
+      #};
 
       tlp =
       {
