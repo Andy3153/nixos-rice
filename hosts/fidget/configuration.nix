@@ -114,9 +114,7 @@
       # }}}
 
       # {{{ Android
-      adb-sync       # adb-tools
-      adbfs-rootless # adb-tools Filesystems FUSE
-      scrcpy         # adb-tools
+      #adb-sync       # adb-tools
       # }}}
 
       linux-wifi-hotspot # Internet hotspot
@@ -188,9 +186,9 @@
     # {{{ Programs
     programs =
     {
-      adb.enable      = true;
-      appimage.enable = true;
-      direnv.enable   = true;
+      android-tools.enable = true;
+      appimage.enable      = true;
+      direnv.enable        = true;
 
       # {{{ Git
       git =

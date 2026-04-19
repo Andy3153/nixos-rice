@@ -9,7 +9,7 @@
   imports =
   [
     ./nixpak
-    ./adb.nix
+    ./android-tools.nix
     ./appimage.nix
     ./dconf.nix
     ./direnv.nix
