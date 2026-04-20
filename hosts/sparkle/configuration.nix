@@ -136,10 +136,6 @@
       pulsemixer  # Sound sound-control
       # }}}
 
-      # {{{ Android
-      adb-sync # adb-tools
-      # }}}
-
       linux-wifi-hotspot # Internet hotspot
       okteta             # KDE-Apps hex-editor
       qbittorrent        # torrents

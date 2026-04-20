@@ -15,9 +15,10 @@ in
   {
     custom.extraPackages = with pkgs;
     [
-      android-tools  # android
-      adbfs-rootless # android Filesystems FUSE
-      scrcpy         # android screen-share
+      android-tools   # android
+      better-adb-sync # android adb-rsync
+      adbfs-rootless  # android Filesystems FUSE
+      scrcpy          # android screen-share
     ];
     users.users.${mainUser}.extraGroups = [ "adbusers" ];
   };
