@@ -26,17 +26,21 @@
     {
       kernel = pkgs.linuxPackages_zen;
 
+      # {{{ Sysctl
       sysctl =
       {
         kernel.sysrq  = 244; # enable REISUB
         vm.swappiness = 10;
       };
+      # }}}
 
+      # {{{ UEFI
       uefi =
       {
         enable = true;
         secure-boot.enable = true;
       };
+      # }}}
     };
     # }}}
 
@@ -182,12 +186,15 @@
     # {{{ Hardware
     hardware =
     {
+      # {{{ Bluetooth
       bluetooth =
       {
         enable = true;
         powerOnBoot = false;
       };
+      # }}}
 
+      # {{{ GPU drivers
       gpuDrivers = lib.mkForce
       [
         "modesetting"
@@ -195,17 +202,21 @@
         "nvidia"
         "fbdev"
       ];
+      # }}}
 
+      graphictablets.enable = true;
+
+      # {{{ NVIDIA
       nvidia =
       {
         enable       = true;
         prime.enable = true;
       };
+      # }}}
 
-      graphictablets.enable = true;
-      openrgb.enable        = true;
-      piper.enable          = true;
-      thunderbolt.enable    = true;
+      openrgb.enable     = true;
+      piper.enable       = true;
+      thunderbolt.enable = true;
     };
     # }}}
 
@@ -216,21 +227,23 @@
     # {{{ Nix
     nix =
     {
+      # {{{ Unfree whitelist
       unfreeWhitelist =
       [
-        "android-sdk-platform-tools"
         "cisco-packet-tracer"
         "grayjay"
         "osu-lazer-bin"
-        "platform-tools"
         "ventoy"
         "wpsoffice"
       ];
+      # }}}
 
+      # {{{ Insecure whitelist
       insecureWhitelist =
       [
         "ventoy-1.1.10"
       ];
+      # }}}
     };
     # }}}
 
@@ -427,17 +440,21 @@
       };
       # }}}
 
+      # {{{ Printing
       printing =
       {
         enable  = true;
         drivers = [ pkgs.brlaser ];
       };
+      # }}}
 
+      # {{{ TLP
       tlp =
       {
         enable = true;
         chargeThreshold.stop = 80;
       };
+      # }}}
 
       upower.enable = true;
     };
@@ -498,11 +515,13 @@
     # {{{ Virtualisation
     virtualisation =
     {
+      # {{{ Docker
       docker =
       {
         enable       = true;
         enableOnBoot = false;
       };
+      # }}}
 
       libvirtd.enable  = true;
       podman.enable    = true;

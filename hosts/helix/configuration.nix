@@ -15,11 +15,13 @@
     {
       sysctl.vm.swappiness = 30;
 
+      # {{{ UEFI
       uefi =
       {
         enable = true;
         secure-boot.enable = true;
       };
+      # }}}
     };
     # }}}
 

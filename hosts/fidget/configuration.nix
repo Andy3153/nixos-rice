@@ -15,17 +15,21 @@
     {
       kernel = pkgs.linuxPackages_zen;
 
+      # {{{ Sysctl
       sysctl =
       {
         kernel.sysrq  = 244; # enable REISUB
         vm.swappiness = 10;
       };
+      # }}}
 
+      # {{{ UEFI
       uefi =
       {
         enable = true;
         secure-boot.enable = true;
       };
+      # }}}
     };
     # }}}
 
@@ -147,11 +151,13 @@
     # {{{ Hardware
     hardware =
     {
+      # {{{ Bluetooth
       bluetooth =
       {
         enable = true;
         powerOnBoot = false;
       };
+      # }}}
 
       #graphictablets.enable = true;
       #openrgb.enable        = true;
@@ -169,13 +175,17 @@
     {
       allowUnfree = lib.mkForce false; # tryna keep this device free of non-source available programs
 
+      # {{{ Unfree whitelist
       unfreeWhitelist =
       [
       ];
+      # }}}
 
+      # {{{ Insecure whitelist
       insecureWhitelist =
       [
       ];
+      # }}}
     };
     # }}}
 
@@ -372,12 +382,15 @@
       };
       # }}}
 
+      # {{{ Printing
       printing =
       {
         enable  = true;
         drivers = [ pkgs.brlaser ];
       };
+      # }}}
 
+      # {{{ Syncthing
       #syncthing =
       #{
       #  enable = true;
@@ -394,12 +407,15 @@
       #    };
       #  };
       #};
+      # }}}
 
+      # {{{ TLP
       tlp =
       {
         enable = true;
         chargeThreshold.stop = 80;
       };
+      # }}}
 
       upower.enable = true;
     };
@@ -428,11 +444,13 @@
     # {{{ Virtualisation
     virtualisation =
     {
+      # {{{ Docker
       docker =
       {
         enable       = true;
         enableOnBoot = false;
       };
+      # }}}
 
       #libvirtd.enable  = true;
       podman.enable    = true;
