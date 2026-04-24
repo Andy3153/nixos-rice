@@ -457,6 +457,11 @@
         {
           devices =
           {
+            helix =
+            {
+              id = "HSOTOT3-GFSPHFX-HIXQGGC-6CDJBEJ-4VVHCGD-KZADLHY-XC4UEXY-UITFAAY";
+            };
+
             fidget =
             {
               id = "FUHU63F-LN6AT7C-2H7PSDB-UMLSTE2-WM4KW4M-BBYDQ7Q-MXD5BMR-SLOWZQY";
