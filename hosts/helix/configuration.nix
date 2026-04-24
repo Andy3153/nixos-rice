@@ -190,21 +190,24 @@
       {
         enable = true;
 
+        # {{{ Settings
         settings =
         {
+          # {{{ Devices
           devices =
           {
-            fidget =
-            {
-              id = "FUHU63F-LN6AT7C-2H7PSDB-UMLSTE2-WM4KW4M-BBYDQ7Q-MXD5BMR-SLOWZQY";
-            };
-
-            petridish =
-            {
-              id = "5TQX52Q-SDYSIF3-CSXU67C-SQKM2BP-GW4KVZA-2SW7LZT-2CJNQZT-TSX7MQ2";
-            };
+            fidget.id    = "FUHU63F-LN6AT7C-2H7PSDB-UMLSTE2-WM4KW4M-BBYDQ7Q-MXD5BMR-SLOWZQY";
+            petridish.id = "5TQX52Q-SDYSIF3-CSXU67C-SQKM2BP-GW4KVZA-2SW7LZT-2CJNQZT-TSX7MQ2";
           };
+          # }}}
+
+          # {{{ Folders
+          folders =
+          {
+          };
+          # }}}
         };
+        # }}}
       };
       # }}}
     };
