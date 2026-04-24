@@ -167,6 +167,38 @@
         # {{{ Logical volumes
         lvs =
         {
+          # {{{ Data
+          data =
+          {
+            size = "1T";
+
+            content =
+            {
+              type         = "btrfs";
+              extraArgs    = [ "-f" ];
+              mountpoint   = "/mnt/data/.btrfs-root";
+              mountOptions = [ "compress=zstd" ];
+
+              # {{{ Btrfs subvolumes
+              subvolumes =
+              {
+                "/main" =
+                {
+                  mountpoint   = "/mnt/data";
+                  mountOptions = [ "compress=zstd" ];
+                };
+
+                "/snapshots" =
+                {
+                  mountpoint   = "/mnt/data/.snapshots";
+                  mountOptions = [ "compress=zstd" ];
+                };
+              };
+              # }}}
+            };
+          };
+          # }}}
+
           # {{{ Docker
           docker =
           {
