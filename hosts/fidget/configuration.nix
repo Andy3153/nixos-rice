@@ -391,22 +391,25 @@
       # }}}
 
       # {{{ Syncthing
-      #syncthing =
-      #{
-      #  enable = true;
-      #
-      #  settings =
-      #  {
-      #    devices =
-      #    {
-      #    };
-      #
-      #    folders =
-      #    {
-      #      "/home/an"
-      #    };
-      #  };
-      #};
+      syncthing =
+      {
+        enable = true;
+
+        settings =
+        {
+          devices =
+          {
+            petridish =
+            {
+              id = "5TQX52Q-SDYSIF3-CSXU67C-SQKM2BP-GW4KVZA-2SW7LZT-2CJNQZT-TSX7MQ2";
+            };
+          };
+
+          folders =
+          {
+          };
+        };
+      };
       # }}}
 
       # {{{ TLP

@@ -16,6 +16,7 @@
     ./openssh.nix
     ./pipewire.nix
     ./printing.nix
+    ./syncthing.nix
     ./tlp.nix
     ./udisks.nix
     ./upower.nix
