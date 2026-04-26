@@ -134,12 +134,12 @@
       # {{{ Btrbk
       btrbk.instances =
       {
-        # {{{ Daily local snapshot
+        # {{{ Main daily local snapshot
         ##
-        ## Contains subvolumes that get backed up daily, and kept locally as snapshots
+        ## Contains subvolumes from the main disk that get backed up daily, and kept locally as snapshots
         ##
 
-        daily-local =
+        main-daily-local =
         {
           onCalendar = "daily";
           settings =
