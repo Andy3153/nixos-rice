@@ -337,6 +337,9 @@
         ##
 
         main-daily-local =
+        let
+          btrfsRoot = config.custom.filesystems.disk.main.partitions.main.subvolumes."/".mountpoint;
+        in
         {
           onCalendar = "daily";
           settings =
@@ -346,7 +349,7 @@
             snapshot_preserve     = "5d";
             snapshot_preserve_min = "2d";
 
-            volume."/.btrfs-root" =
+            volume."${btrfsRoot}" =
             {
               snapshot_dir = "snapshots";
 
