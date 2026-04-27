@@ -5,128 +5,199 @@
 ## Lenovo Ideapad 320
 ##
 
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
-  imports =
-  [
-    (
-      lib.mkAliasOptionModule
-        [ "custom" "filesystems" "disk" "main" "partitions" "main" "subvolumes" ]
-        [ "disko" "devices" "disk" "main" "content" "partitions" "main" "content" "subvolumes" ]
-    )
-  ];
-
-  disko.devices =
+  options.custom.filesystems =
   {
-    # {{{ Disks
-    disk =
+    disk.main.partitions.main.subvolumes = lib.mkOption { internal = true; type = lib.types.anything; };
+  };
+
+  config =
+  {
+    # {{{ Filesystem abstraction aliases
+    custom.filesystems.disk.main.partitions.main.subvolumes = lib.mkForce config.disko.devices.disk.main.content.partitions.main.content.subvolumes;
+    # }}}
+
+    disko.devices =
     {
-      # {{{ Main drive (internal SSD)
-      main =
+      # {{{ Disks
+      disk =
       {
-        device = "/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B7380F9A543";
-        type   = "disk";
-
-        content =
+        # {{{ Main drive (internal SSD)
+        main =
         {
-          type = "gpt";
+          device = "/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B7380F9A543";
+          type   = "disk";
 
-          # {{{ Partitions
-          partitions =
+          content =
           {
-            # {{{ ESP
-            esp =
-            {
-              name = "EFI System Partition";
-              size = "2G";
-              type = "EF00"; # ESP
+            type = "gpt";
 
-              content =
+            # {{{ Partitions
+            partitions =
+            {
+              # {{{ ESP
+              esp =
               {
-                type         = "filesystem";
-                format       = "vfat";
-                mountpoint   = "/boot";
-                mountOptions =
-                [
-                  "fmask=0022"
-                  "dmask=0022"
-                ];
+                name = "EFI System Partition";
+                size = "2G";
+                type = "EF00"; # ESP
+
+                content =
+                {
+                  type         = "filesystem";
+                  format       = "vfat";
+                  mountpoint   = "/boot";
+                  mountOptions =
+                  [
+                    "fmask=0022"
+                    "dmask=0022"
+                  ];
+                };
               };
+              # }}}
+
+              # {{{ Main
+              main =
+              {
+                name = "helix";
+                size = "100%";
+
+                content =
+                {
+                  type         = "btrfs";
+                  extraArgs    = [ "-f" ];
+                  mountOptions = [ "compress=zstd" ];
+
+                  # {{{ Btrfs subvolumes
+                  subvolumes =
+                  {
+                    "/root" =
+                    {
+                      mountpoint   = "/";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/nix" =
+                    {
+                      mountpoint   = "/nix";
+                      mountOptions =
+                      [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "/" =
+                    {
+                      mountpoint   = "/.btrfs-root";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/persist" =
+                    {
+                      mountpoint   = "/.persist";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/snapshots" =
+                    {
+                      mountpoint   = "/.snapshots";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/swap" =
+                    {
+                      mountpoint = "/.swap";
+                      swap.swapfile.size = "10G";
+                    };
+
+                    "/var-cache" =
+                    {
+                      mountpoint   = "/var/cache";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/var-log" =
+                    {
+                      mountpoint   = "/var/log";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/var-tmp" =
+                    {
+                      mountpoint   = "/var/tmp";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+
+                    "/home" =
+                    {
+                      mountpoint   = "/home";
+                      mountOptions = [ "compress=zstd" ];
+                    };
+                  };
+                  # }}}
+                };
+              };
+              # }}}
             };
             # }}}
+          };
+        };
+        # }}}
 
-            # {{{ Main
-            main =
+        # {{{ Data drive (external HDD)
+        data =
+        {
+          device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
+          type   = "disk";
+
+          content =
+          {
+            type = "lvm_pv";
+            vg   = "helix";
+          };
+        };
+        # }}}
+      };
+      # }}}
+
+      # {{{ LVM volume groups
+      lvm_vg =
+      {
+        # {{{ `helix`
+        helix =
+        {
+          type = "lvm_vg";
+
+          # {{{ Logical volumes
+          lvs =
+          {
+            # {{{ Data
+            data =
             {
-              name = "helix";
-              size = "100%";
+              size = "1T";
 
               content =
               {
                 type         = "btrfs";
                 extraArgs    = [ "-f" ];
-                mountpoint   = "/.btrfs-root";
+                mountpoint   = "/mnt/data/.btrfs-root";
                 mountOptions = [ "compress=zstd" ];
 
                 # {{{ Btrfs subvolumes
                 subvolumes =
                 {
-                  "/root" =
+                  "/main" =
                   {
-                    mountpoint   = "/";
+                    mountpoint   = "/mnt/data";
                     mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/nix" =
-                  {
-                    mountpoint   = "/nix";
-                    mountOptions =
-                    [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-
-                  "/persist" =
-                  {
-                    mountpoint   = "/.persist";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/swap" =
-                  {
-                    mountpoint = "/.swap";
-                    swap.swapfile.size = "10G";
                   };
 
                   "/snapshots" =
                   {
-                    mountpoint   = "/.snapshots";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/var-cache" =
-                  {
-                    mountpoint   = "/var/cache";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/var-log" =
-                  {
-                    mountpoint   = "/var/log";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/var-tmp" =
-                  {
-                    mountpoint   = "/var/tmp";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-
-                  "/home" =
-                  {
-                    mountpoint   = "/home";
+                    mountpoint   = "/mnt/data/.snapshots";
                     mountOptions = [ "compress=zstd" ];
                   };
                 };
@@ -134,96 +205,34 @@
               };
             };
             # }}}
-          };
-          # }}}
-        };
-      };
-      # }}}
 
-      # {{{ Data drive (external HDD)
-      data =
-      {
-        device = "/dev/disk/by-id/ata-ST2000DM001-1ER164_Z4Z0WWCV";
-        type   = "disk";
-
-        content =
-        {
-          type = "lvm_pv";
-          vg   = "helix";
-        };
-      };
-      # }}}
-    };
-    # }}}
-
-    # {{{ LVM volume groups
-    lvm_vg =
-    {
-      # {{{ `helix`
-      helix =
-      {
-        type = "lvm_vg";
-
-        # {{{ Logical volumes
-        lvs =
-        {
-          # {{{ Data
-          data =
-          {
-            size = "1T";
-
-            content =
+            # {{{ Docker
+            docker =
             {
-              type         = "btrfs";
-              extraArgs    = [ "-f" ];
-              mountpoint   = "/mnt/data/.btrfs-root";
-              mountOptions = [ "compress=zstd" ];
+              size = "5G";
 
-              # {{{ Btrfs subvolumes
-              subvolumes =
+              content =
               {
-                "/main" =
-                {
-                  mountpoint   = "/mnt/data";
-                  mountOptions = [ "compress=zstd" ];
-                };
-
-                "/snapshots" =
-                {
-                  mountpoint   = "/mnt/data/.snapshots";
-                  mountOptions = [ "compress=zstd" ];
-                };
+                type       = "filesystem";
+                format     = "ext4";
+                mountpoint = "/var/lib/docker";
               };
-              # }}}
             };
-          };
-          # }}}
+            # }}}
 
-          # {{{ Docker
-          docker =
-          {
-            size = "5G";
-
-            content =
+            # {{{ `sparkle` backups
+            sparklebak =
             {
-              type       = "filesystem";
-              format     = "ext4";
-              mountpoint = "/var/lib/docker";
-            };
-          };
-          # }}}
+              size = "500G";
 
-          # {{{ `sparkle` backups
-          sparklebak =
-          {
-            size = "500G";
-
-            content =
-            {
-              type       = "filesystem";
-              format     = "ext4";
-              mountpoint = "/mnt/sparklebak";
+              content =
+              {
+                type       = "filesystem";
+                format     = "ext4";
+                mountpoint = "/mnt/sparklebak";
+              };
             };
+            # }}}
           };
           # }}}
         };
@@ -231,6 +240,5 @@
       };
       # }}}
     };
-    # }}}
   };
 }

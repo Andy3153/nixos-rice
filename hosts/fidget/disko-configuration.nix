@@ -15,185 +15,193 @@ let
   # }}}
 in
 {
-  imports =
-  [
-    (
-      lib.mkAliasOptionModule
-        [ "custom" "filesystems" "disk" "main" "partitions" "main" "subvolumes" ]
-        [ "disko" "devices" "disk" "main" "content" "partitions" "main-crypt" "content" "content" "subvolumes" ]
-    )
-  ];
-
-  disko.devices =
+  options.custom.filesystems =
   {
-    # {{{ Disks
-    disk =
+    disk.main.partitions.main.subvolumes = lib.mkOption { internal = true; type = lib.types.anything; };
+  };
+
+  config =
+  {
+    # {{{ Filesystem abstraction aliases
+    custom.filesystems.disk.main.partitions.main.subvolumes = lib.mkForce config.disko.devices.disk.main.content.partitions.main-crypt.content.content.subvolumes;
+    # }}}
+
+    disko.devices =
     {
-      # {{{ Main drive (internal SSD)
-      main =
+      # {{{ Disks
+      disk =
       {
-        device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MN93N194311103H0L";
-        type   = "disk";
-
-        content =
+        # {{{ Main drive (internal SSD)
+        main =
         {
-          type = "gpt";
+          device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MN93N194311103H0L";
+          type   = "disk";
 
-          # {{{ Partitions
-          partitions =
+          content =
           {
-            # {{{ ESP
-            esp = rec
+            type = "gpt";
+
+            # {{{ Partitions
+            partitions =
             {
-              name  = "EFI System Partition";
-              label = name;
-              size  = "1G";
-              type  = "EF00"; # ESP
-
-              content =
+              # {{{ ESP
+              esp = rec
               {
-                type       = "filesystem";
-                format     = "vfat";
-                mountpoint = "/boot";
-
-                mountOptions =
-                [
-                  "fmask=0022"
-                  "dmask=0022"
-                ];
-              };
-            };
-            # }}}
-
-            # {{{ Main encrypted container
-            main-crypt = rec
-            {
-              name  = "fidget-crypt";
-              label = name;
-              size  = "100%";
-
-              content =
-              {
-                name = "fidget";
-                type = "luks";
-
-                settings.allowDiscards = true;
+                name  = "EFI System Partition";
+                label = name;
+                size  = "1G";
+                type  = "EF00"; # ESP
 
                 content =
                 {
-                  type         = "btrfs";
-                  extraArgs    = [ "-f" ];
-                  mountpoint   = "/.btrfs-root";
-                  mountOptions = [ "compress=zstd" ];
+                  type       = "filesystem";
+                  format     = "vfat";
+                  mountpoint = "/boot";
 
-                  # {{{ Btrfs subvolumes
-                  subvolumes =
-                  {
-                    "/root" =
-                    {
-                      mountpoint   = "/";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/nix" =
-                    {
-                      mountpoint   = "/nix";
-                      mountOptions =
-                      [
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-
-                    "/persist" =
-                    {
-                      mountpoint   = "/.persist";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/swap" =
-                    {
-                      mountpoint = "/.swap";
-                      swap.swapfile.size = "18G";
-                    };
-
-                    "/snapshots" =
-                    {
-                      mountpoint   = "/.snapshots";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/var-cache" =
-                    {
-                      mountpoint   = "/var/cache";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/var-log" =
-                    {
-                      mountpoint   = "/var/log";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/var-tmp" =
-                    {
-                      mountpoint   = "/var/tmp";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/vm" =
-                    {
-                      mountpoint   = "/var/lib/libvirt";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/vm-images" =
-                    {
-                      mountpoint   = "/var/lib/libvirt/images";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/home" =
-                    {
-                      mountpoint   = "/home";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/games" =
-                    {
-                      mountpoint   = "${homeDir}/games";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/steam-gamefiles" =
-                    {
-                      mountpoint   = "${homeDir}/games/steam/steamapps/common";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/steam-shadercache" =
-                    {
-                      mountpoint   = "${homeDir}/games/steam/steamapps/shadercache";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-
-                    "/torrents" =
-                    {
-                      mountpoint   = "${xdgDownloads}/torrents";
-                      mountOptions = [ "compress=zstd" ];
-                    };
-                  };
-                  # }}}
+                  mountOptions =
+                  [
+                    "fmask=0022"
+                    "dmask=0022"
+                  ];
                 };
               };
+              # }}}
+
+              # {{{ Main encrypted container
+              main-crypt = rec
+              {
+                name  = "fidget-crypt";
+                label = name;
+                size  = "100%";
+
+                content =
+                {
+                  name = "fidget";
+                  type = "luks";
+
+                  settings.allowDiscards = true;
+
+                  content =
+                  {
+                    type         = "btrfs";
+                    extraArgs    = [ "-f" ];
+                    mountOptions = [ "compress=zstd" ];
+
+                    # {{{ Btrfs subvolumes
+                    subvolumes =
+                    {
+                      "/root" =
+                      {
+                        mountpoint   = "/";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/nix" =
+                      {
+                        mountpoint   = "/nix";
+                        mountOptions =
+                        [
+                          "compress=zstd"
+                          "noatime"
+                        ];
+                      };
+
+                      "/" =
+                      {
+                        mountpoint   = "/.btrfs-root";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/persist" =
+                      {
+                        mountpoint   = "/.persist";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/snapshots" =
+                      {
+                        mountpoint   = "/.snapshots";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/swap" =
+                      {
+                        mountpoint = "/.swap";
+                        swap.swapfile.size = "18G";
+                      };
+
+                      "/var-cache" =
+                      {
+                        mountpoint   = "/var/cache";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/var-log" =
+                      {
+                        mountpoint   = "/var/log";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/var-tmp" =
+                      {
+                        mountpoint   = "/var/tmp";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/vm" =
+                      {
+                        mountpoint   = "/var/lib/libvirt";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/vm-images" =
+                      {
+                        mountpoint   = "/var/lib/libvirt/images";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/home" =
+                      {
+                        mountpoint   = "/home";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/games" =
+                      {
+                        mountpoint   = "${homeDir}/games";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/steam-gamefiles" =
+                      {
+                        mountpoint   = "${homeDir}/games/steam/steamapps/common";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/steam-shadercache" =
+                      {
+                        mountpoint   = "${homeDir}/games/steam/steamapps/shadercache";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+
+                      "/torrents" =
+                      {
+                        mountpoint   = "${xdgDownloads}/torrents";
+                        mountOptions = [ "compress=zstd" ];
+                      };
+                    };
+                    # }}}
+                  };
+                };
+              };
+              # }}}
             };
             # }}}
           };
-          # }}}
         };
+        # }}}
       };
       # }}}
     };
-    # }}}
   };
 }
