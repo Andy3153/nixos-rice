@@ -7,6 +7,15 @@
 
 { config, lib, ... }:
 
+let
+  # {{{ Variables
+  mainUser     = config.custom.users.mainUser;
+  homeDir      = "/home/${mainUser}"; # ANYTHING ELSE that tries to be more elegant, like `config.users.users.${mainUser}.home` produces an **infinite recursion**. why?
+  xdgDownloads = "${homeDir}/downs";  # so I have to make do with this for now...
+
+  dataRootMountpoint = "/mnt/data";
+  # }}}
+in
 {
   options.custom.filesystems =
   {
@@ -183,21 +192,62 @@
               {
                 type         = "btrfs";
                 extraArgs    = [ "-f" ];
-                mountpoint   = "/mnt/data/.btrfs-root";
                 mountOptions = [ "compress=zstd" ];
 
                 # {{{ Btrfs subvolumes
                 subvolumes =
                 {
-                  "/main" =
+                  "/root" =
                   {
-                    mountpoint   = "/mnt/data";
+                    mountpoint   = "${dataRootMountpoint}";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/.btrfs-root";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/persist" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/.persist";
                     mountOptions = [ "compress=zstd" ];
                   };
 
                   "/snapshots" =
                   {
-                    mountpoint   = "/mnt/data/.snapshots";
+                    mountpoint   = "${dataRootMountpoint}/.snapshots";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/vm" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/var/lib/libvirt";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/vm-images" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/var/lib/libvirt/images";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/home" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/home";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/games" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}${homeDir}/games";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/torrents" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}${xdgDownloads}/torrents";
                     mountOptions = [ "compress=zstd" ];
                   };
                 };
