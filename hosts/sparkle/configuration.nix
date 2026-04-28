@@ -206,6 +206,8 @@
 
       graphictablets.enable = true;
 
+      laptop.ignoreLid = true;
+
       # {{{ NVIDIA
       nvidia =
       {
