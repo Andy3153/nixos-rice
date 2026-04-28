@@ -535,7 +535,37 @@
   # }}}
 
     # {{{ Systemd
-    systemd.services.tufFanSpeed.enable = true;
+    systemd.services =
+    {
+      # {{{ Reverse SSH tunnel to `helix`
+      reverseSshTunnel =
+      let
+        mainUser = config.custom.users.mainUser;
+        HM       = config.home-manager.users.${mainUser};
+        homeDir  = HM.home.homeDirectory;
+      in
+      {
+        enable = true;
+        user   = mainUser;
+
+        sshKeyPath = "${homeDir}/.ssh/id_ed25519-helix";
+
+        remote =
+        {
+          address = "andy3153.am-furnici.ro";
+          port    = 8022;
+        };
+
+        host =
+        {
+          address = "localhost";
+          port    = 22;
+        };
+      };
+      # }}}
+
+      tufFanSpeed.enable = true;
+    };
     # }}}
 
     # {{{ Users
@@ -553,7 +583,7 @@
       };
       # }}}
 
-      libvirtd.enable  = true;
+      #libvirtd.enable  = true;
       podman.enable    = true;
     };
     # }}}
