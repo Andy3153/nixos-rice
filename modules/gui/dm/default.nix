@@ -9,6 +9,7 @@
   imports =
   [
     ./greetd.nix
+    ./ly.nix
     ./sddm.nix
   ];
 }
