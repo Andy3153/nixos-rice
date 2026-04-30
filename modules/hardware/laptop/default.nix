@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./batteryId.nix
     ./ignoreLid.nix
   ];
 }

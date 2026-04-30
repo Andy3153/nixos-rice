@@ -159,10 +159,8 @@
       };
       # }}}
 
-      #graphictablets.enable = true;
-      #openrgb.enable        = true;
-      #piper.enable          = true;
-      thunderbolt.enable    = true;
+      laptop.batteryId   = "BAT0";
+      thunderbolt.enable = true;
     };
     # }}}
 

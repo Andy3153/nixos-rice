@@ -206,7 +206,13 @@
 
       graphictablets.enable = true;
 
-      laptop.ignoreLid = true;
+      # {{{ Laptop
+      laptop =
+      {
+        batteryId = "BAT1";
+        ignoreLid = true;
+      };
+      # }}}
 
       # {{{ NVIDIA
       nvidia =

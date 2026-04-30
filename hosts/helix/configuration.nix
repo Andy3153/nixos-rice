@@ -26,7 +26,11 @@
     # }}}
 
     # {{{ Hardware
-    hardware.laptop.ignoreLid = true;
+    hardware.laptop =
+    {
+      batteryId = "BAT0";
+      ignoreLid = true;
+    };
     # }}}
 
     # {{{ Programs
