@@ -6,10 +6,10 @@
 { config, lib, ... }:
 
 let
-  cfg       = config.custom.gui.dm.ly;
-  batteryId = config.custom.hardware.laptop.batteryId;
-  dmSession = config.services.displayManager.defaultSession;
-  mainUser  = config.custom.users.mainUser;
+  cfg           = config.custom.gui.dm.ly;
+  batteryId     = config.custom.hardware.laptop.batteryId;
+  dmSession     = config.custom.gui.dm.defaultSession;
+  autologinUser = config.custom.gui.dm.autologin.user;
 in
 {
   options.custom.gui.dm.ly.enable = lib.mkEnableOption "enables Ly";
@@ -27,7 +27,7 @@ in
         auth_fails = 3;
 
         auto_login_session = dmSession;
-        auto_login_user    = mainUser;
+        auto_login_user    = autologinUser;
 
         battery_id = lib.mkIf (batteryId != null) batteryId;
 

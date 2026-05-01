@@ -6,9 +6,9 @@
 { config, lib, ... }:
 
 let
-  cfg       = config.custom.gui.dm.sddm;
-  mainUser  = config.custom.users.mainUser;
-  dmSession = config.services.displayManager.defaultSession;
+  cfg           = config.custom.gui.dm.ly;
+  dmSession     = config.custom.gui.dm.defaultSession;
+  autologinUser = config.custom.gui.dm.autologin.user;
 in
 {
   options.custom.gui.dm.sddm.enable = lib.mkEnableOption "enables SDDM";
@@ -25,7 +25,7 @@ in
       {
         Autologin =
         {
-          User    = mainUser;
+          User    = autologinUser;
           Session = "${dmSession}.desktop";
         };
       };
