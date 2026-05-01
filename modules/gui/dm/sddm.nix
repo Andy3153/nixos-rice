@@ -6,7 +6,7 @@
 { config, lib, ... }:
 
 let
-  cfg           = config.custom.gui.dm.ly;
+  cfg           = config.custom.gui.dm.sddm;
   dmSession     = config.custom.gui.dm.defaultSession;
   autologinUser = config.custom.gui.dm.autologin.user;
 in
