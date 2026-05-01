@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./defaultSession.nix
     ./greetd.nix
     ./ly.nix
     ./sddm.nix

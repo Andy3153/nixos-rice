@@ -14,19 +14,18 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.xdg.portal.enable  = true;
-    programs.hyprland.enable  = true;
+    custom =
+    {
+      gui.dm.defaultSession = "hyprland";
+      xdg.portal.enable = true;
+    };
+
+    programs.hyprland.enable = true;
 
     nix.settings =
     {
-      substituters        = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
-
-    services =
-    {
-      displayManager.defaultSession           = "hyprland";
-      greetd.settings.initial_session.command = lib.getExe pkgs.hyprland;
+      substituters        = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
 
     xdg.portal.extraPortals = with pkgs;
