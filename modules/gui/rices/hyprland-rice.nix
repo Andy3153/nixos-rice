@@ -29,8 +29,8 @@ in
     {
       gui =
       {
-        dm.sddm.enable     = true;
-        wm.hyprland.enable = true;
+        dm.plasma-login-manager.enable = true;
+        wm.hyprland.enable             = true;
 
         # {{{ Theming
         theme =

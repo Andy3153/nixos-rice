@@ -12,6 +12,7 @@
     ./defaultSession.nix
     ./greetd.nix
     ./ly.nix
+    ./plasma-login-manager.nix
     ./sddm.nix
   ];
 }
