@@ -8,6 +8,7 @@
 {
   imports =
   [
+    ./autologin.nix
     ./defaultSession.nix
     ./greetd.nix
     ./ly.nix

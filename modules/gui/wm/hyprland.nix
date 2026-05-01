@@ -16,7 +16,12 @@ in
   {
     custom =
     {
-      gui.dm.defaultSession = "hyprland";
+      gui.dm =
+      {
+        autologin.enable = true;
+        defaultSession   = "hyprland";
+      };
+
       xdg.portal.enable = true;
     };
 
