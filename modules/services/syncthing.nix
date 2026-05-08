@@ -3,7 +3,7 @@
 ## Syncthing config
 ##
 
-{ config, options, lib, pkgs, ... }:
+{ config, options, lib, ... }:
 
 let
   cfg = config.custom.services.syncthing;
@@ -12,15 +12,34 @@ let
   mainUserDesc  = config.users.users.${mainUser}.description;
   mainUserGroup = config.users.users.${mainUser}.group;
 
-  HM         = config.home-manager.users.${mainUser};
-  configHome = HM.xdg.configHome;
+  HM      = config.home-manager.users.${mainUser};
+  homeDir = HM.home.homeDirectory;
 in
 {
+  # {{{ Options
   options.custom.services.syncthing =
   {
-    enable   = lib.mkEnableOption "enables Syncthing";
+    enable = lib.mkEnableOption "enables Syncthing";
+
+    configDir = lib.mkOption
+    {
+      type        = options.services.syncthing.configDir.type;
+      default     = "${cfg.dataDir}/.config/syncthing";
+      example     = options.services.syncthing.configDir.example;
+      description = options.services.syncthing.configDir.description;
+    };
+
+    dataDir = lib.mkOption
+    {
+      type        = options.services.syncthing.dataDir.type;
+      default     = homeDir;
+      example     = options.services.syncthing.dataDir.example;
+      description = options.services.syncthing.dataDir.description;
+    };
+
     settings = options.services.syncthing.settings;
   };
+  # }}}
 
   config = lib.mkIf cfg.enable
   {
@@ -31,7 +50,8 @@ in
       overrideDevices  = true;
       overrideFolders  = true;
 
-      configDir = "${configHome}/syncthing";
+      configDir = cfg.configDir;
+      dataDir   = cfg.dataDir;
 
       group = mainUserGroup;
       user  = mainUser;
