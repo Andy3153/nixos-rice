@@ -59,6 +59,7 @@ in
       settings =
       {
         gui.user = mainUserDesc;
+        options.urAccepted = -1; # disable usage report
       } // cfg.settings;
     };
   };
