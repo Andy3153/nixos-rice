@@ -194,8 +194,14 @@
 
       # {{{ Syncthing
       syncthing =
+      let
+      configPath = config.custom.filesystems.vg.helix.lvs.data.subvolumes."/syncthing-conf".mountpoint;
+      dataPath   = config.custom.filesystems.vg.helix.lvs.data.subvolumes."/root".mountpoint;
+      in
       {
-        enable = true;
+        enable    = true;
+        configDir = configPath;
+        dataDir   = dataPath;
 
         # {{{ Settings
         settings =

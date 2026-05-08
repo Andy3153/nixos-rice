@@ -20,12 +20,14 @@ in
   options.custom.filesystems =
   {
     disk.main.partitions.main.subvolumes = lib.mkOption { internal = true; type = lib.types.anything; };
+    vg.helix.lvs.data.subvolumes         = lib.mkOption { internal = true; type = lib.types.anything; };
   };
 
   config =
   {
     # {{{ Filesystem abstraction aliases
     custom.filesystems.disk.main.partitions.main.subvolumes = lib.mkForce config.disko.devices.disk.main.content.partitions.main.content.subvolumes;
+    custom.filesystems.vg.helix.lvs.data.subvolumes         = lib.mkForce config.disko.devices.lvm_vg.helix.lvs.data.content.subvolumes;
     # }}}
 
     disko.devices =
@@ -218,6 +220,12 @@ in
                   "/snapshots" =
                   {
                     mountpoint   = "${dataRootMountpoint}/.snapshots";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+
+                  "/syncthing-conf" =
+                  {
+                    mountpoint   = "${dataRootMountpoint}/.syncthing-conf";
                     mountOptions = [ "compress=zstd" ];
                   };
 
