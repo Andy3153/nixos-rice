@@ -7,6 +7,13 @@
 
 { config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
 
+# {{{ Variables
+let
+  mainUser = config.custom.users.mainUser;
+  HM       = config.home-manager.users.${mainUser};
+  homeDir  = HM.home.homeDirectory;
+in
+# }}}
 {
   # {{{ BeamMP certificate problem
   security.pki.certificateFiles =
@@ -292,13 +299,6 @@
 
         # {{{ Settings to use with different hosts
         matchBlocks =
-        # {{{ Variables
-        let
-          mainUser = config.custom.users.mainUser;
-          HM       = config.home-manager.users.${mainUser};
-          homeDir  = HM.home.homeDirectory;
-        in
-        # }}}
         {
           # {{{ `fidget`
           "fidget" =
@@ -461,6 +461,38 @@
 
       # {{{ Syncthing
       syncthing =
+      # {{{ Variables
+      let
+        cfg = config.custom.services.syncthing;
+        devices = builtins.attrNames cfg.settings.devices;
+
+        _1min = 60;
+        _1hr  = _1min * 60;
+        _1d   = _1hr  * 24;
+
+        mkFolder = name: extraParams:
+        {
+          "${name}" =
+          {
+            inherit devices;
+
+            copyOwnershipFromParent = true;
+
+            versioning =
+            {
+              type = "staggered";
+              cleanupIntervalS = _1hr;
+              params =
+              {
+                cleanoutDays = 2;
+                keep = 5;
+                maxAge = _1d * 3;
+              };
+            };
+          } // extraParams;
+        };
+      in
+      # }}}
       {
         enable = true;
 
@@ -478,8 +510,7 @@
 
           # {{{ Folders
           folders =
-          {
-          };
+            mkFolder "/home/andy3153/docs" {};
           # }}}
         };
         # }}}
@@ -547,11 +578,6 @@
     {
       # {{{ Reverse SSH tunnel to `helix`
       reverseSshTunnel =
-      let
-        mainUser = config.custom.users.mainUser;
-        HM       = config.home-manager.users.${mainUser};
-        homeDir  = HM.home.homeDirectory;
-      in
       {
         enable = true;
         user   = mainUser;
