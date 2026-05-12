@@ -463,20 +463,23 @@ in
       syncthing =
       # {{{ Variables
       let
-        cfg = config.custom.services.syncthing;
+        cfg     = config.custom.services.syncthing;
         devices = builtins.attrNames cfg.settings.devices;
 
         _1min = 60;
         _1hr  = _1min * 60;
         _1d   = _1hr  * 24;
 
-        mkFolder = name: extraParams:
+        mkFolder = name: path: extraParams:
         {
           "${name}" =
           {
-            inherit devices;
+            inherit devices path;
 
             copyOwnershipFromParent = true;
+
+            id    = name;
+            label = name;
 
             versioning =
             {
@@ -510,7 +513,35 @@ in
 
           # {{{ Folders
           folders =
-            mkFolder "/home/andy3153/docs" {};
+            #mkFolder "docs" "~/docs"       {} //
+
+            mkFolder "downs" "~/downs"
+            {
+              ignorePatterns =
+              [
+                "!/torrents/#### torrent files ####"
+                "/torrents/*"
+                "**/*.crdownload"
+                "**/*.part"
+              ];
+            }; #} //
+
+            #mkFolder "etc" "~/etc"        {} //
+            #
+            #mkFolder "games" "~/games"
+            #{
+            #  ignorePatterns =
+            #  [
+            #  ];
+            #} //
+            #
+            #mkFolder "music"      "~/music"      {} //
+            #mkFolder "music_opus" "~/music_opus" {} //
+            #mkFolder "phone"      "~/phone"      {} //
+            #mkFolder "pics"       "~/pics"       {} //
+            #mkFolder "progs"      "~/progs"      {} //
+            #mkFolder "src"        "~/src"        {} //
+            #mkFolder "vids"       "~/vids"       {};
           # }}}
         };
         # }}}
