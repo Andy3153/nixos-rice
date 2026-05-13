@@ -62,20 +62,6 @@
     };
     # }}}
 
-    # {{{ programs.sqlite for Nix Flakes
-    flake-programs-sqlite_unstable =
-    {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
-    };
-
-    flake-programs-sqlite_stable =
-    {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs_stable";
-    };
-    # }}}
-
     # {{{ Nix Index Database
     nix-index-database_unstable =
     {
@@ -219,9 +205,6 @@
     lanzaboote_unstable,
     lanzaboote_stable,
 
-    flake-programs-sqlite_unstable,
-    flake-programs-sqlite_stable,
-
     nix-index-database_unstable,
     nix-index-database_stable,
 
@@ -282,7 +265,6 @@
 
           nixos-hardware.nixosModules.asus-fx506hm
           lanzaboote_unstable.nixosModules.lanzaboote
-          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
           nix-index-database_unstable.nixosModules.default
           detsys-nix_unstable.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
@@ -338,7 +320,6 @@
 
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
           lanzaboote_unstable.nixosModules.lanzaboote
-          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
           nix-index-database_unstable.nixosModules.default
           detsys-nix_unstable.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
@@ -396,7 +377,6 @@
           # }}}
 
           lanzaboote_stable.nixosModules.lanzaboote
-          flake-programs-sqlite_stable.nixosModules.programs-sqlite
           nix-index-database_stable.nixosModules.default
           detsys-nix_unstable.nixosModules.default
           home-manager_stable.nixosModules.home-manager
@@ -449,7 +429,6 @@
           # }}}
 
           "${nixpkgs_unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          flake-programs-sqlite_unstable.nixosModules.programs-sqlite
           nix-flatpak.nixosModules.nix-flatpak
           home-manager_unstable.nixosModules.home-manager
 

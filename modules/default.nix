@@ -165,15 +165,9 @@ in
   # {{{ Programs
   programs =
   {
-    command-not-found.enable        = true;
     nix-index-database.comma.enable = true;
-
-    nix-index =
-    {
-      enable                = true;
-      enableBashIntegration = false;
-      enableZshIntegration  = false;
-    };
+    nix-index.enable                = true;
+    zsh.interactiveShellInit        = ''source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh'';
   };
   # }}}
 }
