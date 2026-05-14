@@ -111,16 +111,18 @@ in
     # {{{ Neovim program
     programs.neovim =
     {
-      enable        = true;
-      defaultEditor = true;
+      enable = true;
 
-      viAlias       = true;
-      vimAlias      = true;
-      vimdiffAlias  = true;
+      defaultEditor   = true;
+      sideloadInitLua = true;
 
-      withNodeJs    = true;
-      withPython3   = true;
-      withRuby      = true;
+      viAlias      = true;
+      vimAlias     = true;
+      vimdiffAlias = true;
+
+      withNodeJs  = true;
+      withPython3 = true;
+      withRuby    = true;
     };
     # }}}
   };
