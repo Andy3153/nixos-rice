@@ -256,7 +256,7 @@ in
       # {{{ Insecure whitelist
       insecureWhitelist =
       [
-        "ventoy-1.1.10"
+        "ventoy-1.1.12"
       ];
       # }}}
     };
