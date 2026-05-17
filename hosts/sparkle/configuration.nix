@@ -648,7 +648,7 @@ in
       };
       # }}}
 
-      #libvirtd.enable  = true;
+      libvirtd.enable  = true;
       podman.enable    = true;
     };
     # }}}

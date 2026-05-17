@@ -20,21 +20,28 @@ in
       virtiofsd
     ];
 
-    virtualisation.libvirtd =
+    virtualisation =
     {
-      enable     = true;
-      onBoot     = "ignore";
-      onShutdown = "suspend";
-
-      qemu =
+      libvirtd =
       {
-        runAsRoot         = false;
-        swtpm.enable      = true;
-        vhostUserPackages = [ pkgs.virtiofsd ];
-      };
-    };
+        enable = true;
 
-    virtualisation.spiceUSBRedirection.enable = true;
+        dbus.enable = true;
+
+        onBoot     = "ignore";
+        onShutdown = "suspend";
+
+        qemu =
+        {
+          package           = pkgs.qemu_kvm;
+          runAsRoot         = false;
+          swtpm.enable      = true;
+          vhostUserPackages = [ pkgs.virtiofsd ];
+        };
+      };
+
+      spiceUSBRedirection.enable = true;
+    };
 
     users.users.${mainUser}.extraGroups = [ "libvirtd" ];
 
