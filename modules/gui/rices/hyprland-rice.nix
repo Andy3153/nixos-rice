@@ -227,8 +227,8 @@ in
 
       plugins = with pkgs.hyprlandPlugins;
       [
-        hypr-dynamic-cursors
-        hyprsplit
+        #hypr-dynamic-cursors
+        #hyprsplit
       ];
     };
     # }}}
