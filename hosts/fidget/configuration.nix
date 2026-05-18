@@ -466,13 +466,6 @@
     };
     # }}}
 
-    # {{{ XDG
-    xdg =
-    {
-      userDirs.enable = true;
-    };
-    # }}}
-
     system.stateVersion = "25.11";
   };
 }
