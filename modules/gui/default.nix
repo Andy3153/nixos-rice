@@ -36,9 +36,10 @@ in
 
       xdg =
       {
-        enable        = true;
-        portal.enable = true;
-        mime.enable   = true;
+        enable          = true;
+        mime.enable     = true;
+        portal.enable   = true;
+        userDirs.enable = true;
       };
     };
   };
