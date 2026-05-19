@@ -14,11 +14,9 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.extraPackages = with pkgs;
-    [
-      virt-manager
-      virtiofsd
-    ];
+    custom.extraPackages = [ pkgs.virtiofsd ];
+
+    programs.virt-manager.enable = true;
 
     virtualisation =
     {
@@ -34,7 +32,6 @@ in
         qemu =
         {
           package           = pkgs.qemu_kvm;
-          runAsRoot         = false;
           swtpm.enable      = true;
           vhostUserPackages = [ pkgs.virtiofsd ];
         };
