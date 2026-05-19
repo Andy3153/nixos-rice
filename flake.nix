@@ -270,7 +270,8 @@
           nix-flatpak.nixosModules.nix-flatpak
           home-manager_unstable.nixosModules.home-manager
           jovian_unstable.nixosModules.jovian
-          nixos-vfio_unstable.nixosModules.default
+          (import "${nixos-vfio_unstable}/modules/kvmfr" { std = nixos-vfio_unstable.inputs.nix-std.lib; })
+          (import "${nixos-vfio_unstable}/modules/vfio")
           disko_unstable.nixosModules.disko
           spicetify.nixosModules.spicetify
 
