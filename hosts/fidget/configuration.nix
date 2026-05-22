@@ -164,10 +164,6 @@
     };
     # }}}
 
-    # {{{ Networking
-    networking.stevenblack.enable = true;
-    # }}}
-
     # {{{ Nix
     nix =
     {
