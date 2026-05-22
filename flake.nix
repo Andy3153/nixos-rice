@@ -304,19 +304,14 @@
           # }}}
 
           # {{{ Dummy modules so I don't have to import inputs I don't need
-          (
-            { options, lib, ... }:
-            let
-              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
-            in
+          ({ options, lib, ... }:
+          {
+            options =
             {
-              options =
-              {
-                virtualisation.kvmfr       = dummyOpt;
-                virtualisation.vfio        = dummyOpt;
-              };
-            }
-          )
+              virtualisation.kvmfr = lib.mkOption { };
+              virtualisation.vfio  = lib.mkOption { };
+            };
+          })
           # }}}
 
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
@@ -357,24 +352,19 @@
           # }}}
 
           # {{{ Dummy modules so I don't have to import inputs I don't need
-          (
-            { options, lib, ... }:
-            let
-              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
-            in
+          ({ options, lib, ... }:
+          {
+            options =
             {
-              options =
-              {
-                jovian                     = dummyOpt;
-                programs.spicetify         = dummyOpt;
-                services.flatpak.overrides = dummyOpt;
-                services.flatpak.packages  = dummyOpt;
-                services.flatpak.update    = dummyOpt;
-                virtualisation.kvmfr       = dummyOpt;
-                virtualisation.vfio        = dummyOpt;
-              };
-            }
-          )
+              jovian                     = lib.mkOption { };
+              programs.spicetify         = lib.mkOption { };
+              services.flatpak.overrides = lib.mkOption { };
+              services.flatpak.packages  = lib.mkOption { };
+              services.flatpak.update    = lib.mkOption { };
+              virtualisation.kvmfr       = lib.mkOption { };
+              virtualisation.vfio        = lib.mkOption { };
+            };
+          })
           # }}}
 
           lanzaboote_stable.nixosModules.lanzaboote
