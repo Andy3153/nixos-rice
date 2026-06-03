@@ -241,6 +241,7 @@ in
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
+        "CiscoPacketTracer_900_Ubuntu_64bit.deb"
         "cisco-packet-tracer"
         "grayjay"
         "osu-lazer-bin"
