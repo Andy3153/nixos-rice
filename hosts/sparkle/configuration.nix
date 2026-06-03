@@ -154,7 +154,6 @@ in
       ventoy-full        # flash-usbs
       woeusb             # flash-usbs windows
       d-spy              # D-Bus
-      ciscoPacketTracer9 # Networking
       openbox            # for-xwayland-rootless-script
       jq                 # Other-CLI json
       hjson              # Other-CLI json
@@ -241,8 +240,6 @@ in
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
-        "CiscoPacketTracer_900_Ubuntu_64bit.deb"
-        "cisco-packet-tracer"
         "grayjay"
         "osu-lazer-bin"
         "ventoy"
