@@ -8,16 +8,16 @@
 {
   imports =
   [
+    ./controllers
+    ./laptop
+    ./nvidia
     ./bluetooth.nix
-    ./controllers.nix
     ./fingerprint.nix
     ./gpuDrivers.nix
     ./gpuPassthrough.nix
     ./graphics.nix
     ./graphictablets.nix
     ./i2c.nix
-    ./laptop
-    ./nvidia
     ./openrgb.nix
     ./piper.nix
     ./thunderbolt.nix
