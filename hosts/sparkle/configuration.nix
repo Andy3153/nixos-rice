@@ -311,80 +311,80 @@ in
       {
         enable = true;
 
-        # {{{ Settings to use with different hosts
-        matchBlocks =
+        # {{{ Settings
+        settings =
         {
           # {{{ `fidget`
           "fidget" =
           {
-            hostname       = "fidget";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-fidget"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-fidget -C "sparkle-fidget"
-            identitiesOnly = true;
+            HostName       = "fidget";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-fidget"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-fidget -C "sparkle-fidget"
+            IdentitiesOnly = true;
           };
           # }}}
 
           # {{{ `helix`
           "helix" =
           {
-            hostname       = "helix";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
-            identitiesOnly = true;
+            HostName       = "helix";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            IdentitiesOnly = true;
           };
 
           "andy3153.am-furnici.ro" =
           {
-            hostname       = "andy3153.am-furnici.ro";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
-            identitiesOnly = true;
+            HostName       = "andy3153.am-furnici.ro";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            IdentitiesOnly = true;
           };
 
           "andy3153.go.ro" =
           {
-            hostname       = "andy3153.go.ro";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
-            identitiesOnly = true;
+            HostName       = "andy3153.go.ro";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            IdentitiesOnly = true;
           };
 
           "andy3153.duckdns.org" =
           {
-            hostname       = "andy3153.duckdns.org";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
-            identitiesOnly = true;
+            HostName       = "andy3153.duckdns.org";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-helix"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-helix -C "sparkle-helix"
+            IdentitiesOnly = true;
           };
           # }}}
 
           # {{{ `petridish`
           "petridish" =
           {
-            hostname       = "petridish";
-            user           = mainUser;
-            identityFile   = "${homeDir}/.ssh/id_ed25519-petridish"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-petridish -C "sparkle-petridish"
-            identitiesOnly = true;
+            HostName       = "petridish";
+            User           = mainUser;
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-petridish"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-petridish -C "sparkle-petridish"
+            IdentitiesOnly = true;
           };
           # }}}
 
           # {{{ GitHub
           "github.com" =
           {
-            hostname       = "github.com";
-            user           = "git";
-            identityFile   = "${homeDir}/.ssh/id_ed25519-github"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-github -C "sparkle-github"
-            identitiesOnly = true;
+            HostName       = "github.com";
+            User           = "git";
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-github"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-github -C "sparkle-github"
+            IdentitiesOnly = true;
           };
           # }}}
 
           # {{{ GitLab
           "gitlab.com" =
           {
-            hostname       = "gitlab.com";
-            user           = "git";
-            identityFile   = "${homeDir}/.ssh/id_ed25519-gitlab"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-gitlab -C "sparkle-gitlab"
-            identitiesOnly = true;
+            HostName       = "gitlab.com";
+            User           = "git";
+            IdentityFile   = "${homeDir}/.ssh/id_ed25519-gitlab"; # ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519-gitlab -C "sparkle-gitlab"
+            IdentitiesOnly = true;
           };
           # }}}
         };

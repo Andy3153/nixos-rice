@@ -12,11 +12,8 @@ in
 {
   options.custom.programs.ssh =
   {
-    enable = lib.mkEnableOption "enables SSH";
-    matchBlocks = lib.mkOption
-    {
-      type = lib.types.anything;
-    };
+    enable   = lib.mkEnableOption "enables SSH";
+    settings = lib.mkOption { type = lib.types.anything; };
   };
 
   config = lib.mkIf cfg.enable
@@ -28,7 +25,7 @@ in
       {
         enable              = true;
         enableDefaultConfig = lib.mkForce false;
-        matchBlocks         = cfg.matchBlocks;
+        settings            = cfg.settings;
       };
     };
     # }}}
