@@ -37,7 +37,7 @@
     gui =
     {
       enable                     = true;
-      #gaming.enable              = true;
+      gaming.enable              = true;
       rices.hyprland-rice.enable = true;
     };
     # }}}
