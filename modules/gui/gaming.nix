@@ -3,13 +3,10 @@
 ## Gaming config
 ##
 
-{ config, lib, pkgs, my-pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  cfg     = config.custom.gui.gaming;
-  quantum = 64;
-  rate    = 48000;
-  qr      = "${toString quantum}/${toString rate}";
+  cfg = config.custom.gui.gaming;
 in
 {
   options.custom.gui.gaming =
@@ -26,65 +23,17 @@ in
       custom =
       {
         # {{{ Extra packages
-        extraPackages = lib.lists.flatten
+        extraPackages = with pkgs;
         [
-          # {{{ Default NixPkgs
-          (with pkgs;
-          let
-            bottles = pkgs.bottles.override { removeWarningPopup = true; };
-          in
-          [
-            mesa-demos # glxgears
-
-            wineWow64Packages.staging # wine
-            protonup-qt               # for-steam for-wine
-            depotdownloader           # for-steam
-
-            bottles # launchers for-wine
-            lutris  # launchers for-wine
-            heroic  # launchers games
-
-            prismlauncher       # games
-            xonotic             # games
-            osu-lazer-bin       # games
-            space-cadet-pinball # games
-
-            dolphin-emu # emulators games gc wii
-            mesen       # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
-
-            beammp-launcher # for-beamng
-          ])
-          # }}}
-
-          # {{{ My Nix packages
-          (with my-pkgs;
-          [
-          ])
-          # }}}
+          mesa-demos # glxgears
         ];
         # }}}
 
         hardware.controllers.xbox.enable = true;
 
-    # {{{ Nix
-    nix =
-    {
-      unfreeWhitelist =
-      [
-        "SpaceCadetPinball"
-      ];
-    };
-    # }}}
-
         # {{{ Programs
         programs =
         {
-          steam =
-          {
-            enable = true;
-            extraPackages = [ pkgs.nss ]; # for-beamng
-          };
-
           gamemode.enable = true;
 
           mangohud =
@@ -92,6 +41,8 @@ in
             enable              = true;
             enableCustomConfigs = true;
           };
+
+          steam.enable = true;
         };
         # }}}
       };
@@ -100,6 +51,11 @@ in
 
     # {{{ Gaming optimizations
     (lib.mkIf cfg.optimizations.enable # stolen from https://github.com/fufexan/nix-gaming
+    (let
+      quantum = 64;
+      rate    = 48000;
+      qr      = "${toString quantum}/${toString rate}";
+    in
     {
       # {{{ PipeWire low latency
       services.pipewire = {
@@ -186,7 +142,7 @@ in
         "vm.max_map_count" = 2147483642;
       };
       # }}}
-    })
+    }))
     # }}}
   ];
 }

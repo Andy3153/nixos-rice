@@ -3,7 +3,7 @@
 ## Steam config
 ##
 
-{ config, options, lib, ... }:
+{ config, options, lib, pkgs, ... }:
 
 let
   cfg     = config.custom.programs.steam;
@@ -24,6 +24,12 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    custom.extraPackages = with pkgs;
+    [
+      protonup-qt     # for-steam for-wine
+      depotdownloader # for-steam
+    ];
+
     programs.steam =
     {
       enable                       = true;

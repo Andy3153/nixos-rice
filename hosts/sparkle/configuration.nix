@@ -65,6 +65,9 @@ in
   [
     # {{{ Default NixPkgs
     (with pkgs;
+    let
+      bottles = pkgs.bottles.override { removeWarningPopup = true; };
+    in
     [
       # {{{ 3D
       blender # 3D
@@ -73,6 +76,21 @@ in
       # {{{ Browsers
       brave
       tor-browser # Tor
+      # }}}
+
+      # {{{ Gaming
+      lutris  # launchers for-wine
+      heroic  # launchers games
+
+      prismlauncher       # games
+      xonotic             # games
+      osu-lazer-bin       # games
+      space-cadet-pinball # games
+
+      dolphin-emu # emulators games gc wii
+      mesen       # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
+
+      beammp-launcher # for-beamng
       # }}}
 
       # {{{ Media
@@ -145,6 +163,11 @@ in
       qpwgraph    # Sound PipeWire Patchbay
       easyeffects # Sound PipeWire
       pulsemixer  # Sound sound-control
+      # }}}
+
+      # {{{ Wine
+      wineWow64Packages.staging # wine
+      bottles                   # launchers for-wine
       # }}}
 
       linux-wifi-hotspot # Internet hotspot
@@ -240,6 +263,7 @@ in
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
+        "SpaceCadetPinball"
         "grayjay"
         "osu-lazer-bin"
         "ventoy"
@@ -285,6 +309,7 @@ in
 
       obs.enable = true;
       spicetify.enable = true;
+      steam.extraPackages = [ pkgs.nss ]; # for-beamng
 
       # {{{ SSH
       ssh =
