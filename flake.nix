@@ -377,56 +377,6 @@
         ];
       };
       # }}}
-
-      # {{{ livecd | Live CD
-      livecd = nixpkgs_unstable.lib.nixosSystem
-      {
-        specialArgs = { inherit inputs; }; # access inputs in config
-        system      = "x86_64-linux";
-
-        modules =
-        [
-          { networking.hostName = "nixos-live"; } # Hostname
-
-          # {{{ Add flake inputs to configuration
-          (
-            { config, ... }:
-            {
-              _module.args =
-              {
-                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
-              };
-            }
-          )
-          # }}}
-
-          # {{{ Dummy modules so I don't have to import inputs I don't need
-          (
-            { options, lib, ... }:
-            let
-              dummyOpt = lib.mkOption { type = lib.types.anything; default = null; };
-            in
-            {
-              options =
-              {
-                boot.lanzaboote      = dummyOpt;
-                jovian               = dummyOpt;
-                virtualisation.kvmfr = dummyOpt;
-              };
-            }
-          )
-          # }}}
-
-          "${nixpkgs_unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          nix-flatpak.nixosModules.nix-flatpak
-          home-manager_unstable.nixosModules.home-manager
-
-          ./hosts/livecd
-        ];
-      };
-      # }}}
     };
     # }}}
 
