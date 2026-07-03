@@ -97,8 +97,6 @@ in
       cantata      # music-player for-mpd
       pear-desktop # music-player youtube-music
 
-      grayjay # youtube
-
       flac       # music
       opus-tools # music
       mousai     # music find-music
@@ -198,9 +196,6 @@ in
     # {{{ My Nix packages
     (with my-pkgs;
     [
-      # {{{ Media
-      syrics                              # music get-lyrics
-      # }}}
     ])
     # }}}
   ];

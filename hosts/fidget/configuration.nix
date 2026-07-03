@@ -73,7 +73,6 @@
       onlyoffice-desktopeditors # Office
       gimp3-with-plugins        # Office photo-editing
       inkscape                  # Office photo-editing
-      krita                     # Office photo-editing
 
       texliveFull                # LaTeX
       texpresso                  # for-latex
@@ -211,7 +210,6 @@
       # }}}
 
       obs.enable = true;
-      #spicetify.enable = true;
 
       # {{{ SSH
       ssh =
@@ -306,7 +304,6 @@
       };
       # }}}
 
-      #tilp2.enable     = true;
       vesktop.enable   = true;
 
       # {{{ Zsh
