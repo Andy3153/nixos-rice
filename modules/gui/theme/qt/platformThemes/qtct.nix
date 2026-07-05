@@ -5,6 +5,7 @@
 
 { config, lib, ... }:
 
+# {{{ Variables
 let
   cfg     = config.custom.gui.theme.qt.platformTheme.qtct;
   cfgQt   = config.custom.gui.theme.qt;
@@ -23,8 +24,7 @@ let
   fixedFontSize   = builtins.toString cfgFont.fixedFontSize;
 
   # {{{ QtCT config
-  # {{{ Qt6CT
-  qt6ctConf =
+  qtctConf =
   {
     # {{{ Appearance
     Appearance =
@@ -32,6 +32,7 @@ let
       color_scheme_path = if (cfg.theme.name != null) then "${configHome}/qt6ct/colors/${cfg.theme.name}.conf" else "";
       custom_palette    = if (cfg.theme.name != null) then true else "";
       icon_theme        = iconTheme;
+      standard_dialogs  = "xdgdesktopportal";
       style             = qtStyleName;
     };
     # }}}
@@ -39,8 +40,8 @@ let
     # {{{ Fonts
     Fonts =
     {
-      fixed   = "\"${fixedFont},${fixedFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"";
-      general = "\"${generalFont},${generalFontSize},-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular\"";
+      fixed   = "\"${fixedFont},${fixedFontSize}\"";
+      general = "\"${generalFont},${generalFontSize}\"";
     };
     # }}}
 
@@ -55,30 +56,10 @@ let
     # }}}
   };
   # }}}
-
-  # {{{ Qt5CT
-  ##
-  ## Same format as Qt6CT's except for minor changes, so we change those
-  ##
-
-  qt5ctFontReplace = lib.strings.replaceStrings
-    [ "-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular" ]
-    [ "-1,5,50,0,0,0,0,0" ];
-
-  qt5ctPathReplace = lib.strings.replaceStrings
-    [ "qt6ct" ]
-    [ "qt5ct" ];
-
-  qt5ctConf = lib.attrsets.updateManyAttrsByPath
-  [
-    (if (qt6ctConf.Appearance.color_scheme_path != null) then { path = [ "Appearance" "color_scheme_path" ]; update = qt5ctPathReplace; } else null)
-    { path = [ "Fonts" "fixed" ];   update = qt5ctFontReplace; }
-    { path = [ "Fonts" "general" ]; update = qt5ctFontReplace; }
-  ] qt6ctConf;
-  # }}}
-  # }}}
 in
+# }}}
 {
+  # {{{ Options
   options.custom.gui.theme.qt.platformTheme.qtct=
   {
     enable = lib.mkEnableOption "enables the QtCT Qt platform theme";
@@ -100,7 +81,9 @@ in
       };
     };
   };
+  # }}}
 
+  # {{{ Config
   config = lib.mkIf cfg.enable
   {
     custom.gui.theme.qt.enable = true; # internal
@@ -110,16 +93,15 @@ in
     # {{{ Home-Manager
     home-manager.users.${mainUser} =
     {
-      qt.platformTheme.name = "qtct";
-
-      xdg.configFile =
+      qt =
       {
-        # QtCT config
-        "qt5ct/qt5ct.conf".text = lib.generators.toINI { } qt5ctConf;
-        "qt6ct/qt6ct.conf".text = lib.generators.toINI { } qt6ctConf;
+        platformTheme.name = "qtct";
+
+        qt5ctSettings = qtctConf;
+        qt6ctSettings = qtctConf;
       };
 
-      # QtCT theme
+      # {{{ QtCT theme
       xdg.configFile."qt5ct/colors" = lib.mkIf (cfg.theme.package != null)
       {
         source    = "${cfg.theme.package}/share/qt5ct/colors";
@@ -131,7 +113,9 @@ in
         source    = "${cfg.theme.package}/share/qt6ct/colors";
         recursive = true;
       };
+      # }}}
     };
     # }}}
   };
+  # }}}
 }
