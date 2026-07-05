@@ -3,19 +3,16 @@
 ## Kvantum config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
+# {{{ Variables
 let
-  cfg   = config.custom.gui.theme.qt.style.kvantum;
-  cfgQt = config.custom.gui.theme.qt;
-
+  cfg      = config.custom.gui.theme.qt.style.kvantum;
   mainUser = config.custom.users.mainUser;
-
-  # {{{ Kvantum config
-  kvantumConf = { General.theme = cfg.theme.name; };
-  # }}}
 in
+# }}}
 {
+  # {{{ Options
   options.custom.gui.theme.qt.style.kvantum =
   {
     enable = lib.mkEnableOption "enables the Kvantum Qt style";
@@ -37,34 +34,26 @@ in
       };
     };
   };
+  # }}}
 
+  # {{{ Config
   config = lib.mkIf cfg.enable
   {
     custom.gui.theme.qt.enable     = true;      # internal
     custom.gui.theme.qt.style.name = "kvantum"; # internal
 
-    qt.style = "kvantum";
-
     # {{{ Home-Manager
     home-manager.users.${mainUser} =
     {
-      qt.style =
+      qt.kvantum =
       {
-        name    = "kvantum";
-        package = pkgs.kdePackages.qtstyleplugin-kvantum;
-      };
-
-      xdg.configFile =
-      {
-        # Kvantum config
-        "Kvantum/kvantum.kvconfig".text = lib.generators.toINI { } kvantumConf;
-
-        # Kvantum theme
-        "Kvantum".source    = lib.mkIf (cfg.theme.package != null) "${cfg.theme.package}/share/Kvantum";
-        "Kvantum".recursive = true;
+        enable                 = true;
+        settings.General.theme = cfg.theme.name;
+        themes                 = [ cfg.theme.package ];
       };
     };
     # }}}
   };
+  # }}}
 }
 

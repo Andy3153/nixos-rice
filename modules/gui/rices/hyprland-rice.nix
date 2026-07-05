@@ -6,6 +6,7 @@
 
 { config, lib, pkgs, my-pkgs, ... }:
 
+# {{{ Variables
 let
   cfg                   = config.custom.gui.rices.hyprland-rice;
 
@@ -20,9 +21,11 @@ let
   hyprlandRiceDataDir   = "${homeDir}/src/hyprland/hyprland-rice/dotlocal/share";
   otherScriptsDir       = "${homeDir}/src/sh/other-shell-scripts";
 in
+# }}}
 {
   options.custom.gui.rices.hyprland-rice.enable = lib.mkEnableOption "enables my Hyprland rice";
 
+  # {{{ Config
   config = lib.mkIf cfg.enable
   {
     custom =
@@ -309,4 +312,5 @@ in
   };
   # }}}
   };
+  # }}}
 }
