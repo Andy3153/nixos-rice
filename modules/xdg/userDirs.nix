@@ -39,6 +39,21 @@ in
       description = "The Download directory.";
     };
 
+    extraConfig = lib.mkOption
+    {
+      type        = lib.types.anything;
+
+      default = rec
+      {
+        ETC   = "${homeDir}/etc";
+        GAMES = "${homeDir}/games";
+        MISC  = ETC;
+        PHONE = "${homeDir}/phone";
+      };
+
+      description = "Other (non-standard) user directories.";
+    };
+
     music = lib.mkOption
     {
       type        = lib.types.anything;
@@ -53,10 +68,17 @@ in
       description = "The Pictures directory.";
     };
 
+    projects = lib.mkOption
+    {
+      type        = lib.types.anything;
+      default     = "${homeDir}/src";
+      description = "The Projects directory.";
+    };
+
     publicShare = lib.mkOption
     {
       type        = lib.types.anything;
-      default     = "${dataHome}/xdg_public_folder";
+      default     = "${homeDir}/vm_shared";
       description = "The Public share directory.";
     };
 
@@ -86,14 +108,16 @@ in
         createDirectories   = true;
         setSessionVariables = true;
 
-        desktop           = cfg.desktop;
-        documents         = cfg.documents;
-        download          = cfg.download;
-        music             = cfg.music;
-        pictures          = cfg.pictures;
-        publicShare       = cfg.publicShare;
-        templates         = cfg.templates;
-        videos            = cfg.videos;
+        desktop     = cfg.desktop;
+        documents   = cfg.documents;
+        download    = cfg.download;
+        extraConfig = cfg.extraConfig;
+        music       = cfg.music;
+        pictures    = cfg.pictures;
+        projects    = cfg.projects;
+        publicShare = cfg.publicShare;
+        templates   = cfg.templates;
+        videos      = cfg.videos;
       };
     };
     # }}}
