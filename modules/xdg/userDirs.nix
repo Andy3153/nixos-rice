@@ -32,11 +32,11 @@ in
       description = "The Documents directory.";
     };
 
-    download = lib.mkOption
+    downloads = lib.mkOption
     {
       type        = lib.types.anything;
       default     = "${homeDir}/downs";
-      description = "The Download directory.";
+      description = "The Downloads directory.";
     };
 
     extraConfig = lib.mkOption
@@ -100,7 +100,7 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
       xdg.userDirs =
       {
@@ -110,7 +110,7 @@ in
 
         desktop     = cfg.desktop;
         documents   = cfg.documents;
-        download    = cfg.download;
+        download    = cfg.downloads;
         extraConfig = cfg.extraConfig;
         music       = cfg.music;
         pictures    = cfg.pictures;

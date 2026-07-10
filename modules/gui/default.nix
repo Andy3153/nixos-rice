@@ -16,6 +16,7 @@ in
     ./rices
     ./theme
     ./wm
+    ./fileManagerBookmarks.nix
     ./gaming.nix
   ];
 
@@ -28,7 +29,13 @@ in
     custom =
     {
       boot.plymouth.enable            = true;
-      gui.gaming.optimizations.enable = lib.mkDefault cfg.gaming.enable;
+
+      gui =
+      {
+        fileManagerBookmarks.enable = true;
+        gaming.optimizations.enable = lib.mkDefault cfg.gaming.enable;
+      };
+
       hardware.graphics.enable        = true;
       programs.dconf.enable           = true;
       services.udisks2.enable         = true;
