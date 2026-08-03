@@ -70,7 +70,6 @@
 
       # {{{ Office
       libreoffice-qt6           # Office
-      onlyoffice-desktopeditors # Office
       gimp3-with-plugins        # Office photo-editing
       inkscape                  # Office photo-editing
 
@@ -83,9 +82,6 @@
       pdftk         # pdf-tools
       pdfarranger   # pdf-tools
       poppler-utils # pdf-tools
-
-      pomodoro-gtk # timer pomodoro-timer
-      timewarrior  # timer time-tracker
       # }}}
 
       # {{{ Partitioning/Filesystems
@@ -117,7 +113,6 @@
       # }}}
 
       linux-wifi-hotspot # Internet hotspot
-      okteta             # KDE-Apps hex-editor
       qbittorrent        # torrents
       wimlib             # .wim
       woeusb             # flash-usbs windows

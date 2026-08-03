@@ -79,16 +79,14 @@ in
       # }}}
 
       # {{{ Gaming
-      lutris  # launchers for-wine
-      heroic  # launchers games
+      lutris # launchers for-wine
+      heroic # launchers games
 
       prismlauncher       # games
-      xonotic             # games
       osu-lazer-bin       # games
       space-cadet-pinball # games
 
       dolphin-emu # emulators games gc wii
-      mesen       # emulators games nes snes gb gbc gba pcengine gamegear wonderswan
 
       beammp-launcher # for-beamng
       # }}}
@@ -115,8 +113,6 @@ in
 
       # {{{ Office
       libreoffice-qt6           # Office
-      onlyoffice-desktopeditors # Office
-      wpsoffice                 # Office
       gimp3-with-plugins        # Office photo-editing
       inkscape                  # Office photo-editing
       krita                     # Office photo-editing
@@ -130,9 +126,6 @@ in
       pdftk         # pdf-tools
       pdfarranger   # pdf-tools
       poppler-utils # pdf-tools
-
-      pomodoro-gtk # timer pomodoro-timer
-      timewarrior  # timer time-tracker
       # }}}
 
       # {{{ Partitioning/Filesystems
@@ -169,7 +162,6 @@ in
       # }}}
 
       linux-wifi-hotspot # Internet hotspot
-      okteta             # KDE-Apps hex-editor
       qbittorrent        # torrents
       wimlib             # .wim
       ventoy-full        # flash-usbs
