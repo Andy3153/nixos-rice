@@ -46,6 +46,7 @@ in
     {
       home.pointerCursor =
       {
+        enable            = true;
         gtk.enable        = true;
         hyprcursor.enable = config.custom.gui.wm.hyprland.enable;
 
