@@ -152,6 +152,7 @@ in
           hyprsysteminfo       # hyprland-rice system-info
           kitty                # hyprland-rice terminal
           libcanberra-gtk3     # hyprland-rice play-system-sounds
+          lua                  # hyprland-rice lua
           lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
           networkmanager_dmenu # hyprland-rice network-control
           rofi                 # hyprland-rice appmenu
@@ -219,14 +220,15 @@ in
     # {{{ Hyprland
     wayland.windowManager.hyprland =
     {
-      enable      = true;
+      enable = true;
+      configType = "lua";
 
       ##
       ## I do this so that I can have the plugins correctly generated in the
-      ## config by Home-Manager, while still maintaining my own hyprland.conf,
+      ## config by Home-Manager, while still maintaining my own hyprland.lua,
       ## because I don't want to write my config files using Home-Manager.
       ##
-      extraConfig = "source = ${configHome}/hypr/actual-hyprland.conf";
+      extraConfig = ''require("actual-hyprland")'';
 
       plugins = with pkgs.hyprlandPlugins;
       [
@@ -266,13 +268,14 @@ in
       "flameshot".source  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/flameshot";
       "htop".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/htop";
 
-      "hypr/colorschemes".source         = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
-      "hypr/hypridle.conf".source        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
-      "hypr/actual-hyprland.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.conf";
-      "hypr/hyprlock.conf".source        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
-      "hypr/hyprpaper.conf".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
-      "hypr/hyprtoolkit.conf".source     = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprtoolkit.conf";
-      "hypr/xdph.conf".source            = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
+      "hypr/colorschemes".source        = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/colorschemes";
+      "hypr/lua".source                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/lua";
+      "hypr/hypridle.conf".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hypridle.conf";
+      "hypr/actual-hyprland.lua".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprland.lua";
+      "hypr/hyprlock.conf".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprlock.conf";
+      "hypr/hyprpaper.conf".source      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprpaper.conf";
+      "hypr/hyprtoolkit.conf".source    = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/hyprtoolkit.conf";
+      "hypr/xdph.conf".source           = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/hypr/xdph.conf";
 
       "kitty".source                = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/kitty";
       "mpv".source                  = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/mpv";
