@@ -297,9 +297,17 @@ in
     {
       "sounds".source             = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/sounds";
       "wallpapers".source         = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpapers";
+      "user-icons".source         = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/user-icons";
 
       "wallpaper.png".source      = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpaper.png";      # these basically set your wallpaper
       "wallpaper-lock.png".source = mkOutOfStoreSymlink "${hyprlandRiceDataDir}/wallpaper-lock.png";
+    };
+    # }}}
+
+    # {{{ Home files
+    home.file =
+    {
+      ".face.icon".source = mkOutOfStoreSymlink "${dataHome}/user-icons/${mainUser}.png";
     };
     # }}}
 
