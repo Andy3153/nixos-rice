@@ -220,8 +220,6 @@ in
       ];
       # }}}
 
-      graphictablets.enable = true;
-
       # {{{ Laptop
       laptop =
       {
