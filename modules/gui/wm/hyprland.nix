@@ -3,11 +3,10 @@
 ## Hyprland config
 ##
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
-  cfg      = config.custom.gui.wm.hyprland;
-  mainUser = config.custom.users.mainUser;
+  cfg = config.custom.gui.wm.hyprland;
 in
 {
   options.custom.gui.wm.hyprland.enable = lib.mkEnableOption "enables Hyprland";
@@ -26,35 +25,5 @@ in
     };
 
     programs.hyprland.enable = true;
-
-    nix.settings =
-    {
-      substituters        = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-    };
-
-    xdg.portal.extraPortals = with pkgs;
-    [
-      xdg-desktop-portal-hyprland
-      kdePackages.xdg-desktop-portal-kde
-      xdg-desktop-portal-gtk
-    ];
-
-    # {{{ Home-Manager
-    home-manager.users.${mainUser} =
-    {
-      xdg.portal =
-      {
-        extraPortals = config.xdg.portal.extraPortals;
-
-        config.common.default =
-        [
-          "hyprland"
-          "kde"
-          "gtk"
-        ];
-      };
-    };
-    # }}}
   };
 }

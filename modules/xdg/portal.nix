@@ -6,33 +6,26 @@
 { config, lib, ... }:
 
 let
-  cfg = config.custom.xdg.portal;
+  cfg      = config.custom.xdg.portal;
+  mainUser = config.custom.users.mainUser;
+
+  portalConfig =
+  {
+    enable           = true;
+    xdgOpenUsePortal = true;
+  };
 in
 {
   options.custom.xdg.portal.enable = lib.mkEnableOption "enables XDG portals";
 
   config = lib.mkIf cfg.enable
   {
-    xdg.portal =
-    {
-      enable = true;
-      config =
-      {
-        common =
-        {
-          default = "*";
-        };
-      };
-    };
+    xdg.portal = portalConfig;
 
     # {{{ Home-Manager
-    home-manager.users.${config.custom.users.mainUser} =
+    home-manager.users.${mainUser} =
     {
-      xdg.portal =
-      {
-        enable = true;
-        xdgOpenUsePortal = true;
-      };
+      xdg.portal = portalConfig;
     };
     # }}}
   };

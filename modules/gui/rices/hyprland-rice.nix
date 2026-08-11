@@ -20,6 +20,31 @@ let
   hyprlandRiceConfigDir = "${homeDir}/src/hyprland/hyprland-rice/dotconfig";
   hyprlandRiceDataDir   = "${homeDir}/src/hyprland/hyprland-rice/dotlocal/share";
   otherScriptsDir       = "${homeDir}/src/sh/other-shell-scripts";
+
+  # {{{ XDG portal configuration
+  portalConfig = rec
+  {
+    config = rec
+    {
+      common =
+      {
+        default = [ "hyprland" "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+      };
+
+      hyprland = common;
+      Hyprland = common;
+    };
+
+    configPackages = with pkgs;
+    [
+      kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-gtk
+    ];
+
+    extraPortals = configPackages;
+  };
+  # }}}
 in
 # }}}
 {
@@ -214,6 +239,8 @@ in
       # }}}
     };
 
+    xdg.portal = portalConfig;
+
   # {{{ Home-Manager
   home-manager.users.${mainUser} =
   {
@@ -283,12 +310,7 @@ in
       "rofi".source                 = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/rofi";
       "waybar".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/waybar";
       "wleave".source               = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/wleave";
-
-      "xdg-desktop-portal/hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
-      "xdg-desktop-portal/Hyprland-portals.conf".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
-      "xdg-desktop-portal/portals.conf".source          = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/xdg-desktop-portal/hyprland-portals.conf";
-
-      "zathura".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
+      "zathura".source              = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/zathura";
     };
     # }}}
 
@@ -307,19 +329,15 @@ in
     # {{{ Home files
     home.file =
     {
-      ".face.icon".source = mkOutOfStoreSymlink "${dataHome}/user-icons/${mainUser}.png";
-    };
-    # }}}
-
-    # {{{ Scripts
-    home.file =
-    {
+      ".face.icon".source                             = mkOutOfStoreSymlink "${dataHome}/user-icons/${mainUser}.png";
       "${dataHome}/../bin/checkFan.sh".source         = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
       "${dataHome}/../bin/launch-waybar".source       = mkOutOfStoreSymlink "${otherScriptsDir}/launch-waybar";
       "${dataHome}/../bin/suspend_compositing".source = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
       "${dataHome}/../bin/dunst-dnd-toggle".source    = mkOutOfStoreSymlink "${otherScriptsDir}/dunst-dnd-toggle";
     };
     # }}}
+
+    xdg.portal = portalConfig;
   };
   # }}}
   };
