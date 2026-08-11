@@ -382,7 +382,6 @@ in
       };
       # }}}
 
-      tilp2.enable     = true;
       vesktop.enable   = true;
 
       # {{{ Zsh

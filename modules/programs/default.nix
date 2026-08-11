@@ -30,7 +30,6 @@
     ./spicetify.nix
     ./ssh.nix
     ./steam.nix
-    ./tilp2.nix
     ./vesktop.nix
     ./yazi.nix
     ./zsh.nix

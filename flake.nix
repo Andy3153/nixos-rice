@@ -18,9 +18,6 @@
     # NixPkgs 26.05
     nixpkgs_stable.url   = "github:nixos/nixpkgs/nixos-26.05";
 
-    # NixPkgs where TiLP still existed
-    nixpkgs_tilp.url     = "github:nixos/nixpkgs/0be46d0515c69cddaea4c4e01b62e2a318c379b4";
-
     # NixPkgs (my fork for when I'm working on something)
     #nixpkgs_andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
     #nixpkgs_andy3153.url = "git+file:////home/andy3153/src/nix/nixpkgs/?ref=hunspell-ro_RO";
@@ -194,7 +191,6 @@
 
     nixpkgs_unstable,
     nixpkgs_stable,
-    nixpkgs_tilp,
     #nixpkgs_andy3153,
 
     my-nixpkgs_unstable,
@@ -256,7 +252,6 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                pkgs-tilp     = import nixpkgs_tilp     { config = config.nixpkgs.config; };
                 my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
               };
             }
@@ -296,7 +291,6 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                pkgs-tilp     = import nixpkgs_tilp     { config = config.nixpkgs.config; };
                 my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
               };
             }
