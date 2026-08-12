@@ -18,9 +18,20 @@ in
     services.pipewire =
     {
       enable            = true;
-      alsa.enable       = true;
-      alsa.support32Bit = true;
+
+      alsa =
+      {
+        enable       = true;
+        support32Bit = true;
+      };
+
       pulse.enable      = true;
+
+      wireplumber.extraConfig =
+      {
+        "10-default-sink-volume"   = { "wireplumber.settings" = { "device.routes.default-sink-volume"   = .5; }; };
+        "10-default-source-volume" = { "wireplumber.settings" = { "device.routes.default-source-volume" = .25; }; };
+      };
     };
   };
 }
