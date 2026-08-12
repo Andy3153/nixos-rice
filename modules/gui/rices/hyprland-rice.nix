@@ -237,6 +237,16 @@ in
         "vista-fonts"
       ];
       # }}}
+
+      # {{{ Systemd
+      systemd.user.services =
+      {
+        audioInputMute.enable              = true;
+        audioInputSetDefaultVolume.enable  = true;
+        audioOutputSetDefaultVolume.enable = true;
+        audioOutputUnmute.enable           = true;
+      };
+      # }}}
     };
 
     xdg.portal = portalConfig;
