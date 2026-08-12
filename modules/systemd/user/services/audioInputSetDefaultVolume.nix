@@ -33,6 +33,8 @@ in
         ConditionPathExists = "!%t/audioInputSetDefaultVolume.lock";
       };
 
+      Install.WantedBy = [ "default.target" ];
+
       Service =
       {
         Type          = "oneshot";
@@ -44,8 +46,6 @@ in
         Restart    = "on-failure";
         RestartSec = "0.5s";
       };
-
-      Install.WantedBy = [ "default.target" ];
     };
   };
   # }}}

@@ -3,17 +3,18 @@
 ## Reverse SSH tunnel systemd service config
 ##
 
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.systemd.services.reverseSshTunnel;
-  opt = options.custom.systemd.services.reverseSshTunnel;
+
+  desc = "Start reverse SSH tunnel";
 in
 {
   # {{{ Options
   options.custom.systemd.services.reverseSshTunnel =
   {
-    enable = lib.mkEnableOption "systemd service that configures a reverse SSH tunnel";
+    enable = lib.mkEnableOption "systemd service to ${desc}";
 
     # {{{ Remote
     remote =
@@ -95,8 +96,7 @@ in
   {
     systemd.services.reverseSshTunnel =
     {
-      enable      = true;
-      description = opt.enable.description;
+      description = "${desc} (${builtins.toString cfg.remote.port}:${cfg.host.address}:${builtins.toString cfg.host.port})";
       after       = [ "network-online.target" ];
       requires    = [ "network-online.target" ];
       wantedBy    = [ "multi-user.target" ];

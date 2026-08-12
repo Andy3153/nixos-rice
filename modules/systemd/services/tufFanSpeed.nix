@@ -3,28 +3,37 @@
 ## TUF fan speed systemd service config
 ##
 
-{ config, options, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.systemd.services.tufFanSpeed;
-  opt = options.custom.systemd.services.tufFanSpeed;
+
+  desc = "Change an ASUS TUF's fan speed to 'Performance' at boot";
 in
 {
-  options.custom.systemd.services.tufFanSpeed.enable = lib.mkEnableOption "systemd service that changes an ASUS TUF's fan speed to 'Performance' at boot";
+  options.custom.systemd.services.tufFanSpeed.enable = lib.mkEnableOption "systemd service to ${desc}";
 
   config = lib.mkIf cfg.enable
   {
     systemd.services.tufFanSpeed =
     {
-      enable      = true;
-      description = opt.enable.description;
+      description = desc;
       wantedBy    = [ "multi-user.target" ];
+
+      startLimitBurst = 10;
+
+      unitConfig.ConditionPathExists = "!%t/tufFanSpeed.lock";
 
       serviceConfig =
       {
-        Type    = "oneshot";
-        Restart = "on-failure";
-        ExecStart = ''${lib.getExe pkgs.bash} -c "echo 1 > /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy"'';
+        Type          = "oneshot";
+        ExecStart     = ''${lib.getExe pkgs.bash} -c "echo 1 > /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy"'';
+        ExecStartPost = ''${lib.getExe' pkgs.coreutils "touch"} %t/tufFanSpeed.lock'';
+
+        RemainAfterExit = true;
+
+        Restart    = "on-failure";
+        RestartSec = "0.5s";
       };
     };
   };
