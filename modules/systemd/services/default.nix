@@ -10,6 +10,5 @@
   [
     ./reverseSshTunnel.nix
     ./tufFanSpeed.nix
-    ./turnOnBluetooth.nix
   ];
 }
