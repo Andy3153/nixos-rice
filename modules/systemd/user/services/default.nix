@@ -12,5 +12,6 @@
     ./audioInputSetDefaultVolume.nix
     ./audioOutputSetDefaultVolume.nix
     ./audioOutputUnmute.nix
+    ./startupSound.nix
   ];
 }

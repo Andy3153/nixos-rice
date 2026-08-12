@@ -245,6 +245,7 @@ in
         audioInputSetDefaultVolume.enable  = true;
         audioOutputSetDefaultVolume.enable = true;
         audioOutputUnmute.enable           = true;
+        startupSound.enable                = true;
       };
       # }}}
     };
