@@ -232,7 +232,6 @@ in
 
       openrgb.enable     = true;
       piper.enable       = true;
-      systemKeys.lid     = "ignore";
       thunderbolt.enable = true;
     };
     # }}}

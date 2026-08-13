@@ -55,6 +55,72 @@ in
   {
     custom =
     {
+      # {{{ Extra packages
+      extraPackages =
+      let
+        rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi} -dmenu "$@"'');
+        flameshot = (pkgs.flameshot.override { enableWlrSupport = true; });
+      in
+      lib.lists.flatten
+      [
+        # {{{ Default NixPkgs
+        (with pkgs;
+        [
+          blueman              # hyprland-rice bluetooth-control
+          cava                 # hyprland-rice visualizer
+          cliphist             # hyprland-rice clipboard-manager
+          dunst                # hyprland-rice notification-daemon
+          flameshot            # hyprland-rice screenshot
+          hyprlock             # hyprland-rice lock-screen
+          hyprpicker           # hyprland-rice color-picker
+          hyprshutdown         # hyprland-rice shutdown
+          hyprsysteminfo       # hyprland-rice system-info
+          kitty                # hyprland-rice terminal
+          libcanberra-gtk3     # hyprland-rice play-system-sounds
+          lua                  # hyprland-rice lua
+          lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
+          networkmanager_dmenu # hyprland-rice network-control
+          rofi                 # hyprland-rice appmenu
+          rofi-dmenu-shim      # hyprland-rice appmenu dmenu-compat
+          wev                  # hyprland-rice event-viewer
+          wl-clipboard         # hyprland-rice for-zsh for-nvim clipboard
+          wleave               # hyprland-rice logout-menu
+          wlr-layout-ui        # hyprland-rice screen-layout
+          zathura              # hyprland-rice pdf-viewer
+        ])
+
+        # {{{ KDE packages
+        (with pkgs.kdePackages;
+        [
+          konsole                  # for-dolphin
+          kio                      # for-dolphin
+          kio-extras               # for-dolphin
+          kimageformats            # for-dolphin
+          kdegraphics-thumbnailers # for-dolphin
+
+          kcalc                    # hyprland-rice KDE-Apps calculator
+          ark                      # hyprland-rice KDE-Apps archive-manager
+          gwenview                 # hyprland-rice KDE-Apps image-viewer
+          okular                   # hyprland-rice KDE-Apps pdf-viewer
+          kcharselect              # hyprland-rice KDE-Apps character-select
+          filelight                # hyprland-rice KDE-Apps disk-usage-analyzer
+          kruler                   # hyprland-rice KDE-Apps on-screen-ruler
+          merkuro                  # hyprland-rice KDE-Apps calendar contacts
+        ])
+        # }}}
+        # }}}
+
+        # {{{ My Nix packages
+        (with my-pkgs;
+        [
+          weather4bar # hyprland-rice my-scripts for-waybar
+          batnotifsd  # hyprland-rice my-scripts
+        ])
+        # }}}
+      ];
+      # }}}
+
+      # {{{ GUI
       gui =
       {
         dm.plasma-login-manager.enable = true;
@@ -154,69 +220,14 @@ in
         };
         # }}}
       };
+      # }}}
 
-      # {{{ Extra packages
-      extraPackages =
-      let
-        rofi-dmenu-shim = (pkgs.writeShellScriptBin "dmenu" ''exec ${lib.getExe pkgs.rofi} -dmenu "$@"'');
-        flameshot = (pkgs.flameshot.override { enableWlrSupport = true; });
-      in
-      lib.lists.flatten
+      # {{{ Unfree package whitelist
+      nix.unfreeWhitelist =
       [
-        # {{{ Default NixPkgs
-        (with pkgs;
-        [
-          blueman              # hyprland-rice bluetooth-control
-          cava                 # hyprland-rice visualizer
-          cliphist             # hyprland-rice clipboard-manager
-          dunst                # hyprland-rice notification-daemon
-          flameshot            # hyprland-rice screenshot
-          hyprlock             # hyprland-rice lock-screen
-          hyprpicker           # hyprland-rice color-picker
-          hyprshutdown         # hyprland-rice shutdown
-          hyprsysteminfo       # hyprland-rice system-info
-          kitty                # hyprland-rice terminal
-          libcanberra-gtk3     # hyprland-rice play-system-sounds
-          lua                  # hyprland-rice lua
-          lxqt.pavucontrol-qt  # hyprland-rice Sound sound-control
-          networkmanager_dmenu # hyprland-rice network-control
-          rofi                 # hyprland-rice appmenu
-          rofi-dmenu-shim      # hyprland-rice appmenu dmenu-compat
-          wev                  # hyprland-rice event-viewer
-          wl-clipboard         # hyprland-rice for-zsh for-nvim clipboard
-          wleave               # hyprland-rice logout-menu
-          wlr-layout-ui        # hyprland-rice screen-layout
-          zathura              # hyprland-rice pdf-viewer
-        ])
-
-        # {{{ KDE packages
-        (with pkgs.kdePackages;
-        [
-          konsole                  # for-dolphin
-          kio                      # for-dolphin
-          kio-extras               # for-dolphin
-          kimageformats            # for-dolphin
-          kdegraphics-thumbnailers # for-dolphin
-
-          kcalc                    # hyprland-rice KDE-Apps calculator
-          ark                      # hyprland-rice KDE-Apps archive-manager
-          gwenview                 # hyprland-rice KDE-Apps image-viewer
-          okular                   # hyprland-rice KDE-Apps pdf-viewer
-          kcharselect              # hyprland-rice KDE-Apps character-select
-          filelight                # hyprland-rice KDE-Apps disk-usage-analyzer
-          kruler                   # hyprland-rice KDE-Apps on-screen-ruler
-          merkuro                  # hyprland-rice KDE-Apps calendar contacts
-        ])
-        # }}}
-        # }}}
-
-        # {{{ My Nix packages
-        (with my-pkgs;
-        [
-          weather4bar # hyprland-rice my-scripts for-waybar
-          batnotifsd  # hyprland-rice my-scripts
-        ])
-        # }}}
+        "apple_cursor"
+        "corefonts"
+        "vista-fonts"
       ];
       # }}}
 
@@ -227,15 +238,6 @@ in
         kdeconnect.enable = true; # hyprland-rice KDE-Apps
         mpv.enable        = true; # hyprland-rice video-player
       };
-      # }}}
-
-      # {{{ Unfree package whitelist
-      nix.unfreeWhitelist =
-      [
-        "apple_cursor"
-        "corefonts"
-        "vista-fonts"
-      ];
       # }}}
 
       # {{{ Systemd
