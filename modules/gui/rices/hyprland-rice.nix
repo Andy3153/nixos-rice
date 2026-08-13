@@ -344,9 +344,7 @@ in
     {
       ".face.icon".source                             = mkOutOfStoreSymlink "${dataHome}/user-icons/${mainUser}.png";
       "${dataHome}/../bin/checkFan.sh".source         = mkOutOfStoreSymlink "${otherScriptsDir}/checkFan.sh";
-      "${dataHome}/../bin/launch-waybar".source       = mkOutOfStoreSymlink "${otherScriptsDir}/launch-waybar";
       "${dataHome}/../bin/suspend_compositing".source = mkOutOfStoreSymlink "${otherScriptsDir}/suspend_compositing";
-      "${dataHome}/../bin/dunst-dnd-toggle".source    = mkOutOfStoreSymlink "${otherScriptsDir}/dunst-dnd-toggle";
     };
     # }}}
 
