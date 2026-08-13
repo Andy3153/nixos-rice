@@ -26,10 +26,16 @@
     # }}}
 
     # {{{ Hardware
-    hardware.laptop =
+    hardware =
     {
-      batteryId = "BAT0";
-      ignoreLid = true;
+      laptop.batteryId = "BAT0";
+
+      systemKeys =
+      {
+        lid            = "ignore";
+        power          = "ignore";
+        powerLongPress = "ignore";
+      };
     };
     # }}}
 

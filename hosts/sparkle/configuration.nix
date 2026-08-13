@@ -220,13 +220,7 @@ in
       ];
       # }}}
 
-      # {{{ Laptop
-      laptop =
-      {
-        batteryId = "BAT1";
-        ignoreLid = true;
-      };
-      # }}}
+      laptop.batteryId = "BAT1";
 
       # {{{ NVIDIA
       nvidia =
@@ -238,6 +232,7 @@ in
 
       openrgb.enable     = true;
       piper.enable       = true;
+      systemKeys.lid     = "ignore";
       thunderbolt.enable = true;
     };
     # }}}
