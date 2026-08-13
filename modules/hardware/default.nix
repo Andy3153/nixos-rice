@@ -20,6 +20,7 @@
     ./i2c.nix
     ./openrgb.nix
     ./piper.nix
+    ./sleep.nix
     ./systemKeys.nix
     ./thunderbolt.nix
   ]

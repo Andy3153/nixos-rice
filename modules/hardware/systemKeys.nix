@@ -25,9 +25,9 @@ in
     lid = lib.mkOption
     {
       type        = powerKeyType;
-      default     = "suspend";
+      default     = "suspend-then-hibernate";
       example     = "ignore";
-      description = "laptop lid behavior";
+      description = "how the lid switch should be handled";
     };
 
     power = lib.mkOption
@@ -35,15 +35,15 @@ in
       type        = powerKeyType;
       default     = "poweroff";
       example     = "ignore";
-      description = "power key behavior";
+      description = "how the power key should be handled";
     };
 
     powerLongPress = lib.mkOption
     {
       type        = powerKeyType;
       default     = "ignore";
-      example     = "sleep";
-      description = "power key behavior when held pressed";
+      example     = "suspend-then-hibernate";
+      description = "how the power key should be handled when held pressed";
     };
   };
 
