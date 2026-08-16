@@ -132,10 +132,7 @@ in
           # {{{ Font
           font =
           {
-            generalFontSize = 11;
-            fixedFontSize   = 12;
-
-            defaultFonts =
+            defaultFonts = rec
             {
               monospace =
               {
@@ -145,8 +142,8 @@ in
 
               serif =
               {
-                names    = config.custom.gui.theme.font.defaultFonts.sansSerif.names;
-                packages = config.custom.gui.theme.font.defaultFonts.sansSerif.packages;
+                names    = sansSerif.names;
+                packages = sansSerif.packages;
               };
 
               sansSerif =
@@ -161,6 +158,14 @@ in
                 packages = with pkgs; [ noto-fonts-color-emoji ];
               };
             };
+
+            size =
+            {
+              fixed   = 12;
+              general = 11;
+            };
+
+            weight.general = 500;
           };
           # }}}
 

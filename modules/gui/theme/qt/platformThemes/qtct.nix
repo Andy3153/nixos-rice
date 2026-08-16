@@ -18,10 +18,13 @@ let
   qtStyleName = cfgQt.style.name;
 
   iconTheme       = config.custom.gui.theme.icon.name;
-  generalFont     = builtins.head     cfgFont.defaultFonts.sansSerif.names;
-  generalFontSize = builtins.toString cfgFont.generalFontSize;
-  fixedFont       = builtins.head     cfgFont.defaultFonts.monospace.names;
-  fixedFontSize   = builtins.toString cfgFont.fixedFontSize;
+
+  fixedFont         = builtins.head     cfgFont.defaultFonts.monospace.names;
+  fixedFontSize     = builtins.toString cfgFont.size.fixed;
+  fixedFontWeight   = builtins.toString cfgFont.weight.fixed;
+  generalFont       = builtins.head     cfgFont.defaultFonts.sansSerif.names;
+  generalFontSize   = builtins.toString cfgFont.size.general;
+  generalFontWeight = builtins.toString cfgFont.weight.general;
 
   # {{{ QtCT config
   qtctConf =
@@ -40,8 +43,8 @@ let
     # {{{ Fonts
     Fonts =
     {
-      fixed   = "\"${fixedFont},${fixedFontSize}\"";
-      general = "\"${generalFont},${generalFontSize}\"";
+      fixed   = "\"${fixedFont},${fixedFontSize},-1,5,${fixedFontWeight},0,0,0,0,0,0,0,0,0,0,1,,0,0\"";
+      general = "\"${generalFont},${generalFontSize},-1,5,${generalFontWeight},0,0,0,0,0,0,0,0,0,0,1,,0,0\"";
     };
     # }}}
 
