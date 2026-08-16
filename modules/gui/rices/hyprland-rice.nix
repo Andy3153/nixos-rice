@@ -148,8 +148,8 @@ in
 
               sansSerif =
               {
-                names    = [ "Cantarell" ];
-                packages = with pkgs; [ cantarell-fonts ];
+                names    = [ "Ubuntu Sans" ];
+                packages = with pkgs; [ ubuntu-sans ];
               };
 
               emoji =
