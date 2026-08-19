@@ -253,7 +253,7 @@ in
       # {{{ Insecure whitelist
       insecureWhitelist =
       [
-        "ventoy-1.1.12"
+        "ventoy-1.1.17"
       ];
       # }}}
     };
