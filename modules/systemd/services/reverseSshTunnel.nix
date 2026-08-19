@@ -104,7 +104,7 @@ in
       serviceConfig =
       {
         Restart    = "always";
-        RestartSec = 5;
+        RestartSec = 15;
 
         User  = cfg.user;
         Group = cfg.group;
@@ -128,6 +128,11 @@ in
           then "${cfg.remote.user}@${cfg.remote.address}"
           else "${cfg.remote.address}")
         ];
+      };
+
+      unitConfig =
+      {
+        StartLimitIntervalSec = 0;
       };
     };
   };
