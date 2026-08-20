@@ -264,21 +264,30 @@ in
   {
     # {{{ Hyprland
     wayland.windowManager.hyprland =
+    let
+      hyprlandLuaEnv = pkgs.lua5_5.withPackages (ps: with ps;
+      [
+      ]);
+
+      luaPackagePath  =
+          ";${hyprlandLuaEnv}/share/lua/5.5/?.lua"
+        + ";${hyprlandLuaEnv}/share/lua/5.5/?/init.lua";
+      luaPackageCpath = ";${hyprlandLuaEnv}/lib/lua/5.5/?.so";
+    in
     {
       enable = true;
       configType = "lua";
 
-      ##
-      ## I do this so that I can have the plugins correctly generated in the
-      ## config by Home-Manager, while still maintaining my own hyprland.lua,
-      ## because I don't want to write my config files using Home-Manager.
-      ##
-      extraConfig = ''require("actual-hyprland")'';
+      extraConfig =
+      ''
+        package.path  = package.path  .. "${luaPackagePath}"  -- add lua libraries to hyprland's lua path
+        package.cpath = package.cpath .. "${luaPackageCpath}" -- [ ... ]
+
+        require("actual-hyprland")                            -- source actual hyprland config
+      '';
 
       plugins = with pkgs.hyprlandPlugins;
       [
-        #hypr-dynamic-cursors
-        #hyprsplit
       ];
     };
     # }}}
