@@ -11,6 +11,7 @@
     ./ananicy.nix
     ./flatpak.nix
     ./hamachi.nix
+    ./llama-cpp.nix
     ./mpd.nix
     ./ollama.nix
     ./openssh.nix

@@ -26,6 +26,7 @@ in
         description     = "Andy3153";
         extraGroups     = [ "wheel" ];
         group           = "andy3153";
+        homeMode        = "750";
         initialPassword = "sdfsdf";
         isNormalUser    = true;
         shell           = pkgs.zsh;
