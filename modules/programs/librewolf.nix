@@ -354,6 +354,24 @@ in
                 urls           = [{ template = "https://www.linkedin.com/search/results/all/?keywords={searchTerms}"; }];
               };
               # }}}
+
+              # {{{ Docker Hub
+              docker-hub =
+              {
+                name           = "Docker Hub​";
+                definedAliases = [ "@dh" ];
+                urls           = [{ template = "https://hub.docker.com/search?q={searchTerms}"; }];
+              };
+              # }}}
+
+              # {{{ Hugging Face
+              hugging-face =
+              {
+                name           = "Hugging Face​";
+                definedAliases = [ "@hf" ];
+                urls           = [{ template = "https://huggingface.co/models?search={searchTerms}"; }];
+              };
+              # }}}
             };
             # }}}
           };
