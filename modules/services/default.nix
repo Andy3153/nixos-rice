@@ -12,6 +12,7 @@
     ./flatpak.nix
     ./hamachi.nix
     ./llama-cpp.nix
+    ./mcp-nixos.nix
     ./mpd.nix
     ./ollama.nix
     ./openssh.nix

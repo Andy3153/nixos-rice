@@ -98,16 +98,32 @@ in
   # {{{ Config
   config = lib.mkIf cfg.enable
   {
-    # {{{ Unfree whitelist
-    custom.nix.unfreeWhitelist =
-    [
-      "cuda_cccl"
-      "cuda_cudart"
-      "cuda_nvcc"
-      "cuda_nvrtc"
-      "libcublas"
-    ];
-    # }}}
+    custom =
+    {
+      # {{{ Unfree whitelist
+      nix.unfreeWhitelist =
+      [
+        "cuda_cccl"
+        "cuda_cudart"
+        "cuda_nvcc"
+        "cuda_nvrtc"
+        "libcublas"
+      ];
+      # }}}
+
+      # {{{ Services
+      services =
+      {
+        # {{{ MCP-NixOS
+        mcp-nixos =
+        {
+          enable       = true;
+          enableOnBoot = cfg.enableOnBoot;
+        };
+        # }}}
+      };
+      # }}}
+    };
 
     # {{{ Llama.CPP
     services.llama-cpp =
