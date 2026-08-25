@@ -53,7 +53,16 @@ in
   # {{{ Options
   options.custom.services.llama-cpp =
   {
-    enable = lib.mkEnableOption "enables Llama.CPP";
+    enable       = lib.mkEnableOption "enables Llama.CPP";
+    enableOnBoot = lib.mkEnableOption "start Llama.CPP at boot";
+
+    host = lib.mkOption
+    {
+      type        = lib.types.str;
+      default     = "127.0.0.1";
+      example     = "0.0.0.0";
+      description = "IP address on which the server should listen on";
+    };
 
     models = lib.mkOption
     {
@@ -74,6 +83,14 @@ in
         };
       };
       description = "models to have available";
+    };
+
+    port = lib.mkOption
+    {
+      type        = lib.types.port;
+      default     = 9931;
+      example     = 1337;
+      description = "port on which the server should listen on";
     };
   };
   # }}}
@@ -104,10 +121,11 @@ in
         cache-type-k   = "q8_0";
         cache-type-v   = "q8_0";
         ctx-size       = 65536;
+        host           = cfg.host;
         models-max     = 1;
         models-preset  = (pkgs.formats.ini { }).generate "llamacpp-models-preset.ini" cfg.models;
         no-kv-offload  = true;
-        port           = 9931;
+        port           = cfg.port;
         tools          = "read_file,file_glob_search,grep_search,get_datetime,get_info";
         ui-config-file = uiConfigFile;
         ui-mcp-proxy   = true;
@@ -125,13 +143,14 @@ in
         serviceConfig =
         {
           PrivateUsers        = lib.mkForce false;
+          ProtectClock        = lib.mkForce false;
           ProtectHome         = lib.mkForce "read-only";
           ProtectHostname     = lib.mkForce false;
           SupplementaryGroups = "llama-cpp_homediraccess";
           WorkingDirectory    = lib.mkForce mainUserHome;
         };
 
-        wantedBy = lib.mkForce [ ]; # disable on boot
+        wantedBy = lib.mkIf (!cfg.enableOnBoot) (lib.mkForce [ ]);
       };
       # }}}
 
