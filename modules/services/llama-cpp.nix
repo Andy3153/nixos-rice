@@ -16,9 +16,10 @@ let
   # {{{ Package
   llama-cppPkg = (pkgs.llama-cpp.override
   {
-    blasSupport = true;
-    cudaSupport = config.custom.hardware.nvidia.enable;
-    rocmSupport = false;
+    blasSupport   = cfg.acceleration.blas;
+    cudaSupport   = cfg.acceleration.cuda;
+    rocmSupport   = false;
+    vulkanSupport = cfg.acceleration.vulkan;
   }).overrideAttrs (oldAttrs:
   {
     cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [ "-DGGML_NATIVE=ON" ];
@@ -55,6 +56,35 @@ in
   {
     enable       = lib.mkEnableOption "enables Llama.CPP";
     enableOnBoot = lib.mkEnableOption "start Llama.CPP at boot";
+
+    # {{{ Acceleration
+    acceleration =
+    {
+      blas = lib.mkOption
+      {
+        type        = lib.types.bool;
+        default     = true;
+        example     = false;
+        description = "enable BLAS acceleration";
+      };
+
+      cuda = lib.mkOption
+      {
+        type        = lib.types.bool;
+        default     = config.custom.hardware.nvidia.enable;
+        example     = true;
+        description = "enable CUDA acceleration";
+      };
+
+      vulkan = lib.mkOption
+      {
+        type        = lib.types.bool;
+        default     = !cfg.acceleration.cuda;
+        example     = true;
+        description = "enable Vulkan acceleration";
+      };
+    };
+    # }}}
 
     host = lib.mkOption
     {
