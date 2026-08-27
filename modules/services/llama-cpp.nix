@@ -9,9 +9,9 @@
 let
   cfg = config.custom.services.llama-cpp;
 
-  mainUser            = config.custom.users.mainUser;
-  mainUserCfg         = config.users.users.${mainUser};
-  mainUserHome        = mainUserCfg.home;
+  mainUser     = config.custom.users.mainUser;
+  mainUserCfg  = config.users.users.${mainUser};
+  mainUserHome = mainUserCfg.home;
 
   # {{{ Package
   llama-cppPkg = (pkgs.llama-cpp.override
@@ -29,24 +29,6 @@ let
       ${oldAttrs.preConfigure or ""}
     '';
   });
-  # }}}
-
-  # {{{ UI config file
-  ##
-  ## https://github.com/ggml-org/llama.cpp/blob/master/tools/ui/src/lib/constants/settings.constants.ts
-  ##
-
-  uiConfigFile = (pkgs.formats.json { }).generate "llamacpp-ui-config-file.json"
-  {
-    alwaysShowSidebarOnDesktop  = true;
-    autoMicOnEmpty              = true;
-    #disableAutoScroll           = true;
-    enableContinueGeneration    = true;
-    pasteLongTextToFileLen      = 5000;
-    renderUserContentAsMarkdown = true;
-    showBuildVersion            = true;
-    theme                       = "dark";
-  };
   # }}}
 in
 # }}}
@@ -86,6 +68,7 @@ in
     };
     # }}}
 
+    # {{{ Host
     host = lib.mkOption
     {
       type        = lib.types.str;
@@ -93,12 +76,16 @@ in
       example     = "0.0.0.0";
       description = "IP address on which the server should listen on";
     };
+    # }}}
 
+
+    # {{{ Models
     models = lib.mkOption
     {
-      type        = lib.types.attrs;
-      default     = { };
-      example     =
+      type    = lib.types.attrs;
+      default = { };
+
+      example =
       {
         "Qwen3.5-9B" =
         {
@@ -112,9 +99,12 @@ in
           jinja   = "on";
         };
       };
+
       description = "models to have available";
     };
+    # }}}
 
+    # {{{ Port
     port = lib.mkOption
     {
       type        = lib.types.port;
@@ -122,6 +112,28 @@ in
       example     = 1337;
       description = "port on which the server should listen on";
     };
+    # }}}
+
+    # {{{ UI config
+    uiConfig = lib.mkOption
+    {
+      type = lib.types.attrs;
+
+      default =
+      {
+        alwaysShowSidebarOnDesktop  = true;
+        autoMicOnEmpty              = true;
+        #disableAutoScroll           = true;
+        enableContinueGeneration    = true;
+        pasteLongTextToFileLen      = 5000;
+        renderUserContentAsMarkdown = true;
+        showBuildVersion            = true;
+        theme                       = "dark";
+      };
+
+      description = "llama-ui default configuration (documentation at `https://github.com/ggml-org/llama.cpp/blob/master/tools/ui/src/lib/constants/settings.constants.ts`)";
+    };
+    # }}}
   };
   # }}}
 
@@ -162,19 +174,25 @@ in
       package = llama-cppPkg;
 
       # {{{ Settings
-      settings =
+      ##
+      ## https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#usage
+      ##
+
+      settings = rec
       {
-        cache-type-k   = "q8_0";
-        cache-type-v   = "q8_0";
-        ctx-size       = 65536;
-        host           = cfg.host;
-        models-max     = 1;
-        models-preset  = (pkgs.formats.ini { }).generate "llamacpp-models-preset.ini" cfg.models;
-        no-kv-offload  = true;
-        port           = cfg.port;
-        tools          = "read_file,file_glob_search,grep_search,get_datetime,get_info";
-        ui-config-file = uiConfigFile;
-        ui-mcp-proxy   = true;
+        cache-type-k       = "q8_0";
+        cache-type-v       = "q8_0";
+        ctx-size           = 65536;
+        host               = cfg.host;
+        models-max         = 1;
+        models-preset      = (pkgs.formats.ini { }).generate "llamacpp-models-preset.ini" cfg.models;
+        no-kv-offload      = true;
+        port               = cfg.port;
+        tools              = "read_file,file_glob_search,grep_search,get_datetime,get_info";
+        ui-config-file     = (pkgs.formats.json { }).generate "llamacpp-ui-config-file.json" cfg.uiConfig;
+        ui-mcp-proxy       = true;
+        webui-config-file  = ui-config-file;
+        webui-mcp-proxy    = ui-mcp-proxy;
       };
       # }}}
     };
