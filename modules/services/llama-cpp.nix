@@ -85,7 +85,19 @@ in
 
       default =
       {
-        mcp-nixos.command = lib.getExe pkgs.mcp-nixos;
+        mcp-fetch.command = lib.getExe pkgs.mcp-server-fetch;
+        mcp-git.command   = lib.getExe pkgs.mcp-server-git;
+        mcp-gitea.command = lib.getExe pkgs.gitea-mcp-server;
+
+        mcp-github =
+        {
+          args = [ "--read-only" "stdio" ];
+          command = lib.getExe pkgs.github-mcp-server;
+        };
+
+        mcp-nixos.command               = lib.getExe pkgs.mcp-nixos;
+        mcp-sequential-thinking.command = lib.getExe pkgs.mcp-server-sequential-thinking;
+        mcp-time.command                = lib.getExe pkgs.mcp-server-time;
       };
 
       description = "MCP configuration (Cursor-compatible format)";
@@ -186,7 +198,7 @@ in
         models-preset      = (pkgs.formats.ini { }).generate "llamacpp-models-preset.ini" cfg.models;
         no-kv-offload      = true;
         port               = cfg.port;
-        tools              = "read_file,file_glob_search,grep_search,get_datetime,get_info";
+        tools              = "read_file,file_glob_search,grep_search,get_info";
         ui-config-file     = (pkgs.formats.json { }).generate "llamacpp-ui-config-file.json" cfg.uiConfig;
         ui-mcp-proxy       = true;
         webui-config-file  = ui-config-file;
