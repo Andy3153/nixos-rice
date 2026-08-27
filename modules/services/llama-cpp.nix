@@ -78,6 +78,19 @@ in
     };
     # }}}
 
+    # {{{ MCP config
+    mcpConfig = lib.mkOption
+    {
+      type = lib.types.attrs;
+
+      default =
+      {
+        mcp-nixos.command = lib.getExe pkgs.mcp-nixos;
+      };
+
+      description = "MCP configuration (Cursor-compatible format)";
+    };
+    # }}}
 
     # {{{ Models
     models = lib.mkOption
@@ -140,32 +153,16 @@ in
   # {{{ Config
   config = lib.mkIf cfg.enable
   {
-    custom =
-    {
-      # {{{ Unfree whitelist
-      nix.unfreeWhitelist =
-      [
-        "cuda_cccl"
-        "cuda_cudart"
-        "cuda_nvcc"
-        "cuda_nvrtc"
-        "libcublas"
-      ];
-      # }}}
-
-      # {{{ Services
-      services =
-      {
-        # {{{ MCP-NixOS
-        mcp-nixos =
-        {
-          enable       = true;
-          enableOnBoot = cfg.enableOnBoot;
-        };
-        # }}}
-      };
-      # }}}
-    };
+    # {{{ Unfree whitelist
+    custom.nix.unfreeWhitelist =
+    [
+      "cuda_cccl"
+      "cuda_cudart"
+      "cuda_nvcc"
+      "cuda_nvrtc"
+      "libcublas"
+    ];
+    # }}}
 
     # {{{ Llama.CPP
     services.llama-cpp =
@@ -184,6 +181,7 @@ in
         cache-type-v       = "q8_0";
         ctx-size           = 65536;
         host               = cfg.host;
+        mcp-servers-config = (pkgs.formats.json { }).generate "llamacpp-mcp-servers-config.json" { mcpServers = cfg.mcpConfig; };
         models-max         = 1;
         models-preset      = (pkgs.formats.ini { }).generate "llamacpp-models-preset.ini" cfg.models;
         no-kv-offload      = true;
