@@ -363,42 +363,15 @@
         models =
         {
           # {{{ Standard model
-          "Qwen3.5 (9B)" =
+          "Qwen3.5 (4B)" =
           {
-            hf-repo = "unsloth/Qwen3.5-9B-GGUF";
-            hf-file = "Qwen3.5-9B-UD-Q4_K_XL.gguf";
-            alias   = "Qwen3.5-9B";
+            hf-repo = "unsloth/Qwen3.5-4B-GGUF";
+            hf-file = "Qwen3.5-4B-UD-Q4_K_XL.gguf";
+            alias   = "Qwen3.5-4B";
             temp    = "0.6";
             top-p   = "0.95";
             top-k   = "20";
             min-p   = "0.00";
-            jinja   = "on";
-          };
-          # }}}
-
-          # {{{ Abliterated model
-          "Qwen3.5 Abliterated (9B)" =
-          {
-            hf-repo = "lukey03/Qwen3.5-9B-abliterated-GGUF";
-            hf-file = "Qwen3.5-9B-abliterated-Q4_K_M.gguf";
-            alias   = "Qwen3.5-9B-abliterated";
-            temp    = "0.6";
-            top-p   = "0.95";
-            top-k   = "20";
-            min-p   = "0.00";
-            jinja   = "on";
-          };
-          # }}}
-
-          # {{{ Coding model
-          "Qwen2.5 Coder (7B)" =
-          {
-            hf-repo = "unsloth/Qwen2.5-Coder-7B-Instruct-GGUF";
-            hf-file = "Qwen2.5-Coder-7B-Instruct-Q4_K_M.gguf";
-            alias   = "Qwen2.5-Coder-7B";
-            temp    = "0.2";
-            top-p   = "0.95";
-            top-k   = "40";
             jinja   = "on";
           };
           # }}}
