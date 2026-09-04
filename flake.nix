@@ -87,20 +87,6 @@
     };
     # }}}
 
-    # {{{ in-nix (add envvar when in `nix shell`)
-    in-nix_unstable =
-    {
-      url = "github:viperML/in-nix";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
-    };
-
-    in-nix_stable =
-    {
-      url = "github:viperML/in-nix";
-      inputs.nixpkgs.follows = "nixpkgs_stable";
-    };
-    # }}}
-
     # {{{ Nix-Flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     # }}}
@@ -206,9 +192,6 @@
 
     detsys-nix_stable,
     detsys-nix_unstable,
-
-    in-nix_unstable,
-    in-nix_stable,
 
     nix-flatpak,
 
