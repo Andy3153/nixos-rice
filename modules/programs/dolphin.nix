@@ -22,7 +22,12 @@ let
     };
 
     ContextMenu.ShowCopyMoveMenu = true;
-    DetailsMode.PreviewSize = 22;
+
+    DetailsMode =
+    {
+      IconSize    = 22;
+      PreviewSize = 32;
+    };
 
     General =
     {
