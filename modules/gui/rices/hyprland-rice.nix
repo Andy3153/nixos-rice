@@ -136,7 +136,7 @@ in
             {
               monospace =
               {
-                names    = [ "IosevkaTerm Nerd Font Mono" ];
+                names    = [ "IosevkaTerm Nerd Font" ];
                 packages = with pkgs.nerd-fonts; [ iosevka iosevka-term ];
               };
 
