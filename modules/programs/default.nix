@@ -11,6 +11,7 @@
     ./nixpak
     ./android-tools.nix
     ./appimage.nix
+    ./btop.nix
     ./dconf.nix
     ./direnv.nix
     ./dolphin.nix

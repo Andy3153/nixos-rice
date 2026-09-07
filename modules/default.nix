@@ -52,7 +52,6 @@ in
         rsync          # cp
         tmux           # terminal-multiplexer
         htop           # task-manager
-        btop           # task-manager
         kitty.terminfo # terminfo
 
         brightnessctl # Other-CLI brightness hyprland-rice
@@ -100,7 +99,11 @@ in
     # }}}
 
     # {{{ Programs
-    programs.yazi.enable = true; # file-manager for-zsh for-nvim
+    programs =
+    {
+      btop.enable = true; # task-manager
+      yazi.enable = true; # file-manager for-zsh for-nvim
+    };
     # }}}
   };
 

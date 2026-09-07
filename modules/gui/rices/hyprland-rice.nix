@@ -314,7 +314,6 @@ in
     # {{{ Config files
     xdg.configFile =
     {
-      "btop".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/btop";
       "cava".source       = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/cava";
       "css-common".source = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/css-common";
       "dunst".source      = mkOutOfStoreSymlink "${hyprlandRiceConfigDir}/dunst";
