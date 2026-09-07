@@ -376,7 +376,8 @@ in
       };
       # }}}
 
-      vesktop.enable   = true;
+      vesktop.enable           = true;
+      yazi.enableCustomConfigs = true;
 
       # {{{ Zsh
       zsh =

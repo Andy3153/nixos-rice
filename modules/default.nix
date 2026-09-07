@@ -100,11 +100,7 @@ in
     # }}}
 
     # {{{ Programs
-    programs.yazi =
-    {
-      enable              = true; # file-manager for-zsh for-nvim
-      enableCustomConfigs = true;
-    };
+    programs.yazi.enable = true; # file-manager for-zsh for-nvim
     # }}}
   };
 

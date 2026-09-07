@@ -128,6 +128,8 @@
       };
       # }}}
 
+      yazi.enableCustomConfigs = true;
+
       # {{{ Zsh
       zsh =
       {
