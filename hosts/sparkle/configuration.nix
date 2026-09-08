@@ -164,7 +164,7 @@ in
       linux-wifi-hotspot # Internet hotspot
       qbittorrent        # torrents
       wimlib             # .wim
-      ventoy-full        # flash-usbs
+      ventoy-full-qt     # flash-usbs
       woeusb             # flash-usbs windows
       d-spy              # D-Bus
       openbox            # for-xwayland-rootless-script
@@ -245,7 +245,7 @@ in
         "SpaceCadetPinball"
         "grayjay"
         "osu-lazer-bin"
-        "ventoy"
+        "ventoy-qt5"
         "wpsoffice"
       ];
       # }}}
@@ -253,7 +253,7 @@ in
       # {{{ Insecure whitelist
       insecureWhitelist =
       [
-        "ventoy-1.1.17"
+        "ventoy-qt5-1.1.17"
       ];
       # }}}
     };
