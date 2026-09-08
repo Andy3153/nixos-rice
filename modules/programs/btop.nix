@@ -22,10 +22,11 @@ let
   # }}}
 
   # {{{ Theme package
-  themePkg = (pkgs.btop.override
+  themePkg = (pkgs.catppuccin.override
   {
-    cudaSupport   = cfg.acceleration.cuda;
-    rocmSupport   = false;
+    themeList = [ "btop" ];
+    accent    = "blue";
+    variant   = "mocha";
   });
   # }}}
 in
@@ -48,11 +49,21 @@ in
     # }}}
 
     # {{{ Theme
-    theme.package = lib.mkOption
+    theme =
     {
-      type        = lib.types.package;
-      default     = themePkg;
-      description = "theme package";
+      name = lib.mkOption
+      {
+        type        = lib.types.str;
+        default     = "catppuccin_mocha";
+        description = "theme package";
+      };
+
+      package = lib.mkOption
+      {
+        type        = lib.types.package;
+        default     = themePkg;
+        description = "theme package";
+      };
     };
     # }}}
   };
@@ -69,11 +80,13 @@ in
       {
         enable  = true;
         package = btopPkg;
+        themes  = { "${cfg.theme.name}" = builtins.readFile "${cfg.theme.package}/btop/${cfg.theme.name}.theme"; };
 
         # {{{ Settings
         settings =
         {
           clock_format        = "%a %d %b | %H:%M:%S";
+          color_theme         = cfg.theme.name;
           io_graph_combined   = true;
           save_config_on_exit = true;
           swap_disk           = false;
@@ -82,7 +95,6 @@ in
           vim_keys            = true;
 
 
-          #color_theme = "";
           #disks_filter = "exclude=/.btrfs-root /.snapshots /.snapshots.externalhdd /.swap /home /home/andy3153/games /home/andy3153/downs/torrents /nix /nix/store /var/cache /var/log /var/tmp /var/lib/libvirt/images"
         };
         # }}}
