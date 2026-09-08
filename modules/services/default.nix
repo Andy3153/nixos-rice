@@ -11,7 +11,6 @@
     ./ananicy.nix
     ./flatpak.nix
     ./hamachi.nix
-    ./llama-cpp.nix
     ./mpd.nix
     ./ollama.nix
     ./openssh.nix
@@ -24,5 +23,6 @@
     ./zerotierone.nix
 
     (lib.mkAliasOptionModule [ "custom" "services" "btrbk" ] [ "services" "btrbk" ])
-  ];
+  ]
+  ++ (lib.optionals (lib.versionAtLeast lib.version "26.11pre") [ ./llama-cpp.nix ]);
 }
