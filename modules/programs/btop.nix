@@ -84,18 +84,24 @@ in
 
         # {{{ Settings
         settings =
+        let
+          btrfsSubvols      = config.custom.filesystems.disk.main.partitions.main.subvolumes;
+          rootPath          = btrfsSubvols."/root".mountpoint;
+          btrfsSubvolsInfo  = builtins.attrValues btrfsSubvols;
+          btrfsSubvolsPaths = builtins.map (x: x.mountpoint) btrfsSubvolsInfo;
+          disksFilterList   = lib.lists.remove rootPath btrfsSubvolsPaths;
+          disks_filter      = "exclude=" + lib.concatStringsSep " " disksFilterList;
+        in
         {
           clock_format        = "%a %d %b | %H:%M:%S";
           color_theme         = cfg.theme.name;
+          disks_filter        = disks_filter;
           io_graph_combined   = true;
           save_config_on_exit = true;
           swap_disk           = false;
           theme_background    = false;
           update_ms           = 500;
           vim_keys            = true;
-
-
-          #disks_filter = "exclude=/.btrfs-root /.snapshots /.snapshots.externalhdd /.swap /home /home/andy3153/games /home/andy3153/downs/torrents /nix /nix/store /var/cache /var/log /var/tmp /var/lib/libvirt/images"
         };
         # }}}
       };
