@@ -454,6 +454,20 @@ in
           };
           # }}}
 
+          # {{{ Smaller model
+          "Qwen3.5 (4B)" =
+          {
+            hf-repo = "unsloth/Qwen3.5-4B-GGUF";
+            hf-file = "Qwen3.5-4B-UD-Q4_K_XL.gguf";
+            alias   = "Qwen3.5-4B";
+            temp    = "0.6";
+            top-p   = "0.95";
+            top-k   = "20";
+            min-p   = "0.00";
+            jinja   = "on";
+          };
+          # }}}
+
           # {{{ Abliterated model
           "Qwen3.5 Abliterated (9B)" =
           {
