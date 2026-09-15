@@ -437,6 +437,10 @@ in
       {
         enable = true;
 
+        # {{{ LLM settings
+        llmSettings.ctxSize = 262144;
+        # }}}
+
         # {{{ Models
         models =
         {

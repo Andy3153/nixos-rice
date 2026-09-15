@@ -78,6 +78,19 @@ in
     };
     # }}}
 
+    # {{{ LLM settings
+    llmSettings =
+    {
+      ctxSize = lib.mkOption
+      {
+        type        = lib.types.int;
+        default     = 65536;
+        example     = 262144;
+        description = "LLM context size";
+      };
+    };
+    # }}}
+
     # {{{ MCP config
     mcpConfig = lib.mkOption
     {
@@ -191,7 +204,7 @@ in
       {
         cache-type-k       = "q8_0";
         cache-type-v       = "q8_0";
-        ctx-size           = 65536;
+        ctx-size           = cfg.llmSettings.ctxSize;
         host               = cfg.host;
         mcp-servers-config = (pkgs.formats.json { }).generate "llamacpp-mcp-servers-config.json" { mcpServers = cfg.mcpConfig; };
         models-max         = 1;
