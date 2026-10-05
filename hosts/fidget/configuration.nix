@@ -60,6 +60,10 @@
       flac       # music
       opus-tools # music
       mousai     # music find-music
+      picard     # music tag-music
+      lrcget     # music get-lyrics
+      shntool    # music split-cue
+      cdparanoia # music rip-cds
 
       ffmpeg     # media-convert
       yt-dlp     # media-download
