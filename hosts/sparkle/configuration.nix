@@ -243,6 +243,7 @@ in
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
+        "lsfg-vk"           # for-bottles
         "SpaceCadetPinball"
         "grayjay"
         "osu-lazer-bin"
