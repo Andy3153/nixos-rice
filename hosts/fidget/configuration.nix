@@ -116,6 +116,10 @@
       pulsemixer  # Sound sound-control
       # }}}
 
+      # {{{ Master
+      unityhub
+      # }}}
+
       linux-wifi-hotspot # Internet hotspot
       qbittorrent        # torrents
       wimlib             # .wim
@@ -170,6 +174,7 @@
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
+        "unityhub"
       ];
       # }}}
 
