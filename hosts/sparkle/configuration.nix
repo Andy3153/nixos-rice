@@ -255,7 +255,7 @@ in
       # {{{ Insecure whitelist
       insecureWhitelist =
       [
-        "ventoy-qt5-1.1.17"
+        "ventoy-qt5-1.1.18"
       ];
       # }}}
     };
