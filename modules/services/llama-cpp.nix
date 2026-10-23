@@ -179,13 +179,15 @@ in
   config = lib.mkIf cfg.enable
   {
     # {{{ Unfree whitelist
-    custom.nix.unfreeWhitelist =
+    custom.nix.unfreeWhitelist = lib.mkIf cfg.acceleration.cuda
     [
-      "cuda_cccl"
+      "cccl"
+      "cuda_crt"
       "cuda_cudart"
       "cuda_nvcc"
       "cuda_nvrtc"
       "libcublas"
+      "libnvvm"
     ];
     # }}}
 
