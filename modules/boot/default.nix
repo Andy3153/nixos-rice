@@ -3,12 +3,11 @@
 ## Boot bundle
 ##
 
-{ ... }:
+{ lib, ... }:
 
 {
   imports =
   [
-    ./initrd.nix
     ./kernel.nix
     ./loader
     ./plymouth.nix
@@ -16,4 +15,8 @@
     ./sysctl.nix
     ./uefi.nix
   ];
+
+  config = if lib.versionOlder lib.version "26.11pre"
+  then { boot.initrd.systemd.enable = true; }
+  else { };
 }

@@ -22,8 +22,8 @@ in
         "quiet"
         "udev.log_level=0"
       ];
-
-      initrd.verbose = false;
     };
-  };
+  } // (if lib.versionOlder lib.version "26.11pre"
+  then { boot.initrd.verbose = false; }
+  else { });
 }

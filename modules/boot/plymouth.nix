@@ -34,11 +34,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.boot =
-    {
-      quiet                 = lib.mkForce true; # looks better like this
-      initrd.systemd.enable = lib.mkForce true; # needed for Plymouth
-    };
+    custom.boot.quiet = lib.mkForce true;
 
     boot.plymouth =
     {
@@ -46,5 +42,7 @@ in
       theme         = cfg.theme.name;
       themePackages = cfg.theme.packages;
     };
-  };
+  } // (if lib.versionOlder lib.version "26.11pre"
+  then { boot.initrd.systemd.enable = lib.mkForce true; }
+  else { });
 }
