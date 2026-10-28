@@ -15,11 +15,13 @@ in
   {
     custom.extraPackages = with pkgs;
     [
-      android-tools   # android
+      android-tools   # android adb
       better-adb-sync # android adb-rsync
-      adbfs-rootless  # android Filesystems FUSE
       scrcpy          # android screen-share
-    ];
+    ] ++ (if lib.versionOlder lib.version "26.11pre"
+    then [ adbfs-rootless ] # android Filesystems FUSE
+    else [ ]);
+
     users.users.${mainUser}.extraGroups = [ "adbusers" ];
   };
 }
