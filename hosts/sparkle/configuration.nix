@@ -74,8 +74,8 @@ in
       # }}}
 
       # {{{ Browsers
-      brave
-      tor-browser # Tor
+      ungoogled-chromium # browser
+      tor-browser        # Tor
       # }}}
 
       # {{{ Gaming
