@@ -53,6 +53,7 @@ in
         tmux           # terminal-multiplexer
         htop           # task-manager
         kitty.terminfo # terminfo
+        just           # for-nixos-rice
 
         brightnessctl # Other-CLI brightness hyprland-rice
 
