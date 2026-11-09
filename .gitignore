@@ -16,4 +16,4 @@
 **/*.fls
 **/*.xdv
 
-/etc/nixos/.setup-done
+/result
