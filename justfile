@@ -73,9 +73,10 @@ nixos-boot:   (nh-os "boot")
 nixos-switch: (nh-os "switch")
 nixos-flake:  (nix-flake-update nixosDir)
 
-nixos:             nixos-switch
-nixos-update:      nixos-flake nixos-switch
-nixos-update-boot: nixos-flake nixos-switch
+nixos:              nixos-switch
+nixos-update:       nixos-flake nixos-switch
+nixos-update-boot:  nixos-flake nixos-boot
+nixos-update-build: nixos-flake nixos-build
 
 nixos-clean-system nrOfGensToKeep: (nh-clean "all"  nrOfGensToKeep)
 nixos-clean-user   nrOfGensToKeep: (nh-clean "user" nrOfGensToKeep)
@@ -105,6 +106,18 @@ zsh:
 
 # {{{ Default
 [default]
-default: dotfiles
+default: nixos
+
+switch: nixos
+boot:   nixos-boot
+build:  nixos-build
+
+update:        dotfiles switch        nvim zsh (nixos-clean "1")
+update-boot:   dotfiles boot          nvim zsh (nixos-clean "1")
+update-build:  dotfiles build  switch nvim zsh (nixos-clean "1")
+
+upgrade:       dotfiles nixos-update              nvim zsh (nixos-clean "1")
+upgrade-boot:  dotfiles nixos-update-boot         nvim zsh (nixos-clean "1")
+upgrade-build: dotfiles nixos-update-build switch nvim zsh (nixos-clean "1")
 # }}}
 # }}}
