@@ -20,11 +20,11 @@ nixosDir  := dotfileRootDir + "/nix/nixos-rice"
 # {{{ Git
 [private]
 git-pull directory:
-  git -C {{ directory }} pull --rebase --autostash
+  [ -d {{ directory }} ] && git -C {{ directory }} pull --rebase --autostash || true
 
 [private]
 git-push directory:
-  git -C {{ directory }} push
+  [ -d {{ directory }} ] && git -C {{ directory }} push || true
 # }}}
 
 # {{{ NixOS
