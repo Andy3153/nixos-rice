@@ -9,40 +9,36 @@
   description = "Andy3153's NixOS flake";
 
   # {{{ Inputs
-  inputs =
+  inputs = rec
   {
     # {{{ NixPkgs
-    # NixPkgs Unstable
     nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # NixPkgs 26.05
     nixpkgs_stable.url   = "github:nixos/nixpkgs/nixos-26.05";
-
-    # NixPkgs (my fork for when I'm working on something)
-    #nixpkgs_andy3153.url = "github:Andy3153/nixpkgs/hunspell-ro_RO";
-    #nixpkgs_andy3153.url = "git+file:////home/andy3153/src/nix/nixpkgs/?ref=hunspell-ro_RO";
+    nixpkgs              = nixpkgs_unstable;
     # }}}
 
     # {{{ My Nix packages
     my-nixpkgs_unstable =
     {
       url = "github:Andy3153/my-nixpkgs";
-      #url = "git+file:///home/andy3153/src/nix/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
     my-nixpkgs_stable =
     {
       url = "github:Andy3153/my-nixpkgs";
-      #url = "git+file:///home/andy3153/src/nix/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+
+    my-nixpkgs =
+    {
+      url = "github:Andy3153/my-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
     # {{{ NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    #nixos-hardware.url = "github:Andy3153/nixos-hardware/asus-fx506hm_nvidia-open";
-    #nixos-hardware.url = "git+file:///home/andy3153/src/nix/nixos-hardware/?ref=asus-fx506hm_nvidia-open";
     # }}}
 
     # {{{ Lanzaboote
@@ -56,6 +52,12 @@
     {
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+
+    lanzaboote =
+    {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
@@ -71,6 +73,12 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
+
+    nix-index-database =
+    {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # }}}
 
     # {{{ Determinate Systems' Nix
@@ -84,6 +92,12 @@
     {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+
+    detsys-nix =
+    {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
@@ -103,6 +117,12 @@
       url = "github:nixpak/nixpak";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
+
+    nixpak =
+    {
+      url = "github:nixpak/nixpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # }}}
 
     # {{{ Home-Manager
@@ -117,21 +137,31 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
+
+    home-manager =
+    {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # }}}
 
     # {{{ Jovian NixOS (Steam Deck UI)
     jovian_unstable =
     {
-      #url = "github:Jovian-Experiments/Jovian-NixOS";
       url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
     jovian_stable =
     {
-      #url = "github:Jovian-Experiments/Jovian-NixOS";
       url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
       inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+
+    jovian =
+    {
+      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
@@ -147,6 +177,12 @@
       url = "github:j-brn/nixos-vfio";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
+
+    nixos-vfio =
+    {
+      url = "github:j-brn/nixos-vfio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # }}}
 
     # {{{ Disko
@@ -160,6 +196,12 @@
     {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs_stable";
+    };
+
+    disko =
+    {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
@@ -177,50 +219,59 @@
 
     nixpkgs_unstable,
     nixpkgs_stable,
-    #nixpkgs_andy3153,
+    nixpkgs,
 
     my-nixpkgs_unstable,
     my-nixpkgs_stable,
+    my-nixpkgs,
 
     nixos-hardware,
 
     lanzaboote_unstable,
     lanzaboote_stable,
+    lanzaboote,
 
     nix-index-database_unstable,
     nix-index-database_stable,
+    nix-index-database,
 
     detsys-nix_stable,
     detsys-nix_unstable,
+    detsys-nix,
 
     nix-flatpak,
 
     nixpak_unstable,
     nixpak_stable,
+    nixpak,
 
     home-manager_unstable,
     home-manager_stable,
+    home-manager,
 
     jovian_unstable,
     jovian_stable,
+    jovian,
 
     nixos-vfio_unstable,
     nixos-vfio_stable,
+    nixos-vfio,
 
     disko_unstable,
     disko_stable,
+    disko,
 
     spicetify,
 
     ...
-  }: rec
+  }:
   # }}}
   {
     # {{{ NixOS configurations
     nixosConfigurations =
     {
       # {{{ sparkle | ASUS TUF F15 FX506HM
-      sparkle = nixpkgs_unstable.lib.nixosSystem
+      sparkle = nixpkgs.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
@@ -235,22 +286,22 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
+                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
               };
             }
           )
           # }}}
 
           nixos-hardware.nixosModules.asus-fx506hm
-          lanzaboote_unstable.nixosModules.lanzaboote
-          nix-index-database_unstable.nixosModules.default
-          detsys-nix_unstable.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
+          nix-index-database.nixosModules.default
+          detsys-nix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
-          home-manager_unstable.nixosModules.home-manager
-          jovian_unstable.nixosModules.jovian
-          (import "${nixos-vfio_unstable}/modules/kvmfr" { std = nixos-vfio_unstable.inputs.nix-std.lib; })
-          (import "${nixos-vfio_unstable}/modules/vfio")
-          disko_unstable.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          jovian.nixosModules.jovian
+          (import "${nixos-vfio}/modules/kvmfr" { std = nixos-vfio.inputs.nix-std.lib; })
+          (import "${nixos-vfio}/modules/vfio")
+          disko.nixosModules.disko
           spicetify.nixosModules.spicetify
 
           ./hosts/sparkle
@@ -259,7 +310,7 @@
       # }}}
 
       # {{{ fidget | Lenovo ThinkPad X280
-      fidget = nixpkgs_unstable.lib.nixosSystem
+      fidget = nixpkgs.lib.nixosSystem
       {
         specialArgs = { inherit inputs; }; # access inputs in config
         modules =
@@ -274,7 +325,7 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs_unstable.packages.x86_64-linux;
+                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
               };
             }
           )
@@ -292,14 +343,14 @@
           # }}}
 
           nixos-hardware.nixosModules.lenovo-thinkpad-x280
-          lanzaboote_unstable.nixosModules.lanzaboote
-          nix-index-database_unstable.nixosModules.default
-          detsys-nix_unstable.nixosModules.default
+          lanzaboote.nixosModules.lanzaboote
+          nix-index-database.nixosModules.default
+          detsys-nix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
-          home-manager_unstable.nixosModules.home-manager
-          jovian_unstable.nixosModules.jovian
-          #nixos-vfio_unstable.nixosModules.default
-          disko_unstable.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          jovian.nixosModules.jovian
+          #nixos-vfio.nixosModules.default
+          disko.nixosModules.disko
           spicetify.nixosModules.spicetify
 
           ./hosts/fidget
