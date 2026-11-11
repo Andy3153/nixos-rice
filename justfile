@@ -116,8 +116,16 @@ update:        dotfiles switch        nvim zsh (nixos-clean "1")
 update-boot:   dotfiles boot          nvim zsh (nixos-clean "1")
 update-build:  dotfiles build  switch nvim zsh (nixos-clean "1")
 
+softdate:        dotfiles switch
+softdate-boot:   dotfiles boot
+softdate-build:  dotfiles build  switch
+
 upgrade:       dotfiles nixos-update              nvim zsh (nixos-clean "1")
 upgrade-boot:  dotfiles nixos-update-boot         nvim zsh (nixos-clean "1")
 upgrade-build: dotfiles nixos-update-build switch nvim zsh (nixos-clean "1")
+
+softgrade:       dotfiles nixos-update
+softgrade-boot:  dotfiles nixos-update-boot
+softgrade-build: dotfiles nixos-update-build switch
 # }}}
 # }}}
