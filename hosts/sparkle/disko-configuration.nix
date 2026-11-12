@@ -32,65 +32,6 @@ in
     {
       # {{{ Disks
       disk =
-      # {{{ Variables
-      let
-        # {{{ Make external encrypted drive
-        mkExternalEncryptedDrive = driveName:
-        {
-          "${driveName}" =
-          {
-            device = "/dev/disk/by-partlabel/${driveName}-crypt";
-            type   = "disk";
-
-            content =
-            {
-              type = "gpt";
-
-              # {{{ Partitions
-              partitions =
-              {
-                # {{{ Main encrypted container
-                "${driveName}-crypt" = rec
-                {
-                  name  = "${driveName}-crypt";
-                  label = name;
-                  size  = "100%";
-
-                  content =
-                  {
-                    name = "${driveName}";
-                    type = "luks";
-
-                    settings.allowDiscards = true;
-
-                    content =
-                    {
-                      type         = "btrfs";
-                      extraArgs    = [ "-f" ];
-                      mountOptions = [ "compress=zstd" "noauto" "x-gvfs-show" ];
-
-                      # {{{ Btrfs subvolumes
-                      subvolumes =
-                      {
-                        "/default" =
-                        {
-                          mountpoint   = "/mnt/${driveName}";
-                          mountOptions = [ "compress=zstd" "noauto" "x-gvfs-show" ];
-                        };
-                      };
-                      # }}}
-                    };
-                  };
-                };
-                # }}}
-              };
-              # }}}
-            };
-          };
-        };
-        # }}}
-      in
-      # }}}
       {
         # {{{ Main drive (internal SSD)
         main =
@@ -261,13 +202,32 @@ in
           };
         };
         # }}}
-      }
-      # {{{ External drives
-      // mkExternalEncryptedDrive "ciorba"
-      // mkExternalEncryptedDrive "tocanita";
-      # }}}
+      };
       # }}}
     };
+
+    # {{{ Filesystems
+    fileSystems =
+    # {{{ Variables
+    let
+      # {{{ Make external encrypted drive
+      mkExternalEncryptedDrive = driveName:
+      {
+        "/mnt/${driveName}" =
+        {
+          device  = "/dev/mapper/${driveName}";
+          fsType  = "btrfs";
+          options = [ "compress=zstd" "noauto" "x-gvfs-show" ];
+        };
+      };
+      # }}}
+    in
+    # }}}
+    # {{{ External drives
+       mkExternalEncryptedDrive "ciorba"
+    // mkExternalEncryptedDrive "tocanita";
+    # }}}
+    # }}}
 
     # {{{ Crypttab
     environment.etc.crypttab.text =
