@@ -9,12 +9,12 @@
   description = "Andy3153's NixOS flake";
 
   # {{{ Inputs
-  inputs = rec
+  inputs =
   {
     # {{{ NixPkgs
+    nixpkgs.url          = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs_stable.url   = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs              = nixpkgs_unstable;
     # }}}
 
     # {{{ NixOS Hardware
@@ -22,6 +22,12 @@
     # }}}
 
     # {{{ Lanzaboote
+    lanzaboote =
+    {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote_unstable =
     {
       url = "github:nix-community/lanzaboote/v1.1.0";
@@ -33,15 +39,15 @@
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
-
-    lanzaboote =
-    {
-      url = "github:nix-community/lanzaboote/v1.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ Nix Index Database
+    nix-index-database =
+    {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database_unstable =
     {
       url = "github:nix-community/nix-index-database";
@@ -53,15 +59,15 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
-
-    nix-index-database =
-    {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ Determinate Systems' Nix
+    detsys-nix =
+    {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     detsys-nix_unstable =
     {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -73,12 +79,6 @@
       url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
-
-    detsys-nix =
-    {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ Nix-Flatpak
@@ -86,6 +86,12 @@
     # }}}
 
     # {{{ Home-Manager
+    home-manager =
+    {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager_unstable =
     {
       url = "github:nix-community/home-manager";
@@ -97,15 +103,15 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
-
-    home-manager =
-    {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ NixOS-VFIO
+    nixos-vfio =
+    {
+      url = "github:j-brn/nixos-vfio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-vfio_unstable =
     {
       url = "github:j-brn/nixos-vfio";
@@ -117,15 +123,15 @@
       url = "github:j-brn/nixos-vfio";
       inputs.nixpkgs.follows = "nixpkgs_stable";
     };
-
-    nixos-vfio =
-    {
-      url = "github:j-brn/nixos-vfio";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # }}}
 
     # {{{ Disko
+    disko =
+    {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko_unstable =
     {
       url = "github:nix-community/disko";
@@ -136,12 +142,6 @@
     {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs_stable";
-    };
-
-    disko =
-    {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     # }}}
 
