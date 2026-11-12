@@ -174,7 +174,7 @@ After adding the input, the packages can be used in your configuration like this
 <!-- }}} -->
 
 <!-- {{{ Templates -->
-### Templates
+## Templates
 <!-- {{{ devenv-empty -->
 - `devenv-empty`
 -- written to be more of a template for future templates.
@@ -195,7 +195,15 @@ nix flake init --template github:Andy3153/nixos-rice#devenv-py
 <!-- }}} -->
 <!-- }}} -->
 
+<!-- {{{ Others -->
+## Others
+<!-- {{{ Justfile -->
+### Justfile
+The `Justfile` in this repo gets used alongside an alias in [Andy3153/andy3153-zshrc](https://github.com/Andy3153/andy3153-zshrc/blob/75b471da92074b35352853af95aa3d46d6907f2c/aliasrc#L34) for all my update/upgrade/switch/build/dotfile update/nix store cleanup routines.
+<!-- }}} -->
+
 <!-- {{{ Install script -->
 ### Install script
 `install.sh` shows all the steps I follow to install from a live environment. The script can also be ran.
+<!-- }}} -->
 <!-- }}} -->
