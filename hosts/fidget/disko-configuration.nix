@@ -268,5 +268,21 @@ in
       # }}}
       # }}}
     };
+
+    # {{{ Crypttab
+    environment.etc.crypttab.text =
+    let
+      mkCrypttab = volumeName: encryptedDevice: keyFile: options:
+        "${volumeName} ${encryptedDevice} ${keyFile} ${options}\n";
+
+      mkCrypttabExternal = name:
+        mkCrypttab name
+        "/dev/disk/by-partlabel/${name}-crypt"
+        "${persistPath}/etc/keys/luks/${name}"
+        "noauto";
+    in
+    mkCrypttabExternal "ciorba" +
+    mkCrypttabExternal "tocanita";
+    # }}}
   };
 }
