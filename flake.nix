@@ -218,6 +218,16 @@
     ...
   }:
   # }}}
+  # {{{ Variables
+  let
+    supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+    forEachSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f
+    {
+      pkgs    = import nixpkgs { inherit system; };
+      my-pkgs = self.outputs.packages.${system};
+    });
+  in
+  # }}}
   {
     # {{{ NixOS configurations
     nixosConfigurations =
@@ -238,7 +248,7 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
+                my-pkgs       = self.outputs.packages.x86_64-linux;
               };
             }
           )
@@ -276,7 +286,7 @@
               {
                 pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
                 pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = my-nixpkgs.packages.x86_64-linux;
+                my-pkgs       = self.outputs.packages.x86_64-linux;
               };
             }
           )
@@ -363,6 +373,15 @@
       default    = nixos-rice;
       nixos-rice = ./modules;
     };
+    # }}}
+
+    # {{{ Packages
+    packages = forEachSystem ({ pkgs, my-pkgs }:
+    {
+      batnotifsd               = pkgs.callPackage ./pkgs/batnotifsd.nix               { };
+      plymouth-spinnerv2-theme = pkgs.callPackage ./pkgs/plymouth-spinnerv2-theme.nix { };
+      weather4bar              = pkgs.callPackage ./pkgs/weather4bar.nix              { };
+    });
     # }}}
 
     # {{{ Templates

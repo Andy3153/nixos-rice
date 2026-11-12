@@ -3,7 +3,7 @@
 ## Piper & ratbagd config
 ##
 
-{ config, lib, my-pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.hardware.piper;
@@ -13,11 +13,7 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.extraPackages = [ my-pkgs.piper-git ];
-    services.ratbagd =
-    {
-      enable  = true;
-      package = my-pkgs.libratbag-git;
-    };
+    custom.extraPackages    = [ pkgs.piper ];
+    services.ratbagd.enable = true;
   };
 }

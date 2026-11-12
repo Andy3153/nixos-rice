@@ -82,6 +82,97 @@ You can use these modules by adding this flake into your flake's inputs, and the
 <!-- }}} -->
 <!-- }}} -->
 
+<!-- {{{ Packages -->
+## Packages
+This is my collection of packages for Nix. They used to live at [Andy3153/my-nixpkgs](https://github.com/Andy3153/my-nixpkgs).
+
+Packages here either aren't in NixPkgs (because they're way too personal to be useful to anyone else), or are and my derivations are just overrides to get the latest version and they compile the latest commit from Git.
+
+<!-- {{{ batnotifsd -->
+- [`batnotifsd`](https://github.com/Andy3153/batnotifsd)
+-- A Python script that sends notifications about the battery's status.
+<!-- }}} -->
+
+<!-- {{{ plymouth-spinnerv2-theme -->
+- [`plymouth-spinnerv2-theme`](https://github.com/Andy3153/plymouth-spinnerv2-theme)
+-- Plymouth theme with the ACPI BGRT graphics on the background, custom elements, spinner animation from [adi1090x/plymouth-themes](https://github.com/adi1090x/plymouth-themes) and the NixOS logo at the bottom.
+<!-- }}} -->
+
+<!-- {{{ weather4bar -->
+- [`weather4bar`](https://github.com/Andy3153/weather4bar)
+-- A Python script that shows weather info for the current location.
+<!-- }}} -->
+
+<!-- {{{ Usage -->
+### Usage
+Add this repo as a flake input to your main flake. For example:
+<!-- {{{ Sample flake -->
+```nix
+# flake.nix
+
+{
+  inputs =
+  {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # andy3153-nixos-rice
+    andy3153-nixos-rice =
+    {
+      url = "github:Andy3153/nixos-rice";
+      inputs.nixpkgs.follows = "nixpkgs"; # to avoid multiple nixpkgs instances on your computer
+    };
+  };
+
+  outputs = inputs@
+  {
+    self,
+    nixpkgs,
+    andy3153-nixos-rice,
+    ...
+  }: rec
+  {
+    nixosConfigurations.<hostname> = nixpkgs.lib.nixosSystem
+    {
+      modules =
+      [
+        ({ ... }: { _module.args = { my-pkgs = andy3153-nixos-rice.packages.x86_64-linux; }; })
+
+        ./path/to/your/configuration.nix
+      ];
+    };
+  };
+}
+```
+<!-- }}} -->
+
+After adding the input, the packages can be used in your configuration like this:
+<!-- {{{ Sample configuration -->
+```nix
+# configuration.nix
+
+{ lib, pkgs, my-pkgs, ... }:
+
+{
+  environment.systemPackages = lib.mkMerge
+  [
+    (with pkgs;    # your normal packages from nixpkgs
+    [
+      git
+      htop
+    ])
+
+    (with my-pkgs; # packages from this flake
+    [
+      batnotifsd
+      plymouth-spinnerv2-theme
+    ])
+  ];
+}
+```
+<!-- }}} -->
+<!-- }}} -->
+<!-- }}} -->
+
 <!-- {{{ Templates -->
 ### Templates
 <!-- {{{ devenv-empty -->
