@@ -12,6 +12,8 @@ let
   mainUser     = config.custom.users.mainUser;
   homeDir      = "/home/${mainUser}"; # ANYTHING ELSE that tries to be more elegant, like `config.users.users.${mainUser}.home` produces an **infinite recursion**. why?
   xdgDownloads = "${homeDir}/downs";  # so I have to make do with this for now...
+
+  persistPath = config.custom.filesystems.disk.main.partitions.main.subvolumes."/persist".mountpoint;
   # }}}
 in
 {
@@ -30,6 +32,65 @@ in
     {
       # {{{ Disks
       disk =
+      # {{{ Variables
+      let
+        # {{{ Make external encrypted drive
+        mkExternalEncryptedDrive = driveName:
+        {
+          "${driveName}" =
+          {
+            device = "/dev/disk/by-partlabel/${driveName}-crypt";
+            type   = "disk";
+
+            content =
+            {
+              type = "gpt";
+
+              # {{{ Partitions
+              partitions =
+              {
+                # {{{ Main encrypted container
+                "${driveName}-crypt" = rec
+                {
+                  name  = "${driveName}-crypt";
+                  label = name;
+                  size  = "100%";
+
+                  content =
+                  {
+                    name = "${driveName}";
+                    type = "luks";
+
+                    settings.allowDiscards = true;
+
+                    content =
+                    {
+                      type         = "btrfs";
+                      extraArgs    = [ "-f" ];
+                      mountOptions = [ "compress=zstd" "noauto" "x-gvfs-show" ];
+
+                      # {{{ Btrfs subvolumes
+                      subvolumes =
+                      {
+                        "/default" =
+                        {
+                          mountpoint   = "/mnt/${driveName}";
+                          mountOptions = [ "compress=zstd" "noauto" "x-gvfs-show" ];
+                        };
+                      };
+                      # }}}
+                    };
+                  };
+                };
+                # }}}
+              };
+              # }}}
+            };
+          };
+        };
+        # }}}
+      in
+      # }}}
       {
         # {{{ Main drive (internal SSD)
         main =
@@ -200,7 +261,11 @@ in
           };
         };
         # }}}
-      };
+      }
+      # {{{ External drives
+      // mkExternalEncryptedDrive "ciorba"
+      // mkExternalEncryptedDrive "tocanita";
+      # }}}
       # }}}
     };
   };
