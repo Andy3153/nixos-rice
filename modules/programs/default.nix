@@ -8,7 +8,6 @@
 {
   imports =
   [
-    ./nixpak
     ./android-tools.nix
     ./appimage.nix
     ./btop.nix
