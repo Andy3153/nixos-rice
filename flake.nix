@@ -145,26 +145,6 @@
     };
     # }}}
 
-    # {{{ Jovian NixOS (Steam Deck UI)
-    jovian_unstable =
-    {
-      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
-    };
-
-    jovian_stable =
-    {
-      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
-      inputs.nixpkgs.follows = "nixpkgs_stable";
-    };
-
-    jovian =
-    {
-      url = "github:Andy3153/Jovian-NixOS/development_with_guard-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # }}}
-
     # {{{ NixOS-VFIO
     nixos-vfio_unstable =
     {
@@ -249,10 +229,6 @@
     home-manager_stable,
     home-manager,
 
-    jovian_unstable,
-    jovian_stable,
-    jovian,
-
     nixos-vfio_unstable,
     nixos-vfio_stable,
     nixos-vfio,
@@ -298,7 +274,6 @@
           detsys-nix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
-          jovian.nixosModules.jovian
           (import "${nixos-vfio}/modules/kvmfr" { std = nixos-vfio.inputs.nix-std.lib; })
           (import "${nixos-vfio}/modules/vfio")
           disko.nixosModules.disko
@@ -348,7 +323,6 @@
           detsys-nix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           home-manager.nixosModules.home-manager
-          jovian.nixosModules.jovian
           #nixos-vfio.nixosModules.default
           disko.nixosModules.disko
           spicetify.nixosModules.spicetify
@@ -384,7 +358,6 @@
           {
             options =
             {
-              jovian                     = lib.mkOption { };
               programs.spicetify         = lib.mkOption { };
               services.flatpak.overrides = lib.mkOption { };
               services.flatpak.packages  = lib.mkOption { };
