@@ -54,7 +54,11 @@ in
     {
       initrd.kernelModules = lib.mkMerge
       [
-        [ "vfio_virqfd" ]
+        [
+          "vfio"
+          "vfio_iommu_type1"
+          "vfio_pci"
+        ]
 
         (lib.mkIf (cfg.gpu == "nvidia")
         [

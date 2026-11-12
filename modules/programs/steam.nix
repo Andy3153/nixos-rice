@@ -6,7 +6,7 @@
 { config, options, lib, pkgs, ... }:
 
 let
-  cfg     = config.custom.programs.steam;
+  cfg = config.custom.programs.steam;
 in
 {
   options.custom.programs.steam =
