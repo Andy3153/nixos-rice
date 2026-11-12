@@ -17,26 +17,6 @@
     nixpkgs              = nixpkgs_unstable;
     # }}}
 
-    # {{{ My Nix packages
-    my-nixpkgs_unstable =
-    {
-      url = "github:Andy3153/my-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
-    };
-
-    my-nixpkgs_stable =
-    {
-      url = "github:Andy3153/my-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs_stable";
-    };
-
-    my-nixpkgs =
-    {
-      url = "github:Andy3153/my-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # }}}
-
     # {{{ NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # }}}
@@ -180,10 +160,6 @@
     nixpkgs_unstable,
     nixpkgs_stable,
     nixpkgs,
-
-    my-nixpkgs_unstable,
-    my-nixpkgs_stable,
-    my-nixpkgs,
 
     nixos-hardware,
 
