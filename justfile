@@ -29,6 +29,10 @@ git-push directory:
 
 # {{{ NixOS
 [private]
+nix-repl-path flakePath:
+  nix repl nixpkgs "{{ flakePath }}" --impure
+
+[private]
 nix-flake-update flakePath:
   nix flake update --flake "{{ flakePath }}" --option access-tokens "github.com=$(gh auth token)"
 
@@ -77,6 +81,8 @@ nixos:              nixos-switch
 nixos-update:       nixos-flake nixos-switch
 nixos-update-boot:  nixos-flake nixos-boot
 nixos-update-build: nixos-flake nixos-build
+
+nix-repl: (nix-repl-path nixosDir)
 
 nixos-clean-system nrOfGensToKeep: (nh-clean "all"  nrOfGensToKeep)
 nixos-clean-user   nrOfGensToKeep: (nh-clean "user" nrOfGensToKeep)
@@ -127,5 +133,7 @@ upgrade-build: dotfiles nixos-update-build switch nvim zsh (nixos-clean "1")
 softgrade:       dotfiles nixos-update
 softgrade-boot:  dotfiles nixos-update-boot
 softgrade-build: dotfiles nixos-update-build switch
+
+repl: nix-repl
 # }}}
 # }}}

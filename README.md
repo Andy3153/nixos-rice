@@ -199,7 +199,7 @@ nix flake init --template github:Andy3153/nixos-rice#devenv-py
 ## Others
 <!-- {{{ Justfile -->
 ### Justfile
-The `Justfile` in this repo gets used alongside an alias in [Andy3153/andy3153-zshrc](https://github.com/Andy3153/andy3153-zshrc/blob/75b471da92074b35352853af95aa3d46d6907f2c/aliasrc#L34) for all my update/upgrade/switch/build/dotfile update/nix store cleanup routines.
+The `Justfile` in this repo gets used alongside an alias in [Andy3153/andy3153-zshrc](https://github.com/Andy3153/andy3153-zshrc/blob/75b471da92074b35352853af95aa3d46d6907f2c/aliasrc#L34) for all my update/upgrade/switch/build/dotfile update/nix store cleanup/repl routines.
 <!-- }}} -->
 
 <!-- {{{ Install script -->
