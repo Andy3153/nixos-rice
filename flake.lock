@@ -1340,6 +1340,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_unstable-small": {
+      "locked": {
+        "lastModified": 1794493573,
+        "narHash": "sha256-IzdumBb69us47OjGzNjwqMM9mKw2042rqwOA0g9bJBA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "3fe6b2e95f7304e16d6637199c6ae3b4382cbf89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -1434,6 +1450,7 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs_stable": "nixpkgs_stable",
         "nixpkgs_unstable": "nixpkgs_unstable",
+        "nixpkgs_unstable-small": "nixpkgs_unstable-small",
         "spicetify": "spicetify"
       }
     },
