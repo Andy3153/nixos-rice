@@ -90,6 +90,7 @@ zsh-run cmd:
 # {{{ Recipes
 # {{{ Dotfiles
 # Pull all changes made to the dotfiles
+[group("dotfiles")]
 dotfiles-pull:         \
   (git-pull zshDir)    \
   (git-pull scriptDir) \
@@ -98,6 +99,7 @@ dotfiles-pull:         \
   (git-pull nixosDir)
 
 # Push all changes made to the dotfiles
+[group("dotfiles")]
 dotfiles-push:         \
   (git-push zshDir)    \
   (git-push scriptDir) \
@@ -106,26 +108,32 @@ dotfiles-push:         \
   (git-push nixosDir)
 
 # `dotfiles-pull`, `dotfiles-push`
+[group("dotfiles")]
 dotfiles: dotfiles-pull dotfiles-push
 # }}}
 
 # {{{ NixOS
 # {{{ Build
 # Build the new NixOS configuration (leaves a 'result' symlink in cwd)
+[group("nixos-build")]
 build:  (nh-os-impure "build")
 
 # Build the new NixOS configuration and make it the default at boot
+[group("nixos-build")]
 boot:   (nh-os-impure "boot")
 
 # Build and activate the new NixOS configuration and make it the default at boot
+[group("nixos-build")]
 switch: (nh-os-impure "switch")
 
 # Update the NixOS system flake's lock file
+[group("nixos-build")]
 flake:  (nix-flake-update nixosDir)
 # }}}
 
 # {{{ Tools
 # Clean all but the last `nrOfGensToKeep` system and user NixOS profiles, then optimize and repair the Nix store
+[group("nixos-tools")]
 clean nrOfGensToKeep:                 \
   (nixos-clean-system nrOfGensToKeep) \
   (nixos-clean-user   nrOfGensToKeep) \
@@ -133,26 +141,32 @@ clean nrOfGensToKeep:                 \
   nixos-repair
 
 # List the available NixOS generations
+[group("nixos-tools")]
 generations: (nh-os "info")
 
 # Start an interactive environment for evaluating Nix expressions and load the system flake
+[group("nixos-tools")]
 repl:        (nix-repl nixosDir)
 # }}}
 # }}}
 
 # {{{ Neovim
 # Update all Neovim plugins
+[group("neovim")]
 nvim-lazy:       (nvim-run "Lazy! sync")
 
 # Update all Neovim Treesitter parsers
+[group("neovim")]
 nvim-treesitter: (nvim-run "TSInstall all")
 
 # `nvim-lazy`, `nvim-treesitter`
+[group("neovim")]
 nvim: nvim-lazy nvim-treesitter
 # }}}
 
 # {{{ Zsh
 # Update all Zsh plugins
+[group("zsh")]
 zsh: (zsh-run "plugin-update")
 # }}}
 
@@ -160,34 +174,43 @@ zsh: (zsh-run "plugin-update")
 # {{{ Update
 # {{{ Softdate
 #                `dotfiles`,          `switch`
+[group("system-update-soft")]
 softdate:         dotfiles             switch
 
 #                `dotfiles`,          `boot`
+[group("system-update-soft")]
 softdate-boot:    dotfiles             boot
 
 #                `dotfiles`,          `build`, `switch`
+[group("system-update-soft")]
 softdate-build:   dotfiles             build    switch
 # }}}
 
 # {{{ Update
 #                `dotfiles`,          `switch`,          `nvim`, `zsh`
+[group("system-update")]
 update:           dotfiles             switch             nvim    zsh
 
 #                `dotfiles`,          `boot`,            `nvim`, `zsh`
+[group("system-update")]
 update-boot:      dotfiles             boot               nvim    zsh
 
 #                `dotfiles`,          `build`, `switch`, `nvim`, `zsh`
+[group("system-update")]
 update-build:     dotfiles             build    switch    nvim    zsh
 # }}}
 
 # {{{ Harddate
 #                `dotfiles`,          `switch`,          `nvim`, `zsh`, `(clean "1")`
+[group("system-update-hard")]
 harddate:         dotfiles             switch             nvim    zsh    (clean "1")
 
 #                `dotfiles`,          `boot`,            `nvim`, `zsh`, `(clean "1")`
+[group("system-update-hard")]
 harddate-boot:    dotfiles             boot               nvim    zsh    (clean "1")
 
 #                `dotfiles`,          `build`, `switch`, `nvim`, `zsh`, `(clean "1")`
+[group("system-update-hard")]
 harddate-build:   dotfiles             build    switch    nvim    zsh    (clean "1")
 # }}}
 # }}}
@@ -195,34 +218,43 @@ harddate-build:   dotfiles             build    switch    nvim    zsh    (clean 
 # {{{ Upgrade
 # {{{ Softgrade
 #                `dotfiles`, `flake`, `switch`
+[group("system-upgrade-soft")]
 softgrade:        dotfiles    flake    switch
 
 #                `dotfiles`, `flake`, `boot`
+[group("system-upgrade-soft")]
 softgrade-boot:   dotfiles    flake    boot
 
 #                `dotfiles`, `flake`, `build`, `switch`
+[group("system-upgrade-soft")]
 softgrade-build:  dotfiles    flake    build    switch
 # }}}
 
 # {{{ Upgrade
 #                `dotfiles`, `flake`, `switch`,          `nvim`, `zsh`
+[group("system-upgrade")]
 upgrade:          dotfiles    flake    switch             nvim    zsh
 
 #                `dotfiles`, `flake`, `boot`,            `nvim`, `zsh`
+[group("system-upgrade")]
 upgrade-boot:     dotfiles    flake    boot               nvim    zsh
 
 #                `dotfiles`, `flake`, `build`, `switch`, `nvim`, `zsh`
+[group("system-upgrade")]
 upgrade-build:    dotfiles    flake    build    switch    nvim    zsh
 # }}}
 
 # {{{ Hardgrade
 #                `dotfiles`, `flake`, `switch`,          `nvim`, `zsh`, `(clean "1")`
+[group("system-upgrade-hard")]
 hardgrade:        dotfiles    flake    switch             nvim    zsh    (clean "1")
 
 #                `dotfiles`, `flake`, `boot`,            `nvim`, `zsh`, `(clean "1")`
+[group("system-upgrade-hard")]
 hardgrade-boot:   dotfiles    flake    boot               nvim    zsh    (clean "1")
 
 #                `dotfiles`, `flake`, `build`, `switch`, `nvim`, `zsh`, `(clean "1")`
+[group("system-upgrade-hard")]
 hardgrade-build:  dotfiles    flake    build    switch    nvim    zsh    (clean "1")
 # }}}
 # }}}
@@ -230,6 +262,7 @@ hardgrade-build:  dotfiles    flake    build    switch    nvim    zsh    (clean 
 
 # {{{ Default
 # `switch`
+[group("default")]
 [default]
 default: switch
 # }}}
