@@ -4,6 +4,11 @@
 ## by Andy3153
 ##
 
+# {{{ Settings
+set indentation := "  "
+set lazy
+# }}}
+
 # {{{ Variables
 # {{{ Dotfile directories
 dotfileRootDir := env("XDG_PROJECTS_DIR", env("HOME", "~") + "/src")
