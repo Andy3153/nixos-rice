@@ -12,9 +12,10 @@
   inputs =
   {
     # {{{ NixPkgs
-    nixpkgs.url          = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs_stable.url   = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url                = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs_unstable.url       = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs_unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs_stable.url         = "github:nixos/nixpkgs/nixos-26.05";
     # }}}
 
     # {{{ NixOS Hardware
@@ -158,6 +159,7 @@
     self,
 
     nixpkgs_unstable,
+    nixpkgs_unstable-small,
     nixpkgs_stable,
     nixpkgs,
 
@@ -222,9 +224,10 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = self.outputs.packages.x86_64-linux;
+                pkgs-unstable       = import nixpkgs_unstable       { config = config.nixpkgs.config; };
+                pkgs-unstable-small = import nixpkgs_unstable-small { config = config.nixpkgs.config; };
+                pkgs-stable         = import nixpkgs_stable         { config = config.nixpkgs.config; };
+                my-pkgs             = self.outputs.packages.x86_64-linux;
               };
             }
           )
@@ -260,9 +263,10 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
-                my-pkgs       = self.outputs.packages.x86_64-linux;
+                pkgs-unstable       = import nixpkgs_unstable       { config = config.nixpkgs.config; };
+                pkgs-unstable-small = import nixpkgs_unstable-small { config = config.nixpkgs.config; };
+                pkgs-stable         = import nixpkgs_stable         { config = config.nixpkgs.config; };
+                my-pkgs             = self.outputs.packages.x86_64-linux;
               };
             }
           )
@@ -308,8 +312,10 @@
             {
               _module.args =
               {
-                pkgs-unstable = import nixpkgs_unstable { config = config.nixpkgs.config; };
-                pkgs-stable   = import nixpkgs_stable   { config = config.nixpkgs.config; };
+                pkgs-unstable       = import nixpkgs_unstable       { config = config.nixpkgs.config; };
+                pkgs-unstable-small = import nixpkgs_unstable-small { config = config.nixpkgs.config; };
+                pkgs-stable         = import nixpkgs_stable         { config = config.nixpkgs.config; };
+                my-pkgs             = self.outputs.packages.x86_64-linux;
               };
             }
           )
