@@ -22,6 +22,12 @@ nixosDir  := dotfileRootDir + "/nix/nixos-rice"
 # }}}
 
 # {{{ Functions
+# {{{ Help
+[private]
+just-print arg:
+  @just --justfile {{ justfile() }} --list-heading $'NixOS Rice System Tools:\n\n' --list-prefix "• " --unsorted {{ arg }}
+# }}}
+
 # {{{ Git
 [private]
 git-pull directory:
@@ -88,6 +94,24 @@ zsh-run cmd:
 # }}}
 
 # {{{ Recipes
+# {{{ Help
+# Show this help screen
+[group("help")]
+help:        (just-print "--list --group help")
+
+# Show all the available tool groups
+[group("help")]
+groups: (just-print "--groups")
+
+# Show a list of all the available tools in group `group`
+[group("help")]
+group group: (just-print "--list --group " + group)
+
+# Show a list of all the available tools in all present groups
+[group("help")]
+list:        (just-print "--list")
+# }}}
+
 # {{{ Dotfiles
 # Pull all changes made to the dotfiles
 [group("dotfiles")]
