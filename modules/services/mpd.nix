@@ -3,7 +3,7 @@
 ## MPD config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg         = config.custom.services.mpd;
@@ -37,7 +37,12 @@ in
 
   config = lib.mkIf cfg.enable
   {
-    custom.services.pipewire.enable = true;
+    custom =
+    {
+      extraPackages = [ pkgs.cantata ];
+
+      services.pipewire.enable = true;
+    };
 
     services.mpd =
     {

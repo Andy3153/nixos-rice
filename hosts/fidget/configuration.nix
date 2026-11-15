@@ -43,110 +43,80 @@
     # }}}
 
   # {{{ Extra packages
-  extraPackages = lib.lists.flatten
+  extraPackages = with pkgs;
   [
-    # {{{ Default NixPkgs
-    (with pkgs;
-    [
-      # {{{ Browsers
-      ungoogled-chromium # browser
-      tor-browser        # Tor
-      # }}}
-
-      # {{{ Media
-      cantata      # music-player for-mpd
-      pear-desktop # music-player youtube-music
-
-      flac       # music
-      opus-tools # music
-      mousai     # music find-music
-      picard     # music tag-music
-      lrcget     # music get-lyrics
-      shntool    # music split-cue
-      cdparanoia # music rip-cds
-
-      ffmpeg     # media-convert
-      yt-dlp     # media-download
-      converseen # media-convert
-
-      exiftool # image-data
-      # }}}
-
-      # {{{ Office
-      libreoffice-qt6           # Office
-      gimp3-with-plugins        # Office photo-editing
-      inkscape                  # Office photo-editing
-
-      texliveFull                # LaTeX
-      texpresso                  # for-latex
-      python314Packages.pygments # for-latex
-      pandoc                     # for-latex
-      ghostscript                # for-latex pdf-tools
-
-      pdftk         # pdf-tools
-      pdfarranger   # pdf-tools
-      poppler-utils # pdf-tools
-      # }}}
-
-      # {{{ Partitioning/Filesystems
-      gparted # Partition-Manager
-      fatsort # Filesystems sort-fat-fs
-
-      (testdisk.override
-      {
-        enableQt = true;
-        enableNtfs = true;
-        enableExtFs = true;
-      })
-
-      f3 # flash-drive-tester
-      # }}}
-
-      # {{{ Programming
-      gh # github for-git
-      # }}}
-
-      # {{{ Social
-      ferdium # Social
-      # }}}
-
-      # {{{ Sound
-      qpwgraph    # Sound PipeWire Patchbay
-      easyeffects # Sound PipeWire
-      pulsemixer  # Sound sound-control
-      # }}}
-
-      # {{{ Master
-      unityhub
-      # }}}
-
-      linux-wifi-hotspot # Internet hotspot
-      qbittorrent        # torrents
-      wimlib             # .wim
-      woeusb             # flash-usbs windows
-      d-spy              # D-Bus
-      jq                 # Other-CLI json
-      hjson              # Other-CLI json
-    ])
+    # {{{ Browsers
+    ungoogled-chromium # browser
+    tor-browser        # Tor
     # }}}
 
-    # {{{ NixPkgs Unstable
-    (with pkgs-unstable;
-    [
-    ])
+    # {{{ Media
+    cantata      # music-player for-mpd
+    pear-desktop # music-player youtube-music
+
+    flac       # music
+    opus-tools # music
+    mousai     # music find-music
+    picard     # music tag-music
+    lrcget     # music get-lyrics
+    shntool    # music split-cue
+    cdparanoia # music rip-cds
+
+    ffmpeg # media-convert
+    yt-dlp # media-download
+
+    exiftool # image-data
     # }}}
 
-    # {{{ NixPkgs Stable
-    (with pkgs-stable;
-    [
-    ])
+    # {{{ Office
+    libreoffice-qt6           # Office
+    gimp3-with-plugins        # Office photo-editing
+    inkscape                  # Office photo-editing
+
+    texliveFull                # LaTeX
+    texpresso                  # for-latex
+    python314Packages.pygments # for-latex
+    pandoc                     # for-latex
+    ghostscript                # for-latex pdf-tools
+
+    pdftk         # pdf-tools
+    pdfarranger   # pdf-tools
+    poppler-utils # pdf-tools
     # }}}
 
-    # {{{ My Nix packages
-    (with my-pkgs;
-    [
-    ])
+    # {{{ Partitioning/Filesystems
+    gparted # Partition-Manager
+    fatsort # Filesystems sort-fat-fs
+
+    (testdisk.override
+    {
+      enableQt = true;
+      enableNtfs = true;
+      enableExtFs = true;
+    })
+
+    f3 # flash-drive-tester
     # }}}
+
+    # {{{ Programming
+    gh # github for-git
+    # }}}
+
+    # {{{ Social
+    ferdium # Social
+    # }}}
+
+    # {{{ Master
+    unityhub
+    # }}}
+
+    linux-wifi-hotspot # Internet hotspot
+    qbittorrent        # torrents
+    wimlib             # .wim
+    woeusb             # flash-usbs windows
+    d-spy              # D-Bus
+    jq                 # Other-CLI json
+    hjson              # Other-CLI json
   ];
   # }}}
 

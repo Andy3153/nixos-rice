@@ -35,60 +35,42 @@ in
   custom =
   {
     # {{{ Extra packages
-    extraPackages = lib.lists.flatten
+    extraPackages = with pkgs;
     [
-      # {{{ Default NixPkgs
-      (with pkgs;
-      [
-        file           # Other-CLI
-        usbutils       # Other-CLI
-        killall        # Other-CLI
-        ripgrep        # Other-CLI
-        fastfetch      # Other-CLI fetch-system-info
-        lm_sensors     # Other-CLI sensors
-        sshfs          # for-ssh fs-support
-        wget           # download
-        curl           # download
-        rsync          # cp
-        tmux           # terminal-multiplexer
-        htop           # task-manager
-        kitty.terminfo # terminfo
-        just           # for-nixos-rice
+      file           # Other-CLI
+      usbutils       # Other-CLI
+      killall        # Other-CLI
+      ripgrep        # Other-CLI
+      fastfetch      # Other-CLI fetch-system-info
+      lm_sensors     # Other-CLI sensors
+      nvme-cli       # Other-CLI nvme
+      sshfs          # for-ssh fs-support
+      wget           # download
+      curl           # download
+      rsync          # cp
+      tmux           # terminal-multiplexer
+      htop           # task-manager
+      kitty.terminfo # terminfo
+      just           # for-nixos-rice
 
-        brightnessctl # Other-CLI brightness hyprland-rice
+      parted      # Partition-Manager
+      e2fsprogs   # Filesystem-Support ext*
+      btrfs-progs # Filesystem-Support btrfs
+      exfatprogs  # Filesystem-Support exfat
+      dosfstools  # Filesystem-Support fat*
+      mtools      # Filesystem-Support fat*
+      fatresize   # Filesystem-Support fat*
+      ntfs3g      # Filesystem-Support ntfs
 
-        parted      # Partition-Manager
-        e2fsprogs   # Filesystem-Support ext*
-        btrfs-progs # Filesystem-Support btrfs
-        exfatprogs  # Filesystem-Support exfat
-        dosfstools  # Filesystem-Support fat*
-        mtools      # Filesystem-Support fat*
-        fatresize   # Filesystem-Support fat*
-        ntfs3g      # Filesystem-Support ntfs
+      inotify-tools # for-scripts
+      libnotify     # for-scripts
 
-        inotify-tools # for-scripts
-        libnotify     # for-scripts
+      unzip # archives
+      unrar # archives
+      p7zip # archives
 
-        unzip # archives
-        unrar # archives
-        p7zip # archives
-
-        traceroute # networking
-        whois      # networking
-      ])
-      # }}}
-
-      # {{{ NixPkgs Unstable
-      (with pkgs-unstable;
-      [
-      ])
-      # }}}
-
-      # {{{ NixPkgs Stable
-      (with pkgs-stable;
-      [
-      ])
-      # }}}
+      traceroute # networking
+      whois      # networking
     ];
     # }}}
 

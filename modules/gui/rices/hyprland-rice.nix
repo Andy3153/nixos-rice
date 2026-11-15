@@ -67,6 +67,7 @@ in
         (with pkgs;
         [
           blueman              # hyprland-rice bluetooth-control
+          brightnessctl        # hyprland-rice brightness
           cava                 # hyprland-rice visualizer
           cliphist             # hyprland-rice clipboard-manager
           dunst                # hyprland-rice notification-daemon

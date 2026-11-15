@@ -3,7 +3,7 @@
 ## PipeWire config
 ##
 
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.services.pipewire;
@@ -13,6 +13,12 @@ in
 
   config = lib.mkIf cfg.enable
   {
+    custom.extraPackages = with pkgs;
+    [
+      qpwgraph    # Sound PipeWire Patchbay
+      pulsemixer  # Sound sound-control
+    ];
+
     security.rtkit.enable = lib.mkForce true; # pipewire wants it
 
     services.pipewire =

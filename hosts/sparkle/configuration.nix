@@ -61,136 +61,105 @@ in
     # }}}
 
   # {{{ Extra packages
-  extraPackages = lib.lists.flatten
+  extraPackages = with pkgs;
+  let
+    bottles = pkgs.bottles.override { removeWarningPopup = true; };
+  in
   [
-    # {{{ Default NixPkgs
-    (with pkgs;
-    let
-      bottles = pkgs.bottles.override { removeWarningPopup = true; };
-    in
-    [
-      # {{{ 3D
-      blender # 3D
-      # }}}
-
-      # {{{ Browsers
-      ungoogled-chromium # browser
-      tor-browser        # Tor
-      # }}}
-
-      # {{{ Gaming
-      lutris # launchers for-wine
-      heroic # launchers games
-
-      prismlauncher       # games
-      osu-lazer-bin       # games
-      space-cadet-pinball # games
-
-      dolphin-emu # emulators games gc wii
-
-      beammp-launcher # for-beamng
-      # }}}
-
-      # {{{ Media
-      cantata      # music-player for-mpd
-      pear-desktop # music-player youtube-music
-
-      flac       # music
-      opus-tools # music
-      mousai     # music find-music
-      picard     # music tag-music
-      lrcget     # music get-lyrics
-      shntool    # music split-cue
-      cdparanoia # music rip-cds
-
-      ffmpeg     # media-convert
-      yt-dlp     # media-download
-      converseen # media-convert
-
-      audacity # audio-editor
-
-      exiftool # image-data
-      # }}}
-
-      # {{{ Office
-      libreoffice-qt6           # Office
-      gimp3-with-plugins        # Office photo-editing
-      inkscape                  # Office photo-editing
-      krita                     # Office photo-editing
-
-      texliveFull                # LaTeX
-      texpresso                  # for-latex
-      python314Packages.pygments # for-latex
-      pandoc                     # for-latex
-      ghostscript                # for-latex pdf-tools
-
-      pdftk         # pdf-tools
-      pdfarranger   # pdf-tools
-      poppler-utils # pdf-tools
-      # }}}
-
-      # {{{ Partitioning/Filesystems
-      gparted # Partition-Manager
-      fatsort # Filesystems sort-fat-fs
-
-      (testdisk.override
-      {
-        enableQt = true;
-        enableNtfs = true;
-        enableExtFs = true;
-      })
-
-      f3 # flash-drive-tester
-      # }}}
-
-      # {{{ Programming
-      gh # github for-git
-      # }}}
-
-      # {{{ Social
-      ferdium # Social
-      # }}}
-
-      # {{{ Sound
-      qpwgraph    # Sound PipeWire Patchbay
-      easyeffects # Sound PipeWire
-      pulsemixer  # Sound sound-control
-      # }}}
-
-      # {{{ Wine
-      wineWow64Packages.staging # wine
-      bottles                   # launchers for-wine
-      # }}}
-
-      linux-wifi-hotspot # Internet hotspot
-      qbittorrent        # torrents
-      wimlib             # .wim
-      ventoy-full-qt     # flash-usbs
-      woeusb             # flash-usbs windows
-      d-spy              # D-Bus
-      openbox            # for-xwayland-rootless-script
-      jq                 # Other-CLI json
-      hjson              # Other-CLI json
-    ])
+    # {{{ 3D
+    blender # 3D
     # }}}
 
-    # {{{ NixPkgs Unstable
-    (with pkgs-unstable;
-    [
-    ])
+    # {{{ Browsers
+    ungoogled-chromium # browser
+    tor-browser        # Tor
     # }}}
 
-    # {{{ NixPkgs Stable
-    (with pkgs-stable;
-    [
-    ])
+    # {{{ Gaming
+    lutris # launchers for-wine
+    heroic # launchers games
+
+    prismlauncher       # games
+    osu-lazer-bin       # games
+    space-cadet-pinball # games
+
+    dolphin-emu # emulators games gc wii
+
+    beammp-launcher # for-beamng
     # }}}
 
-    # {{{ My Nix packages
-    (with my-pkgs;
-    [
-    ])
+    # {{{ Media
+    pear-desktop # music-player youtube-music
+
+    flac       # music
+    opus-tools # music
+    mousai     # music find-music
+    picard     # music tag-music
+    lrcget     # music get-lyrics
+    shntool    # music split-cue
+    cdparanoia # music rip-cds
+
+    ffmpeg # media-convert
+    yt-dlp # media-download
+
+    audacity # audio-editor
+
+    exiftool # image-data
     # }}}
+
+    # {{{ Office
+    libreoffice-qt6           # Office
+    gimp3-with-plugins        # Office photo-editing
+    inkscape                  # Office photo-editing
+    krita                     # Office photo-editing
+
+    texliveFull                # LaTeX
+    texpresso                  # for-latex
+    python314Packages.pygments # for-latex
+    pandoc                     # for-latex
+    ghostscript                # for-latex pdf-tools
+
+    pdftk         # pdf-tools
+    pdfarranger   # pdf-tools
+    poppler-utils # pdf-tools
+    # }}}
+
+    # {{{ Partitioning/Filesystems
+    gparted # Partition-Manager
+    fatsort # Filesystems sort-fat-fs
+
+    (testdisk.override
+    {
+      enableQt = true;
+      enableNtfs = true;
+      enableExtFs = true;
+    })
+
+    f3 # flash-drive-tester
+    # }}}
+
+    # {{{ Programming
+    gh # github for-git
+    # }}}
+
+    # {{{ Social
+    ferdium # Social
+    # }}}
+
+    # {{{ Wine
+    wineWow64Packages.staging # wine
+    bottles                   # launchers for-wine
+    # }}}
+
+    linux-wifi-hotspot # Internet hotspot
+    qbittorrent        # torrents
+    wimlib             # .wim
+    ventoy-full-qt     # flash-usbs
+    woeusb             # flash-usbs windows
+    d-spy              # D-Bus
+    openbox            # for-xwayland-rootless-script
+    jq                 # Other-CLI json
+    hjson              # Other-CLI json
   ];
   # }}}
 
