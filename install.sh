@@ -22,8 +22,12 @@ cp -r                 ~/nixos-rice                                    nix
 git clone             https://github.com/Andy3153/andy3153-zshrc      sh/andy3153-zshrc
 git clone             https://github.com/Andy3153/other-shell-scripts sh/other-shell-scripts
 
+mkdir -p /mnt/home/andy3153/pics/ss
+
 sudo chown -R 3153:3153 /mnt/home/andy3153
 
 sudo nixos-install --flake "/home/nixos/nixos-rice#${NIXOSRICE_HOSTNAME}"
 
 sudo nixos-enter -- passwd andy3153
+
+sudo mkdir -p /mnt/.persist/etc/keys
