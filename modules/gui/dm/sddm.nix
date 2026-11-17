@@ -18,7 +18,7 @@ in
     services.displayManager.sddm =
     {
       enable         = true;
-      autoNumlock    = true;
+      autoNumlock    = lib.mkIf (config.networking.hostName != "fidget") true;
       wayland.enable = true;
 
       settings =
