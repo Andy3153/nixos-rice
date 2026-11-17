@@ -51,7 +51,7 @@ in
               {
                 name  = "EFI System Partition";
                 label = name;
-                size  = "1G";
+                size  = "5G";
                 type  = "EF00"; # ESP
 
                 content =
