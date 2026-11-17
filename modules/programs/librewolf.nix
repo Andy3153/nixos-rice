@@ -417,6 +417,7 @@ in
           settings =
           {
             "browser.startup.page" = 3; # open previous windows and tabs on startup
+            "browser.tabs.insertAfterCurrent" = true;
 
             "browser.uiCustomization.state" = "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"ublock0_raymondhill_net-browser-action\"],\"nav-bar\":[\"sidebar-button\",\"firefox-view-button\",\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"customizableui-special-spring2\",\"urlbar-container\",\"customizableui-special-spring3\",\"vertical-spacer\",\"library-button\",\"downloads-button\",\"unified-extensions-button\",\"alltabs-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[],\"vertical-tabs\":[\"tabbrowser-tabs\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"screenshot-button\",\"ublock0_raymondhill_net-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"TabsToolbar\",\"vertical-tabs\",\"toolbar-menubar\",\"PersonalToolbar\",\"unified-extensions-area\"],\"currentVersion\":23,\"newElementCount\":4}";
 
