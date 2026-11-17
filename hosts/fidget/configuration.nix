@@ -27,7 +27,12 @@
       uefi =
       {
         enable = true;
-        secure-boot.enable = true;
+
+        secure-boot =
+        {
+          enable               = true;
+          includeMicrosoftKeys = false; # it's fine, it's on Libreboot
+        };
       };
       # }}}
     };

@@ -12,8 +12,20 @@ in
 {
   options.custom.boot.uefi =
   {
-    enable             = lib.mkEnableOption "enables UEFI boot";
-    secure-boot.enable = lib.mkEnableOption "enables UEFI Secure Boot support";
+    enable = lib.mkEnableOption "enables UEFI boot";
+
+    secure-boot =
+    {
+      enable = lib.mkEnableOption "enables UEFI Secure Boot support";
+
+      includeMicrosoftKeys = lib.mkOption
+      {
+        type        = lib.types.bool;
+        default     = true;
+        example     = false;
+        description = "includes Microsoft keys when enrolling Secure Boot keys";
+      };
+    };
   };
 
   config = lib.mkMerge
@@ -48,8 +60,10 @@ in
 
         autoEnrollKeys =
         {
-          enable     = true;
-          autoReboot = true;
+          enable                 = true;
+          autoReboot             = true;
+          includeMicrosoftKeys   = cfg.secure-boot.includeMicrosoftKeys;
+          allowBrickingMyMachine = !cfg.secure-boot.includeMicrosoftKeys;
         };
 
         pkiBundle = if (lib.versionAtLeast lib.version "25.05pre")
