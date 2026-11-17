@@ -13,7 +13,7 @@ These are configurations for all the hardware I own:
 
 <!-- {{{ fidget -->
 - `fidget`
--- my secondary machine. Basically `sparkle` but more slimmed down.
+-- my secondary machine. Basically `sparkle` but more slimmed down and with Libreboot.
 <!-- }}} -->
 
 <!-- {{{ helix -->
