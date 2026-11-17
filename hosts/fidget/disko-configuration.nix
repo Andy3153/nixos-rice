@@ -36,7 +36,7 @@ in
         # {{{ Main drive (internal SSD)
         main =
         {
-          device = "/dev/disk/by-id/ata-SK_hynix_SC401_SATA_256GB_MN93N194311103H0L";
+          device = "/dev/disk/by-id/nvme-WDC_PC_SN730_SDBPNTY-512G-1006_21125K801279";
           type   = "disk";
 
           content =
