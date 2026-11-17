@@ -197,13 +197,13 @@ zsh: (zsh-run "plugin-update")
 # {{{ Full system update & upgrade
 # {{{ Update
 # {{{ Softdate
-#                `dotfiles`,          `switch`
+#                `dotfiles`,                   `switch`
 [group("system-update-soft")]
-softdate:         dotfiles             switch
+softdate:         dotfiles                      switch
 
-#                `dotfiles`,          `boot`
+#                `dotfiles`,                   `boot`
 [group("system-update-soft")]
-softdate-boot:    dotfiles             boot
+softdate-boot:    dotfiles                      boot
 
 #                `dotfiles`,          `build`, `switch`
 [group("system-update-soft")]
@@ -211,13 +211,13 @@ softdate-build:   dotfiles             build    switch
 # }}}
 
 # {{{ Update
-#                `dotfiles`,          `switch`,          `nvim`, `zsh`
+#                `dotfiles`,                   `switch`, `nvim`, `zsh`
 [group("system-update")]
-update:           dotfiles             switch             nvim    zsh
+update:           dotfiles                      switch    nvim    zsh
 
-#                `dotfiles`,          `boot`,            `nvim`, `zsh`
+#                `dotfiles`,                   `boot`,   `nvim`, `zsh`
 [group("system-update")]
-update-boot:      dotfiles             boot               nvim    zsh
+update-boot:      dotfiles                      boot      nvim    zsh
 
 #                `dotfiles`,          `build`, `switch`, `nvim`, `zsh`
 [group("system-update")]
@@ -225,13 +225,13 @@ update-build:     dotfiles             build    switch    nvim    zsh
 # }}}
 
 # {{{ Harddate
-#                `dotfiles`,          `switch`,          `nvim`, `zsh`, `(clean "1")`
+#                `dotfiles`,                   `switch`, `nvim`, `zsh`, `(clean "1")`
 [group("system-update-hard")]
-harddate:         dotfiles             switch             nvim    zsh    (clean "1")
+harddate:         dotfiles                      switch    nvim    zsh    (clean "1")
 
-#                `dotfiles`,          `boot`,            `nvim`, `zsh`, `(clean "1")`
+#                `dotfiles`,                   `boot`,   `nvim`, `zsh`, `(clean "1")`
 [group("system-update-hard")]
-harddate-boot:    dotfiles             boot               nvim    zsh    (clean "1")
+harddate-boot:    dotfiles                      boot      nvim    zsh    (clean "1")
 
 #                `dotfiles`,          `build`, `switch`, `nvim`, `zsh`, `(clean "1")`
 [group("system-update-hard")]
@@ -241,13 +241,13 @@ harddate-build:   dotfiles             build    switch    nvim    zsh    (clean 
 
 # {{{ Upgrade
 # {{{ Softgrade
-#                `dotfiles`, `flake`, `switch`
+#                `dotfiles`, `flake`,          `switch`
 [group("system-upgrade-soft")]
-softgrade:        dotfiles    flake    switch
+softgrade:        dotfiles    flake             switch
 
-#                `dotfiles`, `flake`, `boot`
+#                `dotfiles`, `flake`,          `boot`
 [group("system-upgrade-soft")]
-softgrade-boot:   dotfiles    flake    boot
+softgrade-boot:   dotfiles    flake             boot
 
 #                `dotfiles`, `flake`, `build`, `switch`
 [group("system-upgrade-soft")]
@@ -255,13 +255,13 @@ softgrade-build:  dotfiles    flake    build    switch
 # }}}
 
 # {{{ Upgrade
-#                `dotfiles`, `flake`, `switch`,          `nvim`, `zsh`
+#                `dotfiles`, `flake`,          `switch`, `nvim`, `zsh`
 [group("system-upgrade")]
-upgrade:          dotfiles    flake    switch             nvim    zsh
+upgrade:          dotfiles    flake             switch    nvim    zsh
 
-#                `dotfiles`, `flake`, `boot`,            `nvim`, `zsh`
+#                `dotfiles`, `flake`,          `boot`,   `nvim`, `zsh`
 [group("system-upgrade")]
-upgrade-boot:     dotfiles    flake    boot               nvim    zsh
+upgrade-boot:     dotfiles    flake             boot      nvim    zsh
 
 #                `dotfiles`, `flake`, `build`, `switch`, `nvim`, `zsh`
 [group("system-upgrade")]
@@ -269,13 +269,13 @@ upgrade-build:    dotfiles    flake    build    switch    nvim    zsh
 # }}}
 
 # {{{ Hardgrade
-#                `dotfiles`, `flake`, `switch`,          `nvim`, `zsh`, `(clean "1")`
+#                `dotfiles`, `flake`,          `switch`, `nvim`, `zsh`, `(clean "1")`
 [group("system-upgrade-hard")]
-hardgrade:        dotfiles    flake    switch             nvim    zsh    (clean "1")
+hardgrade:        dotfiles    flake             switch    nvim    zsh    (clean "1")
 
-#                `dotfiles`, `flake`, `boot`,            `nvim`, `zsh`, `(clean "1")`
+#                `dotfiles`, `flake`,          `boot`,   `nvim`, `zsh`, `(clean "1")`
 [group("system-upgrade-hard")]
-hardgrade-boot:   dotfiles    flake    boot               nvim    zsh    (clean "1")
+hardgrade-boot:   dotfiles    flake             boot      nvim    zsh    (clean "1")
 
 #                `dotfiles`, `flake`, `build`, `switch`, `nvim`, `zsh`, `(clean "1")`
 [group("system-upgrade-hard")]
