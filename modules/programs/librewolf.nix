@@ -148,6 +148,24 @@ in
               };
               # }}}
 
+              # {{{ Google Translate (English -> Romanian)
+              translate-en-ro =
+              {
+                name           = "Google Translate (English -> Romanian)​";
+                definedAliases = [ "@trenro" ];
+                urls           = [{ template = "https://translate.google.com/?sl=en&tl=ro&text={searchTerms}"; }];
+              };
+              # }}}
+
+              # {{{ Google Translate (Romanian -> English)
+              translate-ro-en =
+              {
+                name           = "Google Translate (Romanian -> English)​";
+                definedAliases = [ "@trroen" ];
+                urls           = [{ template = "https://translate.google.com/?sl=ro&tl=en&text={searchTerms}"; }];
+              };
+              # }}}
+
               # {{{ Yandex
               yandex =
               {
@@ -162,7 +180,16 @@ in
               {
                 name           = "YouTube​";
                 definedAliases = [ "@yt" ];
-                urls           = [{ template = "https://www.youtube.com/results?search_query={searchTerms}"; }];
+                urls           = [{ template = "https://youtube.com/results?search_query={searchTerms}"; }];
+              };
+              # }}}
+
+              # {{{ YouTube Music
+              youtube-music =
+              {
+                name           = "YouTube Music​";
+                definedAliases = [ "@ytm" ];
+                urls           = [{ template = "https://music.youtube.com/search?q={searchTerms}"; }];
               };
               # }}}
 
@@ -370,6 +397,15 @@ in
                 name           = "Hugging Face​";
                 definedAliases = [ "@hf" ];
                 urls           = [{ template = "https://huggingface.co/models?search={searchTerms}"; }];
+              };
+              # }}}
+
+              # {{{ OLX
+              olx =
+              {
+                name           = "OLX​";
+                definedAliases = [ "@olx" ];
+                urls           = [{ template = "https://www.olx.ro/oferte/q-{searchTerms}/?search[order]=filter_float_price%3Aasc"; }];
               };
               # }}}
             };
