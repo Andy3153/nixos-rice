@@ -242,8 +242,6 @@ in
       {
         enable     = true;
         lfs.enable = true;
-        userName   = "Andy3153";
-        userEmail  = "andy3153@protonmail.com";
       };
       # }}}
 
@@ -257,8 +255,9 @@ in
       };
       # }}}
 
-      obs.enable = true;
+      obs.enable       = true;
       spicetify.enable = true;
+
       steam.extraPackages = [ pkgs.nss ]; # for-beamng
 
       # {{{ SSH

@@ -6,8 +6,11 @@
 { config, lib, ... }:
 
 let
-  cfg      = config.custom.programs.git;
-  mainUser = config.custom.users.mainUser;
+  cfg             = config.custom.programs.git;
+  mainUser        = config.custom.users.mainUser;
+  defaultEmailAcc = config.custom.accounts.email.default;
+  email           = defaultEmailAcc.address;
+  name            = defaultEmailAcc.realName;
 
   # {{{ Git extra config
   gitExtraConfig =
@@ -42,14 +45,16 @@ in
     userName = lib.mkOption
     {
       type        = lib.types.nullOr lib.types.str;
-      default     = lib.types.null;
+      default     = name;
+      example     = "user";
       description = "default Git user name";
     };
 
     userEmail = lib.mkOption
     {
       type        = lib.types.nullOr lib.types.str;
-      default     = lib.types.null;
+      default     = email;
+      example     = "user@email.tld";
       description = "default Git user email";
     };
   };

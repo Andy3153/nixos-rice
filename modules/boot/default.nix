@@ -8,8 +8,8 @@
 {
   imports =
   [
-    ./kernel.nix
     ./loader
+    ./kernel.nix
     ./plymouth.nix
     ./quiet.nix
     ./sysctl.nix

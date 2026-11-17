@@ -11,6 +11,7 @@ in
 {
   imports =
   [
+    ./accounts
     ./boot
     ./extraPackages
     ./gui
@@ -130,6 +131,7 @@ in
 
     users.${mainUser} =
     {
+      # {{{ Home
       home =
       {
         stateVersion  = config.system.stateVersion;
@@ -137,6 +139,7 @@ in
         username      = mainUser;
         homeDirectory = config.users.users.${mainUser}.home;
       };
+      # }}}
 
       news.display = "notify";                # Show news
       programs.home-manager.enable = true;    # let HM manage itself

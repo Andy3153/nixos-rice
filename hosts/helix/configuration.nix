@@ -42,14 +42,7 @@
     # {{{ Programs
     programs =
     {
-      # {{{ Git
-      git =
-      {
-        enable    = true;
-        userName  = "Andy3153";
-        userEmail = "andy3153@protonmail.com";
-      };
-      # }}}
+      git.enable = true;
 
       # {{{ Neovim
       neovim =
