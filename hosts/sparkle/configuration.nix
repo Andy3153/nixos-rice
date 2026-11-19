@@ -98,6 +98,7 @@ in
 
     (with pkgs;
     [
+      unityhub
       linux-wifi-hotspot # Internet hotspot
       qbittorrent        # torrents
       wimlib             # .wim
@@ -160,10 +161,11 @@ in
       # {{{ Unfree whitelist
       unfreeWhitelist =
       [
-        "lsfg-vk"           # for-bottles
         "SpaceCadetPinball"
         "grayjay"
+        "lsfg-vk"           # for-bottles
         "osu-lazer-bin"
+        "unityhub"
         "ventoy-qt5"
         "wpsoffice"
       ];

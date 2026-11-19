@@ -77,10 +77,7 @@
 
     (with pkgs;
     [
-      # {{{ Master
       unityhub
-      # }}}
-
       linux-wifi-hotspot # Internet hotspot
       qbittorrent        # torrents
       wimlib             # .wim
