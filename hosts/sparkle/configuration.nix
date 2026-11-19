@@ -5,7 +5,7 @@
 ## ASUS TUF F15 FX506HM
 ##
 
-{ config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
+{ config, lib, pkgs, pkgGroups, ... }:
 
 # {{{ Variables
 let
@@ -61,105 +61,53 @@ in
     # }}}
 
   # {{{ Extra packages
-  extraPackages = with pkgs;
-  let
-    bottles = pkgs.bottles.override { removeWarningPopup = true; };
-  in
+  extraPackages = lib.lists.flatten
   [
-    # {{{ 3D
-    blender # 3D
+    # {{{ Package groups
+    (with pkgGroups;
+    [
+      _3d
+      browsers
+      fs
+
+      gaming.emulators
+      gaming.games
+      gaming.launchers
+
+      media.audio.convert
+      media.audio.edit
+      media.audio.play
+      media.audio.tools
+
+      media.image.convert
+      media.image.edit
+      media.image.editExtras
+
+      media.convert
+      media.download
+
+      office.wysiwyg
+      office.latex
+      office.pdf
+
+      programming
+      social
+      wine
+    ])
     # }}}
 
-    # {{{ Browsers
-    ungoogled-chromium # browser
-    tor-browser        # Tor
-    # }}}
-
-    # {{{ Gaming
-    lutris # launchers for-wine
-    heroic # launchers games
-
-    prismlauncher       # games
-    osu-lazer-bin       # games
-    space-cadet-pinball # games
-
-    dolphin-emu # emulators games gc wii
-
-    beammp-launcher # for-beamng
-    # }}}
-
-    # {{{ Media
-    pear-desktop # music-player youtube-music
-
-    flac       # music
-    opus-tools # music
-    mousai     # music find-music
-    picard     # music tag-music
-    lrcget     # music get-lyrics
-    shntool    # music split-cue
-    cdparanoia # music rip-cds
-
-    ffmpeg # media-convert
-    yt-dlp # media-download
-
-    audacity # audio-editor
-
-    exiftool # image-data
-    # }}}
-
-    # {{{ Office
-    libreoffice-qt6           # Office
-    gimp3-with-plugins        # Office photo-editing
-    inkscape                  # Office photo-editing
-    krita                     # Office photo-editing
-
-    texliveFull                # LaTeX
-    texpresso                  # for-latex
-    python314Packages.pygments # for-latex
-    pandoc                     # for-latex
-    ghostscript                # for-latex pdf-tools
-
-    pdftk         # pdf-tools
-    pdfarranger   # pdf-tools
-    poppler-utils # pdf-tools
-    # }}}
-
-    # {{{ Partitioning/Filesystems
-    gparted # Partition-Manager
-    fatsort # Filesystems sort-fat-fs
-
-    (testdisk.override
-    {
-      enableQt = true;
-      enableNtfs = true;
-      enableExtFs = true;
-    })
-
-    f3 # flash-drive-tester
-    # }}}
-
-    # {{{ Programming
-    gh # github for-git
-    # }}}
-
-    # {{{ Social
-    ferdium # Social
-    # }}}
-
-    # {{{ Wine
-    wineWow64Packages.staging # wine
-    bottles                   # launchers for-wine
-    # }}}
-
-    linux-wifi-hotspot # Internet hotspot
-    qbittorrent        # torrents
-    wimlib             # .wim
-    ventoy-full-qt     # flash-usbs
-    woeusb             # flash-usbs windows
-    d-spy              # D-Bus
-    openbox            # for-xwayland-rootless-script
-    jq                 # Other-CLI json
-    hjson              # Other-CLI json
+    (with pkgs;
+    [
+      linux-wifi-hotspot # Internet hotspot
+      qbittorrent        # torrents
+      wimlib             # .wim
+      ventoy-full-qt     # flash-usbs
+      woeusb             # flash-usbs windows
+      d-spy              # D-Bus
+      openbox            # for-xwayland-rootless-script
+      jq                 # Other-CLI json
+      hjson              # Other-CLI json
+    ])
   ];
   # }}}
 

@@ -25,6 +25,7 @@ in
     ./users
     ./virtualisation
     ./xdg
+    ./package-groups.nix
 
     (lib.mkAliasOptionModule [ "custom" "specialisation" ]        [ "specialisation" ])
     (lib.mkAliasOptionModule [ "custom" "system" "stateVersion" ] [ "system" "stateVersion" ])

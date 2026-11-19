@@ -5,7 +5,7 @@
 ## Lenovo ThinkPad X280
 ##
 
-{ config, lib, pkgs, pkgs-unstable, pkgs-stable, my-pkgs, ... }:
+{ config, lib, pkgs, pkgGroups, ... }:
 
 {
   custom =
@@ -48,80 +48,47 @@
     # }}}
 
   # {{{ Extra packages
-  extraPackages = with pkgs;
+  extraPackages = lib.lists.flatten
   [
-    # {{{ Browsers
-    ungoogled-chromium # browser
-    tor-browser        # Tor
+    # {{{ Package groups
+    (with pkgGroups;
+    [
+      browsers
+      fs
+
+      media.audio.convert
+      media.audio.play
+      media.audio.tools
+
+      media.image.convert
+      media.image.edit
+
+      media.convert
+      media.download
+
+      office.wysiwyg
+      office.latex
+      office.pdf
+
+      programming
+      social
+    ])
     # }}}
 
-    # {{{ Media
-    cantata      # music-player for-mpd
-    pear-desktop # music-player youtube-music
+    (with pkgs;
+    [
+      # {{{ Master
+      unityhub
+      # }}}
 
-    flac       # music
-    opus-tools # music
-    mousai     # music find-music
-    picard     # music tag-music
-    lrcget     # music get-lyrics
-    shntool    # music split-cue
-    cdparanoia # music rip-cds
-
-    ffmpeg # media-convert
-    yt-dlp # media-download
-
-    exiftool # image-data
-    # }}}
-
-    # {{{ Office
-    libreoffice-qt6           # Office
-    gimp3-with-plugins        # Office photo-editing
-    inkscape                  # Office photo-editing
-
-    texliveFull                # LaTeX
-    texpresso                  # for-latex
-    python314Packages.pygments # for-latex
-    pandoc                     # for-latex
-    ghostscript                # for-latex pdf-tools
-
-    pdftk         # pdf-tools
-    pdfarranger   # pdf-tools
-    poppler-utils # pdf-tools
-    # }}}
-
-    # {{{ Partitioning/Filesystems
-    gparted # Partition-Manager
-    fatsort # Filesystems sort-fat-fs
-
-    (testdisk.override
-    {
-      enableQt = true;
-      enableNtfs = true;
-      enableExtFs = true;
-    })
-
-    f3 # flash-drive-tester
-    # }}}
-
-    # {{{ Programming
-    gh # github for-git
-    # }}}
-
-    # {{{ Social
-    ferdium # Social
-    # }}}
-
-    # {{{ Master
-    unityhub
-    # }}}
-
-    linux-wifi-hotspot # Internet hotspot
-    qbittorrent        # torrents
-    wimlib             # .wim
-    woeusb             # flash-usbs windows
-    d-spy              # D-Bus
-    jq                 # Other-CLI json
-    hjson              # Other-CLI json
+      linux-wifi-hotspot # Internet hotspot
+      qbittorrent        # torrents
+      wimlib             # .wim
+      woeusb             # flash-usbs windows
+      d-spy              # D-Bus
+      jq                 # Other-CLI json
+      hjson              # Other-CLI json
+    ])
   ];
   # }}}
 
