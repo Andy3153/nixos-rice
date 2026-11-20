@@ -37,6 +37,7 @@ just-print arg:
 # }}}
 
 # {{{ Git
+# {{{ Push/pull
 [private]
 git-pull directory:
   [ -d {{ directory }} ] && GIT_TERMINAL_PROMPT=0 git -C {{ directory }} pull --rebase --autostash || true
@@ -44,6 +45,33 @@ git-pull directory:
 [private]
 git-push directory:
   [ -d {{ directory }} ] && GIT_TERMINAL_PROMPT=0 git -C {{ directory }} push || true
+# }}}
+
+# {{{ List
+[private]
+git-list-dir directory:
+  @echo "{{ directory }}" | sed "s#^$HOME#~#"
+
+[private]
+git-list-url directory:
+  #!/usr/bin/env bash
+  ssh_to_https() {
+    echo "$1" | sed -E \
+      -e 's#^ssh://([^@]+@)?([^/:]+)(:[0-9]+)?/#https://\2/#' \
+      -e 's#^([^@]+@)?([^:/]+):([^/])#https://\2/\3#' \
+      -e 's#\.git$##'
+  }
+
+  ssh_to_https $(git -C {{ directory }} remote get-url origin)
+
+[private]
+git-list directory:
+  #!/usr/bin/env bash
+  list_dir="$(just --justfile {{ justfile() }} git-list-dir {{ directory }})"
+  list_url="$(just --justfile {{ justfile() }} git-list-url {{ directory }})"
+
+  echo "$list_dir ($list_url)"
+# }}}
 # }}}
 
 # {{{ NixOS
@@ -120,9 +148,20 @@ group group: (just-print "--list --group " + group)
 list:        (just-print "--list")
 # }}}
 
+# {{{ Git repositories
 # {{{ Dotfiles
+# List all dotfiles
+[group("repos")]
+[group("help")]
+list-dotfiles:         \
+  (git-list zshDir)    \
+  (git-list scriptDir) \
+  (git-list nvimDir)   \
+  (git-list hyprDir)   \
+  (git-list nixosDir)
+
 # Pull all changes made to the dotfiles
-[group("dotfiles")]
+[group("repos")]
 dotfiles-pull:         \
   (git-pull zshDir)    \
   (git-pull scriptDir) \
@@ -131,7 +170,7 @@ dotfiles-pull:         \
   (git-pull nixosDir)
 
 # Push all changes made to the dotfiles
-[group("dotfiles")]
+[group("repos")]
 dotfiles-push:         \
   (git-push zshDir)    \
   (git-push scriptDir) \
@@ -140,26 +179,53 @@ dotfiles-push:         \
   (git-push nixosDir)
 
 # `dotfiles-pull`, `dotfiles-push`
-[group("dotfiles")]
+[group("repos")]
 dotfiles: dotfiles-pull dotfiles-push
 # }}}
 
 # {{{ Other repos
+# List all other repos
+[group("repos")]
+[group("help")]
+list-other-repos:         \
+  (git-list cvDir)        \
+  (git-list librebootDir)
+
 # Pull all changes made to the other repos
-[group("other-repos")]
+[group("repos")]
 other-repos-pull:         \
   (git-pull cvDir)        \
   (git-pull librebootDir) \
 
 # Push all changes made to the other repos
-[group("other-repos")]
+[group("repos")]
 other-repos-push:         \
   (git-push cvDir)        \
   (git-push librebootDir) \
 
 # `other-repos-pull`, `other-repos-push`
-[group("other-repos")]
+[group("repos")]
 other-repos: other-repos-pull other-repos-push
+# }}}
+
+# {{{ All repos
+# `list-dotfiles`, `list-other-repos`
+[group("repos")]
+[group("help")]
+list-repos: list-dotfiles list-other-repos
+
+# `dotfiles-pull`, `dotfiles-push`
+[group("repos")]
+repos-pull: dotfiles-pull other-repos-pull
+
+# `dotfiles-push` `other-repos-push`
+[group("repos")]
+repos-push: dotfiles-push other-repos-push
+
+# `dotfiles` `other-repos`
+[group("repos")]
+repos: dotfiles other-repos
+# }}}
 # }}}
 
 # {{{ NixOS
