@@ -10,14 +10,22 @@ set lazy
 # }}}
 
 # {{{ Variables
-# {{{ Dotfile directories
-dotfileRootDir := env("XDG_PROJECTS_DIR", env("HOME", "~") + "/src")
+# {{{ Root directories
+docsDir    := env("XDG_DOCUMENTS_DIR", env("HOME", "~") + "/docs")
+dotfileDir := env("XDG_PROJECTS_DIR",  env("HOME", "~") + "/src")
+# }}}
 
-zshDir    := dotfileRootDir + "/sh/andy3153-zshrc"
-scriptDir := dotfileRootDir + "/sh/other-shell-scripts"
-nvimDir   := dotfileRootDir + "/nvim/andy3153-init.lua"
-hyprDir   := dotfileRootDir + "/hyprland/hyprland-rice"
-nixosDir  := dotfileRootDir + "/nix/nixos-rice"
+# {{{ Dotfile repos directories
+zshDir    := dotfileDir + "/sh/andy3153-zshrc"
+scriptDir := dotfileDir + "/sh/other-shell-scripts"
+nvimDir   := dotfileDir + "/nvim/andy3153-init.lua"
+hyprDir   := dotfileDir + "/hyprland/hyprland-rice"
+nixosDir  := dotfileDir + "/nix/nixos-rice"
+# }}}
+
+# {{{ Other repos directories
+cvDir        := docsDir    + "/personal/cv"
+librebootDir := dotfileDir + "/docker/libreboot"
 # }}}
 # }}}
 
@@ -134,6 +142,24 @@ dotfiles-push:         \
 # `dotfiles-pull`, `dotfiles-push`
 [group("dotfiles")]
 dotfiles: dotfiles-pull dotfiles-push
+# }}}
+
+# {{{ Other repos
+# Pull all changes made to the other repos
+[group("other-repos")]
+other-repos-pull:         \
+  (git-pull cvDir)        \
+  (git-pull librebootDir) \
+
+# Push all changes made to the other repos
+[group("other-repos")]
+other-repos-push:         \
+  (git-push cvDir)        \
+  (git-push librebootDir) \
+
+# `other-repos-pull`, `other-repos-push`
+[group("other-repos")]
+other-repos: other-repos-pull other-repos-push
 # }}}
 
 # {{{ NixOS
