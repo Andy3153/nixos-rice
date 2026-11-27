@@ -10,6 +10,8 @@ set lazy
 # }}}
 
 # {{{ Variables
+hostname:=`hostname`
+
 # {{{ Root directories
 docsDir    := env("XDG_DOCUMENTS_DIR", env("HOME", "~") + "/docs")
 dotfileDir := env("XDG_PROJECTS_DIR",  env("HOME", "~") + "/src")
@@ -76,6 +78,19 @@ git-list directory:
 
 # {{{ NixOS
 # {{{ Nix
+[private]
+nix-eval flakePath expr hostname=hostname:
+  @nix eval --impure --expr                                      \
+    '                                                            \
+    let                                                          \
+      flake = builtins.getFlake "{{ flakePath }}";               \
+      f     = flake;                                             \
+      conf  = flake.nixosConfigurations."{{ hostname }}".config; \
+      lib   = flake.inputs.nixpkgs.lib;                          \
+      pkgs  = import flake.inputs.nixpkgs { };                   \
+    in {{ expr }}                                                \
+  '
+
 [private]
 nix-repl flakePath:
   nix repl nixpkgs "{{ flakePath }}" --impure
@@ -260,9 +275,13 @@ clean nrOfGensToKeep:                 \
 [group("nixos-tools")]
 generations: (nh-os "info")
 
+# Evaluate a single Nix expression with the system flake loaded (`flake`/`f` = system flake ; `conf` = current hostname's configuration ; `lib` ; `pkgs`)
+[group("nixos-tools")]
+eval expr hostname=hostname: (nix-eval nixosDir expr hostname)
+
 # Start an interactive environment for evaluating Nix expressions and load the system flake
 [group("nixos-tools")]
-repl:        (nix-repl nixosDir)
+repl: (nix-repl nixosDir)
 # }}}
 # }}}
 
