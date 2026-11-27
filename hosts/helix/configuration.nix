@@ -30,12 +30,20 @@
     {
       laptop.batteryId = "BAT0";
 
+      # {{{ System keys
       systemKeys =
       {
+        initrd =
+        {
+          lid   = "ignore";
+          power = "ignore";
+        };
+
         lid            = "ignore";
         power          = "ignore";
         powerLongPress = "ignore";
       };
+      # }}}
     };
     # }}}
 
